@@ -49,6 +49,7 @@
 				setTimeout(function(){
 					console.log('native init');
 					z.init.apply(z,arguments);
+				},0);
 			}
 		}
 		AceBase.prototype = n;
