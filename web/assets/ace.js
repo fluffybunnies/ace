@@ -139,7 +139,7 @@ AceBase.prototype.log = function(){
 		args.push(v);
 	});
 	console.log.apply(console,args);
-	return this;
+	//return this;
 }
 
 
