@@ -232,10 +232,12 @@ ace = {
 					,cssKey: 'ace-'+key
 				});
 
+				/*
 				// #AB1
 				var module = z._modules[key] = AceBase.extend(proto);
 				module.prototype.key = key;
 				module.prototype.cssKey = 'ace-'+key;
+				*/
 
 				module.instances = [];
 				ace.bus.trigger(key+':registered');
