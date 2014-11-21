@@ -43,9 +43,9 @@
 			n[k] = o[k];
 		n.super = this.prototype;
 		function AceBase() {
-			if (!initializing && this.__construct instanceof Function) {
-				console.log('native __construct');
-				this.__construct.apply(this,arguments);
+			if (!initializing && this.init instanceof Function) {
+				console.log('native init');
+				this.init.apply(this,arguments);
 			}
 		}
 		AceBase.prototype = n;
@@ -189,10 +189,9 @@ ace = {
 			if (z.getModule(key))
 				return console.log(key+' already registered');
 			ace.ready(function(){
-				/*
 				var module = z._modules[key] = function(){
 					AceBase.call(this);
-				}
+				};
 				module.prototype = new AceBase;
 				module.prototype.constructor = module;
 				$.extend(true,module.prototype,{
@@ -202,13 +201,13 @@ ace = {
 					key: key
 					,cssKey: 'ace-'+key
 				});
-				*/
 
+				/* "init" is already used as a constructor for AceBase
 				var module = z._modules[key] = AceBase.extend(proto);
 				if (!module.prototype.opts)
 					module.prototype.opts = {};
 				module.prototype.key = key;
-				module.prototype.cssKey = 'ace-'+key;
+				module.prototype.cssKey = 'ace-'+key;*/
 
 				module.instances = [];
 				ace.bus.trigger(key+':registered');
@@ -277,8 +276,7 @@ ace = {
 				};
 				module.instances.push(instance);
 				console.log('widgetize init');
-				if (instance.init)
-					instance.init();
+				instance.init();
 				if (cb)
 					cb.call(instance);
 			});
@@ -1280,7 +1278,7 @@ ace.ui.register('twitter',{
 	});
 	*/
 	var Pop = AceBase.extend({
-		__construct: function(opts){
+		init: function(opts){
 			var z = this;
 			if (typeof opts == 'string')
 				opts = {body:opts};
