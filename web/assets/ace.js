@@ -189,6 +189,7 @@ ace = {
 			if (z.getModule(key))
 				return console.log(key+' already registered');
 			ace.ready(function(){
+				/*
 				var module = z._modules[key] = function(){
 					AceBase.call(this);
 				}
@@ -201,6 +202,14 @@ ace = {
 					key: key
 					,cssKey: 'ace-'+key
 				});
+				*/
+
+				var module = z._modules[key] = AceBase.extend(proto);
+				if (!module.prototype.opts)
+					module.prototype.opts = {};
+				module.prototype.key = key;
+				module.prototype.cssKey = 'ace-'+key;
+
 				module.instances = [];
 				ace.bus.trigger(key+':registered');
 			});
