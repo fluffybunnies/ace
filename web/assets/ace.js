@@ -43,8 +43,10 @@
 			n[k] = o[k];
 		n.super = this.prototype;
 		function AceBase() {
-			if (!initializing && this.init instanceof Function)
+			if (!initializing && this.init instanceof Function) {
+				console.log('native init');
 				this.init.apply(this,arguments);
+			}
 		}
 		AceBase.prototype = n;
 		AceBase.prototype.constructor = AceBase;
@@ -265,6 +267,7 @@ ace = {
 					cont: $elm
 				};
 				module.instances.push(instance);
+				console.log('widgetize init');
 				instance.init();
 				if (cb)
 					cb.call(instance);
