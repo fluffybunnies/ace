@@ -276,8 +276,8 @@ ace = {
 					cont: $elm
 				};
 				module.instances.push(instance);
-				console.log('widgetize init');
-				instance.init();
+				//console.log('widgetize init');
+				//instance.init();
 				if (cb)
 					cb.call(instance);
 			});
