@@ -43,10 +43,12 @@
 			n[k] = o[k];
 		n.super = this.prototype;
 		function AceBase() {
+			var z = this;
 			console.log('native construct');
 			if (!initializing && this.init instanceof Function) {
-				console.log('native init');
-				this.init.apply(this,arguments);
+				setTimeout(function(){
+					console.log('native init');
+					z.init.apply(z,arguments);
 			}
 		}
 		AceBase.prototype = n;
