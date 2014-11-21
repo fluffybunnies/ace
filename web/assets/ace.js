@@ -54,7 +54,6 @@
 		return AceBase;
 	}
 }());
-AceBase = function(){};
 AceBase.prototype.on = function(key,cb){
 	var z = this;
 	$.each(key.split(/ +/),function(i,key){
@@ -190,7 +189,7 @@ ace = {
 			if (z.getModule(key))
 				return console.log(key+' already registered');
 			ace.ready(function(){
-				var module = z._modules[key] = function(){
+				/*var module = z._modules[key] = function(){
 					AceBase.call(this);
 				};
 				module.prototype = new AceBase;
@@ -201,14 +200,11 @@ ace = {
 				},proto,{
 					key: key
 					,cssKey: 'ace-'+key
-				});
+				});*/
 
-				/* "init" is already used as a constructor for AceBase
 				var module = z._modules[key] = AceBase.extend(proto);
-				if (!module.prototype.opts)
-					module.prototype.opts = {};
 				module.prototype.key = key;
-				module.prototype.cssKey = 'ace-'+key;*/
+				module.prototype.cssKey = 'ace-'+key;
 
 				module.instances = [];
 				ace.bus.trigger(key+':registered');
@@ -1278,7 +1274,6 @@ ace.ui.register('twitter',{
 		,body: 'Clicking Ok will delete everything you own.'
 	});
 	*/
-	return;
 	var Pop = AceBase.extend({
 		init: function(opts){
 			var z = this;
