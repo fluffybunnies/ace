@@ -196,9 +196,9 @@ ace = {
 				var module = z._modules[key] = new Function;
 				/*var module = z._modules[key] = function(){
 					AceBase.call(this);
-				};*/
+				};
 				module.prototype = new AceBase;
-				module.prototype.constructor = module;
+				module.prototype.constructor = module;*/
 				$.extend(true,module.prototype,{
 					init: function(){}
 					,opts: {}
