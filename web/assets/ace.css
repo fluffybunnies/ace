@@ -1,0 +1,391 @@
+
+/* BEGIN globals */
+div.clear {
+	clear: both;
+	height: 0;
+	width: auto;
+	overflow: hidden;
+}
+/* END globals */
+
+/* BEGIN theme overrides */
+
+/* END theme overrides */
+
+
+.ace-instagram {
+}
+.ace-instagram-img
+,.ace-instagram-img-img {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+.ace-instagram.shadbox_enabled .ace-instagram-img-img {
+	cursor: pointer;
+}
+
+.ace-instagram.type-squares .ace-instagram-img {
+	float: left;
+}
+.ace-instagram.type-med .ace-instagram-img
+,.ace-instagram.type-med .ace-instagram-img-img {
+	width: 124px;
+	height: 124px;
+}
+
+
+
+.ace-carousel {
+	position: relative;
+}
+.ace-carousel-mask {
+	overflow: hidden;
+	position: relative;
+}
+.ace-carousel-slide_cont {
+	position: relative;
+}
+.ace-carousel-slide {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.ace-carousel-arr {
+	position: absolute;
+	top: 0;
+	width: 54px;
+	height: 100%;
+	background: url(/assets/car_arrows.png) no-repeat;
+	cursor: pointer;
+}
+.ace-carousel-arr-left {
+	left: 0;
+	background-position: 1px center;
+}
+.ace-carousel-arr-right {
+	right: 0;
+	background-position: -58px center;
+}
+.ace-carousel-arr-left:hover {
+	background-position: -119px center;
+}
+.ace-carousel-arr-right:hover {
+	background-position: -178px center;
+}
+.ace-carousel-img {
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	background: #fff;
+	border: 1px solid #d6d6d6;
+	padding: 4px;
+	margin: 0 1px;
+}
+.ace-carousel-img.is-loading {
+	background: url(/assets/loader02.gif) no-repeat center center;
+}
+.ace-carousel-img-wrap {
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.ace-carousel-img-img {
+	position: absolute;
+	display: block;
+	margin: 0 !important;
+	padding: 0 !important;
+	border: none !important;
+}
+.ace-carousel.shadbox_enabled .ace-carousel-img-img {
+	cursor: pointer;
+}
+
+
+
+
+
+.ace-shadbox {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 9999; /* menu items also at 999 :/ */
+	cursor: pointer;
+}
+.ace-shadbox-bg {
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=60)";
+	filter: alpha(opacity=60);
+	-moz-opacity: 0.6;
+	-khtml-opacity: 0.6;
+	opacity: 0.6;
+}
+.ace-shadbox-content {
+	position: fixed;
+	width: 100px;
+	height: 100px;
+	background: #000 no-repeat center center;
+}
+.ace-shadbox-content.loading {
+	background-image: url(/assets/shadbox-loading.gif);
+}
+.ace-shadbox-content.error {
+	width: 58px;
+	height: 58px;
+	background-image: url(/assets/shadbox-error.png);
+}
+.ace-shadbox-content img {
+	width: 100%;
+	height: 100%;
+}
+.ace-shadbox-close {
+	position: absolute;
+	right: -16px;
+	top: -16px;
+	display: block;
+	width: 20px;
+	height: 20px;
+	background: url(/assets/shadbox-close.png) no-repeat center center;
+}
+
+
+.ace-twitter {
+}
+.ace-twitter-tweets_cont {
+	overflow: hidden;
+	position: relative;
+}
+.ace-twitter-tweet {
+	font-size: 12px;
+	line-height: 1.6;
+	overflow: hidden;
+	/* use wrap-inner2 for styling */
+	margin: 0 !important;
+	padding: 0 !important;
+	float: left;
+}
+.ace-twitter-tweet-wrap {
+	/* use wrap-inner2 for styling */
+	margin: 0 !important;
+	padding: 0 !important;
+}
+.ace-twitter-tweet-wrap-inner {
+}
+.ace-twitter-tweet-text {
+	display: inline;
+}
+.ace-twitter-tweet-time {
+	display: inline;
+	padding-left: 1em;
+	color: #888;
+}
+
+.ace-twitter.is-scroll-x .ace-twitter-tweets_cont {
+	margin-left: -30px;
+}
+.ace-twitter.is-scroll-x .ace-twitter-tweet-wrap-inner {
+	margin-left: 30px;
+}
+
+.ace-twitter.is-scroll-y .ace-twitter-tweet-wrap-inner {
+	margin-bottom: 10px;
+}
+
+.ace-twitter.type-featured {
+	height: 60px;
+	max-height: 60px;
+	border: 1px solid #dbd8c5;
+	background: #e8e5d1;
+	margin-bottom: 20px;
+}
+.ace-twitter.type-featured .ace-twitter-wrap {
+	height: 100%;
+	background: url(/assets/twitterbird-bg2.png) no-repeat;
+	background-position:	595px 38px;
+}
+.ace-twitter.type-featured .ace-twitter-wrap2 {
+	padding: 9px 10px 10px 10px;
+}
+
+.ace-twitter.type-sidebar {
+	border: 1px solid #dbd8c5;
+	background: #e8e5d1;
+	height: 246px;
+	max-height: 246px;
+	overflow: hidden;
+}
+.ace-twitter.type-sidebar .ace-twitter-wrap {
+	height: 100%;
+	background: url(/assets/twitterbird-bg1-offset-br-5px.png) no-repeat;
+	background-position: right bottom;
+}
+.ace-twitter.type-sidebar .ace-twitter-wrap2 {
+	padding: 10px;
+}
+
+
+.ace-tooltip {
+  z-index: 1030;
+  letter-spacing: 1.5px;
+  padding: 5px 5.5px 5px 7px;
+  line-height: 1;
+  font-family: 'Brandon Grotesque',Lato,Arial,sans-serif;
+  font-size: 10px;
+  color: #fff;
+  text-transform: uppercase;
+  background-color: #262626;
+  -ms-filter: 'progid:DXImageTransform.Microsoft.Alpha(Opacity=90)';
+  filter: alpha(opacity=90);
+  -moz-opacity: 0.9;
+  -khtml-opacity: 0.9;
+  opacity: 0.9;
+}
+.ace-tooltip-content {
+}
+.ace-tooltip-arrow {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-color: #262626;
+}
+.ace-tooltip.pos-top .ace-tooltip-arrow {
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-width: 5px 5px 0 5px;
+}
+.ace-tooltip.pos-bot .ace-tooltip-arrow {
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-left-color: transparent;
+  border-width: 0 5px 5px 5px;
+}
+.ace-tooltip.pos-left .ace-tooltip-arrow {
+  border-top-color: transparent;
+  border-right-color: transparent;
+  border-bottom-color: transparent;
+  border-width: 5px 0 5px 5px;
+}
+.ace-tooltip.pos-right .ace-tooltip-arrow {
+  border-top-color: transparent;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-width: 5px 5px 5px 0;
+}
+
+
+
+
+.ace-pop-bg {
+	/* #hack */
+	z-index: 11;
+
+	position: fixed;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	background: #000;
+	-ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+	filter: alpha(opacity=30);
+	-moz-opacity: 0.3;
+	-khtml-opacity: 0.3;
+	opacity: 0.3;
+}
+.ace-pop {
+	/* #hack */
+	z-index: 12;
+
+	background: #fff;
+	-moz-box-shadow: 0px 1px 5px rgba(0,0,0,0.3);
+	-webkit-box-shadow: 0px 1px 5px rgba(0,0,0,0.3);
+	box-shadow: 0px 1px 5px rgba(0,0,0,0.3);
+	font-family: arial,sans-serif;
+	font-size: 13px;
+	color: #7f7f7f;
+	max-width: 600px;
+	text-align: left;
+}
+.ace-pop-head {
+	position: relative;
+	height: 23px;
+	padding: 10px 15px 0 15px;
+	background: #c97766;
+	color: #fff;
+	text-transform: uppercase;
+	letter-spacing: 0.2em;
+	font-size: 11px;
+	font-weight: bold;
+}
+.ace-pop-head-content {
+}
+.ace-pop-btn-exit
+,.ace-pop-btn-exit:active {
+	position: absolute;
+	right: 8px;
+	top: 7px;
+	display: block;
+	width: 13px;
+	height: 13px;
+	text-align: center;
+	padding: 2px 1px 0px 1px;
+	font-size: 10px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
+	color: #fff;
+}
+.ace-pop-body {
+	min-width: 300px;
+	padding: 20px 20px 18px 20px;
+}
+.ace-pop-body-content {
+	padding: 0 0 20px 0;
+	font-size: 12px;
+}
+.ace-pop-btns {
+	padding: 10px 0 0 0;
+	text-align: center;
+}
+.ace-pop-btns .ace-pop-btn
+,.ace-pop-btns .ace-pop-btn:visited {
+	-moz-box-shadow: inset 0px 1px 0px 0px #fff;
+	-webkit-box-shadow: inset 0px 1px 0px 0px #fff;
+	box-shadow: inset 0px 1px 0px 0px #fff;
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #dfdfdf) );
+	background: -moz-linear-gradient( center top, #ededed 5%, #dfdfdf 100% );
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#dfdfdf');
+	background-color: #ededed;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	border-radius: 4px;
+	border: 1px solid #dcdcdc;
+	display: inline-block;
+	color: #777777;
+	font-size: 12px;
+	font-weight: bold;
+	padding: 4px 8px;
+	text-decoration: none;
+	text-shadow: 1px 1px 0px #fff;
+
+	margin:  0 8px;
+}
+.ace-pop-btns .ace-pop-btn:hover {
+	background: -webkit-gradient( linear, left top, left bottom, color-stop(0.05, #dfdfdf), color-stop(1, #ededed) );
+	background: -moz-linear-gradient( center top, #dfdfdf 5%, #ededed 100% );
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dfdfdf', endColorstr='#ededed');
+	background-color: #dfdfdf;
+}
+.ace-pop-btns .ace-pop-btn:active {
+	position: relative;
+	top: 1px;
+	left: auto;
+	right: auto;
+	bottom: auto;
+}
