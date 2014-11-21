@@ -647,7 +647,7 @@ ace.ui.register('carousel',{
 		,shadbox: true
 	}
 	,init: function(){
-		console.log('carousel init called', JSON.stringify(this));
+		console.log('carousel init called', JSON.stringify(this.opts), JSON.stringify(this.$));
 		var z = this
 			,d = z.opts.dims.split('x')
 		;
