@@ -193,7 +193,7 @@ ace = {
 			if (z.getModule(key))
 				return console.log(key+' already registered');
 			ace.ready(function(){
-				var module = z._modules[key] = new Function();
+				/*var module = z._modules[key] = new Function();
 				$.extend(true,module.prototype,{
 					init: function(){}
 					,opts: {}
@@ -207,7 +207,7 @@ ace = {
 						});
 						console.log.apply(console,args);
 					}
-				});
+				});*/
 
 				/*var module = z._modules[key] = function(){
 					AceBase.call(this);
@@ -222,9 +222,9 @@ ace = {
 					,cssKey: 'ace-'+key
 				});*/
 
-				/*var module = z._modules[key] = AceBase.extend(proto);
+				var module = z._modules[key] = AceBase.extend(proto);
 				module.prototype.key = key;
-				module.prototype.cssKey = 'ace-'+key;*/
+				module.prototype.cssKey = 'ace-'+key;
 
 				module.instances = [];
 				ace.bus.trigger(key+':registered');
@@ -292,8 +292,8 @@ ace = {
 					cont: $elm
 				};
 				module.instances.push(instance);
-				console.log('widgetize init');
-				instance.init();
+				//console.log('widgetize init');
+				//instance.init();
 				if (cb)
 					cb.call(instance);
 			});
