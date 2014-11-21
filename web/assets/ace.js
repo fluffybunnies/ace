@@ -43,9 +43,9 @@
 			n[k] = o[k];
 		n.super = this.prototype;
 		function AceBase() {
-			if (!initializing && this.init instanceof Function) {
-				console.log('native init');
-				this.init.apply(this,arguments);
+			if (!initializing && this.__construct instanceof Function) {
+				console.log('native __construct');
+				this.__construct.apply(this,arguments);
 			}
 		}
 		AceBase.prototype = n;
@@ -277,7 +277,8 @@ ace = {
 				};
 				module.instances.push(instance);
 				console.log('widgetize init');
-				instance.init();
+				if (instance.init)
+					instance.init();
 				if (cb)
 					cb.call(instance);
 			});
@@ -1279,7 +1280,7 @@ ace.ui.register('twitter',{
 	});
 	*/
 	var Pop = AceBase.extend({
-		init: function(opts){
+		__construct: function(opts){
 			var z = this;
 			if (typeof opts == 'string')
 				opts = {body:opts};
