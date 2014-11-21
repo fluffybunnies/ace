@@ -50,10 +50,8 @@
 			/*
 			// #AB1
 			var z = this,args=arguments;
-			console.log('native construct');
 			if (!initializing && this.init instanceof Function) {
 				setTimeout(function(){
-					console.log('native init');
 					z.init.apply(z,args);
 				},0);
 			}
@@ -200,24 +198,6 @@ ace = {
 			if (z.getModule(key))
 				return console.log(key+' already registered');
 			ace.ready(function(){
-				/*
-				// #AB0
-				var module = z._modules[key] = new Function();
-				$.extend(true,module.prototype,{
-					init: function(){}
-					,opts: {}
-				},proto,{
-					key: key
-					,cssKey: 'ace-'+key
-					,log: function(){
-						var args = [this.key];
-						$.each(arguments,function(i,v){
-							args.push(v);
-						});
-						console.log.apply(console,args);
-					}
-				});*/
-
 				// #AB0
 				var module = z._modules[key] = function(){
 					AceBase.call(this);
@@ -306,8 +286,7 @@ ace = {
 				};
 				module.instances.push(instance);
 
-				// #AB0 (#AB1 is init commented out)
-				console.log('widgetize init');
+				// #AB0 (#AB1 == init commented out)
 				instance.init();
 
 				if (cb)
