@@ -1278,6 +1278,7 @@ ace.ui.register('twitter',{
 		,body: 'Clicking Ok will delete everything you own.'
 	});
 	*/
+	return;
 	var Pop = AceBase.extend({
 		init: function(opts){
 			var z = this;
