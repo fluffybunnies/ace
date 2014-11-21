@@ -194,6 +194,7 @@ ace = {
 				return console.log(key+' already registered');
 			ace.ready(function(){
 				var module = z._modules[key] = new Function;
+				module.prototype.log=function(){};
 				/*var module = z._modules[key] = function(){
 					AceBase.call(this);
 				};
