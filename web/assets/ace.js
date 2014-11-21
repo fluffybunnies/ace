@@ -54,6 +54,7 @@
 		return AceBase;
 	}
 }());
+AceBase = function(){};
 AceBase.prototype.on = function(key,cb){
 	var z = this;
 	$.each(key.split(/ +/),function(i,key){
@@ -647,7 +648,6 @@ ace.ui.register('carousel',{
 		,shadbox: true
 	}
 	,init: function(){
-		console.log('carousel init called', this.opts, this.$);
 		var z = this
 			,d = z.opts.dims.split('x')
 		;
