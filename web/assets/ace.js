@@ -43,6 +43,12 @@
 			n[k] = o[k];
 		n.super = this.prototype;
 		function AceBase() {
+			// #AB0
+			if (!initializing && this.init instanceof Function)
+				this.init.apply(this,args);
+
+			/*
+			// #AB1
 			var z = this,args=arguments;
 			console.log('native construct');
 			if (!initializing && this.init instanceof Function) {
@@ -51,6 +57,7 @@
 					z.init.apply(z,args);
 				},0);
 			}
+			*/
 		}
 		AceBase.prototype = n;
 		AceBase.prototype.constructor = AceBase;
@@ -193,7 +200,9 @@ ace = {
 			if (z.getModule(key))
 				return console.log(key+' already registered');
 			ace.ready(function(){
-				/*var module = z._modules[key] = new Function();
+				/*
+				// #AB0
+				var module = z._modules[key] = new Function();
 				$.extend(true,module.prototype,{
 					init: function(){}
 					,opts: {}
@@ -209,7 +218,8 @@ ace = {
 					}
 				});*/
 
-				/*var module = z._modules[key] = function(){
+				// #AB0
+				var module = z._modules[key] = function(){
 					AceBase.call(this);
 				};
 				module.prototype = new AceBase;
@@ -220,8 +230,9 @@ ace = {
 				},proto,{
 					key: key
 					,cssKey: 'ace-'+key
-				});*/
+				});
 
+				// #AB1
 				var module = z._modules[key] = AceBase.extend(proto);
 				module.prototype.key = key;
 				module.prototype.cssKey = 'ace-'+key;
@@ -292,8 +303,11 @@ ace = {
 					cont: $elm
 				};
 				module.instances.push(instance);
-				//console.log('widgetize init');
-				//instance.init();
+
+				// #AB0 (#AB1 is init commented out)
+				console.log('widgetize init');
+				instance.init();
+
 				if (cb)
 					cb.call(instance);
 			});
