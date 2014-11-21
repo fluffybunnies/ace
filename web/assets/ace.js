@@ -193,20 +193,34 @@ ace = {
 			if (z.getModule(key))
 				return console.log(key+' already registered');
 			ace.ready(function(){
-				var module = z._modules[key] = new Function;
-				module.prototype.log=function(){};
-				/*var module = z._modules[key] = function(){
-					AceBase.call(this);
-				};
-				module.prototype = new AceBase;
-				module.prototype.constructor = module;*/
+				var module = z._modules[key] = new Function();
 				$.extend(true,module.prototype,{
 					init: function(){}
 					,opts: {}
 				},proto,{
 					key: key
 					,cssKey: 'ace-'+key
+					,log: function(){
+						var args = [this.key];
+						$.each(arguments,function(i,v){
+							args.push(v);
+						});
+						console.log.apply(console,args);
+					}
 				});
+
+				/*var module = z._modules[key] = function(){
+					AceBase.call(this);
+				};
+				module.prototype = new AceBase;
+				module.prototype.constructor = module;
+				$.extend(true,module.prototype,{
+					init: function(){}
+					,opts: {}
+				},proto,{
+					key: key
+					,cssKey: 'ace-'+key
+				});*/
 
 				/*var module = z._modules[key] = AceBase.extend(proto);
 				module.prototype.key = key;
