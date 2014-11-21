@@ -43,12 +43,12 @@
 			n[k] = o[k];
 		n.super = this.prototype;
 		function AceBase() {
-			var z = this;
+			var z = this,args=arguments;
 			console.log('native construct');
 			if (!initializing && this.init instanceof Function) {
 				setTimeout(function(){
 					console.log('native init');
-					z.init.apply(z,arguments);
+					z.init.apply(z,args);
 				},0);
 			}
 		}
