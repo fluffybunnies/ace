@@ -48,7 +48,7 @@ class Ses extends HelperAbstract {
 			$opts['ReplyToAddresses'] = $params['reply_to'];
 
 		// send
-		$ases = new AmazonSES();
+		$ases = new \AmazonSES;
 		$r = $ases->send_email($params['from'],  $destination, $message, $opts);
 
 		if (!$r->isOK())
