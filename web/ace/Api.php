@@ -10,6 +10,8 @@ class Api {
 	private static $routes = array(
 		'twitter/token/app' => 'Twitter::getAppToken',
 		'twitter/get' => 'Twitter::get',
+		'demo/email-csv-node' => 'Demo::emailCsvWithNode',
+		'demo/email-csv-php' => 'Demo::emailCsvWithPhp',
 	);
 	
 	public static function request($route){
