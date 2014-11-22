@@ -18,6 +18,7 @@ class Demo extends ControllerAbstract {
 	}
 
 	public function emailCsvWithPhp(){
+		return 'wef';
 		return $this->getSampleData();
 	}
 
