@@ -25,7 +25,6 @@ class Demo extends ControllerAbstract {
 			$params['email_to'] = $this->defaultEmailTo;
 
 		$fileName = REPOROOT.'/out/demo-csvwithphp.'.time().'.csv';
-		return $fileName;
 		$data = $this->getSampleData();
 		$this->generateCsvFromArray($fileName, $data);
 		if (!is_file($res))
