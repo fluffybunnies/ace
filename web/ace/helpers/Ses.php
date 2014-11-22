@@ -49,7 +49,8 @@ class Ses extends HelperAbstract {
 
 		// send
 		$ases = new \AmazonSES;
-		$r = $ases->send_email($params['from'],  $destination, $message, $opts);
+		if (!empty($_GET['debug'])) {var_dump($params['from']); var_dump($destination); var_dump($message); var_dump($opts);}
+		$r = $ases->send_email($params['from'], $destination, $message, $opts);
 
 		if (!$r->isOK())
 			$error = 'error sending mail: '.$r->body->Error->Message;
