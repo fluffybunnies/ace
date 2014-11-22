@@ -24,7 +24,7 @@ class Demo extends ControllerAbstract {
 		if (!$params['email_to'])
 			$params['email_to'] = $this->defaultEmailTo;
 
-		$fileName = '/var/www/ace/out/demo-csvwithphp.'.time().'.csv';
+		$fileName = WEBROOT.'/public-out/demo-csvwithphp.'.time().'.csv';
 		$data = $this->getSampleData();
 		$this->generateCsvFromArray($fileName, $data);
 		if (!is_file($res))
@@ -45,9 +45,7 @@ class Demo extends ControllerAbstract {
 		if (!isset($data[0]))
 			throw new Exception('Invalid input');
 		if (!($f=fopen($writeToPath, 'w+')))
-			throw new Exception('Error making file');
-		if (!($f = fopen($writeToPath, 'w')))
-			throw new Exception('Error opening file for writing');
+			throw new Exception('Error opening file');
 		
 		$headers = array();
 		foreach ($data[0] as $k => $v)

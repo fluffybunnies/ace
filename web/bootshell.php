@@ -9,7 +9,7 @@ if (!empty($_GET['debug'])) {
 //header('P3P: CP="NOI ADM DEV COM NAV OUR STP"');
 
 define('WEBROOT', dirname(__FILE__));
-define('REPOROOT', dirname(__DIR__.'/..'));
+//define('REPOROOT', dirname(__DIR__.'/..'));
 define('APP_PATH', WEBROOT.'/ace');
 include APP_PATH.'/autoload.php';
 use \ace\Ace;
