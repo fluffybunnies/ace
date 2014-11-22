@@ -27,7 +27,7 @@ class Demo extends ControllerAbstract {
 		$fileName = WEBROOT.'/public-out/demo-csvwithphp.'.time().'.csv';
 		$data = $this->getSampleData();
 		$this->generateCsvFromArray($fileName, $data);
-		if (!is_file($res))
+		if (!is_file($fileName))
 			throw new \Exception('output file not found');
 
 		return array(
