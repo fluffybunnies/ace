@@ -11,7 +11,7 @@ use \ace\helpers\Ses;
 class Demo extends ControllerAbstract {
 
 	private $defaultEmailTo = array('volcomstoner2689@gmail.com');
-	private $defaultEmailFrom = 'volcomstoner2689@gmail.com';
+	private $defaultEmailFrom = 'no-reply@trueberrybooks.com';
 
 
 	public function emailCsvWithNode(){
