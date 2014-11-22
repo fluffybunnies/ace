@@ -37,6 +37,7 @@ class Demo extends ControllerAbstract {
 			'from' => $emailFrom,
 			'subject' => 'Sup',
 			'message' => 'Here you go!',
+			'attachment' => $fileName,
 		));
 
 
