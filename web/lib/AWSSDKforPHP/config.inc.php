@@ -78,7 +78,7 @@ CFCredentials::set(array(
 		// will use that.
 		//
 		// Leave this set to `false` if you're not sure.
-		'certificate_authority' => false,
+		'certificate_authority' => true,
 
 	),
 
