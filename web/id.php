@@ -8,7 +8,7 @@ echo json_encode(array(
 	'branch' => preg_replace('/[\n* ]/','',`git branch | grep '\*' | head -n1`),
 	'commit' => str_replace("\n",'',`git rev-parse HEAD`),
 	'ip' => \ace\Ace::clientIp(),
-	//'whoami' => str_replace("\n",'',`whoami`),
+	'whoami' => str_replace("\n",'',`whoami`),
 ));
 
 exit;
