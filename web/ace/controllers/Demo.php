@@ -11,7 +11,7 @@ use \ace\helpers\Ses;
 class Demo extends ControllerAbstract {
 
 	private $defaultEmailTo = array('volcomstoner2689@gmail.com');
-	private $defaultEmailFrom = 'acquiremint-notifs@gmail.com';
+	private $defaultEmailFrom = 'volcomstoner2689@gmail.com';
 
 
 	public function emailCsvWithNode(){
@@ -21,6 +21,7 @@ class Demo extends ControllerAbstract {
 	public function emailCsvWithPhp(){
 		$params = $this->getInput(array(
 			'email_to' => false,
+			'email_from' => false,
 		));
 		$emailTo = isset($params['email_to']) ? $params['email_to'] : $this->defaultEmailTo;
 		$emailFrom = isset($params['email_from']) ? $params['email_from'] : $this->defaultEmailFrom;
