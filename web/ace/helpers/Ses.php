@@ -53,7 +53,7 @@ class Ses extends HelperAbstract {
 		$r = $ases->send_email($params['from'], $destination, $message, $opts);
 
 		if (!$r->isOK())
-			$error = 'error sending mail: '.$r->body->Error->Message;
+			throw new \Exception('error sending mail: '.$r->body->Error->Message);
 	}
 
 }
