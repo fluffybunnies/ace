@@ -44,7 +44,7 @@ class Demo extends ControllerAbstract {
 	private function generateCsvFromArray($writeToPath, $data){
 		if (!isset($data[0]))
 			throw new Exception('Invalid input');
-		if (!touch($writeToPath))
+		if (!($f=fopen($writeToPath, 'w+')))
 			throw new Exception('Error making file');
 		if (!($f = fopen($writeToPath, 'w')))
 			throw new Exception('Error opening file for writing');
