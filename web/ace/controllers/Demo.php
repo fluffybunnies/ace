@@ -24,7 +24,7 @@ class Demo extends ControllerAbstract {
 		if (!$params['email_to'])
 			$params['email_to'] = $this->defaultEmailTo;
 
-		$fileName = dirname(WEBROOT.'/../out').'/demo-csvwithphp.'.time().'.csv';
+		$fileName = REPOROOT.'/out/demo-csvwithphp.'.time().'.csv';
 		return $fileName;
 		$data = $this->getSampleData();
 		$this->generateCsvFromArray($fileName, $data);
