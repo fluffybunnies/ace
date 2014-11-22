@@ -50,7 +50,21 @@ class Ses extends HelperAbstract {
 		// send
 		$ases = new \AmazonSES;
 		if (!empty($_GET['debug'])) {var_dump($params['from']); var_dump($destination); var_dump($message); var_dump($opts);}
-		$r = $ases->send_email($params['from'], $destination, $message, $opts);
+		if (!empty($params['attachment'])) {
+			$mailmime = new \Mailmime(array('eol' => "\n"));
+			$mailmime->setTxtBody($message);
+			$mailmime->setHTMLBody($message);
+			$mailmime->addAttachment($params['attachment'], 'text/csv');
+			$body = $mailmime->get();
+			$headers = $mailmime->txtHeaders(array('From' => $params['from'], 'Subject' => $parms['subject']));
+			$message = $headers . "\r\n" . $body;
+			$r = $ses->sendrawemail(array(
+					'Data' => base64_encode($message)
+				), array('Destinations' => $destination)
+			);
+		} else {
+			$r = $ases->send_email($params['from'], $destination, $message, $opts);
+		}
 
 		if (!$r->isOK())
 			throw new \Exception('error sending mail: '.$r->body->Error->Message);
