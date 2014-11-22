@@ -9,6 +9,7 @@ echo json_encode(array(
 	'commit' => str_replace("\n",'',`git rev-parse HEAD`),
 	'ip' => \ace\Ace::clientIp(),
 	'whoami' => str_replace("\n",'',`whoami`),
+	'REPOROOT' => REPOROOT,
 ));
 
 exit;
