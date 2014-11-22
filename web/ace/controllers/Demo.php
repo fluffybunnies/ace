@@ -22,7 +22,7 @@ class Demo extends ControllerAbstract {
 			'email_to' => false,
 		));
 		if (!$params['email_to'])
-			$params['email_to'] = $this->$defaultEmailTo;
+			$params['email_to'] = $this->defaultEmailTo;
 
 		$fileName = WEBROOT.'/../out/demo-csvwithphp.'.time().'.csv';
 		$data = $this->getSampleData();
