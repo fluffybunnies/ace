@@ -4,3 +4,6 @@
 
 $twitterAppKey = '';
 $twitterAppSecret = '';
+
+$sesKey = '';
+$sesSecret = '';

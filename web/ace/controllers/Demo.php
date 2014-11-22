@@ -6,6 +6,7 @@
 namespace ace\controllers;
 use \ace\Ace;
 use \ace\ControllerAbstract;
+use \ace\helpers\Ses;
 
 class Demo extends ControllerAbstract {
 
@@ -21,8 +22,8 @@ class Demo extends ControllerAbstract {
 		$params = $this->getInput(array(
 			'email_to' => false,
 		));
-		if (!$params['email_to'])
-			$params['email_to'] = $this->defaultEmailTo;
+		$emailTo = isset($params['email_to']) ? $params['email_to'] : $this->defaultEmailTo;
+		$emailFrom = isset($params['email_from']) ? $params['email_from'] : $this->defaultEmailFrom;
 
 		$fileName = WEBROOT.'/public-out/demo-csvwithphp.'.time().'.csv';
 		$data = $this->getSampleData();
@@ -30,9 +31,18 @@ class Demo extends ControllerAbstract {
 		if (!is_file($fileName))
 			throw new \Exception('output file not found');
 
+		Ses::send(array(
+			'to' => $emailTo,
+			'from' => $emailFrom,
+			'subject' => 'Sup',
+			'message' => 'Here you go!',
+		));
+
+
 		return array(
 			'outputFileName' => basename($fileName),
-			'emailedTo' => $params['email_to'],
+			'emailTo' => $emailTo,
+			'emailFrom' => $emailFrom,
 		);
 	}
 
