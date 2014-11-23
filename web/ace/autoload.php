@@ -1334,8 +1334,9 @@ spl_autoload_register(function($name) use ($mapping) {
 		}
 
 		if (strpos($name, 'Aws\\') !== false) {
+			echo $name."<br />";
 			$k = str_replace($name, '', $name);
-			exit($k);
+			exit('wef'.$k);
 		}
 		echo $name.'<br />';
 		exit($mapping[$path]);
