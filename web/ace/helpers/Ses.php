@@ -112,29 +112,6 @@ class Ses extends HelperAbstract {
 		$b = '_Part_'.md5(uniqid(time(), true));
 
 		$msg = '';
-
-/*
-$msg = <<<HTML
-To: volcomstoner2689@gmail.com
-From: acquiremint-notifs@beachmint.com
-Subject: Amazon SES Test
-MIME-Version: 1.0
-Content-type: Multipart/Mixed; boundary="NextPart"
- 
---NextPart
-
-This is the message body.
- 
---NextPart
-Content-Type: text/plain;
-Content-Disposition: attachment; filename="test.txt"
-
-This is the text in the attachment.
- 
---NextPart--
-HTML;
-*/
-
 		$msg .= "To: $to\n";
 		$msg .= 'From: '.$opts['from']."\n";
 		$msg .= "Subject: $subject\n";
