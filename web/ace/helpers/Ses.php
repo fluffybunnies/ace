@@ -1,7 +1,6 @@
 <?php
 /*
 	Note
-		- Currently cc, bcc and reply_to are ignored when sending attachments
 		- Also emails with attachments are sent as plain/text
 */
 
@@ -90,7 +89,7 @@ class Ses extends HelperAbstract {
 					'Data' => $rawMsg,
 				),
 			), array(
-				'Source' => $params['from'],
+				'Source' => isset($params['reply_to']) ? $params['reply_to'] : $params['from'],
 				'Destinations' => $destination,
 			));
 		} else {
