@@ -153,7 +153,8 @@ HTML;
 		*/
 
 		if (!empty($_GET['debug'])) echo $msg;
-		return base64_encode($msg);
+		//return base64_encode($msg);
+		return $msg;
 	}
 
 }
