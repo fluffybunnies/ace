@@ -1,6 +1,6 @@
 <?php
 /*
-	Notes
+	Note
 		- Currently cc, bcc and reply_to are ignored when sending attachments
 */
 
