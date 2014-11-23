@@ -153,6 +153,7 @@ Content-type: Multipart/Mixed; boundary="NextPart"
 This is the message body.
  
 --NextPart
+Content-Type: text/plain;
 Content-Disposition: attachment;
 filename="test.txt"
  
