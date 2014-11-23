@@ -16,7 +16,7 @@ console.log('Output saving to:');
 csvOut.printFileNames(out);
 console.log('\n');
 
-
+/*
 getData(function(err,data){
 	if (err)
 		return console.log(err);
@@ -29,4 +29,4 @@ function getData(cb){
 	process.nextTick(function(){
 		cb(false, require(__dirname+'/../sample-data.json'));
 	});
-}
+}*/
