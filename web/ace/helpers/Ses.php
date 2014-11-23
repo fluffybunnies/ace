@@ -31,9 +31,15 @@ class Ses extends HelperAbstract {
 
 	private static function getSes(){
 		if (self::$ses === null) {
-			//require_once(WEBROOT.'/lib/AWSSDKforPHP/sdk.class.php');
-			require_once(WEBROOT.'/lib/aws-sdk-php/src/Aws/Ses/SesClient.php');
+			/*
+			require_once(WEBROOT.'/lib/AWSSDKforPHP/sdk.class.php');
 			self::$ses = new \AmazonSES;
+			*/
+			//require_once(WEBROOT.'/lib/aws-sdk-php/src/Aws/Ses/SesClient.php');
+			require WEBROOT.'/lib/aws-sdk-php/aws-autoloader.php';
+			use Aws\Ses\SesClient;
+			use Aws\Ses\Exception\SesException;
+			self::$ses = SesClient::factory();
 		}
 		return self::$ses;
 	}
