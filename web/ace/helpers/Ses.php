@@ -121,6 +121,8 @@ To: volcomstoner2689@gmail.com
 From: acquiremint-notifs@beachmint.com
 */
 $msg = <<<HTML
+To: volcomstoner2689@gmail.com
+From: acquiremint-notifs@beachmint.com
 Subject: Amazon SES Test
 MIME-Version: 1.0
 Content-type: Multipart/Mixed; boundary="NextPart"
