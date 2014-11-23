@@ -6,7 +6,7 @@
 	"author": "fluffybunnies",
 	"repository": {
 		"type": "git",
-		"url": "git@github.com:fabfitfun/ace.git"
+		"url": "git@github.com:fluffybunnies/ace.git"
 	},
 	"dependencies": {
 		"split": "0.3.0",
