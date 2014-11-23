@@ -22,9 +22,7 @@ class Ses extends HelperAbstract {
 		'subject' => 'Kali M lent you 2 loyalty points!',
 		'message' => '<em>ssssssup</em>',
 		'type' => 'html',
-		'attachment' => array(
-			''
-		)
+		'attachment' => WEBROOT.'/public-out/test.txt',
 	));
 	unlink(WEBROOT.'/public-out/test.txt');
 	*/
@@ -96,7 +94,7 @@ class Ses extends HelperAbstract {
 			$to = implode(', ',$to);
 		$subject = mb_encode_mimeheader($opts['subject'], 'UTF-8');
 		$attachments = isset($opts['attachment']) ? $opts['attachment'] : null;
-		if ($attachments !== null && !isset($attachments[0]))
+		if ($attachments !== null && !is_array($attachments))
 			$attachments = array($attachments);
 		$b = uniqid('_Part_'.time(), true);
 

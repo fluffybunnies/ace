@@ -40,7 +40,6 @@ class Demo extends ControllerAbstract {
 			'attachment' => $fileName,
 		));
 
-
 		return array(
 			'outputFileName' => basename($fileName),
 			'emailTo' => $emailTo,
