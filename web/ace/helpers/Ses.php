@@ -136,7 +136,6 @@ HTML;
 		$msg .= "Content-Type: text/html; charset=utf-8\n";
 		$msg .= "Content-Transfer-Encoding: 7bit\n\n";
 		$msg .= $opts['message']."\n";
-		*/
 
 		if ($attachments) {
 			foreach ($attachments as $a) {
@@ -152,6 +151,8 @@ HTML;
 		}
 
 		$msg .= "--\n";
+		*/
+
 		if (!empty($_GET['debug'])) echo $msg;
 		return base64_encode($msg);
 	}
