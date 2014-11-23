@@ -16,7 +16,7 @@ class Demo extends ControllerAbstract {
 
 	public function emailCsvWithNode(){
 		$webroot = WEBROOT;
-		return `/usr/local/bin/node $webroot/../bin/demo-emailCsv.js`
+		return `/usr/local/bin/node $webroot/../bin/demo-emailCsv.js`;
 	}
 
 	public function emailCsvWithPhp(){
