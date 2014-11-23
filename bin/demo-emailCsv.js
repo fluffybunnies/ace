@@ -22,7 +22,9 @@ getData(function(err,data){
 		return console.log(err);
 	//console.log('wefewf');process.exit();
 	console.log(JSON.stringify(data)+'\n');
-	out.good.write(data);
+	data.forEach(function(d){
+		out.good.write(d);
+	});
 });
 
 
