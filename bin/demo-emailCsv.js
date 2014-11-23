@@ -4,7 +4,7 @@
 
 var fs = require('fs')
 ,csvOut = require('../csvout')
-//,ut = require('../ut')
+,ut = require('../ut')
 ,inData = require(__dirname+'/../sample-data.json')
 ,outFile = __dirname+'/web/public-out/demo-csvwithnode.'+ut.fileTime()+'.csv'
 ,out = csvOut('demoEmailCsv', ['good'], __dirname+'/../out/')
