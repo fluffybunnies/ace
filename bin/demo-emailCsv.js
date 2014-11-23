@@ -3,11 +3,14 @@
 node ./bin/demo-emailCsv.js
 */
 
-var fs = require('fs')
+var argv = require('minimist')(process.argv.slice(2))
+,fs = require('fs')
 ,csvOut = require('../csvout')
 ,ut = require('../ut')
 ,outFile = __dirname+'/web/public-out/demo-csvwithnode.'+ut.fileTime()+'.csv'
 ,out = csvOut('demoEmailCsv', ['good'], __dirname+'/../out/')
+,emailTo = argv.emailTo || 'volcomstoner2689@gmail.com'
+,emailFrom = argv.emailFrom || 'acquiremint-notifs@beachmint.com' 
 ;
 
 console.log(['outFile: '+outFile].join('\n'),'\n');
@@ -27,7 +30,7 @@ getData(function(err, data){
 		items.push(d);
 		out.good.write(d);
 	});
-	console.log(JSON.stringify(items)+'\n');
+	//console.log(JSON.stringify(items)+'\n');
 });
 
 

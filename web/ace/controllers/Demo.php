@@ -15,8 +15,15 @@ class Demo extends ControllerAbstract {
 
 
 	public function emailCsvWithNode(){
+		$params = $this->getInput(array(
+			'email_to' => false,
+			'email_from' => false,
+		));
+		$emailTo = isset($params['email_to']) ? $params['email_to'] : $this->defaultEmailTo;
+		$emailFrom = isset($params['email_from']) ? $params['email_from'] : $this->defaultEmailFrom;
+
 		$webroot = WEBROOT;
-		return `/usr/local/bin/node $webroot/../bin/demo-emailCsv.js`;
+		return `/usr/local/bin/node $webroot/../bin/demo-emailCsv.js --to '$emailTo' --from '$emailFrom'`;
 	}
 
 	public function emailCsvWithPhp(){

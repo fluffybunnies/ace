@@ -97,8 +97,10 @@ class Ses extends HelperAbstract {
 			$r = $ses->sendEmail($params['from'], $destination, $message, $opts);
 		}
 
+		/* new sdk should throw on error
 		if (!$r->isOK())
 			throw new \Exception('error sending mail: '.$r->body->Error->Message);
+		*/
 	}
 
 	public static function makeRawMessage($opts){
