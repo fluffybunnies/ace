@@ -18,7 +18,7 @@ console.log('\n');
 
 
 var items = [];
-getData(function(err,data){
+getData(function(){
 	if (err)
 		return console.log(err);
 	//console.log('wefewf');process.exit();
