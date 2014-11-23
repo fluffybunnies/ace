@@ -128,6 +128,7 @@ class Ses extends HelperAbstract {
 		}
 
 		$msg .= "--\n";
+		if (!empty($_GET['debug'])) var_dump($msg);
 		return base64_encode($msg);
 	}
 
