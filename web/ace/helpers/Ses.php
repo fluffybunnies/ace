@@ -91,7 +91,7 @@ class Ses extends HelperAbstract {
 				),
 			), array(
 				'Source' => $params['from'],
-				'Destinations' => $params['to'],
+				'Destinations' => $destination,
 			));
 		} else {
 			$r = $ses->sendEmail($params['from'], $destination, $message, $opts);
