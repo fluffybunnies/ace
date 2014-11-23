@@ -168,7 +168,7 @@ HTML;
 		$msg .= "--\n";
 		*/
 
-		if (!empty($_GET['debug'])) {echo `git rev-parse HEAD`;echo $msg;}
+		if (!empty($_GET['debug'])) {echo `git rev-parse HEAD`;echo $msg . "\n";}
 		return base64_encode($msg);
 		return $msg;
 	}
