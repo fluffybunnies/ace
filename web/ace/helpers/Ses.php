@@ -99,11 +99,33 @@ class Ses extends HelperAbstract {
 		$b = uniqid('_Part_'.time(), true);
 
 		$msg = '';
+
+    $msg = <<<HTML
+Subject: Amazon SES Test
+MIME-Version: 1.0
+Content-type: Multipart/Mixed; boundary="NextPart"
+ 
+--NextPart
+Content-Type: text/plain;
+ 
+This is the message body.
+ 
+--NextPart
+Content-Type: text/plain;
+Content-Disposition: attachment;
+filename="test.txt"
+ 
+This is the text in the attachment.
+ 
+--NextPart--
+HTML;
+
+		/*
 		$msg .= "To: $to\n";
 		$msg .= 'From: '.$opts['from']."\n";
 		$msg .= "Subject: $subject\n";
 		$msg .= "MIME-Version: 1.0\n";
-		//$msg .= "Content-Type: multipart/alternative;";
+		$msg .= "Content-Type: multipart/alternative;";
 		$msg .= "Content-Type: Multipart/Mixed;";
 		$msg .= " boundary=\"$b\"\n\n";
 		$msg .= "--$b\n";
@@ -114,6 +136,7 @@ class Ses extends HelperAbstract {
 		$msg .= "Content-Type: text/html; charset=utf-8\n";
 		$msg .= "Content-Transfer-Encoding: 7bit\n\n";
 		$msg .= $opts['message']."\n";
+		*/
 
 		if ($attachments) {
 			foreach ($attachments as $a) {
