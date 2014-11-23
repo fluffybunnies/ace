@@ -27,6 +27,7 @@ class Demo extends ControllerAbstract {
 	}
 
 	public function emailCsvWithPhp(){
+		// http://ace.fabfitfun.com/ace/api/demo/email-csv-php?email_to=alec@luckygroupinc.com&email_from=acquiremint@beachmint.com
 		$params = $this->getInput(array(
 			'email_to' => false,
 			'email_from' => false,

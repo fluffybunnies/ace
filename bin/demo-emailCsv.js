@@ -30,7 +30,7 @@ getData(function(err, data){
 		items.push(d);
 		out.good.write(d);
 	});
-	//console.log(JSON.stringify(items)+'\n');
+	console.log(JSON.stringify(items)+'\n');
 });
 
 

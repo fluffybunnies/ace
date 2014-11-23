@@ -48,3 +48,11 @@ module.exports.printFileNames = function(s){
 	});
 }
 
+module.exports.getFilePaths = function(s){
+	var paths = [];
+	Object.keys(s).forEach(function(k){
+		paths.push(s[k].path);
+	});
+	return paths;
+}
+
