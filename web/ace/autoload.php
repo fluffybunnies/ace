@@ -1331,5 +1331,7 @@ spl_autoload_register(function($name) {
 			require_once $dir.'/'.$class.'.php';
 			return;
 		}
+
+		exit($mapping[$class]);
 	}
 });
