@@ -7,8 +7,6 @@ spl_autoload_register(function($name) {
 	$class = basename($path);
 	$dir = \WEBROOT.'/'.dirname($path);
 
-	if (is_file($dir.'/'.$class.'.php')) {
+	if (is_file($dir.'/'.$class.'.php'))
 		require_once $dir.'/'.$class.'.php';
-		return;
-	}
 });
