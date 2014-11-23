@@ -43,7 +43,6 @@ class Ses extends HelperAbstract {
 				'certificate_authority' => true,
 				'region' => 'us-east-1',
 			));
-			if (!empty($_GET['debug'])) {var_dump(self::$ses);}
 		}
 		return self::$ses;
 	}
