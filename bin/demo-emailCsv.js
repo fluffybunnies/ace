@@ -14,7 +14,7 @@ var argv = require('minimist')(process.argv.slice(2))
 ,emailFrom = argv.emailFrom || 'acquiremint-notifs@beachmint.com' 
 ;
 
-console.log('config',config);
+//console.log('config',config);
 
 console.log(['outFile: '+outFile].join('\n'),'\n');
 
