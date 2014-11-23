@@ -65,11 +65,11 @@ class Ses extends HelperAbstract {
 			$opts['ReplyToAddresses'] = $params['reply_to'];
 
 		// send
-		$ases = new \AmazonSES;
+		$ses = new \AmazonSES;
 		if (!empty($params['attachment'])) {
 			$rawMsg = self::makeRawMessage($params);
 			if (!empty($_GET['debug'])) {Ace::varDump($params['from']);Ace::varDump($params['to']);}
-			$r = $ases->send_raw_email(array(
+			$r = $ses->send_raw_email(array(
 				'RawMessage' => array(
 					'Data' => $rawMsg,
 				),
@@ -78,7 +78,7 @@ class Ses extends HelperAbstract {
 				'Destinations' => $params['to'],
 			));
 		} else {
-			$r = $ases->send_email($params['from'], $destination, $message, $opts);
+			$r = $ses->send_email($params['from'], $destination, $message, $opts);
 		}
 
 		if (!$r->isOK())
