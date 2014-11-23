@@ -18,13 +18,13 @@ console.log('\n');
 
 
 var items = [];
-getData(function(){
+getData(function(err, data){
 	if (err)
 		return console.log(err);
 	//console.log('wefewf');process.exit();
 	//console.log(JSON.stringify(data)+'\n');
 	data.forEach(function(d){
-		items.push(data);
+		items.push(d);
 		out.good.write(d);
 	});
 	console.log(JSON.stringify(items)+'\n');
