@@ -1,0 +1,3 @@
+[submodule "web/lib/aws-sdk-php"]
+	path = web/lib/aws-sdk-php
+	url = git@github.com:aws/aws-sdk-php.git
