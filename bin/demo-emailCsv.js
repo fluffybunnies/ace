@@ -7,6 +7,7 @@ var fs = require('fs')
 //,ut = require('../ut')
 ,inData = require(__dirname+'/../sample-data.json')
 ,outFile = __dirname+'/web/public-out/demo-csvwithnode.'+ut.fileTime()+'.csv'
+,out = csvOut('demo-csvwithnode', [], __dirname+'/../out/')
 ;
 
 console.log(['inData: '+inData, 'outFile: '+outFile].join('\n'),'\n');
