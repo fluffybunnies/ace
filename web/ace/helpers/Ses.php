@@ -175,6 +175,7 @@ HTML;
 				$msg .= "Content-Type: application/octet-stream; name=\"$fileName\";\n";
 				$msg .= "Content-Disposition: attachment; filename=\"$fileName\";\n\n";
 				$msg .= base64_encode($contents);
+				//$msg .= chunk_split(base64_encode($contents));
 				$msg .= "--$b";
 			}
 			$msg .= "==\n";
