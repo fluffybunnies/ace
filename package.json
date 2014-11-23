@@ -1,0 +1,23 @@
+{
+	"name": "ace",
+	"private": true,
+	"description": "sup",
+	"version": "0.0.1",
+	"author": "fluffybunnies",
+	"repository": {
+		"type": "git",
+		"url": "git@github.com:fabfitfun/ace.git"
+	},
+	"dependencies": {
+		"split": "0.3.0",
+		"sext": "0.0.10",
+		"minimist": "0.2.0",
+		"through": "2.3.4",
+		"mysql": "2.4.3",
+		"csv-stringify": "0.0.3",
+		"csv-parse": "0.0.6"
+	},
+	"devDependencies": {
+		"tape": "2.14.0"
+	}
+}
