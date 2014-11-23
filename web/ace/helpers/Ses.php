@@ -107,7 +107,7 @@ class Ses extends HelperAbstract {
 		$attachments = isset($opts['attachment']) ? $opts['attachment'] : null;
 		if ($attachments !== null && !is_array($attachments))
 			$attachments = array($attachments);
-		$b = uniqid('_Part_'.time(), true);
+		$b = '_Part_'.md5(uniqid(time(), true));
 
 		$msg = '';
 
