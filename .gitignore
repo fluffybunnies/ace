@@ -6,5 +6,5 @@ npm-debug.log
 config.local.php
 config.local.json
 out/*
-public-out/*
+web/public-out/*
 !.g
