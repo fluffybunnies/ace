@@ -1,6 +1,7 @@
 <?php
 /*
-
+	Notes
+		- Currently cc, bcc and reply_to are ignored when sending attachments
 */
 
 namespace ace\helpers;
@@ -78,7 +79,7 @@ class Ses extends HelperAbstract {
 				),
 			), array(
 				'Source' => $params['from'],
-				'Destinations' => $destination,
+				'Destinations' => $params['to'],
 			));
 		} else {
 			$r = $ases->send_email($params['from'], $destination, $message, $opts);
