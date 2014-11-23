@@ -1319,7 +1319,8 @@ spl_autoload_register(function ($class) use ($mapping) {
 
 // END aws sdk autoload
 
-spl_autoload_register(function($name) {
+//spl_autoload_register(function($name) {
+spl_autoload_register(function($name) use ($mapping) {
 	static $dirCache = array();
 
 	if (strpos($name,'\\') !== false) {
