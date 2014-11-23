@@ -3,7 +3,7 @@
 */
 
 var ut= require('../ut')
-,inFile = __dirname+'../sample-data.json'
+,inFile = require(__dirname+'../sample-data.json')
 ,outFile = __dirname+'/web/public-out/demo-csvwithnode.'+ut.fileTime()+'.csv'
 ;
 
