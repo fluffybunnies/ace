@@ -147,12 +147,14 @@ From: acquiremint-notifs@beachmint.com
 Subject: Amazon SES Test
 MIME-Version: 1.0
 Content-type: Multipart/Mixed; boundary="NextPart"
-
+ 
 --NextPart
+Content-Type: text/plain;
  
 This is the message body.
  
 --NextPart
+Content-Type: text/plain;
 Content-Disposition: attachment;
 filename="test.txt"
  
