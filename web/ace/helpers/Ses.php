@@ -8,9 +8,10 @@ namespace ace\helpers;
 use \ace\Ace;
 use \ace\HelperAbstract;
 
-require_once(WEBROOT.'/lib/AWSSDKforPHP/sdk.class.php');
 
 class Ses extends HelperAbstract {
+
+	private static $sdk = null;
 
 	/*
 	// Example:
@@ -27,6 +28,15 @@ class Ses extends HelperAbstract {
 	));
 	unlink(WEBROOT.'/public-out/test.txt');
 	*/
+
+	private static function getSes(){
+		if (self::$ses === null) {
+			//require_once(WEBROOT.'/lib/AWSSDKforPHP/sdk.class.php');
+			require_once(WEBROOT.'/lib/aws-sdk-php/src/Aws/Ses/SesClient.php');
+			self::$ses = new \AmazonSES;
+		}
+		return self::$ses;
+	}
 
 	public static function send($params) {
 		if (!is_array($params))
@@ -65,10 +75,10 @@ class Ses extends HelperAbstract {
 			$opts['ReplyToAddresses'] = $params['reply_to'];
 
 		// send
-		$ses = new \AmazonSES;
+		$ses = self::getSes();
 		if (!empty($params['attachment'])) {
+			//if (!empty($_GET['debug'])) {Ace::varDump($params['from']);Ace::varDump($params['to']);}
 			$rawMsg = self::makeRawMessage($params);
-			if (!empty($_GET['debug'])) {Ace::varDump($params['from']);Ace::varDump($params['to']);}
 			$r = $ses->send_raw_email(array(
 				'RawMessage' => array(
 					'Data' => $rawMsg,
