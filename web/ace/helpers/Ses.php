@@ -11,7 +11,7 @@ use \ace\HelperAbstract;
 
 class Ses extends HelperAbstract {
 
-	private static $sdk = null;
+	private static $ses = null;
 
 	/*
 	// Example:
