@@ -4,6 +4,7 @@
 node_modules
 npm-debug.log
 config.local.php
+config.local.json
 out/*
 public-out/*
 !.g
