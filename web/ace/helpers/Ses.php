@@ -41,7 +41,7 @@ class Ses extends HelperAbstract {
 				'secret' => Ace::getConfig('sesSecret'),
 				//'default_cache_config' => '/tmp/cache/',
 				'certificate_authority' => true,
-				'region' => Ace::getConfig('sesRegion') ? Ace::getConfig('sesRegion') : 'us-east-1',
+				'region' => Ace::getConfig('awsRegion') ? Ace::getConfig('awsRegion') : 'us-east-1',
 			));
 		}
 		return self::$ses;
