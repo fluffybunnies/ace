@@ -135,6 +135,19 @@ This is the text in the attachment.
 --NextPart--
 HTML;
 
+$msg = <<<HTML
+Subject: Amazon SES Test
+MIME-Version: 1.0
+Content-type: Multipart/Mixed; boundary="NextPart"
+ 
+--NextPart
+Content-Type: text/plain;
+ 
+This is the message body.
+
+--NextPart--
+HTML;
+
 		/*
 		$msg .= "To: $to\n";
 		$msg .= 'From: '.$opts['from']."\n";
