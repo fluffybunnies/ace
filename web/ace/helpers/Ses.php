@@ -147,7 +147,7 @@ From: acquiremint-notifs@beachmint.com
 Subject: Amazon SES Test
 MIME-Version: 1.0
 Content-type: Multipart/Mixed; boundary="NextPart"
- 
+
 --NextPart
  
 This is the message body.
