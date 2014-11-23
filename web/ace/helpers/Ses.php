@@ -112,6 +112,7 @@ class Ses extends HelperAbstract {
 
 		$msg = '';
 
+/*
 $msg = <<<HTML
 To: volcomstoner2689@gmail.com
 From: acquiremint-notifs@beachmint.com
@@ -131,9 +132,8 @@ This is the text in the attachment.
  
 --NextPart--
 HTML;
+*/
 
-
-		/*
 		$msg .= "To: $to\n";
 		$msg .= 'From: '.$opts['from']."\n";
 		$msg .= "Subject: $subject\n";
@@ -165,7 +165,6 @@ HTML;
 		}
 
 		$msg .= "--\n";
-		*/
 
 		if (!empty($_GET['debug'])) {echo `git rev-parse HEAD`;echo $msg . "\n";}
 		return base64_encode($msg);
