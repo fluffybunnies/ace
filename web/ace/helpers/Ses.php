@@ -11,6 +11,24 @@ require_once(WEBROOT.'/lib/AWSSDKforPHP/sdk.class.php');
 
 class Ses extends HelperAbstract {
 
+	/*
+	// Example:
+	file_put_contents(WEBROOT.'/public-out/test.txt','yo');
+	Ses::send(array(
+		'to' => array('volcomstoner2689@gmail.com'),
+		'from' => 'acquiremint-notifs@acquiremint.com',
+		'reply_to' => 'support@acquiremint.com',
+		'bcc' => 'acquiremint-notifs@beachmint.com',
+		'subject' => 'Kali M lent you 2 loyalty points!',
+		'message' => '<em>ssssssup</em>',
+		'type' => 'html',
+		'attachment' => array(
+			''
+		)
+	));
+	unlink(WEBROOT.'/public-out/test.txt');
+	*/
+
 	public static function send($params) {
 		if (!is_array($params))
 			throw new \Exception('params must be an array');
@@ -51,23 +69,67 @@ class Ses extends HelperAbstract {
 		$ases = new \AmazonSES;
 		if (!empty($_GET['debug'])) {var_dump($params['from']); var_dump($destination); var_dump($message); var_dump($opts);}
 		if (!empty($params['attachment'])) {
-			$mailmime = new \Mailmime(array('eol' => "\n"));
-			$mailmime->setTxtBody($message);
-			$mailmime->setHTMLBody($message);
-			$mailmime->addAttachment($params['attachment'], 'text/csv');
-			$body = $mailmime->get();
-			$headers = $mailmime->txtHeaders(array('From' => $params['from'], 'Subject' => $parms['subject']));
-			$message = $headers . "\r\n" . $body;
-			$r = $ses->sendrawemail(array(
-					'Data' => base64_encode($message)
+			$base64Msg = $this->base64Message($params);
+			/*$r = $ases->sendRawEmail(array(
+					'Data' => $base64Msg
 				), array('Destinations' => $destination)
-			);
+			);*/
+			$r = $ases->sendRawEmail(array(
+				'RawMessage' => array(
+					'Data' => $base64Msg
+				),
+			), array(
+				'Source' => $opts['from'],
+				'Destinations' => $destination,
+			));
 		} else {
 			$r = $ases->send_email($params['from'], $destination, $message, $opts);
 		}
 
 		if (!$r->isOK())
 			throw new \Exception('error sending mail: '.$r->body->Error->Message);
+	}
+
+	public function base64Message($opts){
+		$to = $opts['to'];
+		if (is_array($to))
+			$to = implode(', ',$to);
+		$subject = mb_encode_mimeheader($opts['subject'], 'UTF-8');
+		$attachments = isset($opts['attachment']) ? $opts['attachment'] : null;
+		if ($attachments !== null && !isset($attachments[0]))
+			$attachments = array($attachments);
+		$b = uniqid('_Part_'.time(), true);
+
+		$msg = "To: $to\n";
+		$msg .= 'From: '.$opts['from']."\n";
+		$msg .= "Subject: $subject\n";
+		$msg .= "MIME-Version: 1.0\n";
+		$msg .= "Content-Type: multipart/alternative;\n";
+		$msg .= " boundary=\"$b\"\n\n";
+		$msg .= "--$b\n";
+		$msg .= "Content-Type: text/plain; charset=utf-8\n";
+		$msg .= "Content-Transfer-Encoding: 7bit\n\n";
+		$msg .= strip_tags($opts['message']) . "\n";
+		$msg .= "--$b\n";
+		$msg .= "Content-Type: text/html; charset=utf-8\n";
+		$msg .= "Content-Transfer-Encoding: 7bit\n\n";
+		$msg .= $opts['message']."\n";
+
+		if ($attachments) {
+			foreach ($attachments as $a) {
+				$fileName = mb_substr(basename($a['fileName']), 0, 60);
+				$contents = file_get_contents($a['fileName']);
+				$msg .= "Content-Transfer-Encoding: base64\n";
+				$msg .= "Content-Type: application/octet-stream; name=$fileName;\n";
+				$msg .= "Content-Disposition: attachment; filename=$fileName;\n\n";
+				$msg .= base64_encode($contents);
+				$msg .= "--$b";
+			}
+			$msg .= "==\n";
+		}
+
+		$msg .= "--\n";
+		return base64_encode($msg);
 	}
 
 }
