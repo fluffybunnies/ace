@@ -152,6 +152,7 @@ HTML;
 
 		if ($attachments) {
 			foreach ($attachments as $a) {
+				$msg .= "--$b";
 				$fileName = mb_substr(basename($a), 0, 60);
 				$contents = file_get_contents($a);
 				$msg .= "Content-Transfer-Encoding: base64\n";
@@ -159,7 +160,6 @@ HTML;
 				$msg .= "Content-Disposition: attachment; filename=\"$fileName\";\n\n";
 				$msg .= base64_encode($contents);
 				//$msg .= chunk_split(base64_encode($contents));
-				$msg .= "--$b";
 			}
 			$msg .= "==\n";
 		}
