@@ -1333,8 +1333,10 @@ spl_autoload_register(function($name) use ($mapping) {
 			return;
 		}
 
-		if (strpos($name, 'Aws\\') !== false) {
+		$p = strpos($name, 'Aws\\');
+		if ($p !== false) {
 			echo $name."<br />";
+			echo $p."<br />";
 			$k = str_replace('ace\\', '', $name);
 			exit('wef'.$k);
 		}
