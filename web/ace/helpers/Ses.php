@@ -67,7 +67,7 @@ class Ses extends HelperAbstract {
 		$ases = new \AmazonSES;
 		if (!empty($_GET['debug'])) {var_dump($params['from']); var_dump($destination); var_dump($message); var_dump($opts);}
 		if (!empty($params['attachment'])) {
-			$base64Msg = $this->base64Message($params);
+			$base64Msg = self::base64Message($params);
 			/*$r = $ases->sendRawEmail(array(
 					'Data' => $base64Msg
 				), array('Destinations' => $destination)
@@ -88,7 +88,7 @@ class Ses extends HelperAbstract {
 			throw new \Exception('error sending mail: '.$r->body->Error->Message);
 	}
 
-	public function base64Message($opts){
+	public static function base64Message($opts){
 		$to = $opts['to'];
 		if (is_array($to))
 			$to = implode(', ',$to);
