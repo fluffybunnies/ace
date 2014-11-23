@@ -15,6 +15,7 @@ console.log(['outFile: '+outFile].join('\n'),'\n');
 console.log('Output saving to:');
 csvOut.printFileNames(out);
 console.log('\n');
+console.log(__dirname+'/../out/')
 
 
 getData(function(err,data){
