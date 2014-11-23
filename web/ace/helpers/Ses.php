@@ -67,14 +67,14 @@ class Ses extends HelperAbstract {
 		// send
 		$ases = new \AmazonSES;
 		if (!empty($params['attachment'])) {
-			$base64Msg = self::base64Message($params);
+			$rawMsg = self::makeRawMessage($params);
 			/*$r = $ases->sendRawEmail(array(
 					'Data' => $base64Msg
 				), array('Destinations' => $destination)
 			);*/
 			$r = $ases->sendRawEmail(array(
 				'RawMessage' => array(
-					'Data' => $base64Msg,
+					'Data' => $rawMsg,
 				),
 			), array(
 				'Source' => $params['from'],
@@ -88,7 +88,7 @@ class Ses extends HelperAbstract {
 			throw new \Exception('error sending mail: '.$r->body->Error->Message);
 	}
 
-	public static function base64Message($opts){
+	public static function makeRawMessage($opts){
 		$to = $opts['to'];
 		if (is_array($to))
 			$to = implode(', ',$to);
@@ -99,8 +99,8 @@ class Ses extends HelperAbstract {
 		$b = uniqid('_Part_'.time(), true);
 
 		$msg = '';
-		//$msg .= "To: $to\n";
-		//$msg .= 'From: '.$opts['from']."\n";
+		$msg .= "To: $to\n";
+		$msg .= 'From: '.$opts['from']."\n";
 		$msg .= "Subject: $subject\n";
 		$msg .= "MIME-Version: 1.0\n";
 		//$msg .= "Content-Type: multipart/alternative;";
