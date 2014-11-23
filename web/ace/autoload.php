@@ -1315,7 +1315,7 @@ spl_autoload_register(function ($class) use ($mapping) {
     if (isset($mapping[$class])) {
         require $mapping[$class];
     }
-}, true);
+}, true, true);
 
 // END aws sdk autoload
 
