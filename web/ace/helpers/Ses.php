@@ -103,7 +103,7 @@ class Ses extends HelperAbstract {
 		$msg .= "Subject: $subject\n";
 		$msg .= "MIME-Version: 1.0\n";
 		$msg .= "Content-Type: multipart/alternative;\n";
-		$msg .= " boundary=\"$b\"\n\n";
+		$msg .= "boundary=\"$b\"\n\n";
 		$msg .= "--$b\n";
 		$msg .= "Content-Type: text/plain; charset=utf-8\n";
 		$msg .= "Content-Transfer-Encoding: 7bit\n\n";
