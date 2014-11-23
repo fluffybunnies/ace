@@ -1333,6 +1333,8 @@ spl_autoload_register(function($name) use ($mapping) {
 			return;
 		}
 
+		if (strpos($name, 'Aws\\') !== false)
+			echo "wefwefewf";
 		echo $name.'<br />';
 		exit($mapping[$path]);
 	}
