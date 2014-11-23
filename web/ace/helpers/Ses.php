@@ -74,10 +74,10 @@ class Ses extends HelperAbstract {
 			);*/
 			$r = $ases->sendRawEmail(array(
 				'RawMessage' => array(
-					'Data' => $base64Msg
+					'Data' => $base64Msg,
 				),
 			), array(
-				'Source' => $opts['from'],
+				'Source' => $params['from'],
 				'Destinations' => $destination,
 			));
 		} else {
