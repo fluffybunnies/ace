@@ -1337,7 +1337,7 @@ spl_autoload_register(function($name) use ($mapping) {
 		if ($p !== false) {
 			echo $name."<br />";
 			echo $p."<br />";
-			$k = str_replace('ace\\', '', $name);
+			$k = substr($name, $p);
 			exit('wef'.$k);
 		}
 		echo $name.'<br />';
