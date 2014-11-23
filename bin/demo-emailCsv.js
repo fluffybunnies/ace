@@ -5,6 +5,7 @@ node ./bin/demo-emailCsv.js
 
 var argv = require('minimist')(process.argv.slice(2))
 ,fs = require('fs')
+,config = require('../config.js')
 ,csvOut = require('../csvout')
 ,ut = require('../ut')
 ,outFile = __dirname+'/web/public-out/demo-csvwithnode.'+ut.fileTime()+'.csv'
@@ -12,6 +13,8 @@ var argv = require('minimist')(process.argv.slice(2))
 ,emailTo = argv.emailTo || 'volcomstoner2689@gmail.com'
 ,emailFrom = argv.emailFrom || 'acquiremint-notifs@beachmint.com' 
 ;
+
+console.log('config',config);
 
 console.log(['outFile: '+outFile].join('\n'),'\n');
 
@@ -30,7 +33,7 @@ getData(function(err, data){
 		items.push(d);
 		out.good.write(d);
 	});
-	console.log(JSON.stringify(items)+'\n');
+	//console.log(JSON.stringify(items)+'\n');
 });
 
 
