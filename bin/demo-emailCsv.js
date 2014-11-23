@@ -17,14 +17,17 @@ csvOut.printFileNames(out);
 console.log('\n');
 
 
+var items = [];
 getData(function(err,data){
 	if (err)
 		return console.log(err);
 	//console.log('wefewf');process.exit();
 	//console.log(JSON.stringify(data)+'\n');
 	data.forEach(function(d){
+		items.push(data);
 		out.good.write(d);
 	});
+	console.log(JSON.stringify(items)+'\n');
 });
 
 
