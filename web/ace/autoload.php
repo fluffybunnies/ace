@@ -1338,9 +1338,10 @@ spl_autoload_register(function($name) use ($mapping) {
 			echo $name."<br />";
 			echo $p."<br />";
 			$k = substr($name, $p);
-			exit('wef'.$k);
+			exit($k);
+			if (isset($mapping[$k])) {
+				//
+			}
 		}
-		echo $name.'<br />';
-		exit($mapping[$path]);
 	}
 });
