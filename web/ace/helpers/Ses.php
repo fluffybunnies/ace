@@ -88,7 +88,7 @@ class Ses extends HelperAbstract {
 		if (!empty($params['attachment'])) {
 			//if (!empty($_GET['debug'])) {Ace::varDump($params['from']);Ace::varDump($params['to']);}
 			$rawMsg = self::makeRawMessage($params);
-			$r = $ses->send_raw_email(array(
+			$r = $ses->sendRawEmail(array(
 				'RawMessage' => array(
 					'Data' => $rawMsg,
 				),
