@@ -15,13 +15,12 @@ console.log(['outFile: '+outFile].join('\n'),'\n');
 console.log('Output saving to:');
 csvOut.printFileNames(out);
 console.log('\n');
-console.log(__dirname+'/../out/')
 
 
 getData(function(err,data){
 	if (err)
 		return console.log(err);
-	//console.log('wefewf');process.exit();
+	console.log('wefewf');process.exit();
 	out.good.write(data);
 });
 
