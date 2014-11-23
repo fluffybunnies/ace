@@ -135,6 +135,7 @@ This is the text in the attachment.
 --NextPart--
 HTML;
 
+/*
 $msg = <<<HTML
 To: volcomstoner2689@gmail.com
 From: acquiremint-notifs@beachmint.com
@@ -149,6 +150,7 @@ This is the message body.
 
 --NextPart--
 HTML;
+*/
 
 		/*
 		$msg .= "To: $to\n";
