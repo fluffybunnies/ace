@@ -1333,6 +1333,7 @@ spl_autoload_register(function($name) use ($mapping) {
 			return;
 		}
 
-		exit($mapping[$class]);
+		echo $path.'<br />';
+		exit($mapping[$path]);
 	}
 });
