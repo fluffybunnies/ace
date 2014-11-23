@@ -37,9 +37,7 @@ class Ses extends HelperAbstract {
 			*/
 			//require_once(WEBROOT.'/lib/aws-sdk-php/src/Aws/Ses/SesClient.php');
 			require WEBROOT.'/lib/AWSSDKforPHP2/aws-autoloader.php';
-			use Aws\Ses\SesClient;
-			use Aws\Ses\Exception\SesException;
-			self::$ses = SesClient::factory();
+			self::$ses = Aws\Ses\SesClient::factory();
 		}
 		return self::$ses;
 	}
