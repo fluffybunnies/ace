@@ -149,7 +149,6 @@ MIME-Version: 1.0
 Content-type: Multipart/Mixed; boundary="NextPart"
  
 --NextPart
-Content-Type: text/plain;
 
 This is the message body.
  
