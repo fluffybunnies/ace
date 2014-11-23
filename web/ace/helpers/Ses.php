@@ -115,7 +115,7 @@ class Ses extends HelperAbstract {
 
 		if ($attachments) {
 			foreach ($attachments as $a) {
-				$fileName = mb_substr(basename($a, 0, 60);
+				$fileName = mb_substr(basename($a), 0, 60);
 				$contents = file_get_contents($a);
 				$msg .= "Content-Transfer-Encoding: base64\n";
 				$msg .= "Content-Type: application/octet-stream; name=$fileName;\n";
