@@ -1,7 +1,7 @@
 {
 	"name": "ace",
 	"private": true,
-	"description": "sup",
+	"description": "php light FE/BE framework",
 	"keywords": "php light FE/BE framework",
 	"version": "0.0.0",
 	"author": "fluffybunnies",
