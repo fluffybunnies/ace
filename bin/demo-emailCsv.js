@@ -21,6 +21,7 @@ getData(function(err,data){
 	if (err)
 		return console.log(err);
 	//console.log('wefewf');process.exit();
+	console.log(JSON.stringify(data)+'\n');
 	out.good.write(data);
 });
 
