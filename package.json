@@ -2,6 +2,7 @@
 	"name": "ace",
 	"private": true,
 	"description": "sup",
+	"keywords": "php light framework",
 	"version": "0.0.0",
 	"author": "fluffybunnies",
 	"repository": {
