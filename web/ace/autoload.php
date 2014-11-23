@@ -1323,6 +1323,8 @@ spl_autoload_register(function ($class) use ($mapping) {
 spl_autoload_register(function($name) use ($mapping) {
 	static $dirCache = array();
 
+	exit($name);
+
 	if (strpos($name,'\\') !== false) {
 		$path = str_replace('\\','/',$name);
 		$class = basename($path);
@@ -1332,8 +1334,5 @@ spl_autoload_register(function($name) use ($mapping) {
 			require_once $dir.'/'.$class.'.php';
 			return;
 		}
-
-		echo $path.'<br />';
-		exit($mapping[$path]);
 	}
 });
