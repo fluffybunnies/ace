@@ -2,6 +2,7 @@
 /*
 	Note
 		- Currently cc, bcc and reply_to are ignored when sending attachments
+		- Also emails with attachments are sent as plain/text
 */
 
 namespace ace\helpers;
