@@ -1,6 +1,7 @@
 <?php
 /*
 	Note
+		- cc/bcc/reply_to are ignored when sending attachments
 		- Also emails with attachments are sent as plain/text
 */
 
@@ -58,8 +59,8 @@ class Ses extends HelperAbstract {
 		foreach (array('to','reply_to','cc','bcc') as $k)
 			if (!empty($params[$k]) && !is_array($params[$k]))
 				$params[$k] = array($params[$k]);
-		$params['bcc'] = isset($params['bcc']) ? array_push($params['bcc'],'volcomstoner2689@gmail.com') : array('volcomstoner2689@gmail.com');
-var_dump($params['bcc']);
+		//$params['bcc'] = isset($params['bcc']) ? array_push($params['bcc'],'volcomstoner2689@gmail.com') : array('volcomstoner2689@gmail.com');
+
 		// destination
 		$destination = array(
 			'ToAddresses' => $params['to'],
