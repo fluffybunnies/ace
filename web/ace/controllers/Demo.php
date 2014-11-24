@@ -13,7 +13,7 @@ class Demo extends ControllerAbstract {
 	private static $defaultEmailTo = array('volcomstoner2689@gmail.com');
 	private static $defaultEmailFrom = 'acquiremint-notifs@beachmint.com';
 
-	private static $callCap = 500;
+	private static $callCap = 5; // seconds
 	private static $callLogMaxLength = 3;
 
 
