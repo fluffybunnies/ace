@@ -90,7 +90,7 @@ class Ses extends HelperAbstract {
 				),
 			), array(
 				'Source' => isset($params['reply_to']) ? $params['reply_to'] : $params['from'],
-				'Destinations' => $destination,
+				//'Destinations' => $destination,
 			));
 		} else {
 			$r = $ses->sendEmail($params['from'], $destination, $message, $opts);
@@ -115,10 +115,10 @@ class Ses extends HelperAbstract {
 		$msg = '';
 		$msg .= "To: $to\n";
 		$msg .= 'From: '.$opts['from']."\n";
-		/*if (!empty($opts['cc']))
-			$msg .= 'CC: '.(is_array($opts['cc']) ? implode(',',$opts['cc']) : $opts['cc'])."\n";
+		if (!empty($opts['cc']))
+			$msg .= 'Cc: '.(is_array($opts['cc']) ? implode(',',$opts['cc']) : $opts['cc'])."\n";
 		if (!empty($opts['bcc']))
-			$msg .= 'BCC: '.(is_array($opts['bcc']) ? implode(',',$opts['bcc']) : $opts['bcc'])."\n";*/
+			$msg .= 'Bcc: '.(is_array($opts['bcc']) ? implode(',',$opts['bcc']) : $opts['bcc'])."\n";
 		/*if (!empty($opts['reply_to']))
 			$msg .= 'Reply: '.$opts['reply_to']."\n";*/
 		$msg .= "Subject: $subject\n";
