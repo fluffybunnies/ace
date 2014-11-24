@@ -121,6 +121,10 @@ class Ses extends HelperAbstract {
 		$msg .= "Content-Type: Multipart/Mixed;";
 		$msg .= " boundary=\"$b\"\n\n";
 		$msg .= "--$b\n";
+		$msg .= "Content-Type: text/plain; charset=utf-8\n";
+		$msg .= "Content-Transfer-Encoding: 7bit\n\n";
+		$msg .= strip_tags($opts['message'])."\n";
+		$msg .= "--$b\n";
 		$msg .= "Content-Type: text/html; charset=utf-8\n";
 		$msg .= "Content-Transfer-Encoding: 7bit\n\n";
 		$msg .= $opts['message']."\n";
