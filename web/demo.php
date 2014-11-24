@@ -16,8 +16,10 @@ use \ace\Ace;
 $(function(){
 	$('.ace-smile').each(function(){
 		var $el = $(this);
-		$.getJSON('/ace/api/smile',function(){
-			console.log('smile',arguments);
+		$.getJSON('/ace/api/demo/smile',function(data){
+			if (!(data && data.data))
+				return $el.html('api error');
+			$el.html(data.data);
 		});
 	});
 });
