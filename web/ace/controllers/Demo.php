@@ -27,10 +27,11 @@ class Demo extends ControllerAbstract {
 		$params = $this->getInput(array(
 			'email_to' => false,
 			'email_from' => false,
+			'subject' => false,
 		));
-		$emailTo = Ace::g($params, 'email_to', self::$defaultEmailTo);
-		$emailFrom = Ace::g($params, 'email_from', self::$defaultEmailFrom);
-		$subject = Ace::g($params, 'subject', 'Sup (node)');
+		$emailTo = $params['email_to'] ? :$params['email_to'] : self::$defaultEmailTo;
+		$emailFrom = $params['email_from'] ? :$params['email_from'] : self::$defaultEmailFrom;
+		$subject = $params['subject'] ? :$params['subject'] : 'Sup (node)';
 
 		$this->preventTooMany($params);
 
@@ -51,10 +52,11 @@ class Demo extends ControllerAbstract {
 		$params = $this->getInput(array(
 			'email_to' => false,
 			'email_from' => false,
+			'subject' => false,
 		));
-		$emailTo = Ace::g($params, 'email_to', self::$defaultEmailTo, true);
-		$emailFrom = Ace::g($params, 'email_from', self::$defaultEmailFrom, true);
-		$subject = Ace::g($params, 'subject', 'Sup (php)');
+		$emailTo = $params['email_to'] ? :$params['email_to'] : self::$defaultEmailTo;
+		$emailFrom = $params['email_from'] ? :$params['email_from'] : self::$defaultEmailFrom;
+		$subject = $params['subject'] ? :$params['subject'] : 'Sup (php)';
 
 		$this->preventTooMany($params);
 
