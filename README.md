@@ -102,7 +102,37 @@ Basic API skeleton. Ex: http://ace.fabfitfun.com/ace/api/demo/smile
 
 
 ### Back End - Utils
-
+```
+getConfig
+	Request value loaded from config.php / config.local.php
+g
+	Example: Ace::g($_POST,'param') instead of if (isset($_POST['param'] &&...
+onHttps
+	Works behind ELB using HTTP_X_FORWARDED_PROTO
+enforceHttps
+	Redirect to https://self
+vres
+	Optimize asset caching by marking url with file-modified-time
+e
+	For debugging: exit with $message
+isAssoc
+	Returns false if array does not have continuously ascending numeric keys
+varDump
+	HTML-formatted alternative to var_dump
+putDeep
+	Insert into an array without checking isset()
+		Example:
+			$house = array(
+				'bedroom' => array('bed','dresser'=>array('pants')),
+			);
+			Ace::putDeep($house,'kitchen>oven','bread');
+			Ace::putDeep($house,'bedroom>dresser[]','shirt');
+			Ace::varDump($house);
+onMobile
+	Uses list from http://detectmobilebrowsers.com/ against HTTP_USER_AGENT
+clientIp
+	Works behind ELB and other proxies
+```
 
 ### Health Check
 http://ace.fabfitfun.com/hc
