@@ -58,7 +58,7 @@ h3 {
 	font-size: 15px;
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
-	margin-bottom: 0.1em;
+	margin-bottom: 0.5em;
 }
 .instagram-container {
 	float: left;
