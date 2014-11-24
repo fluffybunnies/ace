@@ -121,13 +121,13 @@ varDump
 	HTML-formatted alternative to var_dump
 putDeep
 	Insert into an array without checking isset()
-		Example:
-			$house = array(
-				'bedroom' => array('bed','dresser'=>array('pants')),
-			);
-			Ace::putDeep($house,'kitchen>oven','bread');
-			Ace::putDeep($house,'bedroom>dresser[]','shirt');
-			Ace::varDump($house);
+	Example:
+		$house = array(
+			'bedroom' => array('bed','dresser'=>array('pants')),
+		);
+		Ace::putDeep($house,'kitchen>oven','bread');
+		Ace::putDeep($house,'bedroom>dresser[]','shirt');
+		Ace::varDump($house);
 onMobile
 	Uses list from http://detectmobilebrowsers.com/ against HTTP_USER_AGENT
 clientIp
