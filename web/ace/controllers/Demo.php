@@ -19,7 +19,7 @@ class Demo extends ControllerAbstract {
 		return str_replace("\n", '', `/usr/local/bin/node $webroot/../bin/demo-smile.js`);
 	}
 
-	public function emailCsvWithNode(){
+	/*public function emailCsvWithNode(){
 		// http://ace.fabfitfun.com/ace/api/demo/email-csv-node?email_to=volcomstoner2689@gmail.com&email_from=acquiremint@beachmint.com&debug=1
 		$params = $this->getInput(array(
 			'email_to' => false,
@@ -38,6 +38,34 @@ class Demo extends ControllerAbstract {
 		$cmd = "/usr/local/bin/node $webroot/../bin/demo-emailCsv.js --emailTo=$emailTo --emailFrom=$emailFrom $subjectParam";
 		if (!empty($_GET['debug'])) echo "$cmd\n<br />";
 		return `$cmd`;
+	}*/
+	public function emailCsvWithNode(){
+		$params = $this->getInput(array(
+			'email_to' => false,
+			'email_from' => false,
+		));
+		$emailTo = isset($params['email_to']) ? $params['email_to'] : $this->defaultEmailTo;
+		$emailFrom = isset($params['email_from']) ? $params['email_from'] : $this->defaultEmailFrom;
+
+		$fileName = WEBROOT.'/public-out/demo-csvwithphp.'.time().'.csv';
+		$data = $this->getSampleData();
+		$this->generateCsvFromArray($fileName, $data);
+		if (!is_file($fileName))
+			throw new \Exception('output file not found');
+
+		Ses::send(array(
+			'to' => $emailTo,
+			'from' => $emailFrom,
+			'subject' => 'Sup',
+			'message' => 'Here you go!',
+			'attachment' => $fileName,
+		));
+
+		return array(
+			'outputFileName' => basename($fileName),
+			'emailTo' => $emailTo,
+			'emailFrom' => $emailFrom,
+		);
 	}
 
 	public function emailCsvWithPhp(){
