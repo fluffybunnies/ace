@@ -2,7 +2,7 @@
 dir=$1
 branch=$2
 
-echo "post-gitsync.sh"
+echo "post-gitsync.sh $dir $branch"
 
 # let php do stuff...
 chown -R www-data $dir/out

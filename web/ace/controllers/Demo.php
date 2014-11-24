@@ -61,7 +61,7 @@ class Demo extends ControllerAbstract {
 			'to' => $emailTo,
 			'from' => $emailFrom,
 			'subject' => $subject,
-			'message' => 'Here you go!',
+			'message' => '<em>Here you go!</em>',
 			'attachment' => $fileName,
 		));
 
