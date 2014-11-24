@@ -13,7 +13,7 @@ class Demo extends ControllerAbstract {
 	private static $defaultEmailTo = array('volcomstoner2689@gmail.com');
 	private static $defaultEmailFrom = 'acquiremint-notifs@beachmint.com';
 
-	private static $callCap = 5000;
+	private static $callCap = 5.000;
 	private static $callLogMaxLength = 1000;
 
 
@@ -122,7 +122,7 @@ class Demo extends ControllerAbstract {
 			's' => 1,
 		);
 		$lastCall = end($log);
-		if (!empty($_GET['debug'])) Ace::varDump($call['t'].' < '.($lastCall['t']+self::$callCap/1000));
+		if (!empty($_GET['debug'])) Ace::varDump($call['t'].' < '.($lastCall['t']+self::$callCap));
 		if ($call['t'] < $lastCall['t']+self::$callCap)
 			$call['s'] = 0;
 		$log[] = $call;
