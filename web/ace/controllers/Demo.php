@@ -25,11 +25,18 @@ class Demo extends ControllerAbstract {
 			'email_to' => false,
 			'email_from' => false,
 		));
-		$emailTo = isset($params['email_to']) ? $params['email_to'] : self::$defaultEmailTo;
-		$emailFrom = isset($params['email_from']) ? $params['email_from'] : self::$defaultEmailFrom;
+		$emailTo = Ace::g($params, 'email_to', self::$defaultEmailTo);
+		$emailFrom = Ace::g($params, 'email_from', self::$defaultEmailFrom);
+		//$subject = Ace::g($params, 'subject');
+		$subject = 'Sup (node)';
 
+		$emailTo = escapeshellarg($emailTo);
+		$emailFrom = escapeshellarg($emailFrom);
+		$subject = escapeshellarg($subject);
+
+		$subjectParam = $subject ? "subject='$subject'" : '';
 		$webroot = WEBROOT;
-		return `/usr/local/bin/node $webroot/../bin/demo-emailCsv.js --emailTo '$emailTo' --emailFrom '$emailFrom'`;
+		return `/usr/local/bin/node $webroot/../bin/demo-emailCsv.js --emailTo='$emailTo' --emailFrom='$emailFrom' $subjectParam`;
 	}
 
 	public function emailCsvWithPhp(){
@@ -38,8 +45,10 @@ class Demo extends ControllerAbstract {
 			'email_to' => false,
 			'email_from' => false,
 		));
-		$emailTo = isset($params['email_to']) ? $params['email_to'] : self::$defaultEmailTo;
-		$emailFrom = isset($params['email_from']) ? $params['email_from'] : self::$defaultEmailFrom;
+		$emailTo = Ace::g($params, 'email_to', self::$defaultEmailTo);
+		$emailFrom = Ace::g($params, 'email_from', self::$defaultEmailFrom);
+		//$subject = Ace::g($params, 'subject');
+		$subject = 'Sup (php)';
 
 		$fileName = WEBROOT.'/public-out/demo-csvwithphp.'.time().'.csv';
 		$data = $this->getSampleData();
@@ -50,7 +59,7 @@ class Demo extends ControllerAbstract {
 		Ses::send(array(
 			'to' => $emailTo,
 			'from' => $emailFrom,
-			'subject' => 'Sup',
+			'subject' => $subject,
 			'message' => 'Here you go!',
 			'attachment' => $fileName,
 		));
