@@ -127,7 +127,7 @@ a:hover {
 	<div>
 		<?php
 			$c = new ReflectionClass('Ace');
-			Ace::varDump(get_class_methods($c));
+			Ace::varDump($c->getMethods());
 		?>
 	</div>
 
