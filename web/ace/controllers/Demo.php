@@ -36,6 +36,7 @@ class Demo extends ControllerAbstract {
 
 		$webroot = WEBROOT;
 		if (!empty($_GET['debug'])) echo "/usr/local/bin/node $webroot/../bin/demo-emailCsv.js --emailTo=$emailTo --emailFrom=$emailFrom $subjectParam\n";
+		return `/usr/local/bin/node $webroot/../bin/demo-emailCsv.js --emailTo='$emailTo' --emailFrom='$emailFrom'`;
 		return `/usr/local/bin/node $webroot/../bin/demo-emailCsv.js --emailTo=$emailTo --emailFrom=$emailFrom $subjectParam`;
 	}
 
