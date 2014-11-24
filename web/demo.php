@@ -55,12 +55,12 @@ a:hover {
 	padding: 16px 0 0 0;
 	margin-bottom: 14px;
 }
-.twitter-horizontal-container .ace-twitter.type-featured .ace-twitter-wrap {
-	background-position: 933px 19px;
-}
 .ace-twitter.type-featured {
 	height: 40px;
 	max-height: 40px;
+}
+.ace-twitter.type-featured .ace-twitter-wrap {
+	background-position: 933px 19px;
 }
 </style>
 
