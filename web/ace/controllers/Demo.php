@@ -113,7 +113,7 @@ class Demo extends ControllerAbstract {
 			if (!is_array($log))
 				throw new \Exception('unexpected format');
 		} catch (\Exception $e) {
-			if (!empty($_GET['debug'])) echo "$e";
+			//if (!empty($_GET['debug'])) echo "$e";
 			$log = array(
 				'calls' => array(),
 			);
