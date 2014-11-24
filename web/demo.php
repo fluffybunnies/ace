@@ -69,6 +69,10 @@ a:hover {
 .ace-twitter.type-featured .ace-twitter-wrap {
 	background-position: 933px 39px;
 }
+.ace-example {
+}
+.ace-class-description {
+}
 </style>
 
 </head>
@@ -122,9 +126,11 @@ a:hover {
 		}</script>
 	</div>
 
-	API /smile: <span class="ace-smile"></span>
+	<div class="ace-example">
+		API /smile: <span class="ace-smile"></span>
+	</div>
 
-	<div>
+	<div class="ace-class-description">
 		<h3>\ace\Ace</h3>
 		<?php
 			$c = new ReflectionClass('\ace\Ace');
