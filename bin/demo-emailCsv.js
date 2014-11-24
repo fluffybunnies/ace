@@ -71,6 +71,7 @@ getData(function(err, data){
 		console.log('Email sent!');
 		console.log(data);
 	});
+	fs.appendFileSync('/tmp/test','Middle: '+(new Date)+'\n');
 });
 
 
