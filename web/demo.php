@@ -152,6 +152,7 @@ div.ace-smile {
 			$c = new ReflectionClass('\ace\Ace');
 			$methods = array();
 			$ignore = array('loadConfig',);
+			$pretty = array();
 			//Ace::varDump($c->getDocComment());
 			foreach ($c->getMethods() as $v) {
 				if ($v->name[0] == '_' || !$v->isPublic() || in_array($v->name,$ignore))
@@ -161,8 +162,11 @@ div.ace-smile {
 				if ($comment)
 					$m['comment'] = $comment;
 				$methods[$v->name] = $m;
+				$pretty[] = $v->name . ($comment ? "\n\t$comment" : '');
 			}
 			Ace::varDump($methods);
+			if (!empty($_GET['debug']))
+				echo implode("\n",$pretty);
 		?>
 	</div>
 
