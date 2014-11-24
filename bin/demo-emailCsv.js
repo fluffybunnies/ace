@@ -62,7 +62,7 @@ getData(function(err, data){
 			}
     ]
 	};
-	console.log(msg);
+	//console.log(msg);
 	fs.appendFileSync('/tmp/test','Start: '+(new Date)+'\n');
 	mailer.sendMail(msg,function(err, data){
 		fs.appendFileSync('/tmp/test','End: '+(new Date)+'\n');
