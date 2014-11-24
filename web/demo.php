@@ -59,6 +59,8 @@ h3 {
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
 	margin-bottom: 0.5em;
+	border-bottom: 1px solid #ccc;
+	padding-bottom: 0.3em;
 }
 h3 span {
 	font-size: 12px;
