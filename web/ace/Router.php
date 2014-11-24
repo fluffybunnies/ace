@@ -16,8 +16,8 @@ class Router {
 	public static function route($request){
 
 		if (strpos($request, self::$apiPath) === 0) {
-			echo substr($request, strlen(self::$apiPath));
-			Api::request( substr($request, strlen(self::$apiPath))+1 );
+			echo substr($request, strlen(self::$apiPath)+1);
+			Api::request( substr($request, strlen(self::$apiPath)+1) );
 			exit;
 		}
 
