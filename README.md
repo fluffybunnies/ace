@@ -104,7 +104,7 @@ Basic API skeleton.
 http://ace.fabfitfun.com/ace/api/demo/smile
 
 ##### Email Attachments
-http://ace.fabfitfun.com/ace/api/demo/email-csv-php?email_to=ahulce@gmail.com
+http://ace.fabfitfun.com/ace/api/demo/email-csv-php?email_to=ohsosexybrit@gmail.com
 
 
 
