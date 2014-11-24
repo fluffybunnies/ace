@@ -17,14 +17,14 @@ Or, deploy to Amazon EC2 with Sire
 ### Front End - UI
 http://ace.fabfitfun.com/demo
 
-Instagram Gallery
+##### Instagram Gallery
 ```
 <script type="text/ace-instagram">{
 	query: 'users/227962011/media/recent'
 }</script>
 ```
 
-Twitter Feed
+##### Twitter Feed
 ```
 <script type="text/ace-twitter">{
 	screenName: 'jewelmint'
@@ -35,7 +35,7 @@ Twitter Feed
 }</script>
 ```
 
-Simple Carousel
+##### Simple Carousel
 ```
 <script type="text/ace-carousel">{
 	imgs: [
