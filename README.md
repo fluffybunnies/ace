@@ -10,7 +10,10 @@ mkdir ./mysite && npm install aced && mv ./node_modules/aced/* ./mysite && cd ./
 ```
 Or, deploy to Amazon EC2 with Sire
 ```
-
+# Deploy sire to remote server (run this locally):
+~/sire/index.sh _deploy
+# Deploy ace on remote server (run this on remote server):
+/root/sire/index.sh ace
 ```
 
 
