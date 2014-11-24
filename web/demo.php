@@ -129,7 +129,7 @@ a:hover {
 	</div>
 
 	<div class="ace-example">
-		\ace\Ace API Example (/smile): <span class="ace-smile"></span>
+		Ace API Example (/ace/api/demo/smile): <span class="ace-smile"></span>
 	</div>
 
 	<div class="ace-class-description">
