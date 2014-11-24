@@ -40,7 +40,7 @@ class Demo extends ControllerAbstract {
 		//return `$cmd`;
 
 		$o = array();
-		exec($cmd.' &', $o);
+		exec($cmd.' > /dev/null &', $o);
 		sleep(2);
 	}
 
