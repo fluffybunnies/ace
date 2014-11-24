@@ -100,8 +100,12 @@ Let's do something everytime!
 ### Back End - API
 Basic API skeleton.
 
-#####
-Example: http://ace.fabfitfun.com/ace/api/demo/smile
+##### Smile
+http://ace.fabfitfun.com/ace/api/demo/smile
+
+##### Email Attachments
+http://ace.fabfitfun.com/ace/api/demo/email-csv-php?email_to=ahulce@gmail.com
+
 
 
 ### Back End - Utils
