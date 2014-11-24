@@ -101,8 +101,7 @@ Let's do something everytime!
 Basic API skeleton.
 
 #####
-Example
-```http://ace.fabfitfun.com/ace/api/demo/smile```
+Example: http://ace.fabfitfun.com/ace/api/demo/smile
 
 
 ### Back End - Utils
