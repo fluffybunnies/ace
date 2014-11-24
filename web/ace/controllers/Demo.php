@@ -14,6 +14,11 @@ class Demo extends ControllerAbstract {
 	private $defaultEmailFrom = 'acquiremint-notifs@beachmint.com';
 
 
+	public function smile(){
+		$webroot = WEBROOT;
+		return str_replace("\n", '', `/usr/local/bin/node $webroot/../bin/demo-smile.js`);
+	}
+
 	public function emailCsvWithNode(){
 		// http://ace.fabfitfun.com/ace/api/demo/email-csv-node?email_to=alec@luckygroupinc.com&email_from=acquiremint@beachmint.com&debug=1
 		$params = $this->getInput(array(
