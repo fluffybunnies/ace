@@ -48,7 +48,7 @@ getData(function(err, data){
 		out.good.write(d);
 	});
 	msg = 'Here ya go!';
-	mailer.sendMaile({
+	mailer.sendMail({
     to: emailTo
     ,from: emailFrom
     ,subject: 'Sup'
