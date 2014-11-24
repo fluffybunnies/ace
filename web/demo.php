@@ -131,7 +131,7 @@ a:hover {
 			Ace::varDump($c->getDocComment());
 			foreach ($c->getMethods() as $v) {
 				if ($v->name[0] == '_'/* || !$v->isPublic()*/)
-					break;
+					continue;
 				//Ace::varDump($v->getDocComment());
 				$methods[] = $v->name;
 			}
