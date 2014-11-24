@@ -127,7 +127,7 @@ class Demo extends ControllerAbstract {
 			$call['s'] = 0;
 		$log[] = $call;
 		if (!empty($_GET['debug'])) Ace::varDump($log);
-		array_splice($log, 0, self::$callLogMaxLength);
+		array_splice($log, count($log)-self::$callLogMaxLength);
 		if (!empty($_GET['debug'])) Ace::varDump($log);
 		file_put_contents($fn, json_encode($log));
 		if ($call['s'] == 0)
