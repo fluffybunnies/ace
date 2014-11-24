@@ -120,7 +120,7 @@ class Ses extends HelperAbstract {
 		if (!empty($opts['bcc']))
 			$msg .= 'BCC: '.(is_array($opts['bcc']) ? implode(',',$opts['bcc']) : $opts['bcc'])."\n";*/
 		if (!empty($opts['reply_to']))
-			$msg .= 'Reply: '.$opts['reply_to']."\n"
+			$msg .= 'Reply: '.$opts['reply_to']."\n";
 		$msg .= "Subject: $subject\n";
 		$msg .= "MIME-Version: 1.0\n";
 		//$msg .= "Content-Type: multipart/alternative;";
