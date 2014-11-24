@@ -104,10 +104,6 @@ class Demo extends ControllerAbstract {
 
 
 	private function preventTooMany($data=array()){
-		$arr = array(1,2,3,4);
-		$arr = array_splice($arr, 2);
-		Ace::varDump($arr);
-		exit;
 		$fn = WEBROOT.'/public-out/demo-log.txt';
 		if (!is_file($fn))
 			touch($fn);
@@ -131,10 +127,8 @@ class Demo extends ControllerAbstract {
 			$call['s'] = 0;
 		$log[] = $call;
 		if (!empty($_GET['debug'])) Ace::varDump($log);
-		if (($numLogs = count($log)) > self::$callLogMaxLength) {
-			Ace::varDump($numLogs);
-			array_splice($log, $numLogs-self::$callLogMaxLength);
-		}
+		if (($numLogs = count($log)) > self::$callLogMaxLength)
+			$log = array_splice($log, $numLogs-self::$callLogMaxLength);
 		if (!empty($_GET['debug'])) Ace::varDump($log);
 		file_put_contents($fn, json_encode($log));
 		if ($call['s'] == 0)
