@@ -15,7 +15,8 @@ var argv = require('minimist')(process.argv.slice(2))
 ,out = csvOut('demoEmailCsv', ['good'], __dirname+'/../out/')
 ,sampleDataPath = __dirname+'/../sample-data.json'
 ,emailTo = argv.emailTo || 'volcomstoner2689@gmail.com'
-,emailFrom = argv.emailFrom || 'acquiremint-notifs@beachmint.com' 
+,emailFrom = argv.emailFrom || 'acquiremint-notifs@beachmint.com'
+,subject = argv.subject || ''
 ,mailer
 ;
 
@@ -49,7 +50,7 @@ getData(function(err, data){
 	mailer.sendMail({
     to: emailTo
     ,from: emailFrom
-    ,subject: 'Sup'
+    ,subject: subject
     ,text: msg
     ,html: '<em>'+msg+'</em>'
     ,headers: {}
