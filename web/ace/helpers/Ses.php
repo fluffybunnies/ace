@@ -119,8 +119,8 @@ class Ses extends HelperAbstract {
 			$msg .= 'CC: '.(is_array($opts['cc']) ? implode(',',$opts['cc']) : $opts['cc'])."\n";
 		if (!empty($opts['bcc']))
 			$msg .= 'BCC: '.(is_array($opts['bcc']) ? implode(',',$opts['bcc']) : $opts['bcc'])."\n";*/
-		if (!empty($opts['reply_to']))
-			$msg .= 'Reply: '.$opts['reply_to']."\n";
+		/*if (!empty($opts['reply_to']))
+			$msg .= 'Reply: '.$opts['reply_to']."\n";*/
 		$msg .= "Subject: $subject\n";
 		$msg .= "MIME-Version: 1.0\n";
 		//$msg .= "Content-Type: multipart/alternative;";
