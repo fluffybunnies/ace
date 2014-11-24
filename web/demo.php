@@ -127,11 +127,11 @@ a:hover {
 	</div>
 
 	<div class="ace-example">
-		API /smile: <span class="ace-smile"></span>
+		\ace\Ace API Example (/smile): <span class="ace-smile"></span>
 	</div>
 
 	<div class="ace-class-description">
-		<h3>\ace\Ace</h3>
+		<h3>\ace\Ace Methods:</h3>
 		<?php
 			$c = new ReflectionClass('\ace\Ace');
 			$methods = array();
