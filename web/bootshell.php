@@ -26,5 +26,6 @@ foreach (array('RDS_HOSTNAME','RDS_PORT','RDS_USERNAME','RDS_PASSWORD','RDS_DB_N
 }
 */
 
-// api router...
-include APP_PATH.'/router.php';
+use \ace\Router;
+Router::route(REQUEST_PATH);
+
