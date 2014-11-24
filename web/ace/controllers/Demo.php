@@ -55,6 +55,7 @@ class Demo extends ControllerAbstract {
 		$emailTo = Ace::g($params, 'email_to', self::$defaultEmailTo);
 		$emailFrom = Ace::g($params, 'email_from', self::$defaultEmailFrom);
 		$subject = Ace::g($params, 'subject', 'Sup (php)');
+		Ace::varDump($emailTo);Ace::varDump($emailFrom);
 
 		$this->preventTooMany($params);
 
