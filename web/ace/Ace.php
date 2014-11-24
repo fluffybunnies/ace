@@ -24,6 +24,9 @@ class Ace {
 		self::$config = get_defined_vars();
 	}
 
+	/**
+		Request value loaded from config.php / config.local.php
+	*/
 	public static function getConfig($k) {
 		return self::g(self::$config,$k);
 	}
