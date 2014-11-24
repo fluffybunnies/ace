@@ -122,7 +122,7 @@ class Demo extends ControllerAbstract {
 			's' => 1,
 		);
 		$lastCall = end($log);
-		if (!empty($_GET['debug'])) Ace::varDump($call['t'].' < '.($lastCall['t']+self::$callCap));
+		if (!empty($_GET['debug'])) Ace::varDump($call['t'].' < '.($lastCall['t']+self::$callCap/1000));
 		if ($call['t'] < $lastCall['t']+self::$callCap)
 			$call['s'] = 0;
 		$log[] = $call;
