@@ -60,6 +60,10 @@ h3 {
 	letter-spacing: 0.1em;
 	margin-bottom: 0.5em;
 }
+h3 span {
+	font-size: 12px;
+	text-transform: none;
+}
 .instagram-container {
 	float: left;
 	width: 660px;
@@ -135,12 +139,12 @@ h3 {
 	</div>
 
 	<div class="ace-example">
-		<h3>Ace API Example (/ace/api/demo/smile):</h3>
+		<h3>Ace API Example <span>(/ace/api/demo/smile)</span>:</h3>
 		<div class="ace-smile"></div>
 	</div>
 
 	<div class="ace-class-description">
-		<h3>Ace Methods (displayed using Ace::varDump):</h3>
+		<h3>Ace Methods <span>(displayed using Ace::varDump)</span>:</h3>
 		<?php
 			$c = new ReflectionClass('\ace\Ace');
 			$methods = array();
