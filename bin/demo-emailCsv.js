@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /*
-node ./bin/demo-emailCsv.js
+node ./bin/demo-emailCsv.js --emailTo='alec@luckygroupinc.com' --emailFrom='acquiremint@beachmint.com'
 */
 
 var argv = require('minimist')(process.argv.slice(2))
@@ -13,9 +13,9 @@ var argv = require('minimist')(process.argv.slice(2))
 ,ut = require('../ut')
 ,outFile = __dirname+'/web/public-out/demo-csvwithnode.'+ut.fileTime()+'.csv'
 ,out = csvOut('demoEmailCsv', ['good'], __dirname+'/../out/')
+,sampleDataPath = __dirname+'/../sample-data.json'
 ,emailTo = argv.emailTo || 'volcomstoner2689@gmail.com'
 ,emailFrom = argv.emailFrom || 'acquiremint-notifs@beachmint.com' 
-,attachment = argv.attachment
 ,mailer
 ;
 
@@ -27,7 +27,8 @@ mailer = nodeMailer.createTransport(sesTransport({
 
 //console.log('config',config);
 
-console.log(['emailTo: '+emailTo, 'emailFrom: '+emailFrom, 'attachment: '+attachments, ''].join('\n'),'\n');
+console.log(['emailTo: '+emailTo, 'emailFrom: '+emailFrom, ''].join('\n'),'\n');
+process.exit();
 
 console.log('Output saving to:');
 csvOut.printFileNames(out);
@@ -73,7 +74,7 @@ getData(function(err, data){
 
 function getData(cb){
 	process.nextTick(function(){
-		cb(false, require(__dirname+'/../sample-data.json'));
+		cb(false, require(sampleDataPath));
 	});
 }
 
