@@ -98,7 +98,11 @@ Let's do something everytime!
 
 
 ### Back End - API
-Basic API skeleton. Ex: http://ace.fabfitfun.com/ace/api/demo/smile
+Basic API skeleton.
+
+#####
+Example
+```http://ace.fabfitfun.com/ace/api/demo/smile```
 
 
 ### Back End - Utils
