@@ -76,6 +76,7 @@ getData(function(err, data){
 
 
 function getData(cb){
+	return cb(false, require(sampleDataPath));
 	process.nextTick(function(){
 		cb(false, require(sampleDataPath));
 	});
