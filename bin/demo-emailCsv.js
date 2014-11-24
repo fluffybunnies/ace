@@ -25,8 +25,6 @@ mailer = nodeMailer.createTransport(sesTransport({
 	,region: config.awsRegion
 }));
 
-//console.log('config',config);
-
 console.log(['emailTo: '+emailTo, 'emailFrom: '+emailFrom, ''].join('\n'),'\n');
 
 console.log('Output saving to:');
