@@ -27,8 +27,7 @@ class Demo extends ControllerAbstract {
 		));
 		$emailTo = Ace::g($params, 'email_to', self::$defaultEmailTo);
 		$emailFrom = Ace::g($params, 'email_from', self::$defaultEmailFrom);
-		//$subject = Ace::g($params, 'subject');
-		$subject = 'Sup (node)';
+		$subject = Ace::g($params, 'subject', 'Sup (node)');
 
 		$emailTo = escapeshellarg($emailTo);
 		$emailFrom = escapeshellarg($emailFrom);
@@ -47,8 +46,7 @@ class Demo extends ControllerAbstract {
 		));
 		$emailTo = Ace::g($params, 'email_to', self::$defaultEmailTo);
 		$emailFrom = Ace::g($params, 'email_from', self::$defaultEmailFrom);
-		//$subject = Ace::g($params, 'subject');
-		$subject = 'Sup (php)';
+		$subject = Ace::g($params, 'subject', 'Sup (php)');
 
 		$fileName = WEBROOT.'/public-out/demo-csvwithphp.'.time().'.csv';
 		$data = $this->getSampleData();
