@@ -54,6 +54,11 @@ a:hover {
 	font-weight: 500;
 	letter-spacing: 0.15em;
 }
+h3 {
+	font-size: 15px;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+}
 .instagram-container {
 	float: left;
 	width: 660px;
@@ -129,7 +134,8 @@ a:hover {
 	</div>
 
 	<div class="ace-example">
-		Ace API Example (/ace/api/demo/smile): <span class="ace-smile"></span>
+		<h3>Ace API Example (/ace/api/demo/smile):</h3>
+		<span class="ace-smile"></span>
 	</div>
 
 	<div class="ace-class-description">
