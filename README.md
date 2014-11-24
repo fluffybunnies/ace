@@ -3,6 +3,9 @@ ace
 
 Lightweight FE/BE Framework. Provides tools for launching prototype websites.
 
+##### Demo
+http://ace.fabfitfun.com/demo
+
 
 ### Install
 ```
@@ -18,7 +21,6 @@ Or, deploy to Amazon EC2 with Sire
 
 
 ### Front End - UI
-http://ace.fabfitfun.com/demo
 
 ##### Instagram Gallery
 ```
