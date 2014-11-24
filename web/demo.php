@@ -130,7 +130,7 @@ a:hover {
 			$c = new ReflectionClass('\ace\Ace');
 			$methods = array();
 			$ignore = array('loadConfig',);
-			Ace::varDump($c->getDocComment());
+			//Ace::varDump($c->getDocComment());
 			foreach ($c->getMethods() as $v) {
 				if ($v->name[0] == '_' || !$v->isPublic() || in_array($v->name,$ignore))
 					continue;
