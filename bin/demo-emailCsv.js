@@ -39,6 +39,7 @@ getData(function(err, data){
 		return console.log(err);
 	//console.log(JSON.stringify(data)+'\n');
 	var files = csvOut.getFilePaths(out)
+	,body = 'Here ya go!'
 	,msg
 	;
 	console.log('Writing to: '+files[0]);
@@ -46,8 +47,7 @@ getData(function(err, data){
 		items.push(d);
 		out.good.write(d);
 	});
-	msg = 'Here ya go!';
-	mailer.sendMail({
+	msg = {
     to: emailTo
     ,from: emailFrom
     ,subject: subject
@@ -61,7 +61,9 @@ getData(function(err, data){
 				,path: files[0]
 			}
     ]
-	},function(err, data){
+	};
+	console.log(msg);
+	mailer.sendMail(msg,function(err, data){
 		if (err)
 			return console.log('Error sending mail',err);
 		console.log('Email sent!');
