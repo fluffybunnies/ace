@@ -122,11 +122,12 @@ class Demo extends ControllerAbstract {
 			's' => 1,
 		);
 		$lastCall = end($log);
+		if (!empty($_GET['debug'])) Ace::varDump($call['t'].' < '.($lastCall['t']+self::$callCap));
 		if ($call['t'] < $lastCall['t']+self::$callCap)
 			$call['s'] = 0;
 		$log[] = $call;
 		array_splice($log, self::$callLogMaxLength-count($log));
-		Ace::varDump($log);
+		if (!empty($_GET['debug'])) Ace::varDump($log);
 		file_put_contents($fn, json_encode($log));
 		if ($call['s'] == 0)
 			throw new \Exception('too many requests');
