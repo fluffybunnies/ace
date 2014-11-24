@@ -10,8 +10,8 @@ use \ace\helpers\Ses;
 
 class Demo extends ControllerAbstract {
 
-	private $defaultEmailTo = array('volcomstoner2689@gmail.com');
-	private $defaultEmailFrom = 'acquiremint-notifs@beachmint.com';
+	private static $defaultEmailTo = array('volcomstoner2689@gmail.com');
+	private static $defaultEmailFrom = 'acquiremint-notifs@beachmint.com';
 
 
 	public function smile(){
@@ -25,8 +25,8 @@ class Demo extends ControllerAbstract {
 			'email_to' => false,
 			'email_from' => false,
 		));
-		$emailTo = isset($params['email_to']) ? $params['email_to'] : $this->defaultEmailTo;
-		$emailFrom = isset($params['email_from']) ? $params['email_from'] : $this->defaultEmailFrom;
+		$emailTo = isset($params['email_to']) ? $params['email_to'] : self::$defaultEmailTo;
+		$emailFrom = isset($params['email_from']) ? $params['email_from'] : self::$defaultEmailFrom;
 
 		$webroot = WEBROOT;
 		return `/usr/local/bin/node $webroot/../bin/demo-emailCsv.js --emailTo '$emailTo' --emailFrom '$emailFrom'`;
@@ -38,8 +38,8 @@ class Demo extends ControllerAbstract {
 			'email_to' => false,
 			'email_from' => false,
 		));
-		$emailTo = isset($params['email_to']) ? $params['email_to'] : $this->defaultEmailTo;
-		$emailFrom = isset($params['email_from']) ? $params['email_from'] : $this->defaultEmailFrom;
+		$emailTo = isset($params['email_to']) ? $params['email_to'] : self::$defaultEmailTo;
+		$emailFrom = isset($params['email_from']) ? $params['email_from'] : self::$defaultEmailFrom;
 
 		$fileName = WEBROOT.'/public-out/demo-csvwithphp.'.time().'.csv';
 		$data = $this->getSampleData();
