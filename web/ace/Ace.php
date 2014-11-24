@@ -1,7 +1,7 @@
 <?php
 
 namespace ace;
-/*
+/**
 	sup
 */
 class Ace {
