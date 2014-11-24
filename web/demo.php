@@ -135,7 +135,7 @@ a:hover {
 				if ($v->name[0] == '_' || !$v->isPublic() || in_array($v->name,$ignore))
 					continue;
 				$m = array('method' => $v->name);
-				$comment = preg_replace('/[\/*]/','',trim($v->getDocComment()));
+				$comment = trim(preg_replace('/[\/*]/','',$v->getDocComment()));
 				if ($comment)
 					$m['comment'] = $comment;
 				$methods[] = $m;
