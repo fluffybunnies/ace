@@ -20,8 +20,8 @@ var argv = require('minimist')(process.argv.slice(2))
 ;
 
 mailer = nodeMailer.createTransport(sesTransport({
-	accessKeyId: config.sesKey
-	,secretAccessKey: config.sesSecret
+	accessKeyId: config.awsAccessKey
+	,secretAccessKey: config.awsAccessSecret
 	,region: config.awsRegion
 }));
 
