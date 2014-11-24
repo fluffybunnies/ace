@@ -54,7 +54,8 @@ a:hover {
 .carousel-container {
 	padding: 16px 0 0 0;
 }
-.twitter-horizontal-container {
+.twitter-horizontal-container .ace-twitter.type-featured .ace-twitter-wrap {
+	background-position: 933px 39px;
 }
 </style>
 
