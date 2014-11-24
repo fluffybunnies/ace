@@ -114,20 +114,18 @@ class Demo extends ControllerAbstract {
 				throw new \Exception('unexpected format');
 		} catch (\Exception $e) {
 			//if (!empty($_GET['debug'])) echo "$e";
-			$log = array(
-				'calls' => array(),
-			);
+			$log = array();
 		}
 		$call = array(
 			't' => microtime(true),
 			'ip' => Ace::clientIp(),
 			's' => 1,
 		);
-		$lastCall = end($log['calls']);
+		$lastCall = end($log);
 		if ($call['t'] < $lastCall['t']-self::$callCap)
 			$call['s'] = 0;
-		$log['calls'][] = $call;
-		array_splice($log['calls'], self::$callLogMaxLength-count($log['calls']));
+		$log[] = $call;
+		array_splice($log, self::$callLogMaxLength-count($log));
 		Ace::varDump($log);
 		file_put_contents($fn, json_encode($log));
 		if (!$call['s'])
