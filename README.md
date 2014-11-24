@@ -10,7 +10,7 @@ Demo: http://ace.fabfitfun.com/demo
 ```
 mkdir ./mysite && npm install aced && mv ./node_modules/aced/* ./mysite && cd ./mysite && ls
 ```
-Or, deploy to Amazon EC2 with Sire (https://github.com/fluffybunnies/sire)
+Or, deploy to Amazon EC2 Ubuntu with Sire (https://github.com/fluffybunnies/sire)
 ```
 # Deploy sire to remote server (run this locally):
 ~/sire/index.sh _deploy
@@ -103,8 +103,8 @@ Basic API skeleton. Includes a few routes as examples:
 ##### Smile
 http://ace.fabfitfun.com/ace/api/demo/smile
 
-##### Email Attachments
-http://ace.fabfitfun.com/ace/api/demo/email-csv-php?email_to=ohsosexybrit@gmail.com
+##### Send email with attachments
+http://ace.fabfitfun.com/ace/api/demo/email-csv-php?email_to=alec@luckygroupinc.com
 
 
 
@@ -139,8 +139,32 @@ Ace::onMobile
 	Uses list from http://detectmobilebrowsers.com/ against HTTP_USER_AGENT
 Ace::clientIp
 	Works behind ELB and other proxies
-
 ```
+
+
+### Back End - Node
+If you deployed using Sire, node will be installed with the latest stable version.
+
+##### Send email with attachments
+```
+node ./bin/demo-emailCsv.js --emailTo='alec@luckygroupinc.com' --emailFrom='acquiremint@beachmint.com'
+```
+
+##### Utils
+```
+// 'ut.'+Object.keys(require('./ut.js')).sort().join('\nut.')
+ut.dateDiff
+ut.fileTime
+ut.getFirstChild
+ut.getFirstKey
+ut.padZ
+ut.prettyTime
+ut.spawn
+ut.stats
+ut.superTrim
+ut.trim
+```
+
 
 ### Health Check
 http://ace.fabfitfun.com/hc
