@@ -46,7 +46,7 @@ Or, deploy to Amazon EC2 with Sire (https://github.com/fluffybunnies/sire)
 		'/imgs/fashion_jewelry.jpg'
 		,'/imgs/three-stones-engagement-ring.jpg'
 		,'/imgs/Chanel_Wallet_Chriselle1.jpg'
-		,'/imgs/Peplum_Leather_zara_top_Valentino_rockstud_leopard_shoes_Purse_chriselle_Lim_5.jpg'
+		,'/imgs/Peplum_Leather_zara_top_Valentino_rockstud.jpg'
 		,'/imgs/summer-arm-candy.jpg'
 		,'/imgs/boho-chic-2.jpg'
 	]
