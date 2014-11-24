@@ -54,6 +54,8 @@ a:hover {
 .carousel-container {
 	padding: 16px 0 0 0;
 }
+.twitter-horizontal-container {
+}
 </style>
 
 </head>
@@ -94,6 +96,16 @@ a:hover {
 				,dims: '195x148'
 				,speed: 300
 				,shadbox: true
+		}</script>
+	</div>
+
+	<div class="twitter-horizontal-container">
+		<script type="text/ace-twitter">{
+			screenName: 'jewelmint'
+			,numGet: 10
+			,numShow: 1
+			,scroll: 'x'
+			,type: 'featured'
 		}</script>
 	</div>
 
