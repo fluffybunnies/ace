@@ -70,8 +70,10 @@ a:hover {
 	background-position: 933px 39px;
 }
 .ace-example {
+	margin-bottom: 14px;
 }
 .ace-class-description {
+	margin-bottom: 14px;
 }
 </style>
 
