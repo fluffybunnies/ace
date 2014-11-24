@@ -131,6 +131,7 @@ a:hover {
 			foreach ($c->getMethods() as $v)
 				if ($v->name[0] != '_')
 					$methods[] = $v->name;
+			sort($methods);
 			Ace::varDump($methods);
 		?>
 	</div>
