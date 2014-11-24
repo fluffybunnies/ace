@@ -15,6 +15,7 @@ class Demo extends ControllerAbstract {
 
 
 	public function emailCsvWithNode(){
+		// http://ace.fabfitfun.com/ace/api/demo/email-csv-node?email_to=alec@luckygroupinc.com&email_from=acquiremint@beachmint.com&debug=1
 		$params = $this->getInput(array(
 			'email_to' => false,
 			'email_from' => false,
@@ -23,7 +24,7 @@ class Demo extends ControllerAbstract {
 		$emailFrom = isset($params['email_from']) ? $params['email_from'] : $this->defaultEmailFrom;
 
 		$webroot = WEBROOT;
-		return `/usr/local/bin/node $webroot/../bin/demo-emailCsv.js --to '$emailTo' --from '$emailFrom'`;
+		return `/usr/local/bin/node $webroot/../bin/demo-emailCsv.js --emailTo '$emailTo' --emailFrom '$emailFrom'`;
 	}
 
 	public function emailCsvWithPhp(){
