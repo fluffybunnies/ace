@@ -157,7 +157,7 @@ div.ace-smile {
 				if ($v->name[0] == '_' || !$v->isPublic() || in_array($v->name,$ignore))
 					continue;
 				$m = array();
-				$comment = trim(preg_replace('/(\/\*)|\*/','',$v->getDocComment()));
+				$comment = trim(preg_replace('/(\/\*)|(*\/)|\*/','',$v->getDocComment()));
 				if ($comment)
 					$m['comment'] = $comment;
 				$methods[$v->name] = $m;
