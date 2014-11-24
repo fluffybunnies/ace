@@ -1,7 +1,7 @@
 <?php
 /*
 	Note
-		- cc/bcc/reply_to are ignored when sending attachments
+		- reply_to is ignored when sending attachments
 */
 
 namespace ace\helpers;
