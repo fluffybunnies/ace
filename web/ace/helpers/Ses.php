@@ -89,7 +89,7 @@ class Ses extends HelperAbstract {
 					'Data' => $rawMsg,
 				),
 			), array(
-				'Source' => isset($params['reply_to']) ? $params['reply_to'] : $params['from'],
+				//'Source' => isset($params['reply_to']) ? $params['reply_to'] : $params['from'],
 				//'Destinations' => $destination,
 			));
 		} else {
