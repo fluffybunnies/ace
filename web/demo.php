@@ -142,11 +142,11 @@ a:hover {
 			foreach ($c->getMethods() as $v) {
 				if ($v->name[0] == '_' || !$v->isPublic() || in_array($v->name,$ignore))
 					continue;
-				$m = array('method' => $v->name);
+				$m = array();
 				$comment = trim(preg_replace('/[\/*]/','',$v->getDocComment()));
 				if ($comment)
 					$m['comment'] = $comment;
-				$methods[] = $m;
+				$methods[$v->name] = $m;
 			}
 			sort($methods);
 			Ace::varDump($methods);
