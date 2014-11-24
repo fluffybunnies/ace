@@ -28,7 +28,6 @@ mailer = nodeMailer.createTransport(sesTransport({
 //console.log('config',config);
 
 console.log(['emailTo: '+emailTo, 'emailFrom: '+emailFrom, ''].join('\n'),'\n');
-process.exit();
 
 console.log('Output saving to:');
 csvOut.printFileNames(out);
