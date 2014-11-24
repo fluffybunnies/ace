@@ -148,7 +148,6 @@ a:hover {
 					$m['comment'] = $comment;
 				$methods[$v->name] = $m;
 			}
-			sort($methods);
 			Ace::varDump($methods);
 		?>
 	</div>
