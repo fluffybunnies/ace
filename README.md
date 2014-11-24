@@ -98,7 +98,7 @@ Let's do something everytime!
 
 
 ### Back End - API
-Basic API skeleton.
+Basic API skeleton. Includes a few routes as examples:
 
 ##### Smile
 http://ace.fabfitfun.com/ace/api/demo/smile
