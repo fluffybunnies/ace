@@ -13,6 +13,9 @@ class Demo extends ControllerAbstract {
 	private static $defaultEmailTo = array('volcomstoner2689@gmail.com');
 	private static $defaultEmailFrom = 'acquiremint-notifs@beachmint.com';
 
+	private static $callCap = 5000;
+	private static $callLogMaxLength = 1000;
+
 
 	public function smile(){
 		$webroot = WEBROOT;
@@ -28,6 +31,8 @@ class Demo extends ControllerAbstract {
 		$emailTo = Ace::g($params, 'email_to', self::$defaultEmailTo);
 		$emailFrom = Ace::g($params, 'email_from', self::$defaultEmailFrom);
 		$subject = Ace::g($params, 'subject', 'Sup (node)');
+
+		$this->preventTooMany($params);
 
 		$emailTo = escapeshellarg($emailTo);
 		$emailFrom = escapeshellarg($emailFrom);
@@ -50,6 +55,8 @@ class Demo extends ControllerAbstract {
 		$emailTo = Ace::g($params, 'email_to', self::$defaultEmailTo);
 		$emailFrom = Ace::g($params, 'email_from', self::$defaultEmailFrom);
 		$subject = Ace::g($params, 'subject', 'Sup (php)');
+
+		$this->preventTooMany($params);
 
 		$fileName = WEBROOT.'/public-out/demo-csvwithphp.'.time().'.csv';
 		$data = $this->getSampleData();
@@ -93,6 +100,38 @@ class Demo extends ControllerAbstract {
 
 		if (!empty($f))
 			fclose($f);
+	}
+
+
+	private function preventTooMany($data=array()){
+		$fn = WEBROOT.'/public-out/demo-log';
+		if (!is_file($fn))
+			touch($fn);
+		$log = file_get_contents($fn);
+		try {
+			$log = json_decode(file_get_contents($fn), true);
+			if (!is_array($log))
+				throw new \Exception('unexpected format');
+		} catch (\Exception $e) {
+			if (!empty($_GET['debug'])) echo "$e";
+			$log = array(
+				'calls' => array(),
+			);
+		}
+		$call = array(
+			't' => microtime(true),
+			'ip' => Ace::clientIp(),
+			's' => 1,
+		);
+		$lastCall = end($log['calls']);
+		if ($call['t'] < $lastCall['t']-self::$callCap)
+			$call['s'] = 0;
+		$log['calls'][$log];
+		array_splice($log['calls'], self::$callLogMaxLength-count($log['calls']));
+		Ace::varDump($log);
+		file_put_contents($fn, json_encode($log));
+		if (!$call['s'])
+			throw new \Exception('too many requests');
 	}
 
 }
