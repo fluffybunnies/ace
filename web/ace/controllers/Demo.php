@@ -20,7 +20,7 @@ class Demo extends ControllerAbstract {
 	}
 
 	public function emailCsvWithNode(){
-		// http://ace.fabfitfun.com/ace/api/demo/email-csv-node?email_to=alec@luckygroupinc.com&email_from=acquiremint@beachmint.com&debug=1
+		// http://ace.fabfitfun.com/ace/api/demo/email-csv-node?email_to=volcomstoner2689@gmail.com&email_from=acquiremint@beachmint.com&debug=1
 		$params = $this->getInput(array(
 			'email_to' => false,
 			'email_from' => false,
@@ -33,7 +33,7 @@ class Demo extends ControllerAbstract {
 	}
 
 	public function emailCsvWithPhp(){
-		// http://ace.fabfitfun.com/ace/api/demo/email-csv-php?email_to=alec@luckygroupinc.com&email_from=acquiremint@beachmint.com
+		// http://ace.fabfitfun.com/ace/api/demo/email-csv-php?email_to=volcomstoner2689@gmail.com&email_from=acquiremint@beachmint.com
 		$params = $this->getInput(array(
 			'email_to' => false,
 			'email_from' => false,
