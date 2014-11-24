@@ -70,13 +70,13 @@ class Ace {
 
 	public static function varDump($v, $exit=false) {
 		echo '<div style="margin:4px;border:1px dotted #000;padding:4px;background:#eee;color:#000;font-size:12px;font-family:monospace;clear:both;">';
-		echo self::varDumpR($v);
+		echo self::_varDump($v);
 		echo '</div>';
 		if ($exit)
 			exit;
 	}
 
-	private static function varDumpR($v) {
+	private static function _varDump($v) {
 		$nl = "<br />\n";
 		if (is_null($v)) $type = 'null';
 		else if (is_bool($v)) $type = 'bool';
@@ -98,13 +98,13 @@ class Ace {
 			$val = array();
 			foreach ($v as $key => $elm) {
 				$key_str = is_int($key) ? $key : '"'.$key.'"';
-				$val[] = '[' . $key_str . '] => ' . self::varDumpR($elm);
+				$val[] = '[' . $key_str . '] => ' . self::_varDump($elm);
 			}
 			$val = $type.' (<div style="padding-left:3em;">' . implode(','.$nl,$val) . '</div>)';
 		} else if ($type == 'object') {
 			$class = get_class($v);
 			$val = array();
-			foreach ($v as $key => $elm) $val[] = "'".$key . "' => " . self::varDumpR($elm);
+			foreach ($v as $key => $elm) $val[] = "'".$key . "' => " . self::_varDump($elm);
 			$val = $type.'['.$class.'] {<div style="padding-left:3em;">' . implode(','.$nl,$val) . '</div>}';
 		}
 
