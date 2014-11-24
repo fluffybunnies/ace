@@ -33,7 +33,7 @@ class Ace {
 	// BEGIN utils
 
 	/**
-		wefwef
+		Example: Ace::g($_POST,'param') instead of if (isset($_POST['param'] &&...
 	*/
 	public static function g($p,$k,$d=null) {
 		if (!is_array($k)) {
