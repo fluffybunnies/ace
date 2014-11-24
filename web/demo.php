@@ -136,7 +136,7 @@ h3 {
 
 	<div class="ace-example">
 		<h3>Ace API Example (/ace/api/demo/smile):</h3>
-		<span class="ace-smile"></span>
+		<div class="ace-smile"></div>
 	</div>
 
 	<div class="ace-class-description">
