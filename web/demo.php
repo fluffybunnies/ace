@@ -13,6 +13,15 @@ use \ace\Ace;
 <script src="/assets/ace.js"></script>
 <script>
 
+$(function(){
+	$('.ace-smile').each(function(){
+		var $el = $(this);
+		$.getJSON('/ace/api/smile',function(){
+			console.log('smile',arguments);
+		});
+	});
+});
+
 </script>
 
 <style type="text/css">
@@ -110,6 +119,8 @@ a:hover {
 			,type: 'featured'
 		}</script>
 	</div>
+
+	<div class="ace-smile"></div>
 
 </div>
 
