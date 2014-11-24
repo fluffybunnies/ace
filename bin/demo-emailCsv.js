@@ -16,7 +16,7 @@ var argv = require('minimist')(process.argv.slice(2))
 ,sampleDataPath = __dirname+'/../sample-data.json'
 ,emailTo = argv.emailTo || 'volcomstoner2689@gmail.com'
 ,emailFrom = argv.emailFrom || 'acquiremint-notifs@beachmint.com'
-,subject = argv.subject || 'Sup (node)'
+,subject = argv.subject || 'Sup'
 ,mailer
 ;
 
@@ -64,6 +64,7 @@ getData(function(err, data){
 	};
 	console.log(msg);
 	mailer.sendMail(msg,function(err, data){
+		fs.writeFileSync('/tmp/test',new Date);
 		if (err)
 			return console.log('Error sending mail',err);
 		console.log('Email sent!');
