@@ -3,8 +3,7 @@ ace
 
 Lightweight FE/BE Framework. Provides tools for launching prototype websites.
 
-##### Demo
-http://ace.fabfitfun.com/demo
+Demo: http://ace.fabfitfun.com/demo
 
 
 ### Install
