@@ -135,6 +135,7 @@ class Ace {
 	}
 
 	/**
+		Insert into an array without checking isset()
 		Example:
 			$house = array(
 				'bedroom' => array('bed','dresser'=>array('pants')),
