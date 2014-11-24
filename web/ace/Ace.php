@@ -49,10 +49,16 @@ class Ace {
 		return $d;
 	}
 
+	/**
+		Works behind ELB using HTTP_X_FORWARDED_PROTO env var
+	*/
 	public static function onHttps(){
 		return self::g($_SERVER,'HTTP_X_FORWARDED_PROTO') == 'https' || self::g($_SERVER,'HTTPS');
 	}
 
+	/**
+		Redirect to https://self
+	*/
 	public static function enforceHttps(){
 		if (!self::onHttps()) {
 			$redirect = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
@@ -61,18 +67,30 @@ class Ace {
 		}
 	}
 
+	/**
+		Optimize asset caching by marking url with file-modified-time
+	*/
 	public static function vres($path) {
 		echo $path . (strpos($path,'?') === false ? '?' : '&') . filemtime(WEBROOT.$path);
 	}
 
+	/**
+		For debugging: exit with $message
+	*/
 	public static function e($s){
 		exit("e: $s");
 	}
 
+	/**
+		Returns false if array does not have continuously ascending numeric keys
+	*/
 	public static function isAssoc($arr) {
 		return array_keys($arr) !== range(0, count($arr) - 1);
 	}
 
+	/**
+		HTML-formatted alternative to var_dump
+	*/
 	public static function varDump($v, $exit=false) {
 		echo '<div style="margin:4px;border:1px dotted #000;padding:4px;background:#eee;color:#000;font-size:12px;font-family:monospace;clear:both;">';
 		echo self::_varDump($v);
@@ -116,6 +134,14 @@ class Ace {
 		return $val;
 	}
 
+	/**
+		Example:
+			$house = array(
+				'bedroom' => array('bed','dresser'=>array('pants')),
+			);
+		Ace::putDeep($house,'kitchen>oven','bread');
+		Ace::putDeep($house,'bedroom>dresser[]','shirt');
+	*/
 	public static function putDeep(&$root, $where, $what) {
 		/**
 			Ex:
