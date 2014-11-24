@@ -124,6 +124,12 @@ a:hover {
 
 	API /smile: <span class="ace-smile"></span>
 
+	<div>
+		<?php
+			Ace::varDump(get_class_methods('Ace'));
+		?>
+	</div>
+
 </div>
 
 </body>
