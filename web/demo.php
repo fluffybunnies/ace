@@ -130,10 +130,9 @@ a:hover {
 			$methods = array();
 			Ace::varDump($c->getDocComment());
 			foreach ($c->getMethods() as $v) {
-				Ace::varDump($v);
-				if ($v->name[0] == '_'/* || !$v->isPublic()*/)
-					return;
-				//Ace::varDump($v->getDocComment());
+				if ($v->name[0] == '_' || !$v->isPublic())
+					break;
+				Ace::varDump($v->getDocComment());
 				$methods[] = $v->name;
 			}
 			sort($methods);
