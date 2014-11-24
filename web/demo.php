@@ -132,7 +132,7 @@ a:hover {
 			$ignore = array('loadConfig',);
 			Ace::varDump($c->getDocComment());
 			foreach ($c->getMethods() as $v) {
-				if ($v->name[0] == '_' || !$v->isPublic() || in_array($v['name'],$ignore))
+				if ($v->name[0] == '_' || !$v->isPublic() || in_array($v->name,$ignore))
 					continue;
 				Ace::varDump($v->getDocComment());
 				$methods[] = $v->name;
