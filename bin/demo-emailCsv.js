@@ -63,8 +63,9 @@ getData(function(err, data){
     ]
 	};
 	console.log(msg);
+	fs.appendFileSync('/tmp/test','Start: '+(new Date));
 	mailer.sendMail(msg,function(err, data){
-		fs.writeFileSync('/tmp/test',new Date);
+		fs.appendFileSync('/tmp/test','End: '+(new Date));
 		if (err)
 			return console.log('Error sending mail',err);
 		console.log('Email sent!');
