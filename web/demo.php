@@ -133,7 +133,7 @@ a:hover {
 	</div>
 
 	<div class="ace-class-description">
-		<h3>\ace\Ace Methods:</h3>
+		<h3>Ace Methods:</h3>
 		<?php
 			$c = new ReflectionClass('\ace\Ace');
 			$methods = array();
