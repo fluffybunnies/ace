@@ -36,10 +36,8 @@ class Ace {
 	/**
 		Example: Ace::g($_POST,'param') instead of if (isset($_POST['param'] &&...
 	*/
-	public static function g($p,$k,$d=null) {
-		Ace::varDump($k);
-		Ace::varDump($p);
-		Ace::varDump(array_key_exists($k,$p));
+	public static function g($p,$k,$d=null, $dbg=false) {
+		if ($dbg) {Ace::varDump($k);		Ace::varDump($p);		Ace::varDump(array_key_exists($k,$p));}
 		if (!is_array($k))
 			return array_key_exists($k,$p) ? $p[$k] : $d;
 		for ($i=0,$c=count($k);$i<$c;$i++) {

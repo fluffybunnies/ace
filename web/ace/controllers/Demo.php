@@ -28,8 +28,8 @@ class Demo extends ControllerAbstract {
 			'email_to' => false,
 			'email_from' => false,
 		));
-		$emailTo = Ace::g($params, 'email_to', self::$defaultEmailTo);
-		$emailFrom = Ace::g($params, 'email_from', self::$defaultEmailFrom);
+		$emailTo = Ace::g($params, 'email_to', self::$defaultEmailTo, true);
+		$emailFrom = Ace::g($params, 'email_from', self::$defaultEmailFrom, true);
 		$subject = Ace::g($params, 'subject', 'Sup (node)');
 
 		$this->preventTooMany($params);
