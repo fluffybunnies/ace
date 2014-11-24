@@ -122,7 +122,7 @@ a:hover {
 		}</script>
 	</div>
 
-	<div class="ace-smile"></div>
+	API /smile: <span class="ace-smile"></span>
 
 </div>
 
