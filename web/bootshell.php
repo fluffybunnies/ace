@@ -27,6 +27,5 @@ foreach (array('RDS_HOSTNAME','RDS_PORT','RDS_USERNAME','RDS_PASSWORD','RDS_DB_N
 }
 */
 
-
 Router::route(REQUEST_PATH);
 

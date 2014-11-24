@@ -1,6 +1,7 @@
 <?php
 
 spl_autoload_register(function($name) {
+	echo "$name\n<br />";
 	if (strpos($name,'\\') === false)
 		return;
 	$path = str_replace('\\','/',$name);
