@@ -2,7 +2,7 @@
 	"name": "aced",
 	"description": "php light FE/BE framework",
 	"keywords": "php light FE/BE FE BE framework email attachment",
-	"version": "0.0.5",
+	"version": "0.0.6",
 	"author": "fluffybunnies",
 	"repository": {
 		"type": "git",
