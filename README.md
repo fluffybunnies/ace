@@ -11,7 +11,7 @@ mkdir ./mysite && npm install aced && mv ./node_modules/aced/* ./mysite && cd ./
 
 
 ### Front End - UI
-http://www.example.com/demo
+http://ace.fabfitfun.com/demo
 
 Instagram Gallery
 ```
