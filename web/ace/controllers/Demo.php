@@ -29,10 +29,10 @@ class Demo extends ControllerAbstract {
 		$emailFrom = Ace::g($params, 'email_from', self::$defaultEmailFrom);
 		$subject = Ace::g($params, 'subject', 'Sup (node)');
 
-		$emailTo = escapeshellarg($emailTo);
+		/*$emailTo = escapeshellarg($emailTo);
 		$emailFrom = escapeshellarg($emailFrom);
 		$subject = escapeshellarg($subject);
-		$subjectParam = $subject ? "--subject=$subject" : '';
+		$subjectParam = $subject ? "--subject=$subject" : '';*/
 
 		$webroot = WEBROOT;
 		if (!empty($_GET['debug'])) echo "/usr/local/bin/node $webroot/../bin/demo-emailCsv.js --emailTo=$emailTo --emailFrom=$emailFrom $subjectParam\n";

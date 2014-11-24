@@ -16,7 +16,7 @@ var argv = require('minimist')(process.argv.slice(2))
 ,sampleDataPath = __dirname+'/../sample-data.json'
 ,emailTo = argv.emailTo || 'volcomstoner2689@gmail.com'
 ,emailFrom = argv.emailFrom || 'acquiremint-notifs@beachmint.com'
-,subject = argv.subject || ''
+,subject = argv.subject || 'Sup (node)'
 ,mailer
 ;
 
