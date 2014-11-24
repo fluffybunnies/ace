@@ -53,5 +53,26 @@ http://ace.fabfitfun.com/demo
 ```
 
 
+### Front End - Utils
+```
+// ace.util.'+Object.keys(ace.util).sort().join('\nace.util.')
+ace.util.arrayFilter
+ace.util.capitalize
+ace.util.cookie
+ace.util.escapeHtml
+ace.util.escapeRegEx
+ace.util.formatInteger
+ace.util.formatPlace
+ace.util.formatTimeAgo
+ace.util.getImageToWindowFit
+ace.util.getParameterByName
+ace.util.getViewportScrollY
+ace.util.onTouchDevice
+ace.util.rand
+ace.util.strToClass
+ace.util.trueDim
+```
+
+
 ### Back End
 http://www.example.com/demo
