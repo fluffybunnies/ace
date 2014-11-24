@@ -16,6 +16,7 @@ class Api {
 	);
 	
 	public static function request($route){
+		echo "$route\n<br />";
 		try {
 			self::setData(false,self::_request($route));
 		} catch (\Exception $e) {
