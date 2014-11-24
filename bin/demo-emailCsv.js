@@ -51,8 +51,8 @@ getData(function(err, data){
     to: emailTo
     ,from: emailFrom
     ,subject: subject
-    ,text: msg
-    ,html: '<em>'+msg+'</em>'
+    ,text: body
+    ,html: '<em>'+body+'</em>'
     ,headers: {}
     ,attachments: [
 			{
