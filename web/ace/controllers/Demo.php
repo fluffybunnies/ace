@@ -123,7 +123,7 @@ class Demo extends ControllerAbstract {
 		);
 		$lastCall = end($log);
 		Ace::varDump($call['t'].' < '.($lastCall['t']-self::$callCap));
-		if ($lastCall['t']+self::$callCap > $call['t'])
+		if ($call['t'] < $lastCall['t']+self::$callCap)
 			$call['s'] = 0;
 		$log[] = $call;
 		array_splice($log, self::$callLogMaxLength-count($log));
