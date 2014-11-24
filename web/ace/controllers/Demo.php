@@ -29,9 +29,9 @@ class Demo extends ControllerAbstract {
 			'email_from' => false,
 			'subject' => false,
 		));
-		$emailTo = $params['email_to'] ? :$params['email_to'] : self::$defaultEmailTo;
-		$emailFrom = $params['email_from'] ? :$params['email_from'] : self::$defaultEmailFrom;
-		$subject = $params['subject'] ? :$params['subject'] : 'Sup (node)';
+		$emailTo = $params['email_to'] ? $params['email_to'] : self::$defaultEmailTo;
+		$emailFrom = $params['email_from'] ? $params['email_from'] : self::$defaultEmailFrom;
+		$subject = $params['subject'] ? $params['subject'] : 'Sup (php)';
 
 		$this->preventTooMany($params);
 
@@ -54,9 +54,9 @@ class Demo extends ControllerAbstract {
 			'email_from' => false,
 			'subject' => false,
 		));
-		$emailTo = $params['email_to'] ? :$params['email_to'] : self::$defaultEmailTo;
-		$emailFrom = $params['email_from'] ? :$params['email_from'] : self::$defaultEmailFrom;
-		$subject = $params['subject'] ? :$params['subject'] : 'Sup (php)';
+		$emailTo = $params['email_to'] ? $params['email_to'] : self::$defaultEmailTo;
+		$emailFrom = $params['email_from'] ? $params['email_from'] : self::$defaultEmailFrom;
+		$subject = $params['subject'] ? $params['subject'] : 'Sup (php)';
 
 		$this->preventTooMany($params);
 
