@@ -128,7 +128,7 @@ class Demo extends ControllerAbstract {
 		array_splice($log, self::$callLogMaxLength-count($log));
 		Ace::varDump($log);
 		file_put_contents($fn, json_encode($log));
-		if (!$call['s'])
+		if ($call['s'] == 0)
 			throw new \Exception('too many requests');
 	}
 
