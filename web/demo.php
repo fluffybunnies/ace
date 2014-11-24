@@ -56,6 +56,7 @@ a:hover {
 }
 h3 {
 	font-size: 15px;
+	font-weight: bold;
 	text-transform: uppercase;
 	letter-spacing: 0.1em;
 }
