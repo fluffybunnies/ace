@@ -28,19 +28,3 @@ foreach (array('RDS_HOSTNAME','RDS_PORT','RDS_USERNAME','RDS_PASSWORD','RDS_DB_N
 
 // api router...
 include APP_PATH.'/router.php';
-
-// healthcheck...
-if (REQUEST_PATH == '/hc') {
-	include WEBROOT.'/hc.php';
-	exit;
-}
-// site info...
-if (REQUEST_PATH == '/id') {
-	include WEBROOT.'/id.php';
-	exit;
-}
-// demo...
-if (REQUEST_PATH == '/demo') {
-	include WEBROOT.'/demo.php';
-	exit;
-}
