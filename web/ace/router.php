@@ -1,5 +1,6 @@
 <?php
 
+namespace ace;
 use \ace\Ace;
 
 class Router {
