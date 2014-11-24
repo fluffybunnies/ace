@@ -53,7 +53,7 @@ class Ace {
 	}
 
 	/**
-		Works behind ELB using HTTP_X_FORWARDED_PROTO env var
+		Works behind ELB using HTTP_X_FORWARDED_PROTO
 	*/
 	public static function onHttps(){
 		return self::g($_SERVER,'HTTP_X_FORWARDED_PROTO') == 'https' || self::g($_SERVER,'HTTPS');
