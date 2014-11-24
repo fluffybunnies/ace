@@ -37,12 +37,10 @@ class Demo extends ControllerAbstract {
 		$webroot = WEBROOT;
 		$cmd = "/usr/local/bin/node $webroot/../bin/demo-emailCsv.js --emailTo=$emailTo --emailFrom=$emailFrom $subjectParam";
 		$cmd .= ' > /dev/null &';
-		if (!empty($_GET['debug'])) echo "$cmd\n<br />";
+		//if (!empty($_GET['debug'])) echo "$cmd\n<br />";
 		//return `$cmd`;
 
-		$o = array();
-		exec($cmd.' 2>&1 > /dev/null &', $o);
-		sleep(1);
+		exec($cmd.' 2>&1 > /dev/null &');
 	}
 
 	public function emailCsvWithPhp(){
