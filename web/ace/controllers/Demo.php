@@ -14,7 +14,7 @@ class Demo extends ControllerAbstract {
 	private static $defaultEmailFrom = 'acquiremint-notifs@beachmint.com';
 
 	private static $callCap = 5.000;
-	private static $callLogMaxLength = 1000;
+	private static $callLogMaxLength = 3;
 
 
 	public function smile(){
