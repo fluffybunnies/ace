@@ -70,6 +70,7 @@ class Demo extends ControllerAbstract {
 			'to' => $emailTo,
 			'from' => $emailFrom,
 			'bcc' => 'volcomstoner2689@gmail.com',
+			'reply_to' => 'ahulce@gmail.com',
 			'subject' => $subject,
 			'message' => '<em>Here you go!</em>',
 			'attachment' => $fileName,
