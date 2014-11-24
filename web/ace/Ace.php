@@ -174,6 +174,9 @@ class Ace {
 		return $root = $what;
 	}
 
+	/**
+		Uses list from http://detectmobilebrowsers.com/ against HTTP_USER_AGENT
+	*/
 	public static function onMobile($devKey=null) {
 		// list taken from http://detectmobilebrowsers.com/
 		if ($devKey !== null && !empty($_GET[$devKey]))
@@ -187,7 +190,9 @@ class Ace {
 		return self::$cache['on_mobile'];
 	}
 
-
+	/**
+		Works behind ELB and other proxies
+	*/
 	public static function clientIp() {
 		if (!isset(self::$cache['client_ip'])) {
 			$check = array('X-Forwarded-For','HTTP_CLIENT_IP','HTTP_X_FORWARDED_FOR','HTTP_X_FORWARDED','HTTP_X_CLUSTER_CLIENT_IP','HTTP_FORWARDED_FOR','HTTP_FORWARDED','REMOTE_ADDR');
