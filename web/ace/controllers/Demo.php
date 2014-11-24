@@ -33,9 +33,9 @@ class Demo extends ControllerAbstract {
 		$emailFrom = escapeshellarg($emailFrom);
 		$subject = escapeshellarg($subject);
 
-		$subjectParam = $subject ? "subject='$subject'" : '';
+		$subjectParam = $subject ? "--subject='$subject'" : '';
 		$webroot = WEBROOT;
-		exit("/usr/local/bin/node $webroot/../bin/demo-emailCsv.js --emailTo='$emailTo' --emailFrom='$emailFrom' $subjectParam");
+		//exit("/usr/local/bin/node $webroot/../bin/demo-emailCsv.js --emailTo='$emailTo' --emailFrom='$emailFrom' $subjectParam");
 		return `/usr/local/bin/node $webroot/../bin/demo-emailCsv.js --emailTo='$emailTo' --emailFrom='$emailFrom' $subjectParam`;
 	}
 
