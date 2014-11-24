@@ -104,6 +104,10 @@ class Demo extends ControllerAbstract {
 
 
 	private function preventTooMany($data=array()){
+		$arr = array(1,2,3,4);
+		array_splice($arr, 2);
+		Ace::varDump($arr);
+		exit;
 		$fn = WEBROOT.'/public-out/demo-log.txt';
 		if (!is_file($fn))
 			touch($fn);
