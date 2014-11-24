@@ -128,10 +128,13 @@ a:hover {
 		<?php
 			$c = new ReflectionClass('\ace\Ace');
 			$methods = array();
-			Ace::varDump($c->getMethods());
-			foreach ($c->getMethods() as $v)
-				if ($v->name[0] != '_')
-					$methods[] = $v->name;
+			Ace::varDump($c->getDocComment());
+			foreach ($c->getMethods() as $v) {
+				if ($v->name[0] == '_')
+					return;
+				Ace::varDump($v->getDocComment());
+				$methods[] = $v->name;
+			}
 			sort($methods);
 			Ace::varDump($methods);
 		?>

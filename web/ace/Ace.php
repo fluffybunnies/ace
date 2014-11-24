@@ -1,7 +1,9 @@
 <?php
 
 namespace ace;
-
+/*
+	sup
+*/
 class Ace {
 
 	public static $config = array();
