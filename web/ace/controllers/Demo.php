@@ -104,7 +104,7 @@ class Demo extends ControllerAbstract {
 
 
 	private function preventTooMany($data=array()){
-		$fn = WEBROOT.'/public-out/demo-log';
+		$fn = WEBROOT.'/public-out/demo-log.txt';
 		if (!is_file($fn))
 			touch($fn);
 		$log = file_get_contents($fn);
