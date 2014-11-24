@@ -85,6 +85,9 @@ h3 span {
 .ace-class-description {
 	margin-bottom: 14px;
 }
+div.ace-smile {
+	padding: 10px;
+}
 </style>
 
 </head>
