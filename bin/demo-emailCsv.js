@@ -5,6 +5,9 @@ node ./bin/demo-emailCsv.js
 
 var argv = require('minimist')(process.argv.slice(2))
 ,fs = require('fs')
+,nodeMailer = require('nodemailer')
+,sesTransport = require('nodemailer-ses-transport')
+,path = require('path')
 ,config = require('../config.js')
 ,csvOut = require('../csvout')
 ,ut = require('../ut')
@@ -12,11 +15,19 @@ var argv = require('minimist')(process.argv.slice(2))
 ,out = csvOut('demoEmailCsv', ['good'], __dirname+'/../out/')
 ,emailTo = argv.emailTo || 'volcomstoner2689@gmail.com'
 ,emailFrom = argv.emailFrom || 'acquiremint-notifs@beachmint.com' 
+,attachment = argv.attachment
+,mailer
 ;
+
+mailer = nodeMailer.createTransport(sesTransport({
+	accessKeyId: config.sesKey
+	,secretAccessKey: config.sesSecret
+	,region: config.awsRegion
+}));
 
 //console.log('config',config);
 
-console.log(['outFile: '+outFile].join('\n'),'\n');
+console.log(['emailTo: '+emailTo, 'emailFrom: '+emailFrom, 'attachment: '+attachments, ''].join('\n'),'\n');
 
 console.log('Output saving to:');
 csvOut.printFileNames(out);
@@ -27,13 +38,36 @@ var items = [];
 getData(function(err, data){
 	if (err)
 		return console.log(err);
-	//console.log('wefewf');process.exit();
 	//console.log(JSON.stringify(data)+'\n');
+	var files = csvOut.getFilePaths(out)
+	,msg
+	;
+	console.log('Writing to: '+files[0]);
 	data.forEach(function(d){
 		items.push(d);
 		out.good.write(d);
 	});
-	//console.log(JSON.stringify(items)+'\n');
+	msg = 'Here ya go!';
+	mailer.sendMailer({
+    to: emailTo
+    ,from: emailFrom
+    ,subject: 'Sup'
+    ,text: msg
+    ,html: '<em>'+msg+'</em>'
+    ,headers: {}
+    ,attachments: [
+			{
+				filename: path.basename(files[0])
+				//,content: fs.readFileSync(files[0])
+				,path: files[0]
+			}
+    ]
+	},function(err, data){
+		if (err)
+			return console.log('Error sending mail',err);
+		console.log('Email sent!');
+		console.log(data);
+	});
 });
 
 
@@ -42,3 +76,5 @@ function getData(cb){
 		cb(false, require(__dirname+'/../sample-data.json'));
 	});
 }
+
+

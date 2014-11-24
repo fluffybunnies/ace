@@ -34,8 +34,8 @@ class Ses extends HelperAbstract {
 		if (self::$ses === null) {
 			require_once WEBROOT.'/lib/AWSSDKforPHP/aws-autoloader.php';
 			self::$ses = \Aws\Ses\SesClient::factory(array(
-				'key' => Ace::getConfig('sesKey'),
-				'secret' => Ace::getConfig('sesSecret'),
+				'key' => Ace::getConfig('awsAccessKey'),
+				'secret' => Ace::getConfig('awsAccessSecret'),
 				//'default_cache_config' => '/tmp/cache/',
 				'certificate_authority' => true,
 				'region' => Ace::getConfig('awsRegion')
