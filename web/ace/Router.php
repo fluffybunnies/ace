@@ -17,7 +17,7 @@ class Router {
 
 		if (strpos($request, self::$apiPath) === 0) {
 			echo substr($request, strlen(self::$apiPath));
-			Api::request( substr($request, strlen(self::$apiPath)) );
+			Api::request( substr($request, strlen(self::$apiPath))+1 );
 			exit;
 		}
 
