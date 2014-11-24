@@ -139,8 +139,8 @@ class Ace {
 			$house = array(
 				'bedroom' => array('bed','dresser'=>array('pants')),
 			);
-		Ace::putDeep($house,'kitchen>oven','bread');
-		Ace::putDeep($house,'bedroom>dresser[]','shirt');
+			Ace::putDeep($house,'kitchen>oven','bread');
+			Ace::putDeep($house,'bedroom>dresser[]','shirt');
 	*/
 	public static function putDeep(&$root, $where, $what) {
 		/**
