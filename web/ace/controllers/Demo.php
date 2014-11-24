@@ -47,25 +47,8 @@ class Demo extends ControllerAbstract {
 		$emailTo = isset($params['email_to']) ? $params['email_to'] : $this->defaultEmailTo;
 		$emailFrom = isset($params['email_from']) ? $params['email_from'] : $this->defaultEmailFrom;
 
-		$fileName = WEBROOT.'/public-out/demo-csvwithphp.'.time().'.csv';
-		$data = $this->getSampleData();
-		$this->generateCsvFromArray($fileName, $data);
-		if (!is_file($fileName))
-			throw new \Exception('output file not found');
-
-		Ses::send(array(
-			'to' => $emailTo,
-			'from' => $emailFrom,
-			'subject' => 'Sup',
-			'message' => 'Here you go!',
-			'attachment' => $fileName,
-		));
-
-		return array(
-			'outputFileName' => basename($fileName),
-			'emailTo' => $emailTo,
-			'emailFrom' => $emailFrom,
-		);
+		$webroot = WEBROOT;
+		return `/usr/local/bin/node $webroot/../bin/demo-emailCsv.js --to '$emailTo' --from '$emailFrom'`;
 	}
 
 	public function emailCsvWithPhp(){
