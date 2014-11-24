@@ -128,7 +128,7 @@ a:hover {
 		<?php
 			$c = new ReflectionClass('\ace\Ace');
 			$methods = array();
-			Ace::varDump($c->getMethods);
+			Ace::varDump($c->getMethods());
 			foreach ($c->getMethods() as $v)
 				if ($v->name[0] != '_')
 					$methods[] = $v->name;
