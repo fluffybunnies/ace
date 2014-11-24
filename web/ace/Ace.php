@@ -31,11 +31,10 @@ class Ace {
 
 
 	// BEGIN utils
-
+	/**
+		wefwef
+	*/
 	public static function g($p,$k,$d=null) {
-		/**
-			wefwef
-		*/
 		if (!is_array($k)) {
 			$d = array_key_exists($k,$p) ? $p[$k] : $d;
 		} else {
