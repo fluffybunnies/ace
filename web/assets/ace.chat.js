@@ -60,25 +60,33 @@ ace.chat = {
 		}
 
 
-		z.user = z.getTempUser();
-		z.saveTempUser(z.user);
-		$.ajax({
-			url: z.config.socketjs
-			,dataType: 'script'
-			,cache: true
-			,success: function(){
-				$(function(){
-					z._build();
-					z._functionalize();
-					z._setUpSocket();
-					if (ace.util.cookie(z.config.open_state_cookie)) {
-						z._toggleOpen();
-					}
-				});
-			}
+		z.authenticateUser(function(){
+			$.ajax({
+				url: z.config.socketjs
+				,dataType: 'script'
+				,cache: true
+				,success: function(){
+					$(function(){
+						z._build();
+						z._functionalize();
+						z._setUpSocket();
+						if (ace.util.cookie(z.config.open_state_cookie)) {
+							z._toggleOpen();
+						}
+					});
+				}
+			});
 		});
 
 		return true;
+	}
+
+	,authenticateUser: function(cb){
+		// make sure user is logged in to your real system
+		var z = this;
+		z.user = z.getTempUser();
+		z.saveTempUser(z.user);
+		setTimeout(cb,0);
 	}
 
 	,getTempUser: function(){
@@ -354,17 +362,15 @@ ace.chat = {
 				}
 				if (m.type != 'system' && lastUser && user.id == lastUser.id) {
 					lastJMsg.find('div.'+x+'-text').append('<br />'+msg);
-				} else {
-					if (!system || z.config.show_system_messages) {
-						jThumb = '<a class="'+x+'-uthumb-link" href="'+url+'"><img class="'+x+'-uthumb" src="'+z.getProfileThumb(user)+'" alt="" /></a>';
-						z.$.out.append(lastJMsg=$('<div class="'+x+'-msg '+(system?x+'-msg-system':'')+' '+(userOwnsMsg?x+'-msg-user_owns':'')+'">'
-							+ '<div class="'+x+'-uname"><a class="'+x+'-uname-link" href="'+url+'">'+name+'</a></div>'
-							+ (userOwnsMsg ? '' : jThumb)
-							+ '<div class="'+x+'-text">'+msg+'</div>'
-							+ (userOwnsMsg ? jThumb : '')
-							+ '<div class="clear">&nbsp;</div>'
-						+ '</div>'));
-					}
+				} else if (!system || z.config.show_system_messages) {
+					jThumb = '<a class="'+x+'-uthumb-link" href="'+url+'"><img class="'+x+'-uthumb" src="'+z.getProfileThumb(user)+'" alt="" /></a>';
+					z.$.out.append(lastJMsg=$('<div class="'+x+'-msg '+(system?x+'-msg-system':'')+' '+(userOwnsMsg?x+'-msg-user_owns':'')+'">'
+						+ '<div class="'+x+'-uname"><a class="'+x+'-uname-link" href="'+url+'">'+name+'</a></div>'
+						+ (userOwnsMsg ? '' : jThumb)
+						+ '<div class="'+x+'-text">'+msg+'</div>'
+						+ (userOwnsMsg ? jThumb : '')
+						+ '<div class="clear">&nbsp;</div>'
+					+ '</div>'));
 				}
 				lastUser = m.type == 'system' ? null : user;
 				lastMsg = m;
