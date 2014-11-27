@@ -179,12 +179,12 @@ div.ace-smile {
 
 	<div class="ace-double">
 		<div class="ace-example">
-			<h3>ace.pop():</h3>
-			<a id="ace-pop-example" href="#">Click on me!</a>
-		</div>
-		<div class="ace-example">
 			<h3>ace.tooltip():</h3>
 			<a id="ace-tooltip-example" href="#">Hover me!</a>
+		</div>
+		<div class="ace-example">
+			<h3>ace.pop():</h3>
+			<a id="ace-pop-example" href="#">Click on me!</a>
 		</div>
 		<div class="clear">&nbsp;</div>
 	</div>
