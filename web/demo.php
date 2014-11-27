@@ -113,9 +113,6 @@ h3 span {
 .ace-class-description {
 	margin-bottom: 14px;
 }
-.ace-double:after {
-	clear: both;
-}
 .ace-double .ace-example {
 	float: left;
 	width: 48%;
@@ -189,6 +186,7 @@ div.ace-smile {
 			<h3>ace.tooltip():</h3>
 			<a id="ace-tooltip-example" href="#">Hover me!</a>
 		</div>
+		<div class="clear">&nbsp;</div>
 	</div>
 
 	<div class="ace-example">
