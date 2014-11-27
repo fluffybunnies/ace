@@ -43,7 +43,7 @@ ace.ui.register('carousel',{
 	}
 	,build: function(){
 		var z = this
-			,x = ace.cssKey(z)
+			,x = z.cssKey
 		;
 		z.$.cont.html('<div class="'+x+'-mask">'
 				+ '<div class="'+x+'-slide_cont"></div>'
@@ -59,7 +59,7 @@ ace.ui.register('carousel',{
 	}
 	,calcDims: function(){
 		var z = this
-			,x = ace.cssKey(z)
+			,x = z.cssKey
 			,td = ace.util.trueDim(z.$.slides.eq(0).find('div.'+x+'-img').eq(0),true)
 		;
 		z.itemWidth = td.w;
@@ -70,7 +70,7 @@ ace.ui.register('carousel',{
 	}
 	,createSlide: function(){
 		var z = this
-			,x = ace.cssKey(z)
+			,x = z.cssKey
 			,jSlide
 		;
 		if (z.$.slides && z.$.slides.length)
@@ -87,7 +87,7 @@ ace.ui.register('carousel',{
 	}
 	,position: function(){
 		var z = this
-			,x = ace.cssKey(z)
+			,x = z.cssKey
 			,jSlide
 		;
 		z.$.mask.css('height',z.itemHeight+'px');
@@ -120,7 +120,7 @@ ace.ui.register('carousel',{
 	}
 	,functionalize: function(){
 		var z = this
-			,x = ace.cssKey(z)
+			,x = z.cssKey
 		;
 
 		z.$.arrows.bind('click',function(){

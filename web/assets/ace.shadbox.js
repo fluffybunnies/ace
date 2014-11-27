@@ -17,7 +17,7 @@ ace.shadbox = function(src,opts,cb){
 	z.open(src,opts_,cb_);
 };
 ace.shadbox.config = {
-	cssKey: 'ace-shadbox'
+	key: 'shadbox'
 	,defaults: {
 		viewport: {
 			padding: {x:.05, y:.05}
