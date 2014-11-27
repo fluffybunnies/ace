@@ -10,7 +10,7 @@
 ace.chat = {
 	config: {
 		key: 'chat'
-		,enabled: true
+		,enabled: ace.getParameterByName('debug') ? true : false
 		,socketjs: {
 			'http:': 'http://ec2-184-169-233-158.us-west-1.compute.amazonaws.com:3000/socket.io/socket.io.js'
 			,'https:': '//sup.beachmintdev.com/socket.io/socket.io.js'
@@ -60,7 +60,7 @@ ace.chat = {
 
 		z.protocol = window.location.protocol;
 
-		if (mint.util.getParameterByName('local')) {
+		if (ace.util.getParameterByName('local')) {
 			z.config.socketjs = {
 				'http:': 'http://localhost:3000/socket.io/socket.io.js'
 				,'https:': 'http://localhost:3000/socket.io/socket.io.js'
