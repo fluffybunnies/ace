@@ -1,8 +1,7 @@
 <?php
+namespace ace\scripts;
 if (!defined('WEBROOT'))
 	exit;
-
-namespace ace\scripts;
 use \ace\Ace;
 
 $assetsDir = WEBROOT.'/web/assets';
