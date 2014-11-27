@@ -29,8 +29,8 @@ $(function(){
 			,group: 1
 		});
 		ace.tooltip($el, {
-			content: 'I can have multiple tooltips attached. And they always stay on-screen!'
-			,pos: 'right'
+			content: 'I can have multiple tooltips attached.<br />And they always stay on-screen!'
+			,pos: 'bot'
 			,offset: 15
 			,group: 1
 		});
