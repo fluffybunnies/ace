@@ -23,7 +23,7 @@ $(function(){
 		});
 	});
 
-	$('#ace-pop-example').bind(function(e){
+	$('#ace-pop-example').bind('click',function(e){
 		e.preventDefault();
 		ace.pop({
 			header: 'Are you sure?'
