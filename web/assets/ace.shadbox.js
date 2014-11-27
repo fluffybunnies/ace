@@ -150,4 +150,4 @@ ace.shadbox.close = function(){
 		});
 		z.$.contentItem.empty();
 	}
-}
+};
