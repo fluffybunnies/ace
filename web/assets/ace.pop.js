@@ -156,6 +156,7 @@ ace.pop({
 		return z.pops[id] ? z.pops[id] : null;
 	}
 	ace.pop.showBg = function(){
+		console.log(this,this.prototype);
 		var z = this
 			,x = ace.cssKey(z)
 		;
