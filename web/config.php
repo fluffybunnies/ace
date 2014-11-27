@@ -1,4 +1,7 @@
 <?php
+if (!defined('WEBROOT'))
+	echo json_encode($_SERVER);
+	exit;
 
 //use \ace\Ace;
 

@@ -37,7 +37,7 @@ ace.chat = {
 	,firstReportReceived: false
 	,lastCofferIndex: null
 
-	init: function(){
+	,init: function(){
 		var z = this;
 		if (z.inited)
 			return false;
@@ -87,9 +87,9 @@ ace.chat = {
 		});
 
 		return true;
-	},
+	}
 
-	getDeck: function(){
+	,getDeck: function(){
 		var z = this
 			,deck
 		;
@@ -101,9 +101,9 @@ ace.chat = {
 			deck.id = 'dev/'+deck.id;
 		console.log(z.config.key,'deck',deck);
 		return deck;
-	},
+	}
 
-	build: function(){
+	,build: function(){
 		var z = this
 			,x = z.cssKey(z)
 		;
@@ -150,9 +150,9 @@ ace.chat = {
 		z.$.cont.css('height',z.config.teaserHeight+'px');
 
 		$('body').append(z.$.cont);
-	},
+	}
 
-	functionalize: function(){
+	,functionalize: function(){
 		var z = this;
 
 		z.$.open.bind('click',function(e){
@@ -224,9 +224,9 @@ ace.chat = {
 				}
 			});
 		}
-	},
+	}
 
-	setUpSocket: function(){
+	,setUpSocket: function(){
 		var z = this
 			,x = ace.cssKey(z)
 		;
@@ -311,9 +311,9 @@ ace.chat = {
 			deck: z.deck.id
 			,matey: z.user
 		});
-	},
+	}
 
-	renderOutput: function(data){
+	,renderOutput: function(data){
 		var z = this
 			,x = ace.cssKey(z)
 			,numPeeps = 0
@@ -375,9 +375,9 @@ ace.chat = {
 				if (!matey._active)
 					return true;
 				z.$.utabContent.append('<div class="'+x+'-utab-user">'
-					+ '<a class="'+x+'-utab-user-link" href="'+ace.customer.makeProfileUrl(matey)+'">'
-						+ '<img class="'+x+'-utab-user-thumb" src="'+ace.customer.getProfileThumb(matey)+'" alt="" />'
-						+ '<span class="'+x+'-utab-user-name">'+ace.customer.getDisplayName(matey)+'</span>'
+					+ '<a class="'+x+'-utab-user-link" href="'+z.makeProfileUrl(matey)+'">'
+						+ '<img class="'+x+'-utab-user-thumb" src="'+z.getProfileThumb(matey)+'" alt="" />'
+						+ '<span class="'+x+'-utab-user-name">'+z.getDisplayName(matey)+'</span>'
 					+ '</a>'
 				+ '</div>');
 			});
@@ -385,9 +385,9 @@ ace.chat = {
 		}
 
 		z.firstRendered = true;
-	},
+	}
 
-	blink: function(){
+	,blink: function(){
 		var z = this
 			,x = ace.cssKey(z)
 			,cls = x+'-blink'
@@ -407,9 +407,9 @@ ace.chat = {
 				clearInterval(z.blinkingInterval);
 			}
 		},500);
-	},
+	}
 
-	toggleOpen: function(){
+	,toggleOpen: function(){
 		var z = this;
 		if (typeof z.mouseoutTimeout == 'number')
 			clearTimeout(z.mouseoutTimeout);
@@ -433,9 +433,9 @@ ace.chat = {
 			ace.util.cookie(z.config.openStateCookie,1,{expires:1});
 		}
 		z.open = !z.open;
-	},
+	}
 
-	handleBreakingError: function(){
+	,handleBreakingError: function(){
 		var z = this
 			,x = ace.cssKey(z)
 		;
@@ -454,9 +454,9 @@ ace.chat = {
 		} else {
 			z.$.cont.remove();
 		}
-	},
+	}
 
-	validateAndClean: function(data){
+	,validateAndClean: function(data){
 		if (!(data && data.mateys && data.coffer && $.isPlainObject(data.mateys) && $.isArray(data.coffer)))
 			return false;
 		ace.util.arrayFilter(data.coffer,function(m){
@@ -464,6 +464,16 @@ ace.chat = {
 				return true;
 		});
 		return true;
+	}
+
+	,makeProfileUrl: function(user){
+		return '/user/'+user.id;
+	}
+	,getProfileThumb: function(user){
+		return 'https://graph.facebook.com/'+user.facebook_id+'/picture?type=square';
+	}
+	,getDisplayName: function(user){
+		return 'user'+user.id;
 	}
 
 };
