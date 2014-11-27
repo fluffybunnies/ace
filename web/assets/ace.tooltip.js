@@ -41,7 +41,6 @@ ace.tooltip($('#look-at-me'),{
 	};
 	Tooltip.prototype.config = {
 		key: 'tooltip'
-		,cssKey: 'ace-tooltip'
 		,defaults: {
 			content: ''
 			,offset: null // null = width of arrow
@@ -58,7 +57,7 @@ ace.tooltip($('#look-at-me'),{
 	}
 	Tooltip.prototype.build = function(){
 		var z = this
-			,x = z.config.cssKey
+			,x = ace.cssKey(z)
 			,posType = z.opts.fixed ? 'fixed' : 'absolute'
 		;
 		if (z.built)

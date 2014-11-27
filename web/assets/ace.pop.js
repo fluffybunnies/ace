@@ -29,7 +29,6 @@ ace.pop({
 	});
 	Pop.prototype.config = {
 		key: 'pop'
-		,cssKey: 'ace-pop'
 		,defaults: {
 			classes: ''
 			,position: 'fixed'
@@ -44,7 +43,7 @@ ace.pop({
 	}
 	Pop.prototype.build = function(){
 		var z = this
-			,x = z.config.cssKey
+			,x = ace.cssKey(z)
 			,exitBtn = false
 		;
 
@@ -81,7 +80,7 @@ ace.pop({
 	}
 	Pop.prototype.functionalize = function(){
 		var z = this
-			,x = z.config.cssKey
+			,x = ace.cssKey(z)
 		;
 		z.$.cont.find('a.'+x+'-btn').bind('click',function(e){
 			e.preventDefault();
@@ -144,7 +143,6 @@ ace.pop({
 		return pop;
 	}
 	ace.pop.config = {
-		cssKey: 'ace-pop'
 	};
 	ace.pop.$ = {};
 	ace.pop.pops = {};
@@ -159,7 +157,7 @@ ace.pop({
 	}
 	ace.pop.showBg = function(){
 		var z = this
-			,x = z.config.cssKey
+			,x = ace.cssKey(z)
 		;
 		if (z.$.bg)
 			return;
