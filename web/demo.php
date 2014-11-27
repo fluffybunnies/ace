@@ -14,19 +14,28 @@ use \ace\Ace;
 <script>
 
 $(function(){
-	var $aceSmileExamples = $('.ace-smile').each(function(){
+	$('.ace-smile').each(function(){
 		var $el = $(this);
 		$.getJSON('/ace/api/demo/smile',function(data){
 			if (!(data && data.data))
 				return $el.html('api error' + (data.error?': '+data.error:''));
 			$el.html(data.data);
 		});
-	});
 
-	ace.tooltip($aceSmileExamples, {
-		content: 'Look at me!'
-		,pos: 'random'
-		,offset: 15
+		ace.tooltip($el, {
+			content: 'Look at me!'
+			,pos: 'top'
+			,offset: 15
+			,group: 1
+		});
+		ace.tooltip($el, {
+			content: 'I can have multiple tooltips attached'
+			,pos: 'bot'
+			,offset: 15
+			,group: 1
+		});
+		
+
 	});
 
 	var $acePopExamples = $('.ace-pop-example').bind(function(e){
@@ -113,6 +122,7 @@ h3 span {
 }
 div.ace-smile {
 	padding: 10px;
+	display: inline-block; /* for tooltip */
 }
 </style>
 
