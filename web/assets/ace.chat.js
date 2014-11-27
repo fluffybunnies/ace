@@ -4,6 +4,10 @@
 		- http is still sending logout event. fix this too #hack00
 		- clean up old decks in node so doesnt take up mem
 			- do this async
+
+Test old system:
+http://www.jewelmint.com/terms-of-service?local=1
+amint.resource.fetch(['http://static-start.jewelmint.com/AB_Resources/amint/pv2/amint.chat.css','http://static-start.jewelmint.com/AB_Resources/amint/pv2/amint.chat.js'],function(){amint.chat.init()})
 */
 
 ace.chat = {
@@ -21,6 +25,7 @@ ace.chat = {
 		,users_tab: true
 		,min_rank: 50
 		,long_poll_hackfix: true
+		,show_system_messages: true
 	}
 	,$: {}
 	,socket: null
@@ -350,7 +355,7 @@ ace.chat = {
 				if (m.type != 'system' && lastUser && user.id == lastUser.id) {
 					lastJMsg.find('div.'+x+'-text').append('<br />'+msg);
 				} else {
-					if (!system) {
+					if (!system || z.config.show_system_messages) {
 						jThumb = '<a class="'+x+'-uthumb-link" href="'+url+'"><img class="'+x+'-uthumb" src="'+z.getProfileThumb(user)+'" alt="" /></a>';
 						z.$.out.append(lastJMsg=$('<div class="'+x+'-msg '+(system?x+'-msg-system':'')+' '+(userOwnsMsg?x+'-msg-user_owns':'')+'">'
 							+ '<div class="'+x+'-uname"><a class="'+x+'-uname-link" href="'+url+'">'+name+'</a></div>'
