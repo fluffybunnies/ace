@@ -45,7 +45,7 @@ ace.tooltip($('#look-at-me'),{
 		,defaults: {
 			content: ''
 			,offset: null // null = width of arrow
-			,pos: 'top' // top bot left right
+			,pos: 'top' // top bot left right random
 			,fixed: false
 			,group: null // tips with the same group will show/hide at the same time
 			,classes: ''
