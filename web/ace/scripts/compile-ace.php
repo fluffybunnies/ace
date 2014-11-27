@@ -1,4 +1,6 @@
 <?php
+if (!defined('WEBROOT'))
+	exit;
 
 namespace ace\scripts;
 use \ace\Ace;
