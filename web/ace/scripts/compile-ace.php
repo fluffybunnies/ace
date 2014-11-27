@@ -30,7 +30,7 @@ exit;
 
 
 function get($basename){
-	$assetsDir = WEBROOT.'/web/assets';
+	$assetsDir = WEBROOT.'/assets';
 	$r = @file_get_contents("$assetsDir/$basename");
 	if (!empty($_GET['debug'])) {var_dump("$assetsDir/$basename");}
 	if ($r === false)
