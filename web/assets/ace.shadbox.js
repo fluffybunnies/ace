@@ -33,7 +33,7 @@ ace.shadbox.config = {
 ace.shadbox.$ = {};
 ace.shadbox.build = function(){
 	var z = this
-		,x = z.config.cssKey
+		,x = ace.cssKey(z)
 	;
 	z.$.cont = $('<div class="'+x+'" style="display:none;">'
 		+ '<div class="'+x+'-bg"></div>'
