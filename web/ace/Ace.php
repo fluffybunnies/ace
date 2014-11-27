@@ -78,7 +78,7 @@ class Ace {
 	}
 
 	/**
-		Returns false if array does not have continuously ascending numeric keys
+		Returns true if array does not have continuously ascending numeric keys
 	*/
 	public static function isAssoc($arr) {
 		return array_keys($arr) !== range(0, count($arr) - 1);
