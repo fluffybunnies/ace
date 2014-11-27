@@ -4,9 +4,8 @@ if (!defined('WEBROOT'))
 	exit;
 use \ace\Ace;
 
-$assetsDir = WEBROOT.'/web/assets';
-$modules = Ace::getConfig('compile');
 
+$modules = Ace::getConfig('compile');
 
 $ext = end(explode('.',REQUEST_PATH));
 if (!($ext == 'js' || $ext == 'css'))
@@ -14,15 +13,10 @@ if (!($ext == 'js' || $ext == 'css'))
 
 
 $res = '';
-foreach ($modules as $module) {
-	$basename = "ace.$module.$ext";
-	$r = @file_get_contents("$dir/$basename");
-	if ($r === false)
-		continue;
-	$res .= "/* File: $basename */\n";
-	$res .= $r;
-	$res .= "\n\n";
-}
+foreach ($modules as $module)
+	$res .= get("ace.$module.$ext");
+if ($ext == 'js')
+	$res .= get('ace.init.js');
 $hash = md5($res);
 $etag = '"'.$hash.'"';
 header('Content-Type: text/'.($ext=='css'?'css':'javascript'));
@@ -31,3 +25,14 @@ header('ETag: '.$etag);
 //header('Content-Length: '.strlen($res));
 echo $res;
 exit;
+
+
+function get($basename){
+	$assetsDir = WEBROOT.'/web/assets';
+	$r = @file_get_contents("$assetsDir/$basename");
+	if ($r === false)
+		return '';
+	$res .= "/* File: $basename */\n";
+	$res .= $r;
+	$res .= "\n\n";
+}
