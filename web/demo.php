@@ -200,7 +200,7 @@ div.ace-smile {
 	</div>
 
 	<div class="ace-class-description">
-		<h3>Ace Methods <span>(displayed using Ace::varDump)</span>:</h3>
+		<h3>Ace PHP Utility Methods <span>(displayed using Ace::varDump)</span>:</h3>
 		<?php
 			$c = new ReflectionClass('\ace\Ace');
 			$methods = array();
