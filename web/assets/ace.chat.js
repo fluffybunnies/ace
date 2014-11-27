@@ -11,7 +11,7 @@ ace.chat = {
 	config: {
 		key: 'chat'
 		,enabled: ace.util.getParameterByName('debug') ? true : false
-		,serverName: 'ec2-184-169-233-158.us-west-1.compute.amazonaws.com'
+		,socket: 'http://ec2-184-169-233-158.us-west-1.compute.amazonaws.com:3000'
 		,socketJs: '/socket.io/socket.io.js'
 		,excludeFrom: /(^\/?$)|(^\/checkout\/?$)/gi
 		,characterLimit: 117
@@ -55,7 +55,7 @@ ace.chat = {
 		z.protocol = window.location.protocol;
 
 		if (ace.util.getParameterByName('local'))
-			z.config.serverName = 'localhost:3000';
+			z.config.socket = 'http://localhost:3000';
 
 		z.user = {
 			id: 12
@@ -63,7 +63,7 @@ ace.chat = {
 		};
 
 		$.ajax({
-			url: '//' + z.config.serverName + z.config.socketJs
+			url: z.config.socket + z.config.socketJs
 			,dataType: 'script'
 			,cache: true
 			,success: function(){
@@ -229,7 +229,7 @@ ace.chat = {
 		z.$.out.html('<div class="'+x+'-out-loading">loading...</div>');
 
 		if (z.config.longPollHackFix && z.protocol == 'https:') {
-			$.getJSON('//'+z.config.serverName+'/api/get/deck?callback=?',{
+			$.getJSON(z.config.socket+'/api/get/deck?callback=?',{
 				deck_id: z.deck.id
 			},function(res){
 				if (!res.success) {
