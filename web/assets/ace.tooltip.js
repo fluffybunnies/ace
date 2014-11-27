@@ -45,7 +45,7 @@ ace.tooltip($('#look-at-me'),{
 		,defaults: {
 			content: ''
 			,offset: null // null = width of arrow
-			,pos: 'top' // top bot left right random
+			,pos: 'top' // top bot left right
 			,fixed: false
 			,group: null // tips with the same group will show/hide at the same time
 			,classes: ''
@@ -60,10 +60,7 @@ ace.tooltip($('#look-at-me'),{
 		var z = this
 			,x = z.config.cssKey
 			,posType = z.opts.fixed ? 'fixed' : 'absolute'
-			,pos = z.opts.pos
 		;
-		if (pos == 'random')
-			pos = ['top', 'right', 'bot', 'left'][ace.util.rand(0,3)];
 		if (z.built)
 			return false;
 		z.built = true;
