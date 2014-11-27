@@ -1,6 +1,6 @@
 <?php
 if (!defined('WEBROOT'))
-	exit('wef');
+	exit($_SERVER['HTTP_REFERER']);
 
 //use \ace\Ace;
 
