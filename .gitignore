@@ -5,6 +5,7 @@ node_modules
 npm-debug.log
 config.local.php
 config.local.json
+config.public.local.json
 out/*
 web/public-out/*
 web/ace.js
