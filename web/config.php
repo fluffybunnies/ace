@@ -1,6 +1,6 @@
 <?php
 if (!defined('WEBROOT'))
-	exit 'wef';
+	exit('wef');
 
 //use \ace\Ace;
 
