@@ -51,7 +51,7 @@ ace.chat = {
 		//z.protocol = 'https:';
 		if (ace.util.getParameterByName('local')) {
 			z.config.socketjs = 'http://localhost:3000/socket.io/socket.io.js';
-			z.config.socket = 'http:': 'http://localhost:3000';
+			z.config.socket = 'http://localhost:3000';
 		}
 
 
