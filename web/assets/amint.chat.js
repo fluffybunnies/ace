@@ -10,7 +10,6 @@
 ace.chat = {
 	config: {
 		key: 'chat'
-		,cssKey: 'ace-chat'
 		,enabled: true
 		,socketjs: {
 			'http:': 'http://ec2-184-169-233-158.us-west-1.compute.amazonaws.com:3000/socket.io/socket.io.js'
@@ -76,7 +75,6 @@ ace.chat = {
 
 		z.protocol = window.location.protocol;
 
-		//z.protocol = 'https:';
 		if (mint.util.getParameterByName('local')) {
 			z.config.socketjs = {
 				'http:': 'http://localhost:3000/socket.io/socket.io.js'
@@ -88,13 +86,13 @@ ace.chat = {
 			};
 		}
 
-		amint.mReady(z,function(){
+		ace.mReady(z,function(){
 			mint.session.get(function(sess){
 				if (!(sess && sess.logged_in && sess.data)) {
 					return;
 				}
 				z.user = sess.data;
-				amint.util.req('store/${store}/customerpoints/'+z.user.id,function(error,data){
+				ace.util.req('store/${store}/customerpoints/'+z.user.id,function(error,data){
 					if (error) {
 						console.log(z.config.key, 'error getting customer points');
 						return;
@@ -142,7 +140,7 @@ ace.chat = {
 
 	_build: function(){
 		var z = this
-			,x = amint.getCssKey(z)
+			,x = z.cssKey(z)
 		;
 
 		z.$.cont = $('<div class="'+x+' is-inactive">'
@@ -206,7 +204,7 @@ ace.chat = {
 			}
 			if (e.type == 'mouseover') {
 				z.$.cont.stop().animate({
-					height: amint.util.trueDim(z.$.title).h+'px'
+					height: ace.util.trueDim(z.$.title).h+'px'
 				},{
 					duration: 100
 				});
@@ -236,7 +234,7 @@ ace.chat = {
 						return;
 					}
 					z._utab_open = true;
-					height = amint.util.trueDim(z.$.utab_inner.css({
+					height = ace.util.trueDim(z.$.utab_inner.css({
 						visibility: 'hidden'
 						,height: 'auto'
 					})).h;
@@ -269,7 +267,7 @@ ace.chat = {
 
 	_setUpSocket: function(){
 		var z = this
-			,x = amint.getCssKey(z)
+			,x = ace.cssKey(z)
 		;
 		z.$.cont.removeClass('is-inactive');
 		z.$.out.html('<div class="'+x+'-out-loading">loading...</div>');
@@ -361,7 +359,7 @@ ace.chat = {
 
 	_renderOutput: function(data){
 		var z = this
-			,x = amint.getCssKey(z)
+			,x = ace.cssKey(z)
 			,numPeeps = 0
 			,lastUser,lastJMsg,lastMsg
 		;
@@ -371,9 +369,9 @@ ace.chat = {
 			z.$.out.empty();
 			$.each(data.coffer,function(i,m){
 				var user = data.mateys[m.matey_id]
-					,name = ((name = amint.customer.getDisplayName(user)) ? name : 'unknown')
-					,url = amint.customer.makeProfileUrl(user)
-					,msg = amint.util.escapeHtml(m.treatise)
+					,name = ((name = ace.customer.getDisplayName(user)) ? name : 'unknown')
+					,url = ace.customer.makeProfileUrl(user)
+					,msg = ace.util.escapeHtml(m.treatise)
 					,system = false
 					,userOwnsMsg = z.user.id == user.id
 					,jThumb
@@ -386,7 +384,7 @@ ace.chat = {
 					lastJMsg.find('div.'+x+'-text').append('<br />'+msg);
 				} else {
 					if (!system) {
-						jThumb = '<a class="'+x+'-uthumb-link" href="'+url+'"><img class="'+x+'-uthumb" src="'+amint.customer.getProfileThumb(user)+'" alt="" /></a>';
+						jThumb = '<a class="'+x+'-uthumb-link" href="'+url+'"><img class="'+x+'-uthumb" src="'+ace.customer.getProfileThumb(user)+'" alt="" /></a>';
 						z.$.out.append(lastJMsg=$('<div class="'+x+'-msg '+(system?x+'-msg-system':'')+' '+(userOwnsMsg?x+'-msg-user_owns':'')+'">'
 							+ '<div class="'+x+'-uname"><a class="'+x+'-uname-link" href="'+url+'">'+name+'</a></div>'
 							+ (userOwnsMsg ? '' : jThumb)
@@ -424,9 +422,9 @@ ace.chat = {
 					return true;
 				}
 				z.$.utab_content.append('<div class="'+x+'-utab-user">'
-					+ '<a class="'+x+'-utab-user-link" href="'+amint.customer.makeProfileUrl(matey)+'">'
-						+ '<img class="'+x+'-utab-user-thumb" src="'+amint.customer.getProfileThumb(matey)+'" alt="" />'
-						+ '<span class="'+x+'-utab-user-name">'+amint.customer.getDisplayName(matey)+'</span>'
+					+ '<a class="'+x+'-utab-user-link" href="'+ace.customer.makeProfileUrl(matey)+'">'
+						+ '<img class="'+x+'-utab-user-thumb" src="'+ace.customer.getProfileThumb(matey)+'" alt="" />'
+						+ '<span class="'+x+'-utab-user-name">'+ace.customer.getDisplayName(matey)+'</span>'
 					+ '</a>'
 				+ '</div>');
 			});
@@ -438,7 +436,7 @@ ace.chat = {
 
 	_blink: function(){
 		var z = this
-			,x = amint.getCssKey(z)
+			,x = ace.cssKey(z)
 			,cls = x+'-blink'
 			,on = false
 			,num = 4
@@ -480,7 +478,7 @@ ace.chat = {
 				z._setUpSocket();
 			}
 			z.$.cont.stop().animate({
-				height: amint.util.trueDim(z.$.chat_inner).h+'px'
+				height: ace.util.trueDim(z.$.chat_inner).h+'px'
 			},{
 				duration: 300
 			});
@@ -492,7 +490,7 @@ ace.chat = {
 
 	_handleBreakingError: function(){
 		var z = this
-			,x = amint.getCssKey(z)
+			,x = ace.cssKey(z)
 		;
 		if (z.$.out) {
 			z.$.out.html('<div class="'+x+'-breaking_error">There was an error loading chat *this way to the pit of despair*</div>');
@@ -515,7 +513,7 @@ ace.chat = {
 		if (!(data && data.mateys && data.coffer && $.isPlainObject(data.mateys) && $.isArray(data.coffer))) {
 			return false;
 		}
-		amint.util.arrayFilter(data.coffer,function(m){
+		ace.util.arrayFilter(data.coffer,function(m){
 			if (m && m.matey_id && typeof(m.treatise) == 'string') {
 				return true;
 			}

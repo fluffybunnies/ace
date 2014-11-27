@@ -157,6 +157,10 @@ ace = {
 			this._readyCbs.push(cb);
 	}
 
+	,cssKey: function(module){
+		return this.config.key+'-'+module.config.key;
+	}
+
 	,ui: {
 		_modules: {}
 

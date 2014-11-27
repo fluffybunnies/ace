@@ -10,7 +10,7 @@ $sesSecret = '';
 
 
 $compile = array(
-	'chat',
+	//'chat',
 	'fireworks',
 	'pop',
 	'shadbox',
