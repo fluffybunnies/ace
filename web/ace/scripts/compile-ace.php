@@ -7,6 +7,7 @@ use \ace\Ace;
 
 $modules = Ace::getConfig('compile');
 
+
 $ext = end(explode('.',REQUEST_PATH));
 if (!($ext == 'js' || $ext == 'css'))
 	exit;
