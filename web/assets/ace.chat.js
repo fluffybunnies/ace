@@ -105,7 +105,7 @@ ace.chat = {
 
     _build: function(){
         var z = this
-            ,x = ace.getCssKey(z)
+            ,x = ace.cssKey(z)
         ;
 
         z.$.cont = $('<div class="'+x+' is-inactive">'
@@ -232,7 +232,7 @@ ace.chat = {
 
     _setUpSocket: function(){
         var z = this
-            ,x = ace.getCssKey(z)
+            ,x = ace.cssKey(z)
         ;
         z.$.cont.removeClass('is-inactive');
         z.$.out.html('<div class="'+x+'-out-loading">loading...</div>');
@@ -324,7 +324,7 @@ ace.chat = {
 
     _renderOutput: function(data){
         var z = this
-            ,x = ace.getCssKey(z)
+            ,x = ace.cssKey(z)
             ,numPeeps = 0
             ,lastUser,lastJMsg,lastMsg
         ;
@@ -401,7 +401,7 @@ ace.chat = {
 
     _blink: function(){
         var z = this
-            ,x = ace.getCssKey(z)
+            ,x = ace.cssKey(z)
             ,cls = x+'-blink'
             ,on = false
             ,num = 4
@@ -455,7 +455,7 @@ ace.chat = {
 
     _handleBreakingError: function(){
         var z = this
-            ,x = ace.getCssKey(z)
+            ,x = ace.cssKey(z)
         ;
         if (z.$.out) {
             z.$.out.html('<div class="'+x+'-breaking_error">There was an error loading chat *this way to the pit of despair*</div>');
