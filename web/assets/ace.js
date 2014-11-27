@@ -12,7 +12,7 @@
 		function AceBase() {
 			// #AB0
 			if (!initializing && this.init instanceof Function)
-				this.init.apply(this,args);
+				this.init.apply(this,arguments);
 
 			/*
 			// #AB1
