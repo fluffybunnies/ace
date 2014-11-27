@@ -12,7 +12,7 @@ ace.chat = {
 		key: 'chat'
 		,enabled: ace.util.getParameterByName('debug') ? true : false
 		,serverName: 'ec2-184-169-233-158.us-west-1.compute.amazonaws.com:3000'
-		,socketJs: '/socket.io.js'
+		,socketJs: '/socket.io/socket.io.js'
 		,excludeFrom: /(^\/?$)|(^\/checkout\/?$)/gi
 		,characterLimit: 117
 		,teaserHeight: 4
