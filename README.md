@@ -19,9 +19,8 @@ Or, deploy to Amazon EC2 Ubuntu with Sire (https://github.com/fluffybunnies/sire
 ```
 
 ### To Do
-- Demo for: Fireworks
-- Add: Resource, Sup
-- Generate ace.min.js/ace.min.css on start + post-gitsync + watch file
+- Add: Resource, Chat
+- Generate ace.min.js/ace.min.css on start + post-gitsync / file change
 
 
 ### Front End - UI
