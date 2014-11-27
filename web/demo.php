@@ -30,7 +30,7 @@ $(function(){
 		});
 		ace.tooltip($el, {
 			content: 'I can have multiple tooltips attached'
-			,pos: 'bot'
+			,pos: 'right'
 			,offset: 15
 			,group: 1
 		});
