@@ -11,14 +11,8 @@ ace.chat = {
 	config: {
 		key: 'chat'
 		,enabled: ace.util.getParameterByName('debug') ? true : false
-		,socketjs: {
-			'http:': 'http://ec2-184-169-233-158.us-west-1.compute.amazonaws.com:3000/socket.io/socket.io.js'
-			,'https:': '//sup.beachmintdev.com/socket.io/socket.io.js'
-		}
-		,socket: {
-			'http:': 'http://ec2-184-169-233-158.us-west-1.compute.amazonaws.com:3000'
-			,'https:': 'https://sup.beachmintdev.com'
-		}
+		,serverName: 'ec2-184-169-233-158.us-west-1.compute.amazonaws.com:3000'
+		,socketJs: '/socket.io.js'
 		,excludeFrom: /(^\/?$)|(^\/checkout\/?$)/gi
 		,characterLimit: 117
 		,teaserHeight: 4
@@ -60,19 +54,11 @@ ace.chat = {
 
 		z.protocol = window.location.protocol;
 
-		if (ace.util.getParameterByName('local')) {
-			z.config.socketjs = {
-				'http:': 'http://localhost:3000/socket.io/socket.io.js'
-				,'https:': 'http://localhost:3000/socket.io/socket.io.js'
-			};
-			z.config.socket = {
-				'http:': 'http://localhost:3000'
-				,'https:': 'http://localhost:3000'
-			};
-		}
+		if (ace.util.getParameterByName('local'))
+			z.config.serverName = 'localhost:3000';
 
 		$.ajax({
-			url: z.config.socketjs[z.protocol]
+			url: '//' + z.config.serverName + z.config.socketJs
 			,dataType: 'script'
 			,cache: true
 			,success: function(){
@@ -234,7 +220,7 @@ ace.chat = {
 		z.$.out.html('<div class="'+x+'-out-loading">loading...</div>');
 
 		if (z.config.longPollHackFix && z.protocol == 'https:') {
-			$.getJSON('//sup.beachmintdev.com/api/get/deck?callback=?',{
+			$.getJSON('//'+serverName+'/api/get/deck?callback=?',{
 				deck_id: z.deck.id
 			},function(res){
 				if (!res.success) {
