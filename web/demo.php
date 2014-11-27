@@ -31,7 +31,7 @@ $(function(){
 		ace.tooltip($el, {
 			content: 'I can have multiple tooltips attached.<br />And they always stay on-screen!'
 			,pos: 'bot'
-			,offset: -20
+			,offset: 20
 			,group: 1
 		});
 		
