@@ -35,5 +35,5 @@ function get($basename){
 	if (!empty($_GET['debug'])) {var_dump("$assetsDir/$basename");}
 	if ($r === false)
 		return '';
-	$res .= "/* File: $basename */\n$r\n\n";
+	return "/* File: $basename */\n$r\n\n";
 }
