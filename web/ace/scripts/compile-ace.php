@@ -6,7 +6,7 @@ use \ace\Ace;
 
 
 $modules = Ace::getConfig('compile');
-if (!empty($_GET['debug'])) {Ace::varDump($modules);}
+
 
 $ext = end(explode('.',REQUEST_PATH));
 if (!empty($_GET['debug'])) {Ace::varDump($ext);}
@@ -32,6 +32,7 @@ exit;
 function get($basename){
 	$assetsDir = WEBROOT.'/web/assets';
 	$r = @file_get_contents("$assetsDir/$basename");
+	if (!empty($_GET['debug'])) {Ace::varDump("$assetsDir/$basename");}
 	if ($r === false)
 		return '';
 	$res .= "/* File: $basename */\n$r\n\n";
