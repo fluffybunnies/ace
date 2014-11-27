@@ -19,38 +19,23 @@ ace.chat = {
 			'http:': 'http://ec2-184-169-233-158.us-west-1.compute.amazonaws.com:3000'
 			,'https:': 'https://sup.beachmintdev.com'
 		}
-		,exclude_from: /(^\/?$)|(^\/checkout\/?$)/gi
-		,character_limit: 117
-		,teaser_height: 4
-		,open_state_cookie: 'chat-open'
-		,users_tab: true
-		,min_rank: 50
-		,long_poll_hackfix: true
+		,excludeFrom: /(^\/?$)|(^\/checkout\/?$)/gi
+		,characterLimit: 117
+		,teaserHeight: 4
+		,openStateCookie: 'chat-open'
+		,usersTabEnabled: true
+		,longPollHackfix: true
 		,whitelist: {
-			78403: 1
-			,337: 1
-			,792511: 1
-			,2240977: 1
-			,2212547: 1
-			,637139: 1
-			,489: 1
-			,2374910: 1
-			,278: 1
-			,1110526: 1
-
-			,4811615: 1
-			,5173063: 1
-			,3917914: 1
-			,559655: 1
-			,157022: 1
-			,5433642: 1
-			,3887115: 1
-			,1225006: 1
+			1346799799: 1
+			,100003013286805: 1
 		}
-	},
-	$: {},
-	socket: null,
-	open: false,
+	}
+	,$: {}
+	,socket: null
+	,open: false
+	,data: null
+	,firstReportReceived: false
+	,lastCofferIndex: null
 
 	init: function(){
 		var z = this;
@@ -63,11 +48,11 @@ ace.chat = {
 			console.log(z.config.key, 'disabled');
 			return;
 		}
-		if (window.location.pathname.match(z.config.exclude_from)) {
+		if (window.location.pathname.match(z.config.excludeFrom)) {
 			console.log(z.config.key, 'page excluded');
 			return;
 		}
-		z.deck = z._getDeck();
+		z.deck = z.getDeck();
 		if (!z.deck) {
 			console.log(z.config.key, 'room not configured');
 			return;
@@ -86,44 +71,25 @@ ace.chat = {
 			};
 		}
 
-		ace.mReady(z,function(){
-			mint.session.get(function(sess){
-				if (!(sess && sess.logged_in && sess.data)) {
-					return;
-				}
-				z.user = sess.data;
-				ace.util.req('store/${store}/customerpoints/'+z.user.id,function(error,data){
-					if (error) {
-						console.log(z.config.key, 'error getting customer points');
-						return;
-					}
-					if (!z.config.whitelist[z.user.id] && z.config.min_rank && data.rank > z.config.min_rank) {
-						console.log(z.config.key, 'min rank not met', data.rank+' > '+z.config.min_rank);
-						return;
-					}
-					$.ajax({
-						url: z.config.socketjs[z.protocol]
-						,dataType: 'script'
-						,cache: true
-						,success: function(){
-							$(function(){
-								z._build();
-								z._functionalize();
-								z._setUpSocket();
-								if (mint.cookie(z.config.open_state_cookie)) {
-									z._toggleOpen();
-								}
-							});
-						}
-					});
+		$.ajax({
+			url: z.config.socketjs[z.protocol]
+			,dataType: 'script'
+			,cache: true
+			,success: function(){
+				$(function(){
+					z.build();
+					z.functionalize();
+					z.setUpSocket();
+					if (ace.util.cookie(z.config.openStateCookie))
+						z.toggleOpen();
 				});
-			});
+			}
 		});
 
 		return true;
 	},
 
-	_getDeck: function(){
+	getDeck: function(){
 		var z = this
 			,deck
 		;
@@ -131,14 +97,13 @@ ace.chat = {
 			id: '*'
 			,name: 'Public'
 		};
-		if (!window.location.hostname.match(/^www/) || mint.util.getParameterByName('local')) {
+		if (!window.location.hostname.match(/^www/) || ace.util.getParameterByName('local'))
 			deck.id = 'dev/'+deck.id;
-		}
 		console.log(z.config.key,'deck',deck);
 		return deck;
 	},
 
-	_build: function(){
+	build: function(){
 		var z = this
 			,x = z.cssKey(z)
 		;
@@ -152,10 +117,10 @@ ace.chat = {
 				+ '</div>'
 				+ '<div class="'+x+'-out"><div class="'+x+'-out-inner"></div></div>'
 				+ '<div class="'+x+'-type">'
-					+ '<input class="'+x+'-type-input" maxlength="'+z.config.character_limit+'" type="text" />'
+					+ '<input class="'+x+'-type-input" maxlength="'+z.config.characterLimit+'" type="text" />'
 				+ '</div>'
 			+ '</div></div>'
-			+ (z.config.users_tab ? '<div class="'+x+'-utab">'
+			+ (z.config.usersTabEnabled ? '<div class="'+x+'-utab">'
 				+ '<a class="'+x+'-utab-open-btn" href="#"></a>'
 				+ '<div class="'+x+'-utab-inner">'
 					+ '<div class="'+x+'-utab-title">Users</div>'
@@ -174,34 +139,32 @@ ace.chat = {
 		z.$.out = z.$.out_cont.find('div.'+x+'-out-inner');
 		z.$.type = z.$.chat.find('input.'+x+'-type-input');
 
-		if (z.config.users_tab) {
+		if (z.config.usersTabEnabled) {
 			z.$.utab = z.$.cont.find('div.'+x+'-utab');
-			z.$.utab_inner = z.$.utab.find('div.'+x+'-utab-inner');
-			z.$.utab_open = z.$.utab.find('a.'+x+'-utab-open-btn');
-			z.$.utab_content = z.$.utab.find('div.'+x+'-utab-content');
-			z.$.utab_inner.css('height','0');
+			z.$.utabInner = z.$.utab.find('div.'+x+'-utab-inner');
+			z.$.utabOpen = z.$.utab.find('a.'+x+'-utab-open-btn');
+			z.$.utabContent = z.$.utab.find('div.'+x+'-utab-content');
+			z.$.utabInner.css('height','0');
 		}
 
-		z.$.cont.css('height',z.config.teaser_height+'px');
+		z.$.cont.css('height',z.config.teaserHeight+'px');
 
 		$('body').append(z.$.cont);
 	},
 
-	_functionalize: function(){
+	functionalize: function(){
 		var z = this;
 
 		z.$.open.bind('click',function(e){
 			e.preventDefault();
-			z._toggleOpen();
+			z.toggleOpen();
 		});
 
 		z.$.open.bind('mouseover mouseout',function(e){
-			if (z.open) {
+			if (z.open)
 				return;
-			}
-			if (typeof(z._mouseoutTimeout) == 'number') {
-				clearTimeout(z._mouseoutTimeout);
-			}
+			if (typeof z.mouseoutTimeout == 'number')
+				clearTimeout(z.mouseoutTimeout);
 			if (e.type == 'mouseover') {
 				z.$.cont.stop().animate({
 					height: ace.util.trueDim(z.$.title).h+'px'
@@ -209,9 +172,9 @@ ace.chat = {
 					duration: 100
 				});
 			} else {
-				z._mouseoutTimeout = setTimeout(function(){
+				z.mouseoutTimeout = setTimeout(function(){
 					z.$.cont.stop().animate({
-						height: z.config.teaser_height+'px'
+						height: z.config.teaserHeight+'px'
 					},{
 						duration: 100
 					});
@@ -219,42 +182,40 @@ ace.chat = {
 			}
 		});
 
-		if (z.config.users_tab) {
+		if (z.config.usersTabEnabled) {
 			z.$.utab.bind('click',function(e){
 				e.preventDefault();
-				z._toggleOpen();
+				z.toggleOpen();
 			});
 			z.$.utab.bind('mouseover mouseout',function(e){
 				var height;
-				if (typeof(z._utabMouseoutTimeout) == 'number') {
-					clearTimeout(z._utabMouseoutTimeout);
-				}
+				if (typeof z.utabMouseoutTimeout == 'number')
+					clearTimeout(z.utabMouseoutTimeout);
 				if (e.type == 'mouseover') {
-					if (z._utab_open) {
+					if (z.userTabIsOpen)
 						return;
-					}
-					z._utab_open = true;
-					height = ace.util.trueDim(z.$.utab_inner.css({
+					z.userTabIsOpen = true;
+					height = ace.util.trueDim(z.$.utabInner.css({
 						visibility: 'hidden'
 						,height: 'auto'
 					})).h;
-					z.$.utab_inner.css({
+					z.$.utabInner.css({
 						height: 0
 						,visibility: ''
 					});
-					z.$.utab_inner.stop().animate({
+					z.$.utabInner.stop().animate({
 						height: height+'px'
 					},{
 						duration: 100
 						,complete: function(){
 							// just in case content gets re-rendered during animation
-							z.$.utab_inner.css('height','auto');
+							z.$.utabInner.css('height','auto');
 						}
 					});
 				} else {
-					z._utabMouseoutTimeout = setTimeout(function(){
-						z._utab_open = false;
-						z.$.utab_inner.stop().animate({
+					z.utabMouseoutTimeout = setTimeout(function(){
+						z.userTabIsOpen = false;
+						z.$.utabInner.stop().animate({
 							height: 0
 						},{
 							duration: 100
@@ -265,14 +226,14 @@ ace.chat = {
 		}
 	},
 
-	_setUpSocket: function(){
+	setUpSocket: function(){
 		var z = this
 			,x = ace.cssKey(z)
 		;
 		z.$.cont.removeClass('is-inactive');
 		z.$.out.html('<div class="'+x+'-out-loading">loading...</div>');
 
-		if (z.config.long_poll_hackfix && z.protocol == 'https:') {
+		if (z.config.longPollHackFix && z.protocol == 'https:') {
 			$.getJSON('//sup.beachmintdev.com/api/get/deck?callback=?',{
 				deck_id: z.deck.id
 			},function(res){
@@ -280,10 +241,10 @@ ace.chat = {
 					return;
 				}
 				console.log(z.config.key, 'long poll hack','rendering via api');
-				z._data = res.data;
-				z._data.mateys[z.user.id] = $.extend({_active:true},z.user);
-				z._data.coffer_i = -9999;
-				z._renderOutput(res.data);
+				z.data = res.data;
+				z.data.mateys[z.user.id] = $.extend({_active:true},z.user);
+				z.data.cofferIndex = -9999;
+				z.renderOutput(res.data);
 			});
 			// prevent timeout disconnect from doing anything
 			setInterval(function(){
@@ -306,20 +267,17 @@ ace.chat = {
 
 		z.socket = io.connect(z.config.socket[z.protocol]);
 		z.socket.on('touche',function(data){
-			if (!data) {
-				z._handleBreakingError();
-				return;
-			}
-			if (typeof(data) == 'object') z._renderOutput(data);
+			if (!data)
+				return z.handleBreakingError();
+			if (typeof data == 'object')
+				z.renderOutput(data);
 		});
 		z.$.type.bind('keyup',function(e){
-			if (!z._first_rendered || e.which != 13) {
+			if (!z.firstRendered || e.which != 13)
 				return;
-			}
 			var msg = $.trim(z.$.type.val());
-			if (!msg) {
+			if (!msg)
 				return;
-			}
 			z.socket.emit('missive',{
 				deck: z.deck.id
 				,matey_id: z.user.id
@@ -328,27 +286,25 @@ ace.chat = {
 			z.$.type.val('');
 
 			if (z.config.long_poll_hackfix && z.protocol == 'https:') {
-				if (!z._first_report_received) {
-					z._data.coffer.push({
+				if (!z.firstReportReceived) {
+					z.data.coffer.push({
 						matey_id: z.user.id
 						,treatise: msg
 					});
-					++z._data.coffer_i;
-					z._renderOutput(z._data);
+					++z.data.lastCofferIndex;
+					z.renderOutput(z.data);
 				}
 			}
 		});
 		z.socket.on('report_'+z.deck.id,function(data){
 			console.log(z.config.key,'report',data);
-			if (!z._validateAndClean(data)) {
+			if (!z.validateAndClean(data))
 				return;
-			}
-			z._data = data;
-			z._renderOutput(data);
+			z.data = data;
+			z.renderOutput(data);
 
-			if (z.config.long_poll_hackfix && z.protocol == 'https:') {
-				z._first_report_received = true;
-			}
+			if (z.config.long_poll_hackfix && z.protocol == 'https:')
+				z.firstReportReceived = true;
 		});
 
 		z.socket.emit('en_guarde',{
@@ -357,14 +313,14 @@ ace.chat = {
 		});
 	},
 
-	_renderOutput: function(data){
+	renderOutput: function(data){
 		var z = this
 			,x = ace.cssKey(z)
 			,numPeeps = 0
 			,lastUser,lastJMsg,lastMsg
 		;
-		if (z._last_coffer_i !== data.coffer_i) {
-			z._last_coffer_i = data.coffer_i;
+		if (z.lastCofferIndex !== data.lastCofferIndex) {
+			z.lastCofferIndex = data.lastCofferIndex;
 			preRenderBottomScroll = z.$.out.height()-z.$.out_cont.scrollTop()-z.$.out_cont.height();
 			z.$.out.empty();
 			$.each(data.coffer,function(i,m){
@@ -400,41 +356,38 @@ ace.chat = {
 
 			if ((data.coffer.length && data.coffer[data.coffer.length-1].matey_id == z.user.id)
 				|| preRenderBottomScroll <= 1
-				|| !z._first_rendered) {
+				|| !z.firstRendered) {
 				z.$.out_cont.scrollTop(z.$.out.height());
 			}
 
-			if (!z.open && lastMsg && lastMsg.matey_id != z.user.id && (lastMsg.type != 'system' || lastMsg.treatise.indexOf('left') == -1)) {
-				z._blink();
-			}
+			if (!z.open && lastMsg && lastMsg.matey_id != z.user.id && (lastMsg.type != 'system' || lastMsg.treatise.indexOf('left') == -1))
+				z.blink();
 		}
 
 		$.each(data.mateys,function(k,matey){
-			if (matey._active) {
+			if (matey._active)
 				++numPeeps;
-			}
 		});
 		z.$.stats.html('In Room: '+numPeeps);
-		if (z.config.users_tab) {
-			z.$.utab_content.empty();
+		if (z.config.usersTabEnabled) {
+			z.$.utabContent.empty();
 			$.each(data.mateys,function(k,matey){
-				if (!matey._active) {
+				if (!matey._active)
 					return true;
-				}
-				z.$.utab_content.append('<div class="'+x+'-utab-user">'
+				z.$.utabContent.append('<div class="'+x+'-utab-user">'
 					+ '<a class="'+x+'-utab-user-link" href="'+ace.customer.makeProfileUrl(matey)+'">'
 						+ '<img class="'+x+'-utab-user-thumb" src="'+ace.customer.getProfileThumb(matey)+'" alt="" />'
 						+ '<span class="'+x+'-utab-user-name">'+ace.customer.getDisplayName(matey)+'</span>'
 					+ '</a>'
 				+ '</div>');
 			});
-			z.$.utab_content.append('<div class="clear">&nbsp;</div>');
+			z.$.utabContent.append('<div class="clear">&nbsp;</div>');
 		}
 
-		z._first_rendered = true;
+		z.firstRendered = true;
 	},
 
-	_blink: function(){
+	blink: function(){
 		var z = this
 			,x = ace.cssKey(z)
 			,cls = x+'-blink'
@@ -442,40 +395,34 @@ ace.chat = {
 			,num = 4
 			,i = 0
 		;
-		if (typeof(z._blinking_interval) == 'number') {
-			clearInterval(z._blinking_interval);
-		}
+		if (typeof z.blinkingInterval == 'number')
+			clearInterval(z.blinkingInterval);
 		z.$.title.addClass(cls);
 		on = true;
-		z._blinking_interval = setInterval(function(){
-			if (i%2) {
-				z.$.title.addClass(cls);
-			} else {
-				z.$.title.removeClass(cls);
-			}
+		z.blinkingInterval = setInterval(function(){
+			i%2 ? z.$.title.addClass(cls) : z.$.title.removeClass(cls);
 			on = !on;
 			if (++i == num) {
 				z.$.title.removeClass(cls);
-				clearInterval(z._blinking_interval);
+				clearInterval(z.blinkingInterval);
 			}
 		},500);
 	},
 
-	_toggleOpen: function(){
+	toggleOpen: function(){
 		var z = this;
-		if (typeof(z._mouseoutTimeout) == 'number') {
-			clearTimeout(z._mouseoutTimeout);
-		}
+		if (typeof z.mouseoutTimeout == 'number')
+			clearTimeout(z.mouseoutTimeout);
 		if (z.open) {
 			z.$.cont.stop().animate({
-				height: z.config.teaser_height+'px'
+				height: z.config.teaserHeight+'px'
 			},{
 				duration: 200
 			});
-			mint.cookie(z.config.open_state_cookie,null);
+			ace.util.cookie(z.config.openStateCookie,null);
 		} else {
 			if (!z.socket) {
-				z._setUpSocket();
+				z.setUpSocket();
 			}
 			z.$.cont.stop().animate({
 				height: ace.util.trueDim(z.$.chat_inner).h+'px'
@@ -483,12 +430,12 @@ ace.chat = {
 				duration: 300
 			});
 			z.$.type.focus();
-			mint.cookie(z.config.open_state_cookie,1,{expires:1});
+			ace.util.cookie(z.config.openStateCookie,1,{expires:1});
 		}
 		z.open = !z.open;
 	},
 
-	_handleBreakingError: function(){
+	handleBreakingError: function(){
 		var z = this
 			,x = ace.cssKey(z)
 		;
@@ -509,14 +456,12 @@ ace.chat = {
 		}
 	},
 
-	_validateAndClean: function(data){
-		if (!(data && data.mateys && data.coffer && $.isPlainObject(data.mateys) && $.isArray(data.coffer))) {
+	validateAndClean: function(data){
+		if (!(data && data.mateys && data.coffer && $.isPlainObject(data.mateys) && $.isArray(data.coffer)))
 			return false;
-		}
 		ace.util.arrayFilter(data.coffer,function(m){
-			if (m && m.matey_id && typeof(m.treatise) == 'string') {
+			if (m && m.matey_id && typeof m.treatise == 'string')
 				return true;
-			}
 		});
 		return true;
 	}
