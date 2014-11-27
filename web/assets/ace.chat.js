@@ -320,8 +320,8 @@ ace.chat = {
 			z.$.out.empty();
 			$.each(data.coffer,function(i,m){
 				var user = data.mateys[m.matey_id]
-					,name = ((name = ace.customer.getDisplayName(user)) ? name : 'unknown')
-					,url = ace.customer.makeProfileUrl(user)
+					,name = ((name = z.getDisplayName(user)) ? name : 'unknown')
+					,url = z.makeProfileUrl(user)
 					,msg = ace.util.escapeHtml(m.treatise)
 					,system = false
 					,userOwnsMsg = z.user.id == user.id
@@ -335,7 +335,7 @@ ace.chat = {
 					lastJMsg.find('div.'+x+'-text').append('<br />'+msg);
 				} else {
 					if (!system) {
-						jThumb = '<a class="'+x+'-uthumb-link" href="'+url+'"><img class="'+x+'-uthumb" src="'+ace.customer.getProfileThumb(user)+'" alt="" /></a>';
+						jThumb = '<a class="'+x+'-uthumb-link" href="'+url+'"><img class="'+x+'-uthumb" src="'+z.getProfileThumb(user)+'" alt="" /></a>';
 						z.$.out.append(lastJMsg=$('<div class="'+x+'-msg '+(system?x+'-msg-system':'')+' '+(userOwnsMsg?x+'-msg-user_owns':'')+'">'
 							+ '<div class="'+x+'-uname"><a class="'+x+'-uname-link" href="'+url+'">'+name+'</a></div>'
 							+ (userOwnsMsg ? '' : jThumb)
