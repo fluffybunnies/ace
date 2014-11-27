@@ -11,18 +11,13 @@ ace.chat = {
 		key: 'chat'
 		//,dependencies: []
 		,enabled: true
-		,socketjs: {
-			'http:': 'http://ec2-184-169-233-158.us-west-1.compute.amazonaws.com:3000/socket.io/socket.io.js'
-			,'https:': '//sup.beachmintdev.com/socket.io/socket.io.js'
-		}
-		,socket: {
-			'http:': 'http://ec2-184-169-233-158.us-west-1.compute.amazonaws.com:3000'
-			,'https:': 'https://sup.beachmintdev.com'
-		}
+		,socketjs: '//sup.beachmintdev.com/socket.io/socket.io.js'
+		,socket: 'https://sup.beachmintdev.com'
 		,exclude_from: /(^\/?$)|(^\/checkout\/?$)/gi
 		,character_limit: 117
 		,teaser_height: 4
 		,open_state_cookie: 'chat-open'
+		,temp_user_cookie: 'chat-user'
 		,users_tab: true
 		,min_rank: 50
 		,long_poll_hackfix: true
@@ -55,22 +50,15 @@ ace.chat = {
 
 		//z.protocol = 'https:';
 		if (ace.util.getParameterByName('local')) {
-			z.config.socketjs = {
-				'http:': 'http://localhost:3000/socket.io/socket.io.js'
-				,'https:': 'http://localhost:3000/socket.io/socket.io.js'
-			};
-			z.config.socket = {
-				'http:': 'http://localhost:3000'
-				,'https:': 'http://localhost:3000'
-			};
+			z.config.socketjs = 'http://localhost:3000/socket.io/socket.io.js';
+			z.config.socket = 'http:': 'http://localhost:3000';
 		}
 
 
-		z.user = {
-			id: ace.util.rand(1000,10000)
-		};
+		z.user = z.getTempUser();
+		z.saveTempUser(z.user);
 		$.ajax({
-			url: z.config.socketjs[z.protocol]
+			url: z.config.socketjs
 			,dataType: 'script'
 			,cache: true
 			,success: function(){
@@ -86,9 +74,23 @@ ace.chat = {
 		});
 
 		return true;
-	},
+	}
 
-	_getDeck: function(){
+	,getTempUser: function(){
+		var z = this
+			,userId = ace.util.cookie(z.config.temp_user_cookie)
+		;
+		return {
+			id: userId ? userId : Math.round((+new Date)/1000)
+		};
+	}
+
+	,saveTempUser: function(user){
+		var z = this;
+		ace.util.cookie(z.config.temp_user_cookie, user.id, {expires: 180});
+	}
+
+	,_getDeck: function(){
 		var z = this
 			,deck
 		;
@@ -269,7 +271,7 @@ ace.chat = {
 			},15000);
 		}
 
-		z.socket = io.connect(z.config.socket[z.protocol]);
+		z.socket = io.connect(z.config.socket);
 		z.socket.on('touche',function(data){
 			if (!data) {
 				z._handleBreakingError();
