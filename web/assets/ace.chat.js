@@ -11,7 +11,7 @@ ace.chat = {
 	config: {
 		key: 'chat'
 		,enabled: ace.util.getParameterByName('debug') ? true : false
-		,serverName: 'ec2-184-169-233-158.us-west-1.compute.amazonaws.com:3000'
+		,serverName: 'ec2-184-169-233-158.us-west-1.compute.amazonaws.com'
 		,socketJs: '/socket.io/socket.io.js'
 		,excludeFrom: /(^\/?$)|(^\/checkout\/?$)/gi
 		,characterLimit: 117
@@ -63,7 +63,7 @@ ace.chat = {
 		};
 
 		$.ajax({
-			url: '//' + z.config.serverName + z.config.socketJs
+			url: z.config.socket + z.config.socketJs
 			,dataType: 'script'
 			,cache: true
 			,success: function(){
@@ -233,7 +233,7 @@ ace.chat = {
 		z.$.out.html('<div class="'+x+'-out-loading">loading...</div>');
 
 		if (z.config.longPollHackFix && z.protocol == 'https:') {
-			$.getJSON('//'+serverName+'/api/get/deck?callback=?',{
+			$.getJSON('//'+z.config.serverName+'/api/get/deck?callback=?',{
 				deck_id: z.deck.id
 			},function(res){
 				if (!res.success) {
@@ -264,7 +264,7 @@ ace.chat = {
 			},15000);
 		}
 
-		z.socket = io.connect('//'+z.config.serverName);
+		z.socket = io.connect(z.config.socket);
 		z.socket.on('touche',function(data){
 			if (!data)
 				return z.handleBreakingError();
