@@ -102,6 +102,7 @@
 
 	/* #styleFix1 */
 	padding-top: 8px;
+	padding-bottom: 2px;
 }
 .ace-chat-uname a {
 	font-style: italic;
