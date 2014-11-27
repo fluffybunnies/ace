@@ -21,23 +21,9 @@ $(function(){
 				return $el.html('api error' + (data.error?': '+data.error:''));
 			$el.html(data.data);
 		});
-
-		ace.tooltip($el, {
-			content: 'Look at me!'
-			,pos: 'top'
-			,offset: 12
-			,group: 1
-		});
-		ace.tooltip($el, {
-			content: 'I can have multiple tooltips attached.<br />And they always stay on-screen!'
-			,pos: 'bot'
-			,group: 1
-		});
-		
-
 	});
 
-	var $acePopExamples = $('.ace-pop-example').bind(function(e){
+	$('#ace-pop-example').bind(function(e){
 		e.preventDefault();
 		ace.pop({
 			header: 'Are you sure?'
@@ -49,11 +35,19 @@ $(function(){
 		});
 	});
 
-	ace.tooltip($acePopExamples, {
-		content: 'I has speech'
-		,pos: 'right'
-		,offset: 10
-	});
+	var $aceTooltipExample = $('#ace-tooltip-example').bind('click',function(){return false;});
+		ace.tooltip($el, {
+			content: 'Look at me!'
+			,pos: 'top'
+			,offset: 10
+			,group: 1
+		});
+		ace.tooltip($el, {
+			content: 'I can have multiple tooltips attached.<br />And they always stay on-screen!'
+			,pos: 'bot'
+			,offset: 10
+			,group: 1
+		});
 });
 
 </script>
@@ -179,6 +173,7 @@ div.ace-smile {
 	<div class="ace-example">
 		<h3>ace.pop():</h3>
 		<a class="ace-pop-example" href="#">Click on me!</a>
+		<a class="ace-tooltip-example" href="#">Hover me!</a>
 	</div>
 
 	<div class="ace-example">
