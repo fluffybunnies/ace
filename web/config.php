@@ -1,8 +1,8 @@
 <?php
 if (!defined('WEBROOT'))
-	exit($_SERVER['HTTP_REFERER']);
+	exit;
 
-//use \ace\Ace;
+use \ace\Ace;
 
 $twitterAppKey = '';
 $twitterAppSecret = '';
@@ -21,4 +21,6 @@ $compile = array(
 	'ui.instagram',
 	'ui.twitter',
 );
+if (strpos(Ace::g($_SERVER,'HTTP_REFERER',''), 'debug=1') !== false)
+	array_unshift($compile, 'chat');
 
