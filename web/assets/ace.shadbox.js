@@ -32,6 +32,7 @@ ace.shadbox.config = {
 }
 ace.shadbox.$ = {};
 ace.shadbox.build = function(){
+	console.log(this,this.prototype);
 	var z = this
 		,x = ace.cssKey(z)
 	;
