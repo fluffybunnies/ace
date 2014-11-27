@@ -14,13 +14,19 @@ use \ace\Ace;
 <script>
 
 $(function(){
-	$('.ace-smile').each(function(){
+	var $aceSmileExamples = $('.ace-smile').each(function(){
 		var $el = $(this);
 		$.getJSON('/ace/api/demo/smile',function(data){
 			if (!(data && data.data))
 				return $el.html('api error' + (data.error?': '+data.error:''));
 			$el.html(data.data);
 		});
+	});
+
+	ace.tooltip($aceSmileExamples, {
+		content: 'Look at me!'
+		,pos: ['top', 'right', 'bot', 'left'][ace.util.rand(0,3)]
+		,offset: 15
 	});
 
 	var $acePopExamples = $('.ace-pop-example').bind(function(e){
@@ -37,7 +43,7 @@ $(function(){
 
 	ace.tooltip($acePopExamples, {
 		content: 'I has speech'
-		,pos: ['top', 'right', 'bot', 'left'][ace.util.rand(0,3)]
+		,pos: 'right'
 		,offset: 10
 	});
 });
