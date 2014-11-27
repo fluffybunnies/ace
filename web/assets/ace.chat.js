@@ -57,6 +57,11 @@ ace.chat = {
 		if (ace.util.getParameterByName('local'))
 			z.config.serverName = 'localhost:3000';
 
+		z.user = {
+			id: 12
+			,facebook_id: 1346799799
+		};
+
 		$.ajax({
 			url: '//' + z.config.serverName + z.config.socketJs
 			,dataType: 'script'
