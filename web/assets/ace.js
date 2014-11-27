@@ -124,7 +124,8 @@ AceBase.prototype.log = function(){
 ace = {
 
 	config: {
-		readyCheckDelay: 15
+		key: 'ace'
+		,readyCheckDelay: 15
 	}
 	,_readyCbs: []
 	,_ready: false
@@ -158,7 +159,7 @@ ace = {
 	}
 
 	,cssKey: function(module){
-		return this.config.key+'-'+module.config.key;
+		return this.config.key+'-'+(module.config.key||module.prototype.config.key);
 	}
 
 	,ui: {
