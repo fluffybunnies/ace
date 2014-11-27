@@ -58,7 +58,7 @@ ace.chat = {
 			z.config.socket = 'http://localhost:3000';
 
 		z.user = {
-			id: ace.util.rand(1000,10000);
+			id: ace.util.rand(1000,10000)
 			//,facebook_id: 1346799799
 		};
 
