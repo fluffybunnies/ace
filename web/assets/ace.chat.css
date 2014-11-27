@@ -1,0 +1,206 @@
+.ace-chat {
+	position: fixed;
+	right: 20px;
+	bottom: 0;
+	width: 300px;
+	overflow: visible !important; /* jquery seems to be adding overflow */
+	z-index: 10; /* hack */
+}
+.ace-chat-open-btn {
+	display: block;
+	position: absolute;
+	right: 0;
+	top: -8px;
+	width: 100%;
+	height: 48px;
+	background: url(/k/assets/blank.gif);
+	z-index: 1;
+}
+.ace-chat-chat {
+	overflow: hidden;
+	height: 100%;
+	-moz-box-shadow: 0px 15px 50px 0 #666;
+	-webkit-box-shadow: 0px 15px 50px 0 #666;
+	box-shadow: 0px 15px 50px 0 #666;
+}
+.ace-chat-chat-inner {
+	width: 300px;
+	height: 420px;
+	background: #e5e5e5;
+}
+.ace-chat-title {
+	padding: 13px 0 0 14px;
+	height: 40px;
+	color: #fff;
+	font-size: 11px;
+	font-weight: bold;
+	letter-spacing: 0.15em;
+	text-transform: uppercase;
+	letter-spacing: 0.2em;
+	background: #fb687a;
+}
+.ace-chat.is-inactive .ace-chat-title {
+	background: #8d8f8f;
+}
+.ace-chat-title.ace-chat-blink {
+	background-color: #fcacb4;
+}
+.ace-chat-title-title {
+}
+.ace-chat-stats {
+	position: absolute;
+	right: 10px;
+	top: 15px;
+	font-size: 9px;
+	width: 100%;
+	text-align: right;
+	white-space: nowrap;
+}
+.ace-chat-out {
+	/*margin-bottom: 10px;*/
+	height: 349px;
+	background: #F2F2F2;
+	position: relative;
+	overflow: hidden; /* maybe scroll? */
+	font-size: 11px;
+	overflow-y: scroll;
+}
+.ace-chat-out-inner {
+}
+.ace-chat-out-loading {
+	text-align: center;
+	padding-top: 40%;
+	text-transform: uppercase;
+}
+.ace-chat-msg {
+	padding: 2px 10px 3px 10px;
+}
+.ace-chat-msg.ace-chat-msg-system {
+	padding-bottom: 0;
+}
+.ace-chat-uname {
+	text-align: left;
+	padding-left: 27px;
+	padding-bottom: 1px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	font-family: "times new roman",times,serif;
+}
+.ace-chat-uname a {
+	font-style: italic;
+	font-size:10px;
+}
+.ace-chat-msg-user_owns .ace-chat-uname {
+	text-align: right;
+	padding-left: 0;
+	padding-right: 27px;
+}
+.ace-chat-uthumb-link {
+	display: block;
+	float: left;
+	margin-top: 2px;
+}
+.ace-chat-uthumb {
+	display: block;
+	width: 20px;
+	height: 20px;
+	-webkit-border-radius: 100%;
+	-moz-border-radius: 100%;
+	border-radius: 100%;
+}
+.ace-chat-text {
+	float: left;
+	margin-left: 6px;
+	padding: 6px 10px;
+	background: #fff;
+	width: 232px;
+}
+.ace-chat-msg-user_owns .ace-chat-text {
+	margin-left: 0;
+	margin-right: 6px;
+	line-height: 1.5;
+}
+.ace-chat-msg-system .ace-chat-uname,
+.ace-chat-msg-system .ace-chat-uthumb-link {
+	display: none;
+}
+.ace-chat-msg-system .ace-chat-text {
+	float: none;
+	padding: 2px;
+	width: auto;
+	color: #777;
+	margin-left: 0;
+	margin-right: 0;
+	font-size: 10px;
+	background: none;
+}
+.ace-chat-out .ace-chat-breaking_error {
+	position: absolute;
+	left: 10%;
+	top: 40%;
+	width: 80%;
+	text-align: center;
+	line-height: 1.4em;
+}
+.ace-chat-type {
+	/*padding: 0 0 0 10px;*/
+}
+.ace-chat-type-input {
+	width: 300px;
+	padding: 7px 4px 7px 8px;
+}
+
+
+.ace-chat-utab {
+	position: absolute;
+	left: 0;
+	top: 40px;
+	width: 100%;
+	border-bottom: 1px solid #dedede;
+}
+.ace-chat-utab-inner {
+	position: relative;
+	overflow: hidden;
+}
+.ace-chat-utab-open-btn {
+	display: block;
+	position: absolute;
+	right: 0;
+	top: -40px;
+	width: 100px;
+	height: 40px;
+	background: url(/k/assets/blank.gif);
+	z-index: 1;
+}
+.ace-chat-utab-title {
+	position: absolute;
+	right: 4px;
+	top: 4px;
+	font-size: 10px;
+	color: #999;
+	text-transform: uppercase;
+	letter-spacing: 0.2em;
+}
+.ace-chat-utab-content {
+	padding: 8px 9px 10px 9px;
+	background: #fff;
+	font-size: 11px;
+	border-bottom: 1px solid #eee;
+}
+.ace-chat-utab-user {
+	float: left;
+	padding: 4px 8px 4px 4px;
+}
+.ace-chat-utab-user-link {
+}
+.ace-chat-utab-user-thumb {
+	width: 20px;
+	height: 20px;
+	-webkit-border-radius: 100%;
+	-moz-border-radius: 100%;
+	border-radius: 100%;
+}
+.ace-chat-utab-user-name {
+	padding-left: 0.4em;
+}
