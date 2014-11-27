@@ -88,24 +88,38 @@ amint.chat = {
             };
         }
 
-
-        z.user = {
-            id: ace.util.rand(1000,10000)
-        };
-        $.ajax({
-            url: z.config.socketjs[z.protocol]
-            ,dataType: 'script'
-            ,cache: true
-            ,success: function(){
-                $(function(){
-                    z._build();
-                    z._functionalize();
-                    z._setUpSocket();
-                    if (mint.cookie(z.config.open_state_cookie)) {
-                        z._toggleOpen();
+        amint.mReady(z,function(){
+            mint.session.get(function(sess){
+                if (!(sess && sess.logged_in && sess.data)) {
+                    return;
+                }
+                z.user = sess.data;
+                amint.util.req('store/${store}/customerpoints/'+z.user.id,function(error,data){
+                    if (error) {
+                        console.log(z.config.key, 'error getting customer points');
+                        return;
                     }
+                    if (!z.config.whitelist[z.user.id] && z.config.min_rank && data.rank > z.config.min_rank) {
+                        console.log(z.config.key, 'min rank not met', data.rank+' > '+z.config.min_rank);
+                        return;
+                    }
+                    $.ajax({
+                        url: z.config.socketjs[z.protocol]
+                        ,dataType: 'script'
+                        ,cache: true
+                        ,success: function(){
+                            $(function(){
+                                z._build();
+                                z._functionalize();
+                                z._setUpSocket();
+                                if (mint.cookie(z.config.open_state_cookie)) {
+                                    z._toggleOpen();
+                                }
+                            });
+                        }
+                    });
                 });
-            }
+            });
         });
 
         return true;

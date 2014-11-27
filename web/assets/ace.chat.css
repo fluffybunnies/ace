@@ -6,6 +6,9 @@
 	overflow: visible !important; /* jquery seems to be adding overflow */
 	z-index: 10; /* hack */
 }
+.ace-chat a {
+	color: #f7a193;
+}
 .ace-chat-open-btn {
 	display: block;
 	position: absolute;
@@ -91,7 +94,7 @@
 }
 .ace-chat-uname a {
 	font-style: italic;
-	font-size:10px;
+	font-size: 10px;
 }
 .ace-chat-msg-user_owns .ace-chat-uname {
 	text-align: right;
