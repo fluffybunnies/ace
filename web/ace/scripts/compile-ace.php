@@ -23,7 +23,7 @@ foreach ($modules as $module) {
 	$res .= $r;
 	$res .= "\n\n";
 }
-$hash = md5($response);
+$hash = md5($res);
 $etag = '"'.$hash.'"';
 header('Content-Type: text/'.($ext=='css'?'css':'javascript'));
 header('ETag: '.$etag);
