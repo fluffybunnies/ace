@@ -12,6 +12,11 @@
 }
 .ace-chat a {
 	color: #f7a193;
+	text-decoration: none;
+}
+.ace-chat a:hover {
+	color: #f5cfc1;
+	text-decoration: none;
 }
 .ace-chat-open-btn {
 	display: block;
