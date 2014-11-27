@@ -116,11 +116,11 @@ h3 span {
 .ace-double:after {
 	clear: both;
 }
-.ace-double-example {
+.ace-double .ace-example {
 	float: left;
 	width: 48%;
 }
-.ace-double-example:last-child {
+.ace-double .ace-example:last-child {
 	float: right;
 }
 div.ace-smile {
