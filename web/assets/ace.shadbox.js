@@ -9,7 +9,7 @@ ace.shadbox = function(src,opts,cb){
 		,opts_ = $.extend({},typeof(opts)=='object'?opts:{},z.config.defaults)
 		,cb_ = cb ? cb : (opts instanceof Function ? opts : null)
 	;
-	console.log(z,this);
+	console.log(z);
 	z.close();
 	if (!z.$.cont)
 		z.build();
@@ -137,6 +137,7 @@ ace.shadbox.open = function(src,opts,cb){
 	});
 	img.src = src;
 }
+console.log(ace.shadbox.close);
 ace.shadbox.close = function(){
 	var z = this;
 	z.isOpen = z.isOpening = false;
@@ -151,3 +152,4 @@ ace.shadbox.close = function(){
 		z.$.contentItem.empty();
 	}
 }
+console.log(ace.shadbox.close);
