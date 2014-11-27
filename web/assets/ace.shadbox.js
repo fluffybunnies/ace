@@ -9,7 +9,7 @@ ace.shadbox = function(src,opts,cb){
 		,opts_ = $.extend({},typeof(opts)=='object'?opts:{},z.config.defaults)
 		,cb_ = cb ? cb : (opts instanceof Function ? opts : null)
 	;
-	console.log(z);
+	console.log(z,this);
 	z.close();
 	if (!z.$.cont)
 		z.build();
