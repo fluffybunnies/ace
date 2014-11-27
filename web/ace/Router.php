@@ -10,8 +10,8 @@ class Router {
 		'/hc' => 'hc.php',
 		'/id' => 'id.php',
 		'/demo' => 'demo.php',
-		'/ace.js' => 'compile-ace.php',
-		'/ace.css' => 'compile-ace.php',
+		'/ace.js' => 'ace/scripts/compile-ace.php',
+		'/ace.css' => 'ace/scripts/compile-ace.php',
 	);
 	private static $apiPath = '/ace/api';
 
