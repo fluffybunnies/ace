@@ -36,18 +36,18 @@ $(function(){
 	});
 
 	var $aceTooltipExample = $('#ace-tooltip-example').bind('click',function(){return false;});
-		ace.tooltip($el, {
-			content: 'Look at me!'
-			,pos: 'top'
-			,offset: 10
-			,group: 1
-		});
-		ace.tooltip($el, {
-			content: 'I can have multiple tooltips attached.<br />And they always stay on-screen!'
-			,pos: 'bot'
-			,offset: 10
-			,group: 1
-		});
+	ace.tooltip($aceTooltipExample, {
+		content: 'Look at me!'
+		,pos: 'top'
+		,offset: 10
+		,group: 1
+	});
+	ace.tooltip($aceTooltipExample, {
+		content: 'I can have multiple tooltips attached.<br />And they always stay on-screen!'
+		,pos: 'bot'
+		,offset: 10
+		,group: 1
+	});
 });
 
 </script>
