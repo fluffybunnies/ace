@@ -5,7 +5,7 @@ ace.pop({
 	,body: 'Clicking Ok will delete everything you own.'
 	,btns: [
 		['cancel','Cancel']
-		['ok','Ok']
+		,['ok','Ok']
 	]
 }).bind('ok',function(){
 	// delete everything they own

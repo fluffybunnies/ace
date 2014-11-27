@@ -30,7 +30,7 @@ $(function(){
 			,body: 'Clicking Ok will close this window.<br /><br />...So will clicking Cancel.'
 			,btns: [
 				['cancel','Cancel']
-				['ok','Ok']
+				,['ok','Ok']
 			]
 		});
 	});
