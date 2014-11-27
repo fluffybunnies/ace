@@ -117,7 +117,7 @@ h3 span {
 	float: left;
 	width: 48%;
 }
-.ace-double .ace-example:last-child {
+.ace-double .ace-example:nth-child(2) {
 	float: right;
 }
 div.ace-smile {
