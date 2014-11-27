@@ -22,6 +22,22 @@ $(function(){
 			$el.html(data.data);
 		});
 	});
+
+	var $acePopExamples = $('.ace-pop-example').bind(function(e){
+		e.preventDefault();
+		ace.pop({
+			header: 'Are you sure?'
+			,body: 'Clicking Ok will close this window.<br /><br />...So will clicking Cancel.'
+			,btns: [
+				['cancel','Cancel']
+				['ok','Ok']
+			]
+		});
+	});
+
+	ace.tooltip($acePopExamples, {
+		content: 'I has speech'
+	});
 });
 
 </script>
@@ -141,6 +157,11 @@ div.ace-smile {
 			,scroll: 'x'
 			,type: 'featured'
 		}</script>
+	</div>
+
+	<div class="ace-example">
+		<h3>ace.pop():</h3>
+		<a class="ace-pop-example" href="#">Click on me!</a>
 	</div>
 
 	<div class="ace-example">
