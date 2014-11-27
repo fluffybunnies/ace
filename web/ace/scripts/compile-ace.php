@@ -15,7 +15,7 @@ if (!($ext == 'js' || $ext == 'css'))
 
 $res = get("ace.$ext");
 foreach ($modules as $module)
-	$res .= get("ace.$module.$ext");
+	$res .= ($ext=='js'?';':'') . get("ace.$module.$ext");
 if ($ext == 'js')
 	$res .= get('ace.init.js');
 $hash = md5($res);

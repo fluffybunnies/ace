@@ -136,7 +136,7 @@ ace.shadbox.open = function(src,opts,cb){
 			cb();
 	});
 	img.src = src;
-};
+}
 ace.shadbox.close = function(){
 	var z = this;
 	z.isOpen = z.isOpening = false;
@@ -150,4 +150,4 @@ ace.shadbox.close = function(){
 		});
 		z.$.contentItem.empty();
 	}
-};
+}
