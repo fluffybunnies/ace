@@ -36,7 +36,7 @@ ace.chat = {
 		if (z.inited)
 			return false;
 		z.inited = true;
-		//ace.evt.trigger(z.config.key+':loaded');
+		//ace.bus.trigger(z.config.key+':loaded');
 
 		if (!z.config.enabled) {
 			console.log(z.config.key, 'disabled');

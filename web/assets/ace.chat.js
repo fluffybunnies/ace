@@ -1,6 +1,4 @@
 /*
-amint.resource.fetch(['http://static-start.jewelmint.com/AB_Resources/amint/pv2/amint.chat.css','http://static-start.jewelmint.com/AB_Resources/amint/pv2/amint.chat.js'],function(){amint.chat.init()})
-
     To Do
         - get working on https and remove long polling hack
         - http is still sending logout event. fix this too #hack00
@@ -8,7 +6,7 @@ amint.resource.fetch(['http://static-start.jewelmint.com/AB_Resources/amint/pv2/
             - do this async
 */
 
-amint.chat = {
+ace.chat = {
     config: {
         key: 'chat'
         //,dependencies: []
@@ -28,27 +26,6 @@ amint.chat = {
         ,users_tab: true
         ,min_rank: 50
         ,long_poll_hackfix: true
-        ,whitelist: {
-            78403: 1
-            ,337: 1
-            ,792511: 1
-            ,2240977: 1
-            ,2212547: 1
-            ,637139: 1
-            ,489: 1
-            ,2374910: 1
-            ,278: 1
-            ,1110526: 1
-
-            ,4811615: 1
-            ,5173063: 1
-            ,3917914: 1
-            ,559655: 1
-            ,157022: 1
-            ,5433642: 1
-            ,3887115: 1
-            ,1225006: 1
-        }
     },
     $: {},
     socket: null,
@@ -58,7 +35,7 @@ amint.chat = {
         var z = this;
         if (z._inited) return false;
         z._inited = true;
-        //amint.evt.trigger(z.config.key+':loaded');
+        //ace.bus.trigger(z.config.key+':loaded');
 
         if (!z.config.enabled) {
             console.log(z.config.key, 'disabled');
@@ -77,7 +54,7 @@ amint.chat = {
         z.protocol = window.location.protocol;
 
         //z.protocol = 'https:';
-        if (mint.util.getParameterByName('local')) {
+        if (ace.util.getParameterByName('local')) {
             z.config.socketjs = {
                 'http:': 'http://localhost:3000/socket.io/socket.io.js'
                 ,'https:': 'http://localhost:3000/socket.io/socket.io.js'
@@ -101,7 +78,7 @@ amint.chat = {
                     z._build();
                     z._functionalize();
                     z._setUpSocket();
-                    if (mint.cookie(z.config.open_state_cookie)) {
+                    if (ace.util.cookie(z.config.open_state_cookie)) {
                         z._toggleOpen();
                     }
                 });
@@ -119,7 +96,7 @@ amint.chat = {
             id: '*'
             ,name: 'Public'
         };
-        if (!window.location.hostname.match(/^www/) || mint.util.getParameterByName('local')) {
+        if (!window.location.hostname.match(/^www/) || ace.util.getParameterByName('local')) {
             deck.id = 'dev/'+deck.id;
         }
         console.log(z.config.key,'deck',deck);
@@ -128,7 +105,7 @@ amint.chat = {
 
     _build: function(){
         var z = this
-            ,x = amint.getCssKey(z)
+            ,x = ace.getCssKey(z)
         ;
 
         z.$.cont = $('<div class="'+x+' is-inactive">'
@@ -192,7 +169,7 @@ amint.chat = {
             }
             if (e.type == 'mouseover') {
                 z.$.cont.stop().animate({
-                    height: amint.util.trueDim(z.$.title).h+'px'
+                    height: ace.util.trueDim(z.$.title).h+'px'
                 },{
                     duration: 100
                 });
@@ -222,7 +199,7 @@ amint.chat = {
                         return;
                     }
                     z._utab_open = true;
-                    height = amint.util.trueDim(z.$.utab_inner.css({
+                    height = ace.util.trueDim(z.$.utab_inner.css({
                         visibility: 'hidden'
                         ,height: 'auto'
                     })).h;
@@ -255,7 +232,7 @@ amint.chat = {
 
     _setUpSocket: function(){
         var z = this
-            ,x = amint.getCssKey(z)
+            ,x = ace.getCssKey(z)
         ;
         z.$.cont.removeClass('is-inactive');
         z.$.out.html('<div class="'+x+'-out-loading">loading...</div>');
@@ -347,7 +324,7 @@ amint.chat = {
 
     _renderOutput: function(data){
         var z = this
-            ,x = amint.getCssKey(z)
+            ,x = ace.getCssKey(z)
             ,numPeeps = 0
             ,lastUser,lastJMsg,lastMsg
         ;
@@ -357,9 +334,9 @@ amint.chat = {
             z.$.out.empty();
             $.each(data.coffer,function(i,m){
                 var user = data.mateys[m.matey_id]
-                    ,name = ((name = amint.customer.getDisplayName(user)) ? name : 'unknown')
-                    ,url = amint.customer.makeProfileUrl(user)
-                    ,msg = amint.util.escapeHtml(m.treatise)
+                    ,name = ((name = z.getDisplayName(user)) ? name : 'unknown')
+                    ,url = z.makeProfileUrl(user)
+                    ,msg = ace.util.escapeHtml(m.treatise)
                     ,system = false
                     ,userOwnsMsg = z.user.id == user.id
                     ,jThumb
@@ -372,7 +349,7 @@ amint.chat = {
                     lastJMsg.find('div.'+x+'-text').append('<br />'+msg);
                 } else {
                     if (!system) {
-                        jThumb = '<a class="'+x+'-uthumb-link" href="'+url+'"><img class="'+x+'-uthumb" src="'+amint.customer.getProfileThumb(user)+'" alt="" /></a>';
+                        jThumb = '<a class="'+x+'-uthumb-link" href="'+url+'"><img class="'+x+'-uthumb" src="'+z.getProfileThumb(user)+'" alt="" /></a>';
                         z.$.out.append(lastJMsg=$('<div class="'+x+'-msg '+(system?x+'-msg-system':'')+' '+(userOwnsMsg?x+'-msg-user_owns':'')+'">'
                             + '<div class="'+x+'-uname"><a class="'+x+'-uname-link" href="'+url+'">'+name+'</a></div>'
                             + (userOwnsMsg ? '' : jThumb)
@@ -410,9 +387,9 @@ amint.chat = {
                     return true;
                 }
                 z.$.utab_content.append('<div class="'+x+'-utab-user">'
-                    + '<a class="'+x+'-utab-user-link" href="'+amint.customer.makeProfileUrl(matey)+'">'
-                        + '<img class="'+x+'-utab-user-thumb" src="'+amint.customer.getProfileThumb(matey)+'" alt="" />'
-                        + '<span class="'+x+'-utab-user-name">'+amint.customer.getDisplayName(matey)+'</span>'
+                    + '<a class="'+x+'-utab-user-link" href="'+z.makeProfileUrl(matey)+'">'
+                        + '<img class="'+x+'-utab-user-thumb" src="'+z.getProfileThumb(matey)+'" alt="" />'
+                        + '<span class="'+x+'-utab-user-name">'+z..getDisplayName(matey)+'</span>'
                     + '</a>'
                 + '</div>');
             });
@@ -424,7 +401,7 @@ amint.chat = {
 
     _blink: function(){
         var z = this
-            ,x = amint.getCssKey(z)
+            ,x = ace.getCssKey(z)
             ,cls = x+'-blink'
             ,on = false
             ,num = 4
@@ -460,25 +437,25 @@ amint.chat = {
             },{
                 duration: 200
             });
-            mint.cookie(z.config.open_state_cookie,null);
+            ace.util.cookie(z.config.open_state_cookie,null);
         } else {
             if (!z.socket) {
                 z._setUpSocket();
             }
             z.$.cont.stop().animate({
-                height: amint.util.trueDim(z.$.chat_inner).h+'px'
+                height: ace.util.trueDim(z.$.chat_inner).h+'px'
             },{
                 duration: 300
             });
             z.$.type.focus();
-            mint.cookie(z.config.open_state_cookie,1,{expires:1});
+            ace.util.cookie(z.config.open_state_cookie,1,{expires:1});
         }
         z.open = !z.open;
     },
 
     _handleBreakingError: function(){
         var z = this
-            ,x = amint.getCssKey(z)
+            ,x = ace.getCssKey(z)
         ;
         if (z.$.out) {
             z.$.out.html('<div class="'+x+'-breaking_error">There was an error loading chat *this way to the pit of despair*</div>');
@@ -501,7 +478,7 @@ amint.chat = {
         if (!(data && data.mateys && data.coffer && $.isPlainObject(data.mateys) && $.isArray(data.coffer))) {
             return false;
         }
-        amint.util.arrayFilter(data.coffer,function(m){
+        ace.util.arrayFilter(data.coffer,function(m){
             if (m && m.matey_id && typeof(m.treatise) == 'string') {
                 return true;
             }
@@ -510,4 +487,4 @@ amint.chat = {
     }
 
 };
-amint.chat.init();
+ace.chat.init();
