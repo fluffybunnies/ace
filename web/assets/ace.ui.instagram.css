@@ -1,0 +1,20 @@
+.ace-instagram {
+}
+.ace-instagram-img
+,.ace-instagram-img-img {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+.ace-instagram.shadbox_enabled .ace-instagram-img-img {
+	cursor: pointer;
+}
+
+.ace-instagram.type-squares .ace-instagram-img {
+	float: left;
+}
+.ace-instagram.type-med .ace-instagram-img
+,.ace-instagram.type-med .ace-instagram-img-img {
+	width: 124px;
+	height: 124px;
+}

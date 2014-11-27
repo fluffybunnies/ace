@@ -1,0 +1,73 @@
+.ace-twitter {
+}
+.ace-twitter-tweets_cont {
+	overflow: hidden;
+	position: relative;
+}
+.ace-twitter-tweet {
+	font-size: 12px;
+	line-height: 1.6;
+	overflow: hidden;
+	/* use wrap-inner2 for styling */
+	margin: 0 !important;
+	padding: 0 !important;
+	float: left;
+}
+.ace-twitter-tweet-wrap {
+	/* use wrap-inner2 for styling */
+	margin: 0 !important;
+	padding: 0 !important;
+}
+.ace-twitter-tweet-wrap-inner {
+}
+.ace-twitter-tweet-text {
+	display: inline;
+}
+.ace-twitter-tweet-time {
+	display: inline;
+	padding-left: 1em;
+	color: #888;
+}
+
+.ace-twitter.is-scroll-x .ace-twitter-tweets_cont {
+	margin-left: -30px;
+}
+.ace-twitter.is-scroll-x .ace-twitter-tweet-wrap-inner {
+	margin-left: 30px;
+}
+
+.ace-twitter.is-scroll-y .ace-twitter-tweet-wrap-inner {
+	margin-bottom: 10px;
+}
+
+.ace-twitter.type-featured {
+	height: 60px;
+	max-height: 60px;
+	border: 1px solid #dbd8c5;
+	background: #e8e5d1;
+	margin-bottom: 20px;
+}
+.ace-twitter.type-featured .ace-twitter-wrap {
+	height: 100%;
+	background: url(/assets/twitterbird-bg2.png) no-repeat;
+	background-position:	595px 38px;
+}
+.ace-twitter.type-featured .ace-twitter-wrap2 {
+	padding: 9px 10px 10px 10px;
+}
+
+.ace-twitter.type-sidebar {
+	border: 1px solid #dbd8c5;
+	background: #e8e5d1;
+	height: 246px;
+	max-height: 246px;
+	overflow: hidden;
+}
+.ace-twitter.type-sidebar .ace-twitter-wrap {
+	height: 100%;
+	background: url(/assets/twitterbird-bg1-offset-br-5px.png) no-repeat;
+	background-position: right bottom;
+}
+.ace-twitter.type-sidebar .ace-twitter-wrap2 {
+	padding: 10px;
+}

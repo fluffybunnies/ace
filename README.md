@@ -18,6 +18,11 @@ Or, deploy to Amazon EC2 Ubuntu with Sire (https://github.com/fluffybunnies/sire
 /root/sire/index.sh ace
 ```
 
+### To Do
+- Demo for: Shadbox, Pop, Fireworks, Toolti[
+- Add: Resource, Sup
+- Generate ace.min.js/ace.min.css on start + post-gitsync + watch file
+
 
 ### Front End - UI
 

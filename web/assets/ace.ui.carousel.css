@@ -1,0 +1,65 @@
+.ace-carousel {
+	position: relative;
+}
+.ace-carousel-mask {
+	overflow: hidden;
+	position: relative;
+}
+.ace-carousel-slide_cont {
+	position: relative;
+}
+.ace-carousel-slide {
+	position: absolute;
+	left: 0;
+	top: 0;
+}
+.ace-carousel-arr {
+	position: absolute;
+	top: 0;
+	width: 54px;
+	height: 100%;
+	background: url(/assets/car_arrows.png) no-repeat;
+	cursor: pointer;
+}
+.ace-carousel-arr-left {
+	left: 0;
+	background-position: 1px center;
+}
+.ace-carousel-arr-right {
+	right: 0;
+	background-position: -58px center;
+}
+.ace-carousel-arr-left:hover {
+	background-position: -119px center;
+}
+.ace-carousel-arr-right:hover {
+	background-position: -178px center;
+}
+.ace-carousel-img {
+	overflow: hidden;
+	position: absolute;
+	top: 0;
+	background: #fff;
+	border: 1px solid #d6d6d6;
+	padding: 4px;
+	margin: 0 1px;
+}
+.ace-carousel-img.is-loading {
+	background: url(/assets/loader02.gif) no-repeat center center;
+}
+.ace-carousel-img-wrap {
+	overflow: hidden;
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+.ace-carousel-img-img {
+	position: absolute;
+	display: block;
+	margin: 0 !important;
+	padding: 0 !important;
+	border: none !important;
+}
+.ace-carousel.shadbox_enabled .ace-carousel-img-img {
+	cursor: pointer;
+}
