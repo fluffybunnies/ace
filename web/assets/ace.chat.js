@@ -264,7 +264,7 @@ ace.chat = {
 			},15000);
 		}
 
-		z.socket = io.connect(z.config.socket);
+		z.socket = io.connect('//'+z.config.serverName);
 		z.socket.on('touche',function(data){
 			if (!data)
 				return z.handleBreakingError();
