@@ -84,6 +84,10 @@ ace.chat = {
 		return true;
 	}
 
+	,cssKey: function(){
+		return ace.cssKey(this);
+	}
+
 	,getDeck: function(){
 		var z = this
 			,deck
