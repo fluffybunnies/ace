@@ -63,7 +63,7 @@ ace.chat = {
 		};
 
 		$.ajax({
-			url: z.config.socket + z.config.socketJs
+			url: '//' + z.config.serverName + z.config.socketJs
 			,dataType: 'script'
 			,cache: true
 			,success: function(){
