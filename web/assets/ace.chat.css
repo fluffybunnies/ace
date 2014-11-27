@@ -34,6 +34,7 @@
 	color: #fff;
 	font-size: 11px;
 	font-weight: bold;
+	line-height: 1;
 	letter-spacing: 0.15em;
 	text-transform: uppercase;
 	letter-spacing: 0.2em;
@@ -46,12 +47,12 @@
 	background-color: #fcacb4;
 }
 .ace-chat-title-title {
-	padding-top: 12px;
+	padding-top: 16px;
 }
 .ace-chat-stats {
 	position: absolute;
 	right: 10px;
-	top: 13px;
+	top: 17px;
 	font-size: 9px;
 	width: 100%;
 	text-align: right;
