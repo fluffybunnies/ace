@@ -25,13 +25,13 @@ $(function(){
 		ace.tooltip($el, {
 			content: 'Look at me!'
 			,pos: 'top'
-			,offset: 15
+			,offset: 12
 			,group: 1
 		});
 		ace.tooltip($el, {
 			content: 'I can have multiple tooltips attached.<br />And they always stay on-screen!'
 			,pos: 'bot'
-			,offset: 15
+			,offset: -12
 			,group: 1
 		});
 		
