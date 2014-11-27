@@ -26,12 +26,12 @@ ace.chat = {
 		,users_tab: true
 		,min_rank: 50
 		,long_poll_hackfix: true
-	},
-	$: {},
-	socket: null,
-	open: false,
+	}
+	,$: {}
+	,socket: null
+	,open: false
 
-	init: function(){
+	,init: function(){
 		var z = this;
 		if (z._inited) return false;
 		z._inited = true;
@@ -101,9 +101,9 @@ ace.chat = {
 		}
 		console.log(z.config.key,'deck',deck);
 		return deck;
-	},
+	}
 
-	_build: function(){
+	,_build: function(){
 		var z = this
 			,x = ace.cssKey(z)
 		;
@@ -150,9 +150,9 @@ ace.chat = {
 		z.$.cont.css('height',z.config.teaser_height+'px');
 
 		$('body').append(z.$.cont);
-	},
+	}
 
-	_functionalize: function(){
+	,_functionalize: function(){
 		var z = this;
 
 		z.$.open.bind('click',function(e){
@@ -228,9 +228,9 @@ ace.chat = {
 				}
 			});
 		}
-	},
+	}
 
-	_setUpSocket: function(){
+	,_setUpSocket: function(){
 		var z = this
 			,x = ace.cssKey(z)
 		;
@@ -320,9 +320,9 @@ ace.chat = {
 			deck: z.deck.id
 			,matey: z.user
 		});
-	},
+	}
 
-	_renderOutput: function(data){
+	,_renderOutput: function(data){
 		var z = this
 			,x = ace.cssKey(z)
 			,numPeeps = 0
@@ -397,9 +397,9 @@ ace.chat = {
 		}
 
 		z._first_rendered = true;
-	},
+	}
 
-	_blink: function(){
+	,_blink: function(){
 		var z = this
 			,x = ace.cssKey(z)
 			,cls = x+'-blink'
@@ -424,9 +424,9 @@ ace.chat = {
 				clearInterval(z._blinking_interval);
 			}
 		},500);
-	},
+	}
 
-	_toggleOpen: function(){
+	,_toggleOpen: function(){
 		var z = this;
 		if (typeof(z._mouseoutTimeout) == 'number') {
 			clearTimeout(z._mouseoutTimeout);
@@ -451,9 +451,9 @@ ace.chat = {
 			ace.util.cookie(z.config.open_state_cookie,1,{expires:1});
 		}
 		z.open = !z.open;
-	},
+	}
 
-	_handleBreakingError: function(){
+	,_handleBreakingError: function(){
 		var z = this
 			,x = ace.cssKey(z)
 		;
@@ -472,9 +472,9 @@ ace.chat = {
 		} else {
 			z.$.cont.remove();
 		}
-	},
+	}
 
-	_validateAndClean: function(data){
+	,_validateAndClean: function(data){
 		if (!(data && data.mateys && data.coffer && $.isPlainObject(data.mateys) && $.isArray(data.coffer))) {
 			return false;
 		}
