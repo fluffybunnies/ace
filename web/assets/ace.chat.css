@@ -133,14 +133,15 @@
 .ace-chat-text {
 	float: left;
 	margin-left: 6px;
+	margin-right: 0;
 	padding: 6px 10px;
 	background: #fff;
 	width: 232px;
+	line-height: 1.5;
 }
 .ace-chat-msg-user_owns .ace-chat-text {
 	margin-left: 0;
 	margin-right: 6px;
-	line-height: 1.5;
 }
 .ace-chat-msg-system .ace-chat-uname,
 .ace-chat-msg-system .ace-chat-uthumb-link {
