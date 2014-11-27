@@ -10,7 +10,7 @@
 ace.chat = {
 	config: {
 		key: 'chat'
-		,enabled: ace.getParameterByName('debug') ? true : false
+		,enabled: ace.util.getParameterByName('debug') ? true : false
 		,socketjs: {
 			'http:': 'http://ec2-184-169-233-158.us-west-1.compute.amazonaws.com:3000/socket.io/socket.io.js'
 			,'https:': '//sup.beachmintdev.com/socket.io/socket.io.js'
