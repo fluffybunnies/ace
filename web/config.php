@@ -1,7 +1,6 @@
 <?php
 if (!defined('WEBROOT'))
-	{echo json_encode($_SERVER);
-	exit;}
+	exit 'wef';
 
 //use \ace\Ace;
 
