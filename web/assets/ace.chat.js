@@ -68,9 +68,13 @@ ace.chat = {
 			,cache: true
 			,success: function(){
 				$(function(){
+					console.log('ONE');
 					z.build();
+					console.log('TWO');
 					z.functionalize();
+					console.log('3');
 					z.setUpSocket();
+					console.log('4');
 					if (ace.util.cookie(z.config.openStateCookie))
 						z.toggleOpen();
 				});
