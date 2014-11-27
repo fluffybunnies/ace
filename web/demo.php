@@ -9,8 +9,8 @@ use \ace\Ace;
 <title>Paradigm</title>
 <link rel="stylesheet" type="text/css" href="/assets/reset.css" />
 <script src="/assets/jquery.1.8.min.js"></script>
-<link rel="stylesheet" type="text/css" href="/assets/ace.css" />
-<script src="/assets/ace.js"></script>
+<link rel="stylesheet" type="text/css" href="/ace.css" />
+<script src="/ace.js"></script>
 <script>
 
 $(function(){
