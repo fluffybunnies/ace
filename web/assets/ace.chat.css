@@ -46,11 +46,12 @@
 	background-color: #fcacb4;
 }
 .ace-chat-title-title {
+	padding-top: 12px;
 }
 .ace-chat-stats {
 	position: absolute;
 	right: 10px;
-	top: 15px;
+	top: 13px;
 	font-size: 9px;
 	width: 100%;
 	text-align: right;
