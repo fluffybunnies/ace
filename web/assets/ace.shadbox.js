@@ -136,8 +136,7 @@ ace.shadbox.open = function(src,opts,cb){
 			cb();
 	});
 	img.src = src;
-}
-console.log(ace.shadbox.close);
+};
 ace.shadbox.close = function(){
 	var z = this;
 	z.isOpen = z.isOpening = false;
@@ -152,4 +151,3 @@ ace.shadbox.close = function(){
 		z.$.contentItem.empty();
 	}
 }
-console.log(ace.shadbox.close);
