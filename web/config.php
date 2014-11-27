@@ -21,6 +21,5 @@ $compile = array(
 	'ui.instagram',
 	'ui.twitter',
 );
-if (strpos(Ace::g($_SERVER,'HTTP_REFERER',''), 'debug=1') !== false)
-	array_unshift($compile, 'chat');
+//if (strpos(Ace::g($_SERVER,'HTTP_REFERER',''), 'debug=1') !== false) array_unshift($compile, 'chat');
 
