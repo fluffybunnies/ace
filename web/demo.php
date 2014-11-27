@@ -38,6 +38,7 @@ $(function(){
 	ace.tooltip($acePopExamples, {
 		content: 'I has speech'
 		,pos: 'right'
+		,offset: 3
 	});
 });
 
