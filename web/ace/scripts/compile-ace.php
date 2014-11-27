@@ -9,7 +9,7 @@ $modules = Ace::getConfig('compile');
 
 
 $ext = end(explode('.',REQUEST_PATH));
-if (!empty($_GET['debug'])) {Ace::varDump($ext);}
+if (!empty($_GET['debug'])) {var_dump($ext);}
 if (!($ext == 'js' || $ext == 'css'))
 	exit;
 
@@ -32,7 +32,7 @@ exit;
 function get($basename){
 	$assetsDir = WEBROOT.'/web/assets';
 	$r = @file_get_contents("$assetsDir/$basename");
-	if (!empty($_GET['debug'])) {Ace::varDump("$assetsDir/$basename");}
+	if (!empty($_GET['debug'])) {var_dump("$assetsDir/$basename");}
 	if ($r === false)
 		return '';
 	$res .= "/* File: $basename */\n$r\n\n";
