@@ -23,7 +23,7 @@ $(function(){
 		});
 	});
 
-	$('#ace-pop-example').bind('click',function(e){
+	var $acePopExample = $('#ace-pop-example').bind('click',function(e){
 		e.preventDefault();
 		ace.pop({
 			header: 'Are you sure?'
@@ -33,6 +33,11 @@ $(function(){
 				,['ok','Ok']
 			]
 		});
+	});
+	ace.tooltip($acePopExample, {
+		content: 'I has speech!'
+		,pos: 'right'
+		,offset: 10
 	});
 
 	var $aceTooltipExample = $('#ace-tooltip-example').bind('click',function(){return false;});
