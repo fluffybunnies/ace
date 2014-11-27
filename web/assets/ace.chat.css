@@ -13,7 +13,7 @@
 	top: -8px;
 	width: 100%;
 	height: 48px;
-	background: url(/k/assets/blank.gif);
+	background: url(/assets/blank.gif);
 	z-index: 1;
 }
 .ace-chat-chat {
@@ -170,7 +170,7 @@
 	top: -40px;
 	width: 100px;
 	height: 40px;
-	background: url(/k/assets/blank.gif);
+	background: url(/assets/blank.gif);
 	z-index: 1;
 }
 .ace-chat-utab-title {
