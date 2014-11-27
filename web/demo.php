@@ -25,7 +25,7 @@ $(function(){
 
 	ace.tooltip($aceSmileExamples, {
 		content: 'Look at me!'
-		,pos: ['top', 'right', 'bot', 'left'][ace.util.rand(0,3)]
+		,pos: 'random'
 		,offset: 15
 	});
 

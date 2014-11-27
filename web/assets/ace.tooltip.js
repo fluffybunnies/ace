@@ -59,12 +59,15 @@ ace.tooltip($('#look-at-me'),{
 	Tooltip.prototype.build = function(){
 		var z = this
 			,x = z.config.cssKey
-			,pos = z.opts.fixed ? 'fixed' : 'absolute'
+			,posType = z.opts.fixed ? 'fixed' : 'absolute'
+			,pos = z.opts.pos
 		;
+		if (pos == 'random')
+			pos = ['top', 'right', 'bot', 'left'][ace.util.rand(0,3)];
 		if (z.built)
 			return false;
 		z.built = true;
-		z.$.cont = $('<div class="'+x+' pos-'+z.opts.pos+' '+z.opts.classes+'" style="position:'+pos+';">'
+		z.$.cont = $('<div class="'+x+' pos-'+z.opts.pos+' '+z.opts.classes+'" style="position:'+posType+';">'
 			+ '<div class="'+x+'-content">'+z.opts.content+'</div>'
 			+ '<div class="'+x+'-arrow" style="position:absolute;"></div>'
 		+ '</div>');
