@@ -6,7 +6,7 @@ use \ace\Ace;
 
 
 $modules = Ace::getConfig('compile');
-
+if (!empty($_GET['debug'])) {Ace::varDump($modules);}
 
 $ext = end(explode('.',REQUEST_PATH));
 if (!($ext == 'js' || $ext == 'css'))
