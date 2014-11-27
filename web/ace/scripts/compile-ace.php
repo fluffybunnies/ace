@@ -34,7 +34,5 @@ function get($basename){
 	$r = @file_get_contents("$assetsDir/$basename");
 	if ($r === false)
 		return '';
-	$res .= "/* File: $basename */\n";
-	$res .= $r;
-	$res .= "\n\n";
+	$res .= "/* File: $basename */\n$r\n\n";
 }
