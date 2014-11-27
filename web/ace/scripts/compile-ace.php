@@ -14,7 +14,7 @@ if (!($ext == 'js' || $ext == 'css'))
 	exit;
 
 
-$res = '';
+$res = get("ace.$ext");
 foreach ($modules as $module)
 	$res .= get("ace.$module.$ext");
 if ($ext == 'js')
