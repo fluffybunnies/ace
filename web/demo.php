@@ -218,7 +218,7 @@ div.ace-smile {
 				$pretty[] = 'Ace::'.($v->name . ($comment ? "\n\t$comment" : ''));
 			}
 			Ace::varDump($methods);
-			if (!empty($_GET['debug'])) echo "\n\n".implode("\n",$pretty)."\n\n";
+			//if (!empty($_GET['debug'])) echo "\n\n".implode("\n",$pretty)."\n\n";
 		?>
 	</div>
 
