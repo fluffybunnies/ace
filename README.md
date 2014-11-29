@@ -127,7 +127,7 @@ Ace::vres
 Ace::e
 	For debugging: exit with $message
 Ace::isAssoc
-	Returns false if array does not have continuously ascending numeric keys
+	Returns true if array does not have continuously ascending numeric keys
 Ace::varDump
 	HTML-formatted alternative to var_dump
 Ace::putDeep
