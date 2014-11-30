@@ -39,8 +39,8 @@
 }
 .ace-chat-title {
 	/* height 40 */
-	padding: 13px 0 0 14px;
-	height: 27px;
+	/*padding: 13px 0 0 14px;*/
+	height: 40px;
 	color: #fff;
 	font-size: 11px;
 	font-weight: bold;
@@ -57,7 +57,7 @@
 	background-color: #fcacb4;
 }
 .ace-chat-title-title {
-	padding-top: 16px;
+	padding: 16px 0 0 14px;
 }
 .ace-chat-stats {
 	position: absolute;
