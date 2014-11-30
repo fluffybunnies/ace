@@ -204,10 +204,9 @@ ace.chat = {
 		});
 
 		z.$.open.bind('mouseover mouseout',function(e){
-			if (z.open) {
+			if (z.open)
 				return;
-			}
-			if (typeof(z._mouseoutTimeout) == 'number') {
+			if (typeof z._mouseoutTimeout == 'number') {
 				clearTimeout(z._mouseoutTimeout);
 			}
 			if (e.type == 'mouseover') {
@@ -316,11 +315,10 @@ ace.chat = {
 
 		z.socket = io.connect(z.config.socket);
 		z.socket.on('touche',function(data){
-			if (!data) {
-				z._handleBreakingError();
-				return;
-			}
-			if (typeof(data) == 'object') z._renderOutput(data);
+			if (!data)
+				return z._handleBreakingError();
+			if (typeof data == 'object')
+				z._renderOutput(data);
 		});
 		z.$.type.bind('keyup',function(e){
 			if (!z._first_rendered || e.which != 13) {
@@ -450,17 +448,15 @@ ace.chat = {
 			,num = 4
 			,i = 0
 		;
-		if (typeof(z._blinking_interval) == 'number') {
+		if (typeof z._blinking_interval == 'number')
 			clearInterval(z._blinking_interval);
-		}
 		z.$.title.addClass(cls);
 		on = true;
 		z._blinking_interval = setInterval(function(){
-			if (i%2) {
+			if (i%2)
 				z.$.title.addClass(cls);
-			} else {
+			else
 				z.$.title.removeClass(cls);
-			}
 			on = !on;
 			if (++i == num) {
 				z.$.title.removeClass(cls);
@@ -471,9 +467,8 @@ ace.chat = {
 
 	,_toggleOpen: function(){
 		var z = this;
-		if (typeof(z._mouseoutTimeout) == 'number') {
+		if (typeof z._mouseoutTimeout == 'number')
 			clearTimeout(z._mouseoutTimeout);
-		}
 		if (z.open) {
 			z.$.cont.stop().animate({
 				height: z.config.teaserHeight+'px'
@@ -518,13 +513,10 @@ ace.chat = {
 	}
 
 	,_validateAndClean: function(data){
-		if (!(data && data.mateys && data.coffer && $.isPlainObject(data.mateys) && $.isArray(data.coffer))) {
+		if (!(data && data.mateys && data.coffer && $.isPlainObject(data.mateys) && $.isArray(data.coffer)))
 			return false;
-		}
 		ace.util.arrayFilter(data.coffer,function(m){
-			if (m && m.matey_id && typeof(m.treatise) == 'string') {
-				return true;
-			}
+			return !!(m && m.matey_id && typeof m.treatise == 'string');
 		});
 		return true;
 	}
