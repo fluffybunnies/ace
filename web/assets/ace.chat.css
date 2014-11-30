@@ -38,8 +38,9 @@
 	background: #e5e5e5;
 }
 .ace-chat-title {
+	/* height 40 */
 	padding: 13px 0 0 14px;
-	height: 40px;
+	height: 27px;
 	color: #fff;
 	font-size: 11px;
 	font-weight: bold;
