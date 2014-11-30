@@ -15,8 +15,12 @@ ace.chat = {
 		key: 'chat'
 		//,dependencies: []
 		,enabled: true
-		,socketjs: '//sup.beachmintdev.com/socket.io/socket.io.js'
-		,socket: 'https://sup.beachmintdev.com'
+		// doesnt have to be same domain, ex:
+		//,socket: 'https://sup.beachmintdev.com'
+		//,socketjs: '//sup.beachmintdev.com/socket.io/socket.io.js'
+		// if socket/socketjs is a number, will use local domain with the # as the port
+		,socket: 8001
+		,socketjs: 8001
 		,exclude_from: /(^\/?$)|(^\/checkout\/?$)/gi
 		,character_limit: 117
 		,teaser_height: 4
@@ -51,14 +55,9 @@ ace.chat = {
 			return;
 		}
 
+		z.resolveSocketConfig();
+
 		z.protocol = window.location.protocol;
-
-		//z.protocol = 'https:';
-		if (ace.util.getParameterByName('local')) {
-			z.config.socketjs = 'http://localhost:3000/socket.io/socket.io.js';
-			z.config.socket = 'http://localhost:3000';
-		}
-
 
 		z.authenticateUser(function(){
 			$.ajax({
@@ -81,8 +80,27 @@ ace.chat = {
 		return true;
 	}
 
+	,resolveSocketConfig: function(){
+		var z = this;
+		if (typeof z.config.socket == 'number') {
+			z.config.socket = window.location.protocol+'//'+window.location.hostname+':'+z.config.socket;
+			console.log(z.config.key, 'setting socket to '+z.config.socket);
+		}
+		if (typeof z.config.socketjs == 'number') {
+			z.config.socketjs = window.location.protocol+'//'+window.location.hostname+':'+z.config.socketjs+'/socket.io/socket.io.js';
+			console.log(z.config.key, 'setting socketjs to '+z.config.socketjs);
+		}
+
+		// for local devving...
+		if (ace.util.getParameterByName('local')) {
+			z.config.socket = 'http://localhost:3000';
+			z.config.socketjs = 'http://localhost:3000/socket.io/socket.io.js';
+		}
+	}
+
 	,authenticateUser: function(cb){
 		// make sure user is logged in to your real system
+		// at the minimum, this method should set this.user.id
 		var z = this;
 		z.user = z.getTempUser();
 		z.saveTempUser(z.user);
