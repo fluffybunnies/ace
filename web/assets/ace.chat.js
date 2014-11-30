@@ -228,7 +228,7 @@ ace.chat = {
 					clearTimeout(z._utabMouseoutTimeout);
 				}
 				if (e.type == 'mouseover') {
-					if (z._utab_open) {
+					if (z._utab_open || !z.open) {
 						return;
 					}
 					z._utab_open = true;
