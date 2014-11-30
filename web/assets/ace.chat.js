@@ -282,12 +282,11 @@ ace.chat = {
 		z.$.out.html('<div class="'+x+'-out-loading">loading...</div>');
 
 		if (z.config.longPollHackFix && z.protocol == 'https:') {
-			$.getJSON('//sup.beachmintdev.com/api/get/deck?callback=?',{
+			$.getJSON(z.config.socket+'/api/get/deck?callback=?',{
 				deck_id: z.deck.id
 			},function(res){
-				if (!res.success) {
+				if (!res.success)
 					return;
-				}
 				console.log(z.config.key, 'long poll hack','rendering via api');
 				z._data = res.data;
 				z._data.mateys[z.user.id] = $.extend({_active:true},z.user);
