@@ -17,10 +17,10 @@ ace.chat = {
 
 		// doesnt have to be same domain, ex:
 		//,socket: 'https://sup.beachmintdev.com'
-		//,socketjs: '//sup.beachmintdev.com/socket.io/socket.io.js'
-		// if socket/socketjs is a number, will use local domain with the # as the port
+		//,socketJs: '//sup.beachmintdev.com/socket.io/socket.io.js'
+		// if socket/socketJs is a number, will use local domain with the # as the port
 		,socket: 8001
-		,socketjs: 8001
+		,socketJs: 8001
 
 		// checks whitelist first if not null
 		//,routesWhitelist: null
@@ -70,7 +70,7 @@ ace.chat = {
 
 		z.authenticateUser(function(){
 			$.ajax({
-				url: z.config.socketjs
+				url: z.config.socketJs
 				,dataType: 'script'
 				,cache: true
 				,success: function(){
@@ -95,15 +95,15 @@ ace.chat = {
 			z.config.socket = window.location.protocol+'//'+window.location.hostname+':'+z.config.socket;
 			console.log(z.config.key, 'setting socket to '+z.config.socket);
 		}
-		if (typeof z.config.socketjs == 'number') {
-			z.config.socketjs = window.location.protocol+'//'+window.location.hostname+':'+z.config.socketjs+'/socket.io/socket.io.js';
-			console.log(z.config.key, 'setting socketjs to '+z.config.socketjs);
+		if (typeof z.config.socketJs == 'number') {
+			z.config.socketJs = window.location.protocol+'//'+window.location.hostname+':'+z.config.socketJs+'/socket.io/socket.io.js';
+			console.log(z.config.key, 'setting socketJs to '+z.config.socketJs);
 		}
 
 		// for local devving...
 		if (ace.util.getParameterByName('local')) {
 			z.config.socket = 'http://localhost:3000';
-			z.config.socketjs = 'http://localhost:3000/socket.io/socket.io.js';
+			z.config.socketJs = 'http://localhost:3000/socket.io/socket.io.js';
 		}
 	}
 
