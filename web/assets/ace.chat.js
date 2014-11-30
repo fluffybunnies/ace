@@ -21,7 +21,12 @@ ace.chat = {
 		// if socket/socketjs is a number, will use local domain with the # as the port
 		,socket: 8001
 		,socketjs: 8001
-		,exclude_from: /(^\/?$)|(^\/checkout\/?$)/gi
+
+		// checks whitelist first if not null
+		//,routesWhitelist: null
+		,routesWhitelist: /(^\/demo\/?)/
+		,routesBlacklist: /(^\/?$)|(^\/checkout\/?$)/i
+
 		,character_limit: 117
 		,teaser_height: 4
 		,open_state_cookie: 'chat-open'
@@ -45,10 +50,15 @@ ace.chat = {
 			console.log(z.config.key, 'disabled');
 			return;
 		}
-		if (window.location.pathname.match(z.config.exclude_from)) {
-			console.log(z.config.key, 'page excluded');
+		if (z.config.routesWhitelist && !window.location.pathname.match(z.config.routesBlacklist)) {
+			console.log(z.config.key, 'route not whitelisted');
 			return;
 		}
+		if (z.config.routesBlacklist && window.location.pathname.match(z.config.routesBlacklist)) {
+			console.log(z.config.key, 'route blacklisted');
+			return;
+		}
+
 		z.deck = z._getDeck();
 		if (!z.deck) {
 			console.log(z.config.key, 'room not configured');

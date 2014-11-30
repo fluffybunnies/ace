@@ -19,7 +19,7 @@ Or, deploy to Amazon EC2 Ubuntu with Sire (https://github.com/fluffybunnies/sire
 ```
 
 ### To Do
-- Add: Resource, Chat
+- Add: Resource, et al
 - Generate ace.min.js/ace.min.css on start + post-gitsync / file change
 
 
@@ -59,6 +59,9 @@ Or, deploy to Amazon EC2 Ubuntu with Sire (https://github.com/fluffybunnies/sire
 	,shadbox: true
 }</script>
 ```
+
+##### Chat
+[see demo page]
 
 
 ### Front End - Utils
