@@ -27,13 +27,13 @@ ace.chat = {
 		,routesWhitelist: /(^\/demo\/?)/
 		,routesBlacklist: /(^\/?$)|(^\/checkout\/?$)/i
 
-		,character_limit: 117
-		,teaser_height: 4
-		,open_state_cookie: 'chat-open'
-		,temp_user_cookie: 'chat-user'
-		,users_tab: true
-		,long_poll_hackfix: true
-		,show_system_messages: true
+		,characterLimit: 117
+		,teaserHeight: 4
+		,openStateCookie: 'chat-open'
+		,tempUserCookie: 'chat-user'
+		,usersTab: true
+		,longPollHackFix: true
+		,showSystemMessages: true
 	}
 	,$: {}
 	,socket: null
@@ -78,7 +78,7 @@ ace.chat = {
 						z._build();
 						z._functionalize();
 						z._setUpSocket();
-						if (ace.util.cookie(z.config.open_state_cookie)) {
+						if (ace.util.cookie(z.config.openStateCookie)) {
 							z._toggleOpen();
 						}
 					});
@@ -118,7 +118,7 @@ ace.chat = {
 
 	,getTempUser: function(){
 		var z = this
-			,userId = ace.util.cookie(z.config.temp_user_cookie)
+			,userId = ace.util.cookie(z.config.tempUserCookie)
 		;
 		return {
 			//id: userId ? userId : Math.round((+new Date)/1000)
@@ -128,7 +128,7 @@ ace.chat = {
 
 	,saveTempUser: function(user){
 		var z = this;
-		ace.util.cookie(z.config.temp_user_cookie, user.id, {expires: 180});
+		ace.util.cookie(z.config.tempUserCookie, user.id, {expires: 180});
 	}
 
 	,_getDeck: function(){
@@ -160,10 +160,10 @@ ace.chat = {
 				+ '</div>'
 				+ '<div class="'+x+'-out"><div class="'+x+'-out-inner"></div></div>'
 				+ '<div class="'+x+'-type">'
-					+ '<input class="'+x+'-type-input" maxlength="'+z.config.character_limit+'" type="text" />'
+					+ '<input class="'+x+'-type-input" maxlength="'+z.config.characterLimit+'" type="text" />'
 				+ '</div>'
 			+ '</div></div>'
-			+ (z.config.users_tab ? '<div class="'+x+'-utab">'
+			+ (z.config.usersTab ? '<div class="'+x+'-utab">'
 				+ '<a class="'+x+'-utab-open-btn" href="#"></a>'
 				+ '<div class="'+x+'-utab-inner">'
 					+ '<div class="'+x+'-utab-title">Users</div>'
@@ -182,7 +182,7 @@ ace.chat = {
 		z.$.out = z.$.out_cont.find('div.'+x+'-out-inner');
 		z.$.type = z.$.chat.find('input.'+x+'-type-input');
 
-		if (z.config.users_tab) {
+		if (z.config.usersTab) {
 			z.$.utab = z.$.cont.find('div.'+x+'-utab');
 			z.$.utab_inner = z.$.utab.find('div.'+x+'-utab-inner');
 			z.$.utab_open = z.$.utab.find('a.'+x+'-utab-open-btn');
@@ -190,7 +190,7 @@ ace.chat = {
 			z.$.utab_inner.css('height','0');
 		}
 
-		z.$.cont.css('height',z.config.teaser_height+'px');
+		z.$.cont.css('height',z.config.teaserHeight+'px');
 
 		$('body').append(z.$.cont);
 	}
@@ -219,7 +219,7 @@ ace.chat = {
 			} else {
 				z._mouseoutTimeout = setTimeout(function(){
 					z.$.cont.stop().animate({
-						height: z.config.teaser_height+'px'
+						height: z.config.teaserHeight+'px'
 					},{
 						duration: 100
 					});
@@ -227,7 +227,7 @@ ace.chat = {
 			}
 		});
 
-		if (z.config.users_tab)
+		if (z.config.usersTab)
 			z.setUpUsersTab();
 	}
 
@@ -282,7 +282,7 @@ ace.chat = {
 		z.$.cont.removeClass('is-inactive');
 		z.$.out.html('<div class="'+x+'-out-loading">loading...</div>');
 
-		if (z.config.long_poll_hackfix && z.protocol == 'https:') {
+		if (z.config.longPollHackFix && z.protocol == 'https:') {
 			$.getJSON('//sup.beachmintdev.com/api/get/deck?callback=?',{
 				deck_id: z.deck.id
 			},function(res){
@@ -337,7 +337,7 @@ ace.chat = {
 			});
 			z.$.type.val('');
 
-			if (z.config.long_poll_hackfix && z.protocol == 'https:') {
+			if (z.config.longPollHackFix && z.protocol == 'https:') {
 				if (!z._first_report_received) {
 					z._data.coffer.push({
 						matey_id: z.user.id
@@ -356,7 +356,7 @@ ace.chat = {
 			z._data = data;
 			z._renderOutput(data);
 
-			if (z.config.long_poll_hackfix && z.protocol == 'https:') {
+			if (z.config.longPollHackFix && z.protocol == 'https:') {
 				z._first_report_received = true;
 			}
 		});
@@ -392,7 +392,7 @@ ace.chat = {
 				}
 				if (m.type != 'system' && lastUser && user.id == lastUser.id) {
 					lastJMsg.find('div.'+x+'-text').append('<br />'+msg);
-				} else if (!system || z.config.show_system_messages) {
+				} else if (!system || z.config.showSystemMessages) {
 					jThumb = '<a class="'+x+'-uthumb-link" href="'+url+'"><img class="'+x+'-uthumb" src="'+z.getProfileThumb(user)+'" alt="" /></a>';
 					z.$.out.append(lastJMsg=$('<div class="'+x+'-msg '+(system?x+'-msg-system':'')+' '+(userOwnsMsg?x+'-msg-user_owns':'')+'">'
 						+ '<div class="'+x+'-uname"><a class="'+x+'-uname-link" href="'+url+'">'+name+'</a></div>'
@@ -423,7 +423,7 @@ ace.chat = {
 			}
 		});
 		z.$.stats.html('In Room: '+numPeeps);
-		if (z.config.users_tab) {
+		if (z.config.usersTab) {
 			z.$.utab_content.empty();
 			$.each(data.mateys,function(k,matey){
 				if (!matey._active) {
@@ -476,11 +476,11 @@ ace.chat = {
 		}
 		if (z.open) {
 			z.$.cont.stop().animate({
-				height: z.config.teaser_height+'px'
+				height: z.config.teaserHeight+'px'
 			},{
 				duration: 200
 			});
-			ace.util.cookie(z.config.open_state_cookie,null);
+			ace.util.cookie(z.config.openStateCookie,null);
 		} else {
 			if (!z.socket) {
 				z._setUpSocket();
@@ -491,7 +491,7 @@ ace.chat = {
 				duration: 300
 			});
 			z.$.type.focus();
-			ace.util.cookie(z.config.open_state_cookie,1,{expires:1});
+			ace.util.cookie(z.config.openStateCookie,1,{expires:1});
 		}
 		z.open = !z.open;
 	}
