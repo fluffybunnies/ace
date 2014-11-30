@@ -49,7 +49,7 @@ ace.chat = {
 			console.log(z.config.key, 'disabled');
 			return;
 		}
-		if (z.config.routesWhitelist && !window.location.pathname.match(z.config.routesBlacklist)) {
+		if (z.config.routesWhitelist && !window.location.pathname.match(z.config.routesWhitelist)) {
 			console.log(z.config.key, 'route not whitelisted');
 			return;
 		}
