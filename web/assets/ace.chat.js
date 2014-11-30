@@ -13,8 +13,8 @@ amint.resource.fetch(['http://static-start.jewelmint.com/AB_Resources/amint/pv2/
 ace.chat = {
 	config: {
 		key: 'chat'
-		//,dependencies: []
 		,enabled: true
+
 		// doesnt have to be same domain, ex:
 		//,socket: 'https://sup.beachmintdev.com'
 		//,socketjs: '//sup.beachmintdev.com/socket.io/socket.io.js'
@@ -32,7 +32,6 @@ ace.chat = {
 		,open_state_cookie: 'chat-open'
 		,temp_user_cookie: 'chat-user'
 		,users_tab: true
-		,min_rank: 50
 		,long_poll_hackfix: true
 		,show_system_messages: true
 	}
