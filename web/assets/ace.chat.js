@@ -112,7 +112,8 @@ ace.chat = {
 			,userId = ace.util.cookie(z.config.temp_user_cookie)
 		;
 		return {
-			id: userId ? userId : Math.round((+new Date)/1000)
+			//id: userId ? userId : Math.round((+new Date)/1000)
+			id: userId ? userId : ace.util.rand(100,999999);
 		};
 	}
 
