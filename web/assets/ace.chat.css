@@ -92,7 +92,7 @@
 }
 .ace-chat-uname {
 	text-align: right;
-	padding-right: 27px;
+	padding-left: 27px;
 	padding-bottom: 2px;
 	overflow: hidden;
 	white-space: nowrap;
@@ -106,18 +106,18 @@
 }
 .ace-chat-msg-user_owns .ace-chat-uname {
 	text-align: left;
-	padding-right: 0;
-	padding-left: 27px;
+	padding-left: 0;
+	padding-right: 27px;
 }
 .ace-chat-uthumb-link {
 	display: block;
 	position: absolute;
-	right: 8px;
-	top: 7px;
+	left: 8px;
+	top: -3px;
 }
 .ace-chat-msg-user_owns .ace-chat-uthumb-link {
-	right: auto;
-	left: 8px;
+	left: auto;
+	right: 8px;
 }
 .ace-chat-uthumb {
 	display: block;
@@ -128,14 +128,14 @@
 	border-radius: 100%;
 }
 .ace-chat-text {
-	float: right;
+	float: left;
 	padding: 6px 10px;
 	background: #fff;
 	width: 232px;
 	line-height: 1.5;
 }
 .ace-chat-msg-user_owns .ace-chat-text {
-	float: left;
+	float: right;
 }
 .ace-chat-msg-system .ace-chat-uname,
 .ace-chat-msg-system .ace-chat-uthumb-link {
