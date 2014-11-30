@@ -102,7 +102,7 @@
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-	font-family: "times new roman",times,serif;
+	font-family: 'times new roman',times,serif;
 	letter-spacing: 0.1em;
 
 	/* #styleFix1 */

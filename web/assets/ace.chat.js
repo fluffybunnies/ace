@@ -26,7 +26,7 @@ ace.chat = {
 		,teaser_height: 4
 		,open_state_cookie: 'chat-open'
 		,temp_user_cookie: 'chat-user'
-		,users_tab: true
+		//,users_tab: true
 		,min_rank: 50
 		,long_poll_hackfix: true
 		,show_system_messages: true
