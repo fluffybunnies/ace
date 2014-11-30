@@ -218,50 +218,53 @@ return;
 			}
 		});
 
-		if (z.config.users_tab) {
-			z.$.utab.bind('click',function(e){
-				e.preventDefault();
-				z._toggleOpen();
-			});
-			z.$.utab.bind('mouseover mouseout',function(e){
-				var height;
-				if (typeof(z._utabMouseoutTimeout) == 'number') {
-					clearTimeout(z._utabMouseoutTimeout);
-				}
-				if (e.type == 'mouseover') {
-					if (z._utab_open || !z.open) {
-						return;
+		if (z.config.users_tab)
+			z.setUpUsersTab();
+	}
+
+	,setUpUsersTab: function(){
+		var z = this;
+		z.$.utab.bind('click',function(e){
+			e.preventDefault();
+			z._toggleOpen();
+		});
+		z.$.utab.bind('mouseover mouseout',function(e){
+			var height;
+			if (typeof(z._utabMouseoutTimeout) == 'number') {
+				clearTimeout(z._utabMouseoutTimeout);
+			}
+			if (e.type == 'mouseover') {
+				if (z._utab_open || !z.open)
+					return;
+				z._utab_open = true;
+				height = ace.util.trueDim(z.$.utab_inner.css({
+					visibility: 'hidden'
+					,height: 'auto'
+				})).h;
+				z.$.utab_inner.css({
+					height: 0
+					,visibility: ''
+				});
+				z.$.utab_inner.stop().animate({
+					height: height+'px'
+				},{
+					duration: 100
+					,complete: function(){
+						// just in case content gets re-rendered during animation
+						z.$.utab_inner.css('height','auto');
 					}
-					z._utab_open = true;
-					height = ace.util.trueDim(z.$.utab_inner.css({
-						visibility: 'hidden'
-						,height: 'auto'
-					})).h;
-					z.$.utab_inner.css({
-						height: 0
-						,visibility: ''
-					});
+				});
+			} else {
+				z._utabMouseoutTimeout = setTimeout(function(){
+					z._utab_open = false;
 					z.$.utab_inner.stop().animate({
-						height: height+'px'
+						height: 0
 					},{
 						duration: 100
-						,complete: function(){
-							// just in case content gets re-rendered during animation
-							z.$.utab_inner.css('height','auto');
-						}
 					});
-				} else {
-					z._utabMouseoutTimeout = setTimeout(function(){
-						z._utab_open = false;
-						z.$.utab_inner.stop().animate({
-							height: 0
-						},{
-							duration: 100
-						});
-					},800);
-				}
-			});
-		}
+				},800);
+			}
+		});	
 	}
 
 	,_setUpSocket: function(){
