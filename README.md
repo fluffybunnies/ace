@@ -86,6 +86,7 @@ ace.util.trueDim
 ### Front End - Bus
 All widgets (and the global ace.bus) extend AceBase - a standard event emitter with a "ready" implementation
 ```
+// ready() is ambivalent about whether or not the event has already been triggered
 ace.bus.ready('something-happened',function(){
 	console.log("Let's do something once!");
 });
