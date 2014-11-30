@@ -230,9 +230,8 @@ return;
 		});
 		z.$.utab.bind('mouseover mouseout',function(e){
 			var height;
-			if (typeof(z._utabMouseoutTimeout) == 'number') {
+			if (typeof z._utabMouseoutTimeout == 'number')
 				clearTimeout(z._utabMouseoutTimeout);
-			}
 			if (e.type == 'mouseover') {
 				if (z._utab_open || !z.open)
 					return;
