@@ -57,7 +57,9 @@ Or, deploy to Amazon EC2 with Sire (https://github.com/fluffybunnies/sire)
 ```
 
 ##### Chat
-[see demo page]
+See demo page and web/assets/ace.chat.js
+
+Uses arrrr for backend (https://github.com/fluffybunnies/arrrr)
 
 
 ### Front End - Utils
