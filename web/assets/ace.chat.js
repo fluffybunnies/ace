@@ -139,9 +139,8 @@ ace.chat = {
 			id: '*'
 			,name: 'Public'
 		};
-		if (!window.location.hostname.match(/^www/) || ace.util.getParameterByName('local')) {
+		if (!window.location.hostname.match(/^www/) || ace.util.getParameterByName('local'))
 			deck.id = 'dev/'+deck.id;
-		}
 		console.log(z.config.key,'deck',deck);
 		return deck;
 	}
