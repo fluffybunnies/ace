@@ -113,7 +113,7 @@ ace.chat = {
 		;
 		return {
 			//id: userId ? userId : Math.round((+new Date)/1000)
-			id: userId ? userId : ace.util.rand(100,999999);
+			id: userId ? userId : ace.util.rand(100,999999)
 		};
 	}
 
