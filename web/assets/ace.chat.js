@@ -41,8 +41,8 @@ ace.chat = {
 
 	,init: function(){
 		var z = this;
-		if (z._inited) return false;
-		z._inited = true;
+		if (z.inited) return false;
+		z.inited = true;
 		//ace.bus.trigger(z.config.key+':loaded');
 
 		if (!z.config.enabled) {
