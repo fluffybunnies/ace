@@ -209,7 +209,6 @@ ace.chat = {
 				});
 			} else {
 				z._mouseoutTimeout = setTimeout(function(){
-return;
 					z.$.cont.stop().animate({
 						height: z.config.teaser_height+'px'
 					},{
