@@ -18,10 +18,6 @@ Or, deploy to Amazon EC2 with Sire (https://github.com/fluffybunnies/sire)
 /root/sire/index.sh ace
 ```
 
-### To Do
-- Add: Resource, et al
-- Generate ace.min.js/ace.min.css on start + post-gitsync / file change
-
 
 ### Front End - UI
 
@@ -179,5 +175,10 @@ http://ace.fabfitfun.com/hc
 
 ### Status Page
 http://ace.fabfitfun.com/id
+
+
+### To Do
+- Add: Resource, et al
+- Generate ace.min.js/ace.min.css on start + post-gitsync / file change
 
 
