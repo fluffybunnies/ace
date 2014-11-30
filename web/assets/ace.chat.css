@@ -1,7 +1,4 @@
-/*
-#styleFix1: Was absent for so long browser updates / surrounding css screwed things up.
-	This is my attempt to fix without moving elements.
-*/
+
 .ace-chat {
 	position: fixed;
 	right: 20px;
@@ -87,27 +84,21 @@
 	text-transform: uppercase;
 }
 .ace-chat-msg {
-	padding: 2px 10px 3px 10px;
-
-	/* #styleFix1 */
 	position: relative;
+	padding: 2px 10px 3px 10px;
 }
 .ace-chat-msg.ace-chat-msg-system {
 	padding-bottom: 0;
 }
 .ace-chat-uname {
-	text-align: left;
-	padding-left: 27px;
-	padding-bottom: 1px;
+	text-align: right;
+	padding-right: 27px;
+	padding-bottom: 2px;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	font-family: 'times new roman',times,serif;
 	letter-spacing: 0.1em;
-
-	/* #styleFix1 */
-	padding-top: 8px;
-	padding-bottom: 2px;
 }
 .ace-chat-uname a {
 	font-style: italic;
@@ -120,13 +111,8 @@
 }
 .ace-chat-uthumb-link {
 	display: block;
-	float: left;
-	margin-top: 2px;
-
-	/* #styleFix1 */
-	margin-top: 0;
 	position: absolute;
-	left: 8px;
+	right: 8px;
 	top: 7px;
 }
 .ace-chat-uthumb {
@@ -138,17 +124,14 @@
 	border-radius: 100%;
 }
 .ace-chat-text {
-	float: left;
-	margin-left: 6px;
-	margin-right: 0;
+	float: right;
 	padding: 6px 10px;
 	background: #fff;
 	width: 232px;
 	line-height: 1.5;
 }
 .ace-chat-msg-user_owns .ace-chat-text {
-	margin-left: 0;
-	margin-right: 6px;
+	float: left;
 }
 .ace-chat-msg-system .ace-chat-uname,
 .ace-chat-msg-system .ace-chat-uthumb-link {
