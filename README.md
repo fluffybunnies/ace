@@ -64,7 +64,7 @@ Uses arrrr for backend (https://github.com/fluffybunnies/arrrr)
 
 ### Front End - Utils
 ```
-// ace.util.'+Object.keys(ace.util).sort().join('\nace.util.')
+// 'ace.util.'+Object.keys(ace.util).sort().join('\nace.util.')
 ace.util.arrayFilter
 ace.util.capitalize
 ace.util.cookie
