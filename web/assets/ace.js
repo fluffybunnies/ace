@@ -390,7 +390,7 @@ ace = {
 
 		,arrayFilter: function(arr,cb,start){
 			var i,c;
-			start = typeof(start) == 'number' ? start : 0;
+			start = typeof start == 'number' ? start : 0;
 			for (i=start,c=arr.length;i<c;++i) {
 				if (!cb(arr[i])) {
 					arr.splice(i,1);
