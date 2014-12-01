@@ -112,7 +112,7 @@ AceBase.prototype._fireSubs = function(key){
 	});
 }
 AceBase.prototype.log = function(){
-	var args = [this.key||'anonymous AceBase'];
+	var args = [this.key||(this.config?this.config.key:null)||'anonymous AceBase'];
 	$.each(arguments,function(i,v){
 		args.push(v);
 	});
