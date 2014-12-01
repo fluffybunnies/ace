@@ -62,7 +62,7 @@ AceBase.prototype.off = function(key,cb){
 	$.each(key.split(/ +/),function(i,key){
 		if (!z._evts || !z._evts[key]) return;
 		evt = z._getEvt(key);
-		if (typeof(cb) == 'undefined') {
+		if (typeof cb == 'undefined') {
 			evt.subs = [];
 		} else {
 			$.each(evt.subs,function(i,sub){
