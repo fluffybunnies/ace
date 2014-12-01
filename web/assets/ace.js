@@ -498,7 +498,7 @@ ace = {
 			options = value || {};
 			var decode = options.raw ? function (s) { return s; } : unescape
 			  , result = new RegExp('(?:^|; )' + encodeURIComponent(key) + '=([^;]*)').exec(document.cookie)
-			  ;
+			;
 			return result && result[1] && result[1] !== "null" ? decode(result[1]) : null;
 		}
 
