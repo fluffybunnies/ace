@@ -224,7 +224,5 @@ div.ace-smile {
 
 </div>
 
-<?php include WEBROOT.'/global-footer.php'; ?>
-
 </body>
 </html>
