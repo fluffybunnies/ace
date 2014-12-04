@@ -4,7 +4,7 @@ namespace ace\misc;
 
 use \ace\helpers\Tracking;
 
-// disable this: "Changes double line-breaks in the text into HTML paragraphs (<p>...</p>)."
+// disables this: "Changes double line-breaks in the text into HTML paragraphs (<p>...</p>)."
 remove_filter('the_content', 'wpautop');
 remove_filter('the_excerpt', 'wpautop');
 
