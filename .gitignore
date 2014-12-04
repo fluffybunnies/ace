@@ -3,6 +3,7 @@
 .DS_Store
 node_modules
 npm-debug.log
+hooky.json
 config.local.php
 config.local.json
 config.public.local.json
