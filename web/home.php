@@ -3,7 +3,7 @@ if (!defined('WEBROOT'))
 	exit;
 ?><!doctype html>
 <head>
-	<title>Ace | Routing Example - Home</title>
+<title>Ace | Routing Example - Home</title>
 </head>
 <body>
 
