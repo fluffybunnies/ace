@@ -22,9 +22,7 @@ class Router {
 			exit;
 		}
 
-		Ace::varDump($request);
 		$r = Ace::g(self::$routes, $request);
-		Ace::varDump($r);
 		if ($r !== null)
 			self::go($r);
 
