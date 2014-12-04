@@ -6,7 +6,7 @@ use \ace\Ace;
 <html>
 <head>
 <meta charset="utf-8" />
-<title>Paradigm</title>
+<title>Ace | Paradigm</title>
 <link rel="stylesheet" type="text/css" href="/assets/reset.css" />
 <script src="/assets/jquery.1.8.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/ace.css" />
