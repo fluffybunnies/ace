@@ -293,7 +293,7 @@ ace = {
 							words[i] = f2+words[i][2].toUpperCase()+words[i].substr(3);
 						else if ((f3 = f2+words[i].charAt(2)) == 'Mac')
 							words[i] = f3+words[i][3].toUpperCase()+words[i].substr(4);
-						else if ((fi = words[i].indexOf('-')) != -1)
+						if ((fi = words[i].indexOf('-')) != -1)
 							words[i] = words[i].substring(0,i) + words[i][fi].toUpperCase() + words[i].substr(fi+1);
 						// dashes
 					}
