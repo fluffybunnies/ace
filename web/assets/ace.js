@@ -291,8 +291,10 @@ ace = {
 						f2 = words[i].charAt(0)+words[i].charAt(1);
 						if (f2 == 'Mc' || 'O\'')
 							words[i] = f2+words[i][2].toUpperCase()+words[i].substr(3);
-						else if ((f3 = f2+words[i].charAt(2)) == 'Mac')
+						else if ((f3 = f2+words[i].charAt(2)) == 'Mac') {
+							console.log('WEF',f2,f2+words[i].charAt(2));
 							words[i] = f3+words[i][3].toUpperCase()+words[i].substr(4);
+						}
 						// dashes
 					}
 				}
