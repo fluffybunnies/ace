@@ -289,7 +289,7 @@ ace = {
 					if (isName) {
 						// charAt faster than substr
 						f2 = words[i].charAt(0)+words[i].charAt(1);
-						if (f2 == 'Mc' || 'O\'')
+						if (f2 == 'Mc' || f2 == 'O\'')
 							words[i] = f2+words[i][2].toUpperCase()+words[i].substr(3);
 						else if ((f3 = f2+words[i].charAt(2)) == 'Mac') {
 							console.log('WEF',f2,f2+words[i].charAt(2));
