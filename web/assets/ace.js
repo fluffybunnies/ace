@@ -281,7 +281,7 @@ ace = {
 
 		,capitalize: function(str, isName){
 			var words = str.split(' ')
-				,i,c,f2,f3
+				,i,c,f2,f3,fi
 			;
 			for (i=0,c=words.length;i<c;++i) {
 				if (words[i]) {
@@ -291,10 +291,10 @@ ace = {
 						f2 = words[i].charAt(0)+words[i].charAt(1);
 						if (f2 == 'Mc' || f2 == 'O\'')
 							words[i] = f2+words[i][2].toUpperCase()+words[i].substr(3);
-						else if ((f3 = f2+words[i].charAt(2)) == 'Mac') {
-							console.log('WEF',f2,f2+words[i].charAt(2));
+						else if ((f3 = f2+words[i].charAt(2)) == 'Mac')
 							words[i] = f3+words[i][3].toUpperCase()+words[i].substr(4);
-						}
+						else if ((fi = words[i].indexOf('-')) != -1)
+							words[i] = words[i].substring(0,i) + words[i][fi].toUpperCase() + words[i].substr(fi+1);
 						// dashes
 					}
 				}
