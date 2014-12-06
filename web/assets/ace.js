@@ -279,13 +279,23 @@ ace = {
 			return min+Math.round(Math.random()*(max-min));
 		}
 
-		,capitalize: function(str){
+		,capitalize: function(str, isName){
 			var words = str.split(' ')
-				i,c
+				,i,c,f2,f3
 			;
 			for (i=0,c=words.length;i<c;++i) {
-				if (words[i])
+				if (words[i]) {
 					words[i] = words[i].charAt(0).toUpperCase() + words[i].substr(1);
+					if (isName) {
+						// charAt faster than substr
+						f2 = words[i].charAt(0)+words[i].charAt(1);
+						if (f2 == 'Mc' || 'O\'')
+							words[i] = f2+words[i][2].toUpperCase()+words[i].substr(3);
+						else if ((f3 = f2+words[i].charAt(2)) == 'Mac') {
+							words[i] = f3+words[i][3].toUpperCase()+words[i].substr(4);
+						}
+					}
+				}
 			}
 			return words.join(' ');
 		}
