@@ -281,7 +281,7 @@ ace = {
 
 		,capitalize: function(str, isName){
 			var words = str.split(' ')
-				,i,c,f2,f3,fi
+				,i,c,f2,f3
 			;
 			for (i=0,c=words.length;i<c;++i) {
 				if (words[i]) {
@@ -294,7 +294,7 @@ ace = {
 							words[i] = f2+words[i][2].toUpperCase()+words[i].substr(3);
 						else if ((f3 = f2+words[i].charAt(2)) == 'Mac')
 							words[i] = f3+words[i][3].toUpperCase()+words[i].substr(4);
-						if ((fi = words[i].indexOf('-')) != -1) {
+						if (words[i].indexOf('-') != -1) {
 							words[i] = ace.util.capitalize(words[i].replace(/-/g)).replace(/ /g,'-');
 						}
 					}
