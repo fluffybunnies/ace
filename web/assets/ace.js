@@ -285,6 +285,7 @@ ace = {
 			;
 			for (i=0,c=words.length;i<c;++i) {
 				if (words[i]) {
+					words[i] = words[i].toLowerCase();
 					words[i] = words[i].charAt(0).toUpperCase() + words[i].substr(1);
 					if (isName) {
 						// charAt faster than substr
@@ -294,8 +295,8 @@ ace = {
 						else if ((f3 = f2+words[i].charAt(2)) == 'Mac')
 							words[i] = f3+words[i][3].toUpperCase()+words[i].substr(4);
 						if ((fi = words[i].indexOf('-')) != -1) {
-							console.log('WEF',fi,words[i].substring(0,fi-1) ,words[i][fi-1].toUpperCase() ,words[i].substr(fi+1));
-							words[i] = words[i].substring(0,fi-1) + words[i][fi-1].toUpperCase() + words[i].substr(fi+1);
+							console.log('WEF',fi,words[i].substring(0,fi-1) ,words[i].charAt(fi+1).toUpperCase() ,words[i].substr(fi+1));
+							words[i] = words[i].substring(0,fi-1) + words[i].charAt(fi+1).toUpperCase() + words[i].substr(fi+1);
 						}
 					}
 				}
