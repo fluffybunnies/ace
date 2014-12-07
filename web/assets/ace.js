@@ -297,7 +297,7 @@ ace = {
 							words[i] = f3+words[i][3].toUpperCase()+words[i].substr(4);
 						if (words[i].indexOf('-') != -1) {
 							console.log('WEF',this ,words[i].replace(/-/g,' '));
-							words[i] = ace.util.capitalize(words[i].replace(/-/g,' ')).replace(/ /g,'-');
+							words[i] = this.capitalize(words[i].replace(/-/g,' ')).replace(/ /g,'-');
 						}
 					}
 				}
