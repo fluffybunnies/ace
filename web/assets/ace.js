@@ -295,7 +295,7 @@ ace = {
 						else if ((f3 = f2+words[i].charAt(2)) == 'Mac')
 							words[i] = f3+words[i][3].toUpperCase()+words[i].substr(4);
 						if (words[i].indexOf('-') != -1) {
-							words[i] = ace.util.capitalize(words[i].replace(/-/g)).replace(/ /g,'-');
+							words[i] = ace.util.capitalize(words[i].replace(/-/g),' ').replace(/ /g,'-');
 						}
 					}
 				}
