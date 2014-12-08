@@ -3,6 +3,8 @@ if (!defined('WEBROOT'))
 	exit;
 use \ace\Ace;
 
+Ace::varDump(chr(8216));
+Ace::varDump(chr(8217));
 
 //header('Content-Type', 'text/plain');
 function doIt($str){
