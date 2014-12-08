@@ -23,6 +23,8 @@ function doIt($str){
 }
 
 
+var_dump(doIt('&#8216;  &#8217; &quot;&quot; &amp; &apos;&apos; :: &copy; &#169; &#xA9;'));
+echo "\n\n\n";
 var_dump(doIt('It&#8216;s It&#8217;s in &quot;the&quot; water &amp; all o&apos;er o&apos;er the place! &copy; &#169; &#xA9; '));
 echo "\n\n\n";
 var_dump(doIt('Fovi&#269;'));
