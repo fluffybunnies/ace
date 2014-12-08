@@ -3,6 +3,7 @@ if (!defined('WEBROOT'))
 	exit;
 use \ace\Ace;
 
+header('Content-Type', 'text/plain');
 function doIt($str){
 	try {
 	return array(
@@ -22,11 +23,11 @@ function doIt($str){
 }
 
 
-Ace::varDump(doIt('It&#8216;s It&#8217;s in &quot;the&quot; water &amp; all o&apos;er o&apos;er the place! &copy; &#169; &#xA9; '));
+var_dump(doIt('It&#8216;s It&#8217;s in &quot;the&quot; water &amp; all o&apos;er o&apos;er the place! &copy; &#169; &#xA9; '));
 echo "\n\n\n";
-Ace::varDump(doIt('Fovi&#269;'));
+var_dump(doIt('Fovi&#269;'));
 echo "\n\n\n";
-Ace::varDump(doIt('http://uat-wordpress.luckyshops.com/?post_type=slideshow&#038;p=2598'));
+var_dump(doIt('http://uat-wordpress.luckyshops.com/?post_type=slideshow&#038;p=2598'));
 
 exit;
 
