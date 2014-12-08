@@ -26,6 +26,7 @@ function doIt($str){
 
 function sp($v){
 	$v = html_entity_decode($v);
+	$v = str_replace('&apos;', "'", $v);
 	$v = preg_replace_callback('/(&#([0-9]+);)/',function($m){
 		//return chr(+$m[2]);
 		v(mb_convert_encoding('&#' . intval($m[2]) . ';', 'UTF-8', 'HTML-ENTITIES'));
