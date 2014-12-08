@@ -3,6 +3,9 @@ if (!defined('WEBROOT'))
 	exit;
 use \ace\Ace;
 
+$s = 'wef';
+Ace::varDump(preg_replace_callback('/(.+)/', function(){return ':)';}, $s));
+
 //header('Content-Type', 'text/plain');
 function doIt($str){
 	try {
