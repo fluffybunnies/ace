@@ -18,11 +18,11 @@ function doIt($str){
 }
 
 
-var_dump2(doIt('It&#8217;s in &quot;the&quot; water &amp; all o&apos;er the place! &copy; &#169; &#xA9; '));
+Ace::varDump(doIt('It&#8217;s in &quot;the&quot; water &amp; all o&apos;er the place! &copy; &#169; &#xA9; '));
 echo "\n\n\n";
-var_dump2(doIt('Fovi&#269;'));
+Ace::varDump(doIt('Fovi&#269;'));
 echo "\n\n\n";
-var_dump2(doIt('http://uat-wordpress.luckyshops.com/?post_type=slideshow&#038;p=2598'));
+Ace::varDump(doIt('http://uat-wordpress.luckyshops.com/?post_type=slideshow&#038;p=2598'));
 
 exit;
 
