@@ -6,7 +6,8 @@ use \ace\Ace;
 Ace::varDump(chr(8216));
 Ace::varDump(chr(8217));
 
-//header('Content-Type', 'text/plain');
+//header('Content-type', 'text/plain');
+header ('Content-type: text/html; charset=utf-8');
 function doIt($str){
 	try {
 	return array(
