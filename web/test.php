@@ -26,7 +26,7 @@ function doIt($str){
 function sp($v){
 	$v = html_entity_decode($v);
 	$v = preg_replace_callback('/(&#([0-9]+);)/',function($m){
-		echo $m[1]."\n<br />";
+		v($m);
 		return chr($m[1]);
 	},$v);
 }
