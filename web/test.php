@@ -37,7 +37,7 @@ function sp($v){
 	return $v;
 }
 
-v(doIt('&#8216;  &#8217; &quot;&quot; &amp; &apos;&apos; :: &copy; &#169; &#xA9;'));
+v(doIt('&#8216;  &#8217; &quot;&quot; &amp; &apos;&apos; &#039;&#039; :: &copy; &#169; &#xA9;'));
 echo "\n\n\n";
 v(doIt('It&#8216;s It&#8217;s in &quot;the&quot; water &amp; all o&apos;er o&apos;er the place! &copy; &#169; &#xA9; '));
 echo "\n\n\n";
