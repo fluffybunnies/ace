@@ -22,7 +22,7 @@ function doIt($str){
 }
 
 
-Ace::varDump(doIt('It&#8217;s in &quot;the&quot; water &amp; all o&apos;er o&apos;er the place! &copy; &#169; &#xA9; '));
+Ace::varDump(doIt('It&#8216;s It&#8217;s in &quot;the&quot; water &amp; all o&apos;er o&apos;er the place! &copy; &#169; &#xA9; '));
 echo "\n\n\n";
 Ace::varDump(doIt('Fovi&#269;'));
 echo "\n\n\n";
