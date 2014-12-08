@@ -8,8 +8,12 @@ function doIt($str){
 	return array(
 		'raw' => $str,
 		'html_entity_decode' => html_entity_decode($str),
+		'html_entity_decode' => html_entity_decode($str, ENT_QUOTES),
+		'html_entity_decode ENT_QUOTES' => html_entity_decode($str, ENT_QUOTES, 'utf-8'),
+		'html_entity_decode ENT_QUOTES | ENT_HTML5' => html_entity_decode($str, ENT_QUOTES | ENT_HTML5),
 		'html_entity_decode ENT_QUOTES | ENT_HTML5 utf-8' => html_entity_decode($str, ENT_QUOTES | ENT_HTML5, 'utf-8'),
-		'mb_convert_encoding' => mb_convert_encoding($str, 'utf-8', 'HTML-ENTITIES'),
+		'mb_convert_encoding utf-8 HTML-ENTITIES' => mb_convert_encoding($str, 'utf-8', 'HTML-ENTITIES'),
+		'mb_convert_encoding null HTML-ENTITIES' => mb_convert_encoding($str, null, 'HTML-ENTITIES'),
 		'thing' => preg_replace_callback("/(&#[0-9]+;)/", function($m) { return mb_convert_encoding($m[1], "UTF-8", "HTML-ENTITIES"); }, $str),
 	);
 	} catch (Exception $e) {
