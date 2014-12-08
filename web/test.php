@@ -27,6 +27,9 @@ function sp($v){
 	$v = html_entity_decode($v);
 	$v = preg_replace_callback('/(&#([0-9]+);)/',function($m){
 		v($m);
+		v(ord($m[2]));
+		v(chr($m[2]));
+		return ord($m[2]);
 		return chr($m[2]);
 	},$v);
 }
