@@ -16,12 +16,19 @@ function doIt($str){
 		'mb_convert_encoding utf-8 HTML-ENTITIES' => mb_convert_encoding($str, 'utf-8', 'HTML-ENTITIES'),
 		'mb_convert_encoding null HTML-ENTITIES' => mb_convert_encoding($str, null, 'HTML-ENTITIES'),
 		'thing' => preg_replace_callback("/(&#[0-9]+;)/", function($m) { return mb_convert_encoding($m[1], "UTF-8", "HTML-ENTITIES"); }, $str),
+		'sp' => sp($str),
 	);
 	} catch (Exception $e) {
 		echo "$e";
 	}
 }
 
+function sp($v){
+	$v = html_entity_decode($v);
+	$v = preg_replace_callback('/(&#[0-9]+;)/',function($m){
+		return mb_convert_encoding($m[1], null, "HTML-ENTITIES");
+	},$v),
+}
 
 v(doIt('&#8216;  &#8217; &quot;&quot; &amp; &apos;&apos; :: &copy; &#169; &#xA9;'));
 echo "\n\n\n";
