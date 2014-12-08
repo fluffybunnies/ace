@@ -10,6 +10,7 @@ class Router {
 		'/hc' => 'hc.php',
 		'/id' => 'id.php',
 		'/demo' => 'demo.php',
+		'/test' => 'test.php',
 		'/ace.js' => 'ace/scripts/compile-ace.php',
 		'/ace.css' => 'ace/scripts/compile-ace.php',
 	);
