@@ -10,8 +10,9 @@ function doIt($str){
 	return array(
 		'raw' => $str,
 		'html_entity_decode' => html_entity_decode($str),
-		'html_entity_decode' => html_entity_decode($str, ENT_QUOTES),
-		'html_entity_decode ENT_QUOTES' => html_entity_decode($str, ENT_QUOTES, 'utf-8'),
+		'html_entity_decode null utf-8' => html_entity_decode($str, null, 'utf-8'),
+		'html_entity_decode ENT_QUOTES' => html_entity_decode($str, ENT_QUOTES),
+		'html_entity_decode ENT_QUOTES utf-8' => html_entity_decode($str, ENT_QUOTES, 'utf-8'),
 		'html_entity_decode ENT_QUOTES | ENT_HTML5' => html_entity_decode($str, ENT_QUOTES | ENT_HTML5),
 		'html_entity_decode ENT_QUOTES | ENT_HTML5 utf-8' => html_entity_decode($str, ENT_QUOTES | ENT_HTML5, 'utf-8'),
 		'mb_convert_encoding utf-8 HTML-ENTITIES' => mb_convert_encoding($str, 'utf-8', 'HTML-ENTITIES'),
