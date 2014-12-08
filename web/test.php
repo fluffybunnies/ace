@@ -29,7 +29,7 @@ function doIt($str){
 }
 
 function sp($v){
-	$v = html_entity_decode($v);
+	$v = mb_convert_encoding($v, 'utf-8', 'HTML-ENTITIES');
 	$v = str_replace('&apos;', "'", $v);
 	/*$v = preg_replace_callback('/(&#([0-9]+);)/',function($m){
 		//return chr(+$m[2]);
