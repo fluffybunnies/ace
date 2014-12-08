@@ -29,8 +29,7 @@ function sp($v){
 		v($m);
 		v(ord($m[2]));
 		v(chr($m[2]));
-		return chr(ord($m[2]));
-		return chr($m[2]);
+		return chr(+$m[2]);
 	},$v);
 }
 
