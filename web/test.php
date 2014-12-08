@@ -3,8 +3,6 @@ if (!defined('WEBROOT'))
 	exit;
 use \ace\Ace;
 
-$s = 'wef';
-Ace::varDump(preg_replace_callback('/(.+)/', function(){return ':)';}, $s));
 
 //header('Content-Type', 'text/plain');
 function doIt($str){
@@ -34,6 +32,7 @@ function sp($v){
 		return '!!';
 		return mb_convert_encoding('&#' . intval($m[2]) . ';', 'UTF-8', 'HTML-ENTITIES');
 	},$v);
+	return $v;
 }
 
 v(doIt('&#8216;  &#8217; &quot;&quot; &amp; &apos;&apos; :: &copy; &#169; &#xA9;'));
