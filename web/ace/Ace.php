@@ -39,10 +39,10 @@ class Ace {
 	public static function g($p,$k,$d=null) {
 		if (!is_array($k))
 			return array_key_exists($k,$p) ? $p[$k] : $d;
-		for ($i=0,$c=count($k);$i<$c;$i++) {
+		for ($i=0,$c=count($k);$i<$c;$i++)
 			if (array_key_exists($k[$i],$p))
 				return $p[$k[$i]];
-		}
+		return $d;
 	}
 
 	/**

@@ -29,12 +29,10 @@ function doIt($str){
 }
 
 function sp($v){
-	$v = mb_convert_encoding($v, 'utf-8', 'HTML-ENTITIES');
+	$v = preg_replace_callback('/(&[^;\s]+;)/', function($m){
+		return mb_convert_encoding($m[1], 'utf-8', 'HTML-ENTITIES');
+	},$v);
 	$v = str_replace('&apos;', "'", $v);
-	/*$v = preg_replace_callback('/(&#([0-9]+);)/',function($m){
-		//return chr(+$m[2]);
-		return mb_convert_encoding('&#' . intval($m[2]) . ';', 'UTF-8', 'HTML-ENTITIES');
-	},$v);*/
 	return $v;
 }
 
