@@ -30,6 +30,7 @@ class Twitter extends ControllerAbstract {
 			"Authorization: Basic $creds",
 		));
 		$r = json_decode(curl_exec($ch), true);
+		//if (!empty($_GET['debug'])) echo json_encode($r)."\n<br />";
 		if (!is_array($r))
 			throw new \Exception('unexpected response from twitter');
 		if (isset($r->errors)) {
@@ -61,7 +62,7 @@ class Twitter extends ControllerAbstract {
 			"Authorization: Bearer $creds",
 		));
 		$r = json_decode(curl_exec($ch), true);
-		//echo json_encode($r)."<br />";
+		//if (!empty($_GET['debug'])) echo json_encode($r)."\n<br />";
 		if (!is_object($r) && !is_array($r))
 			throw new \Exception('unexpected response from twitter');
 		if (isset($r->error))
