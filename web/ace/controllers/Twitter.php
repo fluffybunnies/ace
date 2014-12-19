@@ -17,8 +17,8 @@ class Twitter extends ControllerAbstract {
 	}
 
 	private function _getAppToken(){
-		$key = Ace::getConfig('hopeTwitterAppKey');
-		$secret = Ace::getConfig('hopeTwitterAppSecret');
+		$key = Ace::getConfig('twitterAppKey');
+		$secret = Ace::getConfig('twitterAppSecret');
 		$creds = base64_encode(rawurlencode($key).':'.rawurlencode($secret));
 
 		$ch = curl_init();
