@@ -21,7 +21,7 @@ class Twitter extends ControllerAbstract {
 		$secret = Ace::getConfig('twitterAppSecret');
 		$creds = base64_encode(rawurlencode($key).':'.rawurlencode($secret));
 
-		$ch = curl_init();
+		/*$ch = curl_init();
 		curl_setopt($ch, CURLOPT_POST, true);
 		curl_setopt($ch, CURLOPT_POSTFIELDS, 'grant_type=client_credentials');
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
@@ -29,9 +29,15 @@ class Twitter extends ControllerAbstract {
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 			"Authorization: Basic $creds",
 		));
-		$r = curl_exec($ch);
+		$r = curl_exec($ch);*/
+		$r = Ace::simpleCurlPost('https://api.twitter.com/oauth2/token', array(
+			'grant_type' => 'client_credentials',
+		), array(
+			'CURLOPT_HTTPHEADER' => array("Authorization: Basic $creds"),
+		), true);
 		//if (!empty($_GET['debug'])) { echo "_getAppToken()\n<br />"; echo "$r\n<br />"; }
 		$r = json_decode($r, true);
+
 		if (!is_array($r))
 			throw new \Exception('unexpected response from twitter');
 		if (isset($r['errors'])) {
@@ -41,6 +47,7 @@ class Twitter extends ControllerAbstract {
 		}
 		if (!isset($r['access_token']))
 			throw new \Exception('missing access_token');
+
 		return $r['access_token'];
 	}
 

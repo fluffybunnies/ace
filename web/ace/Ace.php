@@ -210,6 +210,46 @@ class Ace {
 		return self::$cache['client_ip'];
 	}
 
+	public static function simpleCurlGet($url, $params=array(), $curlOpts=array()) {
+		$ch = curl_init();
+		if (!empty($params))
+			$url .= (strpos($url,'?') === false ? '?' : '&') . http_build_query($params);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_URL, $url);
+		foreach ($curlOpts as $k => $v)
+			curl_setopt($ch, $k, $v);
+		return curl_exec($ch);
+	}
+
+	public static function simpleCurlPost($url, $params=array(), $curlOpts=array(), $urlEncoded=false) {
+		$args = func_get_args();
+		for ($i=1,$c=count($args);$i<$c;$i++)
+			if ($args[$i] === true)
+				$urlEncoded = true;
+
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_POST, true);
+
+		if ($urlEncoded) // application/x-www-form-urlencoded
+			curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
+		else // multipart/form-data
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
+
+		foreach ($curlOpts as $k => $v)
+			curl_setopt($ch, $k, $v);
+
+		return curl_exec($ch);
+	}
+
+	public static function simpleCurlDelete($url, $params=array(), $curlOpts=array()) {
+		$curlOpts[CURLOPT_CUSTOMREQUEST] = 'DELETE';
+		return self::simpleCurlGet($url, $params, $curlOpts);
+	}
+
 	// END utils
 
 
