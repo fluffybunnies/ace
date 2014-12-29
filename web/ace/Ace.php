@@ -197,7 +197,7 @@ class Ace {
 			$k = $check[$i];
 			if (!isset($_SERVER[$k]) || !is_string($_SERVER[$k]))
 				continue;
-			$possibles = explode(',',$_SERVER[$k]);
+			$possibles = explode(',', $_SERVER[$k]);
 			for ($n=0,$m=count($possibles);$n<$m;$n++) {
 				if (filter_var($possibles[$n],FILTER_VALIDATE_IP) !== false) {
 					$ip = $possibles[$n];
