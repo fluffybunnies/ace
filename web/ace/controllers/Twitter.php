@@ -33,7 +33,7 @@ class Twitter extends ControllerAbstract {
 		$r = Ace::simpleCurlPost('https://api.twitter.com/oauth2/token', array(
 			'grant_type' => 'client_credentials',
 		), array(
-			'CURLOPT_HTTPHEADER' => array("Authorization: Basic $creds"),
+			CURLOPT_HTTPHEADER => array("Authorization: Basic $creds"),
 		), true);
 		//if (!empty($_GET['debug'])) { echo "_getAppToken()\n<br />"; echo "$r\n<br />"; }
 		$r = json_decode($r, true);
