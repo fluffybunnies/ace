@@ -195,13 +195,13 @@ class Ace {
 		$ip = null;
 		for ($i=0,$c=count($check);$i<$c;$i++) {
 			$k = $check[$i];
-			if (array_key_exists($k,$_SERVER)) {
-				$possibles = explode(',',$_SERVER[$k]);
-				for ($n=0,$m=count($possibles);$n<$m;$n++) {
-					if (filter_var($possibles[$n],FILTER_VALIDATE_IP) !== false) {
-						$ip = $possibles[$n];
-						break 2;
-					}
+			if (!isset($_SERVER[$k]) || !is_string($_SERVER[$k]))
+				continue;
+			$possibles = explode(',',$_SERVER[$k]);
+			for ($n=0,$m=count($possibles);$n<$m;$n++) {
+				if (filter_var($possibles[$n],FILTER_VALIDATE_IP) !== false) {
+					$ip = $possibles[$n];
+					break 2;
 				}
 			}
 		}
