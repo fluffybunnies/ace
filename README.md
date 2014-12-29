@@ -145,6 +145,13 @@ Ace::onMobile
 	Uses list from http://detectmobilebrowsers.com/ against HTTP_USER_AGENT
 Ace::clientIp
 	Works behind ELB and other proxies
+Ace::curlGet
+	curlGet( $url [, $params [, $curlOpts ]] )
+Ace::curlPost
+	curlPost( $url [, $params [, $curlOpts [, $urlEncodedParams = false ]]] )
+	$urlEncodedParams mimicks application/x-www-form-urlencoded as opposed to the default multipart/form-data
+Ace::curlDelete
+	curlDelete( $url [, $params [, $curlOpts ]] )
 ```
 
 

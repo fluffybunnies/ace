@@ -211,7 +211,7 @@ class Ace {
 	}
 
 	/**
-		curlGet($url [,$params [,$curlOpts]])
+		curlGet( $url [, $params [, $curlOpts ]] )
 	*/
 	public static function curlGet($url, $params=array(), $curlOpts=array()) {
 		$ch = curl_init();
@@ -226,7 +226,7 @@ class Ace {
 	}
 
 	/**
-		curlPost($url [,$params [,$curlOpts [,$urlEncodedParams]]])
+		curlPost( $url [, $params [, $curlOpts [, $urlEncodedParams = false ]]] )
 	*/
 	public static function curlPost($url, $params=array(), $curlOpts=array(), $urlEncodedParams=false) {
 		$args = func_get_args();
@@ -252,7 +252,7 @@ class Ace {
 	}
 
 	/**
-		curlDelete($url [,$params [,$curlOpts]])
+		curlDelete( $url [, $params [, $curlOpts ]] )
 	*/
 	public static function curlDelete($url, $params=array(), $curlOpts=array()) {
 		$curlOpts[CURLOPT_CUSTOMREQUEST] = 'DELETE';
