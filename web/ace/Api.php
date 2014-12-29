@@ -48,7 +48,8 @@ class Api {
 			$r = $_GET['callback'].'('.$r.');';
 			header('Content-Type: text/javascript');
 		} else {
-			// #breaks iframe posting
+			// header to prevent XSS attacks
+			// dont set for POSTs as it will break iframe posting
 			if (Ace::g($_SERVER,'REQUEST_METHOD') == 'GET')
 				header('Content-Type: application/json');
 		}
