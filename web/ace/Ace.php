@@ -251,6 +251,9 @@ class Ace {
 		return curl_exec($ch);
 	}
 
+	/**
+		curlDelete($url, $params, $curlOpts)
+	*/
 	public static function curlDelete($url, $params=array(), $curlOpts=array()) {
 		$curlOpts[CURLOPT_CUSTOMREQUEST] = 'DELETE';
 		return self::simpleCurlGet($url, $params, $curlOpts);
