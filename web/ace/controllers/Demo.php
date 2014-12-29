@@ -13,8 +13,8 @@ class Demo extends ControllerAbstract {
 	private static $defaultEmailTo = array('volcomstoner2689@gmail.com');
 	private static $defaultEmailFrom = 'acquiremint-notifs@beachmint.com';
 
-	private static $callCap = 5; // seconds
-	private static $callLogMaxLength = 3;
+	private static $callCap = 10; // seconds
+	private static $callLogMaxLength = 10;
 
 
 	public function smile(){
