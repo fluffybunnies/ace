@@ -75,6 +75,8 @@ class Demo extends ControllerAbstract {
 			'attachment' => $fileName,
 		));
 
+		unlink($fileName);
+
 		return array(
 			'outputFileName' => basename($fileName),
 			'emailTo' => $emailTo,
