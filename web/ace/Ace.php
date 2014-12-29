@@ -150,8 +150,8 @@ class Ace {
 				\ace\Ace::putDeep($house,'bedroom>dresser[]','shirt');
 				\ace\Ace::putDeep($house,'kitchen>cabinets[]>corner','salt');
 			Note:
-				for speed purposes you cant use [] anywhere in the actual key
-					names, even though its legal in php
+				For simplicity you can't use [] anywhere in the actual key
+					names, even though it's legal in php
 		**/
 		$keys = explode('>',$where);
 		for ($i=0,$c=count($keys);$i<$c;$i++) {
@@ -210,6 +210,9 @@ class Ace {
 		return self::$cache['client_ip'];
 	}
 
+	/**
+		curlGet($url, $params, $curlOpts)
+	*/
 	public static function curlGet($url, $params=array(), $curlOpts=array()) {
 		$ch = curl_init();
 		if (!empty($params))
@@ -222,11 +225,14 @@ class Ace {
 		return curl_exec($ch);
 	}
 
-	public static function curlPost($url, $params=array(), $curlOpts=array(), $urlEncoded=false) {
+	/**
+		curlPost($url, $params, $curlOpts, $urlEncodedParams)
+	*/
+	public static function curlPost($url, $params=array(), $curlOpts=array(), $urlEncodedParams=false) {
 		$args = func_get_args();
 		for ($i=1,$c=count($args);$i<$c;$i++)
 			if ($args[$i] === true)
-				$urlEncoded = true;
+				$urlEncodedParams = true;
 
 		$ch = curl_init();
 		//curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
@@ -234,7 +240,7 @@ class Ace {
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_POST, true);
 
-		if ($urlEncoded) // application/x-www-form-urlencoded
+		if ($urlEncodedParams) // application/x-www-form-urlencoded
 			curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($params));
 		else // multipart/form-data
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
