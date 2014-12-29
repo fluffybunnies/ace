@@ -210,11 +210,11 @@ class Ace {
 		return self::$cache['client_ip'];
 	}
 
-	public static function simpleCurlGet($url, $params=array(), $curlOpts=array()) {
+	public static function curlGet($url, $params=array(), $curlOpts=array()) {
 		$ch = curl_init();
 		if (!empty($params))
 			$url .= (strpos($url,'?') === false ? '?' : '&') . http_build_query($params);
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		//curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_URL, $url);
 		foreach ($curlOpts as $k => $v)
@@ -222,14 +222,14 @@ class Ace {
 		return curl_exec($ch);
 	}
 
-	public static function simpleCurlPost($url, $params=array(), $curlOpts=array(), $urlEncoded=false) {
+	public static function curlPost($url, $params=array(), $curlOpts=array(), $urlEncoded=false) {
 		$args = func_get_args();
 		for ($i=1,$c=count($args);$i<$c;$i++)
 			if ($args[$i] === true)
 				$urlEncoded = true;
 
 		$ch = curl_init();
-		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		//curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_POST, true);
@@ -245,7 +245,7 @@ class Ace {
 		return curl_exec($ch);
 	}
 
-	public static function simpleCurlDelete($url, $params=array(), $curlOpts=array()) {
+	public static function curlDelete($url, $params=array(), $curlOpts=array()) {
 		$curlOpts[CURLOPT_CUSTOMREQUEST] = 'DELETE';
 		return self::simpleCurlGet($url, $params, $curlOpts);
 	}
