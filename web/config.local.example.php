@@ -1,6 +1,6 @@
 <?php
-
-//use \ace\Ace;
+if (!defined('WEBROOT'))
+	exit;
 
 $twitterAppKey = '';
 $twitterAppSecret = '';

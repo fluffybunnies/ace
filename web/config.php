@@ -7,8 +7,9 @@ use \ace\Ace;
 $twitterAppKey = '';
 $twitterAppSecret = '';
 
-$sesKey = '';
-$sesSecret = '';
+$awsAccessKey = '';
+$awsAccessSecret = '';
+$awsRegion = 'us-east-1';
 
 
 $compile = array(
