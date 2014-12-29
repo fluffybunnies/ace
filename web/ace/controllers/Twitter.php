@@ -29,8 +29,9 @@ class Twitter extends ControllerAbstract {
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 			"Authorization: Basic $creds",
 		));
-		$r = json_decode(curl_exec($ch), true);
-		//if (!empty($_GET['debug'])) echo json_encode($r)."\n<br />";
+		$r = curl_exec($ch);
+		//if (!empty($_GET['debug'])) { echo "_getAppToken()\n<br />"; echo "$r\n<br />"; }
+		$r = json_decode($r, true);
 		if (!is_array($r))
 			throw new \Exception('unexpected response from twitter');
 		if (isset($r['errors'])) {
@@ -61,8 +62,9 @@ class Twitter extends ControllerAbstract {
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array(
 			"Authorization: Bearer $creds",
 		));
-		$r = json_decode(curl_exec($ch), true);
-		//if (!empty($_GET['debug'])) echo json_encode($r)."\n<br />";
+		$r = curl_exec($ch);
+		//if (!empty($_GET['debug'])) { echo "get()\n<br />"; echo "$r\n<br />"; }
+		$r = json_decode($r, true);
 		if (!is_object($r) && !is_array($r))
 			throw new \Exception('unexpected response from twitter');
 		if (isset($r['error']))
