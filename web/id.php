@@ -4,7 +4,7 @@ if (!defined('WEBROOT'))
 
 echo json_encode(array(
 	't' => date('r'),
-	'repo' => preg_replace('/origin.*((git@github\.com:)|(https?:\/\/github\.com).+\.git)([\s\S])*/','$1',`git remote -v`),
+	'repo' => preg_replace('/.*((git@github\.com:)|(https?:\/\/github\.com).+\.git)([\s\S])*/','$1',`git remote -v`),
 	'branch' => preg_replace('/[\n* ]/','',`git branch | grep '\*' | head -n1`),
 	'commit' => str_replace("\n",'',`git rev-parse HEAD`),
 	'ip' => \ace\Ace::clientIp(),
