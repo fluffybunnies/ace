@@ -11,6 +11,8 @@ $awsAccessKey = '';
 $awsAccessSecret = '';
 $awsRegion = 'us-east-1';
 
+$googleAnalyticsId = '';
+
 
 $compile = array(
 	'chat',
