@@ -190,5 +190,6 @@ http://ace.fabfitfun.com/id
 ### To Do
 - Add: Resource, et al
 - Generate ace.min.js/ace.min.css on start + post-gitsync / file change
+- Unit tests
 
 
