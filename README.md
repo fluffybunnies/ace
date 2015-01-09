@@ -191,5 +191,6 @@ http://ace.fabfitfun.com/id
 - Add: Resource, et al
 - Generate ace.min.js/ace.min.css on start + post-gitsync / file change
 - Unit tests
+- More descriptive error messages for missing initial configs
 
 
