@@ -517,7 +517,6 @@ ace = {
 			return document.cookie = set;
 		}
 		,getCookie: function(key){
-			// todo: make this faster. ie dont parse all cookies but make sure to follow exact output rules of parseCookies
 			return this.parseCookies()[key];
 		}
 
