@@ -29,8 +29,10 @@ ace.chat = {
 
 		,characterLimit: 117
 		,teaserHeight: 4
-		,openStateCookie: 'chat-open'
 		,tempUserCookie: 'chat-user'
+		,tempUserCookieLifetime: 180*1000*60*60*24 // 180 days
+		,openStateCookie: 'chat-open'
+		,openStateCookieLifetime: 1000*60*60*24 // 1 day
 		,usersTab: true
 		,longPollHackFix: true
 		,showSystemMessages: true
@@ -128,7 +130,7 @@ ace.chat = {
 
 	,saveTempUser: function(user){
 		var z = this;
-		ace.util.setCookie(z.config.tempUserCookie, user.id, {expires: 180*(1000*60*60*24)});
+		ace.util.setCookie(z.config.tempUserCookie, user.id, {expires: z.config.tempUserCookieLifetime});
 	}
 
 	,_getDeck: function(){
@@ -484,7 +486,7 @@ ace.chat = {
 				duration: 300
 			});
 			z.$.type.focus();
-			ace.util.setCookie(z.config.openStateCookie,1,{expires:1*(1000*60*60*24)});
+			ace.util.setCookie(z.config.openStateCookie,1,{expires:z.config.openStateCookieLifetime});
 		}
 		z.open = !z.open;
 	}
