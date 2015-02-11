@@ -480,38 +480,45 @@ ace = {
 	    return results === null ? false : decodeURIComponent(results[1].replace(/\+/g, " "));
 		}
 
-		,cookie: function(key,value,options){
-			// key and at least value given, set cookie...
-			if (arguments.length > 1 && String(value) !== "[object Object]") {
-				options = $.extend({}, options);
-
-				if (value === null || value === undefined) {
-					options.expires = -1;
-				}
-
-				if (typeof options.expires === 'number') {
-					var days = options.expires, t = options.expires = new Date();
-					t.setDate(t.getDate() + days);
-				}
-
-				value = String(value);
-
-				return (document.cookie = [
-					encodeURIComponent(key), '=',
-					options.raw ? value : escape(value),
-					options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
-					options.path ? '; path=' + options.path : '; path=/',
-					options.domain ? '; domain=' + options.domain : '',
-					options.secure ? '; secure' : ''
-				].join(''));
-			}
-
-			// key and possibly options given, get cookie...
-			options = value || {};
-			var decode = options.raw ? function (s) { return s; } : unescape
-			  , result = new RegExp('(?:^|; )' + encodeURIComponent(key) + '=([^;]*)').exec(document.cookie)
+		,parseCookies: function(cookie){
+			cookie = cookie || document.cookie;
+			var cookies = cookie.split(';')
+				,res = {}
 			;
-			return result && result[1] && result[1] !== "null" ? decode(result[1]) : null;
+			$.each(cookies,function(i,v){
+				var split = v.split('=')
+					,key = unescape(split[0][0] == ' ' ? split[0].substr(1) : split[0])
+					,val = unescape(split[1]||'')
+				;
+				if (key != '')
+					res[key] = val;
+			});
+			return res;
+		}
+		,setCookie: function(key,val,opts){
+			var undef,expires,set;
+			opts = (opts && typeof opts == 'object') ? opts : {};
+			if (val == undef)
+				opts.expires = -1;
+			if (typeof opts.expires == 'number') {
+				expires = new Date;
+				expires.setMilliseconds(expires.getMilliseconds()+opts.expires);
+				expires = expires.toUTCString();
+			} else if (typeof opts.expires == 'string') {
+				expires = opts.expires;
+			}
+			set = (document.cookie = [
+				escape(key),'=',val
+				,expires == undef ? '' : '; expires='+expires
+				,opts.path == undef ? '; path=/' : '; path='+opts.path
+				,opts.domain == undef ? '' : '; domain='+opts.domain
+				,opts.secure ? ';secure' : ''
+			].join(''));
+			return document.cookie = set;
+		}
+		,getCookie: function(key){
+			// todo: make this faster. ie dont parse all cookies but make sure to follow exact output rules of parseCookies
+			return this.parseCookies()[key];
 		}
 
 	}

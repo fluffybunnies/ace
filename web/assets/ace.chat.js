@@ -78,7 +78,7 @@ ace.chat = {
 						z._build();
 						z._functionalize();
 						z._setUpSocket();
-						if (ace.util.cookie(z.config.openStateCookie)) {
+						if (ace.util.getCookie(z.config.openStateCookie)) {
 							z._toggleOpen();
 						}
 					});
@@ -118,7 +118,7 @@ ace.chat = {
 
 	,getTempUser: function(){
 		var z = this
-			,userId = ace.util.cookie(z.config.tempUserCookie)
+			,userId = ace.util.getCookie(z.config.tempUserCookie)
 		;
 		return {
 			//id: userId ? userId : Math.round((+new Date)/1000)
@@ -128,7 +128,7 @@ ace.chat = {
 
 	,saveTempUser: function(user){
 		var z = this;
-		ace.util.cookie(z.config.tempUserCookie, user.id, {expires: 180});
+		ace.util.setCookie(z.config.tempUserCookie, user.id, {expires: 180*(1000*60*60*24)});
 	}
 
 	,_getDeck: function(){
@@ -473,7 +473,7 @@ ace.chat = {
 			},{
 				duration: 200
 			});
-			ace.util.cookie(z.config.openStateCookie,null);
+			ace.util.setCookie(z.config.openStateCookie,null);
 		} else {
 			if (!z.socket) {
 				z._setUpSocket();
@@ -484,7 +484,7 @@ ace.chat = {
 				duration: 300
 			});
 			z.$.type.focus();
-			ace.util.cookie(z.config.openStateCookie,1,{expires:1});
+			ace.util.setCookie(z.config.openStateCookie,1,{expires:1*(1000*60*60*24)});
 		}
 		z.open = !z.open;
 	}
