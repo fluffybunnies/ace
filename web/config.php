@@ -11,7 +11,7 @@ $awsAccessKey = '';
 $awsAccessSecret = '';
 $awsRegion = 'us-east-1';
 
-$googleAnalyticsId = 'UA-57348619-1';
+$googleAnalyticsId = '';
 
 
 $compile = array(
