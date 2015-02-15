@@ -272,7 +272,7 @@ ace = {
 
 	,util: {
 		strToClass: function(str){
-			return str.replace(/(^[^a-zA-Z]+)|([^a-zA-Z0-9_\-])/g,'');
+			return (str+'').replace(/(^[^a-zA-Z]+)|([^a-zA-Z0-9_\-])/g,'');
 		}
 
 		,rand: function(min,max){

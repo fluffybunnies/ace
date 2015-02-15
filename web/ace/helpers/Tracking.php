@@ -12,7 +12,7 @@ use \ace\HelperAbstract;
 class Tracking extends HelperAbstract {
 
 	public static function pageView(){
-		if (($googleAnalyticsId = Ace::getConfig('googleAnalyticsId'))) {
+		if ($googleAnalyticsId = Ace::getConfig('googleAnalyticsId')) {
 			?>
 			<script>
 			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
