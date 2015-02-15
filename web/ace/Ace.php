@@ -66,8 +66,11 @@ class Ace {
 	/**
 		Optimize asset caching by marking url with file-modified-time
 	*/
-	public static function vres($path) {
-		echo $path . (strpos($path,'?') === false ? '?' : '&') . filemtime(WEBROOT.$path);
+	public static function vres($path, $return=false) {
+		$p = $path . (strpos($path,'?') === false ? '?' : '&') . filemtime(WEBROOT.$path);
+		if ($return)
+			return $p;
+		echo $p;
 	}
 
 	/**
