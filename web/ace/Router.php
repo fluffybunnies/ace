@@ -14,6 +14,8 @@ class Router {
 		'/ace.js' => 'ace/scripts/compile-ace.php',
 		'/ace.css' => 'ace/scripts/compile-ace.php',
 	);
+	private static $redirects = array(
+	);
 	private static $apiPath = '/ace/api';
 
 	public static function route($request){
@@ -23,9 +25,11 @@ class Router {
 			exit;
 		}
 
-		$r = Ace::g(self::$routes, $request);
-		if ($r !== null)
-			self::go($r);
+		if (isset(self::$routes[$request]))
+			self::go(self::$routes[$request]);
+
+		if (isset(self::$redirects[$request]))
+			self::redirect(self::$redirects[$request]);
 
 	}
 
