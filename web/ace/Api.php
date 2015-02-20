@@ -11,8 +11,8 @@ class Api {
 		'twitter/token/app' => 'Twitter::getAppToken',
 		'twitter/get' => 'Twitter::get',
 		'demo/smile' => 'Demo::smile',
-		'demo/email-csv-text' => 'Demo::emailText',
-		'demo/email-csv-html' => 'Demo::emailHtml',
+		'demo/email-text' => 'Demo::emailText',
+		'demo/email-html' => 'Demo::emailHtml',
 		'demo/email-csv-node' => 'Demo::emailCsvWithNode',
 		'demo/email-csv-php' => 'Demo::emailCsvWithPhp',
 	);
