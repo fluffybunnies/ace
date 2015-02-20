@@ -1,7 +1,7 @@
 ace
 ===
 
-Lightweight FE/BE Framework. Provides tools for launching prototype websites. Assists the M and C for other MVCs.
+Lightweight FE/BE Framework. Provides tools for launching prototype websites.
 
 Demo: http://ace.fabfitfun.com/demo
 
