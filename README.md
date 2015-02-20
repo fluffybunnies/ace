@@ -67,17 +67,19 @@ Uses arrrr for backend (https://github.com/fluffybunnies/arrrr)
 // 'ace.util.'+Object.keys(ace.util).sort().join('\nace.util.')
 ace.util.arrayFilter
 ace.util.capitalize
-ace.util.cookie
 ace.util.escapeHtml
 ace.util.escapeRegEx
 ace.util.formatInteger
 ace.util.formatPlace
 ace.util.formatTimeAgo
+ace.util.getCookie
 ace.util.getImageToWindowFit
 ace.util.getParameterByName
 ace.util.getViewportScrollY
 ace.util.onTouchDevice
+ace.util.parseCookies
 ace.util.rand
+ace.util.setCookie
 ace.util.strToClass
 ace.util.trueDim
 ```

@@ -414,6 +414,7 @@ ace = {
 		}
 
 		,getImageToWindowFit: function(windowSize,imgSize,center){
+			// Deprecated in favor of background-size:cover for most use cases
 			/**
 				ex:
 					center = [null,50/100]
