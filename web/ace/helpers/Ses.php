@@ -71,8 +71,14 @@ class Ses extends HelperAbstract {
 
 		// message
 		$message = array(
-			'Subject.Data' => $params['subject'],
-			'Body.'.ucfirst($params['type']).'.Data' => $params['message'],
+			'Subject' => array(
+				'Data' => $params['subject'],
+			),
+			'Body' => array(
+				ucfirst($params['type']) => array(
+					'Data' => $params['message'],
+				),
+			),
 		);
 
 		// opts
@@ -93,7 +99,11 @@ class Ses extends HelperAbstract {
 				'Destinations' => $destination,
 			)*/);
 		} else {
-			$r = $ses->sendEmail($params['from'], $destination, $message, $opts);
+			$r = $ses->sendEmail(array_merge($opts,array(
+				'Source' => $params['from'],
+				'Destination' => $destination,
+				'Message' => $message,
+			)));
 		}
 
 		/* new sdk should throw on error
