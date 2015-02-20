@@ -496,6 +496,7 @@ ace = {
 			return res;
 		}
 		,setCookie: function(key,val,opts){
+			// deleteCookie(): ace.setCookie('cookie_name', null)
 			var undef,expires,set;
 			opts = (opts && typeof opts == 'object') ? opts : {};
 			if (val == undef)
