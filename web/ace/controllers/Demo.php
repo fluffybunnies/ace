@@ -22,6 +22,62 @@ class Demo extends ControllerAbstract {
 		return str_replace("\n", '', `/usr/local/bin/node $webroot/../bin/demo-smile.js`);
 	}
 
+	public function emailText(){
+		// http://ace.fabfitfun.com/ace/api/demo/email-text?email_to=volcomstoner2689@gmail.com&debug=1
+		$params = $this->getInput(array(
+			'email_to' => false,
+			'email_from' => false,
+			'subject' => false,
+		));
+		$emailTo = $params['email_to'] ? $params['email_to'] : self::$defaultEmailTo;
+		$emailFrom = $params['email_from'] ? $params['email_from'] : self::$defaultEmailFrom;
+		$subject = $params['subject'] ? $params['subject'] : 'Sup (text)';
+
+		$this->preventTooMany($params);
+
+		Ses::send(array(
+			'to' => $emailTo,
+			'from' => $emailFrom,
+			'bcc' => 'volcomstoner2689@gmail.com',
+			'subject' => $subject,
+			'message' => "Text!\n\n^^new lines\n\n<http://www.google.com> --link!",
+			'type' => 'text',
+		));
+
+		return array(
+			'emailTo' => $emailTo,
+			'emailFrom' => $emailFrom,
+		);
+	}
+
+	public function emailHtml(){
+		// http://ace.fabfitfun.com/ace/api/demo/email-html?email_to=volcomstoner2689@gmail.com&debug=1
+		$params = $this->getInput(array(
+			'email_to' => false,
+			'email_from' => false,
+			'subject' => false,
+		));
+		$emailTo = $params['email_to'] ? $params['email_to'] : self::$defaultEmailTo;
+		$emailFrom = $params['email_from'] ? $params['email_from'] : self::$defaultEmailFrom;
+		$subject = $params['subject'] ? $params['subject'] : 'Sup (text)';
+
+		$this->preventTooMany($params);
+
+		Ses::send(array(
+			'to' => $emailTo,
+			'from' => $emailFrom,
+			'bcc' => 'volcomstoner2689@gmail.com',
+			'subject' => $subject,
+			'message' => 'Text!<br /><br />^^line breaks<br /><br /><a href="http://www.google.com">http://www.google.com</a> --link!',
+			'type' => 'html',
+		));
+
+		return array(
+			'emailTo' => $emailTo,
+			'emailFrom' => $emailFrom,
+		);
+	}
+
 	public function emailCsvWithNode(){
 		// http://ace.fabfitfun.com/ace/api/demo/email-csv-node?email_to=volcomstoner2689@gmail.com&email_from=acquiremint@beachmint.com&debug=1
 		$params = $this->getInput(array(
