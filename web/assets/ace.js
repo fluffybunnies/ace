@@ -316,7 +316,7 @@ ace = {
 
 		,formatPlace: function(num){
 			var numPos = Math.abs(num)
-				,lastChar = (num+'').split('').pop()
+				,lastChar = (num+'').substr(-1)
 				,suffix
 			;
 			if (num == 0) return '0th';
