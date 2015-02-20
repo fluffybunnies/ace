@@ -2,7 +2,7 @@
 
 Features
 
-  - New helper Protect. First method preventBruteForce() provides protection against DOS or brute-force attacks against specific routes (e.g. wp-login.php for wordpress).
+	- New helper Protect. First method preventBruteForce() provides protection against DOS or brute-force attacks against specific routes (e.g. wp-login.php for wordpress).
 
 
 Bug fixes
@@ -15,4 +15,4 @@ Bug fixes
 
 Features
 
-  - Option for more intelligent ace.util.capitalize when passed a proper name
+	- Option for more intelligent ace.util.capitalize when passed a proper name
