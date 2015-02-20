@@ -59,7 +59,7 @@ class Demo extends ControllerAbstract {
 		));
 		$emailTo = $params['email_to'] ? $params['email_to'] : self::$defaultEmailTo;
 		$emailFrom = $params['email_from'] ? $params['email_from'] : self::$defaultEmailFrom;
-		$subject = $params['subject'] ? $params['subject'] : 'Sup (text)';
+		$subject = $params['subject'] ? $params['subject'] : 'Sup (html)';
 
 		$this->preventTooMany($params);
 
