@@ -97,7 +97,7 @@ AceBase.prototype._getEvt = function(key){
 }
 AceBase.prototype._fireSubs = function(key){
 	var evt = this._getEvt(key), subs = evt.subs.slice(0), i = 0;
-	console.log('erg', evt);
+	console.log('erg', key, evt);
 	for (;i<subs.length;++i) {
 		subs[i].cb(evt.error,evt.data);
 	}
