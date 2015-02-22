@@ -101,7 +101,7 @@ AceBase.prototype._fireSubs = function(key){
 	for (;i<subs.length;++i) {
 		subs[i].cb(evt.error,evt.data);
 	}
-	for (;i<subs.length;++i) {
+	for (i=0;i<subs.length;++i) {
 		if (subs[i].typeReady)
 			subs[i] = null;
 	}
