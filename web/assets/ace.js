@@ -86,9 +86,10 @@ AceBase.prototype.trigger = function(key,error,data){
 	return this;
 }
 AceBase.prototype._getEvt = function(key){
-	if (typeof this._evts == 'undefined')
+	var undef;
+	if (this._evts == undef)
 		this._evts = {};
-	if (typeof this._evts[key] == 'undefined') {
+	if (this._evts[key] == undef) {
 		this._evts[key] = {
 			subs: []
 		};
