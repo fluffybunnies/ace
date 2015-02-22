@@ -68,7 +68,6 @@ ace.ui.register('instagram',{
 		var z = this
 			,m = url.match(/%[^%]+%/g)
 		;
-		z.log('wef',m,url,/%[^%]+%/g);
 		if (m) {
 			$.each(m,function(i,v){
 				url = url.replace(v,z.fetchedData[v.substr(1,v.length-2)]);
