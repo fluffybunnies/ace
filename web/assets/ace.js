@@ -71,7 +71,7 @@ AceBase.prototype.off = function(key,cb){
 					evt.subs[n] = null;
 			}
 			ace.util.arrayFilter(evt.subs, function(sub){
-				return sub === null;
+				return sub !== null;
 			});
 		}
 	}
