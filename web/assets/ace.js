@@ -113,7 +113,7 @@ AceBase.prototype._fireSubs = function(key){
 	});
 }
 AceBase.prototype.log = function(){
-	var args = [this.key||(this.config?this.config.key:null)||'anonymous AceBase'];
+	var args = [this.key||(this.config?this.config.key:null)||'anonymous AceBase'], i = 0;
 	for (;i<arguments.length;++i)
 		args.push(arguments[i]);
 	console.log.apply(console,args);

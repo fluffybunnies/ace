@@ -33,7 +33,7 @@ ace.ui.register('instagram',{
 			,numToFetch = 0
 			,numFetched = 0
 		;
-		console.log('wef',z.opts.fetch);
+		z.log('wef',z.opts.fetch);
 		$.each(z.opts.fetch,function(k,route){
 			var url = z.opts.url+route[0];
 			url += (url.indexOf('?') == -1 ? '?' : '&') + 'callback=?';
