@@ -52,9 +52,9 @@ ace.ui.register('instagram',{
 	}
 	,getData: function(cb){
 		var z = this
-			,url = z.populateUrl(z.opts.url)
+			,url = z.populateUrl(z.opts.url+z.opts.query)
 		;
-		$.getJSON(url+z.opts.query+'?callback=?',{
+		$.getJSON(url+'?callback=?',{
 			client_id: z.opts.clientId
 			,count: z.opts.num
 		},function(data){
