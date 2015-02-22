@@ -82,7 +82,7 @@ AceBase.prototype.trigger = function(key,error,data){
 		evt.firedOnce = true;
 		evt.error = error;
 		evt.data = data;
-		this._fireSubs(key);
+		this._fireSubs(keys[i]);
 	}
 	return this;
 }
