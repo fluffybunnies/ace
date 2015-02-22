@@ -31,19 +31,17 @@
 	}
 }());
 AceBase.prototype.on = function(key,cb){
-	var z = this;
-	$.each(key.split(/ +/),function(i,key){
-		var evt = z._getEvt(key);
-		evt.subs.push({
+	var keys = key.split(/ +/), i = 0;
+	for (;i<keys.length;++i)
+		this._getEvt(keys[i]).subs.push({
 			cb: cb
 		});
-	});
-	return z;
+	return this;
 }
 AceBase.prototype.ready = function(key,cb){
-	var z = this;
-	$.each(key.split(/ +/),function(i,key){
-		var evt = z._getEvt(key);
+	var keys = key.split(/ +/), i = 0, evt;
+	for (;i<keys.length;++i) {
+		evt = this._getEvt(keys[i]);
 		if (evt.firedOnce) {
 			cb(evt.error,evt.data);
 		} else {
@@ -52,41 +50,40 @@ AceBase.prototype.ready = function(key,cb){
 				typeReady: true
 			});
 		}
-	});
-	return z;
+	}
+	return this;
 }
 AceBase.prototype.off = function(key,cb){
-	var z = this
-		,evt
-	;
-	$.each(key.split(/ +/),function(i,key){
-		if (!z._evts || !z._evts[key]) return;
-		evt = z._getEvt(key);
-		if (typeof cb == 'undefined') {
+	var keys = key.split(/ +/), i = 0;
+	for (;i<keys.length;++i) {
+		if (!this._evts || !this._evts[keys[i]])
+			continue;
+		var evt = z._getEvt(key), n = 0, undef;
+		if (cb === undef) {
 			evt.subs = [];
 		} else {
-			$.each(evt.subs,function(i,sub){
+			for (;n<evt.subs.length;++n) {
 				// checking !sub in case this is called in callback inside fireSubs
-				if (!sub || sub.cb == cb)
-					evt.subs[i] = null;
-			});
-			ace.util.arrayFilter(evt.subs,function(sub){
-				return sub !== null;
+				if (!evt.subs[n] || evt.subs[n].cb == cb)
+					evt.subs[n] = null;
+			}
+			ace.util.arrayFilter(evt.subs, function(sub){
+				return sub === null;
 			});
 		}
-	});
-	return z;
+	}
+	return this;
 }
 AceBase.prototype.trigger = function(key,error,data){
-	var z = this;
-	$.each(key.split(/ +/),function(i,key){
-		var evt = z._getEvt(key);
+	var keys = key.split(/ +/), i = 0, evt;
+	for (;i<keys.length;++i) {
+		evt = this._getEvt(keys[i]);
 		evt.firedOnce = true;
 		evt.error = error;
 		evt.data = data;
-		z._fireSubs(key);
-	});
-	return z;
+		this._fireSubs(key);
+	}
+	return this;
 }
 AceBase.prototype._getEvt = function(key){
 	if (typeof this._evts == 'undefined')
@@ -99,23 +96,24 @@ AceBase.prototype._getEvt = function(key){
 	return this._evts[key];
 }
 AceBase.prototype._fireSubs = function(key){
-	var evt = this._getEvt(key);
-	$.each(evt.subs.slice(0),function(i,sub){
-		sub.cb(evt.error,evt.data);
-	});
-	$.each(evt.subs,function(i,sub){
-		if (sub.typeReady)
-			evt.subs[i] = null;
-	});
+	var evt = this._getEvt(key)
+		,subs = evt.subs.slice(0)
+	;
+	for (;i<subs.length;++i) {
+		subs[i].cb(evt.error,evt.data);
+	}
+	for (;i<subs.length;++i) {
+		if (subs[i].typeReady)
+			subs[i] = null;
+	}
 	ace.util.arrayFilter(evt.subs,function(sub){
 		return sub !== null;
 	});
 }
 AceBase.prototype.log = function(){
 	var args = [this.key||(this.config?this.config.key:null)||'anonymous AceBase'];
-	$.each(arguments,function(i,v){
-		args.push(v);
-	});
+	for (;i<arguments.length;++i)
+		args.push(arguments[i]);
 	console.log.apply(console,args);
 	//return this;
 }
