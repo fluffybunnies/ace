@@ -36,6 +36,7 @@ ace.ui.register('instagram',{
 		$.each(z.opts.fetch,function(k,route){
 			var url = z.opts.url+route[0];
 			url += (url.indexOf('?') == -1 ? '?' : '&') + 'callback=?';
+			console.log(k,route,url);
 			++numToFetch;
 			$.getJSON(url,{
 				client_id: z.opts.clientId
