@@ -52,7 +52,7 @@ ace.ui.register('instagram',{
 	}
 	,getData: function(cb){
 		var z = this
-			,url = z.parseUrl(z.opts.url)
+			,url = z.populateUrl(z.opts.url)
 		;
 		$.getJSON(url+z.opts.query+'?callback=?',{
 			client_id: z.opts.clientId
@@ -64,7 +64,7 @@ ace.ui.register('instagram',{
 			cb();
 		});
 	}
-	,parseUrl: function(url){
+	,populateUrl: function(url){
 		var z = this
 			,m = url.match(/%[^%]+%/g)
 		;
