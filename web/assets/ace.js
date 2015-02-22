@@ -59,6 +59,7 @@ AceBase.prototype.off = function(key,cb){
 		if (!this._evts || !this._evts[keys[i]])
 			continue;
 		var evt = this._getEvt(key), n = 0, undef;
+		console.log('evt', evt);
 		if (cb === undef) {
 			evt.subs = [];
 		} else {
