@@ -147,7 +147,7 @@ div.ace-smile {
 			,fetch: {
 				userId: ['users/search?q=jewelmint',function(res){
 					return res.data[0].id;
-				}
+				]
 			}
 		}</script>
 	</div>
