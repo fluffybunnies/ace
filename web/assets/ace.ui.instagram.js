@@ -14,7 +14,7 @@ ace.ui.register('instagram',{
 		,num: 10
 		,hoverFadeIn: true
 		,shadbox: true
-		.fetch: {}
+		,fetch: {}
 	}
 	,fetchedData: {}
 	,init: function(){
