@@ -139,8 +139,16 @@ div.ace-smile {
 	<h1 class="page-title"><span>Para</span><span>digm</span></h1>
 
 	<div class="instagram-container">
-		<script type="text/ace-instagram">{
+		<!--<script type="text/ace-instagram">{
 			query: 'users/227962011/media/recent'
+		}</script>-->
+		<script type="text/ace-instagram">{
+			query: 'users/%userId%/media/recent'
+			,fetch: {
+				userId: ['users/search?q=jewelmint',function(res){
+					return res.data[0].id;
+				}
+			}
 		}</script>
 	</div>
 

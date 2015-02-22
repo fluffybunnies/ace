@@ -14,17 +14,47 @@ ace.ui.register('instagram',{
 		,num: 10
 		,hoverFadeIn: true
 		,shadbox: true
+		.fetch: {}
 	}
+	,fetchedData: {}
 	,init: function(){
 		var z = this;
-		z.getData(function(){
-			z.build();
-			z.functionalize();
+		z.fetchStuff(function(err){
+			if (err)
+				return z.log('ERROR','fetchStuff',err);
+			z.getData(function(){
+				z.build();
+				z.functionalize();
+			});
 		});
 	}
+	,fetchStuff: function(cb){
+		var z = this
+			,numToFetch = 0
+			,numFetched = 0
+		;
+		$.each(z.opts.fetch,function(k,route){
+			var url = z.opts.url+route;
+			url += (url.indexOf('?') == -1 ? '?' : '&') + 'callback=?';
+			++numToFetch;
+			$.getJSON(url,{
+				client_id: z.opts.clientId
+			},function(data){
+				if (!(data && data.data))
+					return cb('unexpected response');
+				z.fetchedData[k] = z.opts.fetch[k](data);
+				if (++numFetched == numToFetch)
+					cb();
+			});
+		});
+		if (!numToFetch)
+			cb();
+	}
 	,getData: function(cb){
-		var z = this;
-		$.getJSON(z.opts.url+z.opts.query+'?callback=?',{
+		var z = this
+			,url = z.parseUrl(z.opts.url)
+		;
+		$.getJSON(url+z.opts.query+'?callback=?',{
 			client_id: z.opts.clientId
 			,count: z.opts.num
 		},function(data){
@@ -33,6 +63,17 @@ ace.ui.register('instagram',{
 			z.media = data.data;
 			cb();
 		});
+	}
+	,parseUrl: function(url){
+		var z = this
+			,m = url.match(/%[^%]+%/g)
+		;
+		if (m) {
+			$.each(m,function(i,v){
+				url = url.replace(v,z.fetchedData[v.substr(1,v.length-2)]);
+			});
+		}
+		return url;
 	}
 	,build: function(){
 		var z = this
