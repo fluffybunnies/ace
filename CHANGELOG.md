@@ -1,3 +1,16 @@
+## 0.0.16 (2015-02-22)
+
+Features
+
+	- + Ability to query Instagram by screename instead of numeric id
+
+
+Bugs
+
+	- Handle missing caption in Instagram api response
+
+
+
 ## 0.0.15 (2015-02-20)
 
 Features
@@ -5,7 +18,7 @@ Features
 	- New helper Protect. First method preventBruteForce() provides protection against DOS or brute-force attacks against specific routes (e.g. wp-login.php for wordpress).
 
 
-Bug fixes
+Bugs
 
 	- Helper SES was broken when sending normal emails due to lack of backwards compatibility with new AWS SDK.
 
