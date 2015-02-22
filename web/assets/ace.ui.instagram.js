@@ -33,11 +33,9 @@ ace.ui.register('instagram',{
 			,numToFetch = 0
 			,numFetched = 0
 		;
-		z.log('wef',z.opts);
 		$.each(z.opts.fetch,function(k,route){
 			var url = z.opts.url+route[0];
-			url += (url.indexOf('?') == -1 ? '?' : '&') + 'callback=?';
-			console.log(k,route,url);
+			url += (url.indexOf('?') == -1 ? '?' : '&') + 'callback=?';;
 			++numToFetch;
 			$.getJSON(url,{
 				client_id: z.opts.clientId
@@ -70,6 +68,7 @@ ace.ui.register('instagram',{
 		var z = this
 			,m = url.match(/%[^%]+%/g)
 		;
+		z.log('wef',m);
 		if (m) {
 			$.each(m,function(i,v){
 				url = url.replace(v,z.fetchedData[v.substr(1,v.length-2)]);
