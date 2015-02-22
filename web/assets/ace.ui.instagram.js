@@ -86,7 +86,7 @@ ace.ui.register('instagram',{
 			var jImg = $('<div class="'+x+'-img">'
 				+ '<img class="'+x+'-img-img" src="'+m.images.low_resolution.url+'" xdata-img="'+m.images.standard_resolution.url+'" />'
 			+ '</div>');
-			z..log('mmm',m);
+			z.log('mmm',m);
 			jImg.find('img.'+x+'-img-img').attr('alt',m.caption?m.caption.text:'');
 			z.$.cont.append(jImg);
 		});
