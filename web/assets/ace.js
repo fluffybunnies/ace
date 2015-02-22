@@ -54,15 +54,18 @@ AceBase.prototype.ready = function(key,cb){
 	return this;
 }
 AceBase.prototype.off = function(key,cb){
-	var keys = key.split(/ +/), i = 0;
+	var keys = key.split(/ +/)
+		,i = 0, n = 0
+		,evt, undef
+	;
 	for (;i<keys.length;++i) {
 		if (!this._evts || !this._evts[keys[i]])
 			continue;
-		var evt = this._getEvt(keys[i]), n = 0, undef;
+		evt = this._getEvt(keys[i]);
 		if (cb === undef) {
 			evt.subs = [];
 		} else {
-			for (;n<evt.subs.length;++n) {
+			for (n=0;n<evt.subs.length;++n) {
 				// checking !sub in case this is called in callback inside fireSubs
 				if (!evt.subs[n] || evt.subs[n].cb == cb)
 					evt.subs[n] = null;
