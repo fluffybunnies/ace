@@ -4,6 +4,15 @@
 	query: 'users/227962011/media/recent'
 }</script>
 
+<script type="text/ace-instagram">{
+	query: 'users/%userId%/media/recent'
+	,fetch: {
+		userId: ['users/search?q=markthegonzales',function(res){
+			return res.data[0].id;
+		}]
+	}
+}</script>
+
 */
 
 ace.ui.register('instagram',{
