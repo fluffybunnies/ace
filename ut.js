@@ -4,6 +4,7 @@ var cp = require('child_process').spawn
 ,path = require('path')
 ,trimRe = /(^\s+)|(\s+$)/g
 ,trimConsecutiveRe = /(\s)+/g
+,undef
 ;
 
 
@@ -45,8 +46,10 @@ module.exports.prettyTime = function(date,utc){
 	return z.padZ(d.getMonth()+1)+'/'+z.padZ(d.getDate())+'/'+d.getFullYear()+' '+z.padZ(d.getHours())+':'+z.padZ(d.getMinutes())+':'+z.padZ(d.getSeconds());
 }
 
-module.exports.padZ =  function(n){
-	while ((n+'').length < 2)
+module.exports.padZ =  function(n, m){
+	if (m == undef)
+		m = 2;
+	while ((n+'').length < m)
 		n = '0'+n;
 	return n;
 }
@@ -74,6 +77,8 @@ module.exports.superTrim = function(str){
 }
 
 module.exports.dateDiff = function(d0,d1){
+	if (d1 == undef)
+		d1 = new Date;
 	var secs = Math.round((d1-d0)/1000)
 	,intervals = [
 		['year',31536000]

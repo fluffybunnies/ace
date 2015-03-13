@@ -13,6 +13,7 @@
 	],
 	"version": "0.0.16",
 	"author": "fluffybunnies",
+	"license": "MIT",
 	"repository": {
 		"type": "git",
 		"url": "git@github.com:fluffybunnies/ace.git"
