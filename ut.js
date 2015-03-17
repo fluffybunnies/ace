@@ -99,6 +99,8 @@ module.exports.dateDiff = function(d0,d1){
 		secs -= n*intervals[i][1];
 		str.push(n+' '+intervals[i][0]+(n==1?'':'s'));
 	}
+	if (!str.length)
+		return '0 '+intervals.pop()[0]+'s';
 	return str.join(', ');
 }
 
