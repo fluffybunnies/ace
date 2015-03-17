@@ -4,9 +4,9 @@ installDir=$1
 echo "installDir: $installDir"
 
 echo ""
-echo "Clean files in web/public-out/ 7+ days old"
+echo "Clean files in web/public-out/ 30+ days old"
 # print0 and -0 are for spaces in filenames
-find $installDir/web/public-out -mtime +7 -type f -print0 | xargs -0 rm -v
+find $installDir/web/public-out -mtime +30 -type f -print0 | xargs -0 rm -v
 
 echo ""
 echo "Clean files in out/ 1+ days old"
