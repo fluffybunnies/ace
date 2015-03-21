@@ -9,7 +9,7 @@ Demo: http://ace.fabfitfun.com/demo
 ### Install
 ```
 if [ ! -d ./mysite ]; then mkdir ./mysite; fi
-npm install aced && mv ./node_modules/aced/* ./mysite && cd ./mysite && ls
+npm install aced && mv -i ./node_modules/aced/* ./mysite && cd ./mysite && ls
 ```
 Or, deploy to Amazon EC2 with Sire (https://github.com/fluffybunnies/sire)
 ```
