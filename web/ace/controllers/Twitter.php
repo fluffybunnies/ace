@@ -26,7 +26,6 @@ class Twitter extends ControllerAbstract {
 		), array(
 			CURLOPT_HTTPHEADER => array("Authorization: Basic $creds"),
 		), true);
-		if (Ace::g($_GET,'debug') == '123') {echo "Basic $creds\n"; echo base64_decode($creds)."\n\n";}
 		//if (!empty($_GET['debug'])) { echo "_getAppToken()\n<br />"; echo "$r\n<br />"; }
 		$r = json_decode($r, true);
 
