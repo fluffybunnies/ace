@@ -10,7 +10,7 @@ Demo: http://ace.fabfitfun.com/demo
 ```
 mysite=./mysite; if [ ! -d $mysite ]; then mkdir $mysite; fi; npm install aced && cp -ri ./node_modules/aced/* $mysite && cd $mysite && ls -l
 ```
-Or, deploy to Amazon EC2 with Sire (https://github.com/fluffybunnies/sire)
+Or, deploy to Amazon EC2 with [Sire](https://github.com/fluffybunnies/sire)
 ```
 # Deploy sire to remote server:
 ~/sire/index.sh _deploy
