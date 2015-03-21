@@ -12,10 +12,10 @@ mysite=./mysite; if [ ! -d $mysite ]; then mkdir $mysite; fi; npm install aced &
 ```
 Or, deploy to Amazon EC2 with Sire (https://github.com/fluffybunnies/sire)
 ```
-# Deploy sire to remote server (run this locally):
+# Deploy sire to remote server:
 ~/sire/index.sh _deploy
-# Deploy ace on remote server (run this on remote server):
-/root/sire/index.sh ace
+# Deploy ace to remote server:
+ssh ubuntu@123.123.123.123 'sudo /root/sire/index.sh ace'
 ```
 
 
