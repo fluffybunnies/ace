@@ -19,7 +19,7 @@ class Twitter extends ControllerAbstract {
 	private function _getAppToken(){
 		$key = Ace::getConfig('twitterAppKey');
 		$secret = Ace::getConfig('twitterAppSecret');
-		$creds = base64_encode(rawurlencode($key).':'.rawurlencode($secret));
+		$creds = base64_encode($this->encode_rfc3986($key).':'.$this->encode_rfc3986($secret));
 
 		$r = Ace::curlPost('https://api.twitter.com/oauth2/token', array(
 			'grant_type' => 'client_credentials',
@@ -71,6 +71,10 @@ class Twitter extends ControllerAbstract {
 		}
 
 		return $r;
+	}
+
+	protected function encode_rfc3986($str){
+		return str_replace('+', ' ', str_replace('%7E', '~', rawurlencode(($string))));
 	}
 
 }
