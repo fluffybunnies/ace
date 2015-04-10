@@ -89,25 +89,28 @@ ace.ui.register('twitter',{
 		var text = tweet.text
 			,match = {}
 		;
-		$.each(tweet.entities.urls,function(i,item){
-			if (match[item.url])
-				return true;
-			match[item.url] = true;
-			text = text.replace(new RegExp(ace.util.escapeRegEx(item.url),'g'),'<a href="'+item.url+'" target="_blank">'+(item.display_url||item.url)+'</a>');
-		});
-		$.each(tweet.entities.media,function(i,item){
-			if (match[item.url])
-				return true;
-			match[item.url] = true;
-			text = text.replace(new RegExp(ace.util.escapeRegEx(item.url),'g'),'<a href="'+item.url+'" target="_blank">'+(item.display_url||item.url)+'</a>');
-		});
+		if (tweet.entities.urls)
+			$.each(tweet.entities.urls,function(i,item){
+				if (match[item.url])
+					return true;
+				match[item.url] = true;
+				text = text.replace(new RegExp(ace.util.escapeRegEx(item.url),'g'),'<a href="'+item.url+'" target="_blank">'+(item.display_url||item.url)+'</a>');
+			});
+		if (tweet.entities.media)
+			$.each(tweet.entities.media,function(i,item){
+				if (match[item.url])
+					return true;
+				match[item.url] = true;
+				text = text.replace(new RegExp(ace.util.escapeRegEx(item.url),'g'),'<a href="'+item.url+'" target="_blank">'+(item.display_url||item.url)+'</a>');
+			});
 		match = {};
-		$.each(tweet.entities.hashtags,function(i,item){
-			if (match[item.text])
-				return true;
-			match[item.text] = true;
-			text = text.replace(new RegExp('#'+ace.util.escapeRegEx(item.text),'g'),'<a href="https://twitter.com/search?q=%23'+encodeURIComponent(item.text)+'&src=hash" target="_blank">#'+item.text+'</a>');
-		});
+		if (tweet.entities.hashtags)
+			$.each(tweet.entities.hashtags,function(i,item){
+				if (match[item.text])
+					return true;
+				match[item.text] = true;
+				text = text.replace(new RegExp('#'+ace.util.escapeRegEx(item.text),'g'),'<a href="https://twitter.com/search?q=%23'+encodeURIComponent(item.text)+'&src=hash" target="_blank">#'+item.text+'</a>');
+			});
 		return text;
 	}
 	,setUpScroll: function(){
