@@ -1,8 +1,13 @@
-## 0.0.19 (2015-04-09)
+## 0.0.20 (2015-04-09)
 
 Features
 
 	- Improved detail in README.md
+
+
+Bugs
+
+	- Fixed encoding method for Twitter OAuth
 
 
 

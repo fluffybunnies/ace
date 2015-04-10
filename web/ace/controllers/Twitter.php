@@ -74,7 +74,7 @@ class Twitter extends ControllerAbstract {
 	}
 
 	protected function encode_rfc3986($str){
-		return str_replace('+', ' ', str_replace('%7E', '~', rawurlencode(($string))));
+		return str_replace('+', ' ', str_replace('%7E', '~', rawurlencode(($str))));
 	}
 
 }
