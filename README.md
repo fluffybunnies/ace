@@ -155,7 +155,7 @@ ace.pop({
 	,exit_btn: true
 	,position: 'fixed'
 	,true_center: false
-}).bind('ok',function(){
+}).on('ok',function(){
 	forfeitTheWorld();
 });
 ```

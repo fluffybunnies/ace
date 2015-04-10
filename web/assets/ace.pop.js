@@ -7,7 +7,7 @@ ace.pop({
 		['cancel','Cancel']
 		,['ok','Ok']
 	]
-}).bind('ok',function(){
+}).on('ok',function(){
 	// delete everything they own
 });
 
