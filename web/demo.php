@@ -168,7 +168,7 @@ div.ace-smile {
 		<script type="text/ace-carousel">{
 				imgs: [
 					'http://remotweb.com/files/uploads/2014/06/fashion_jewelry.jpg'
-					,'http://www.cobymadison.com/media/catalog/product/cache/1/image/9df78eab33525d08d6e5fb8d27136e95/1/7/17645w_1.jpg'
+					,'http://b-i.forbesimg.com/geristengel/files/2013/05/i-ella-fashion-closet.jpg'
 					,'http://thechrisellefactor.com/wp-content/uploads/2012/04/Chanel_Wallet_Chriselle1.jpg'
 					,'http://thechrisellefactor.com/wp-content/uploads/2012/09/Peplum_Leather_zara_top_Valentino_rockstud_leopard_shoes_Purse_chriselle_Lim_5.jpg'
 					,'http://glambistro.com/wp-content/uploads/2013/10/summer-arm-candy.jpg'

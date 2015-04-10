@@ -20,7 +20,7 @@ ace.tooltip($('#look-at-me'),{
 			z.groups[z.opts.group] ? z.groups[z.opts.group].push(z) : (z.groups[z.opts.group] = [z]);
 		if (ace.util.onTouchDevice())
 			return console.log(z.config.key,'disabled for touch devices');
-		$el.bind(opts.showEvt,function(){
+		$el.bind(z.opts.showEvt,function(){
 			z.hideAll(z);
 			if (z.opts.group !== null) {
 				$.each(z.groups[z.opts.group],function(k,tip){
@@ -29,7 +29,7 @@ ace.tooltip($('#look-at-me'),{
 			} else
 				z.show();
 		});
-		$el.bind(opts.hideEvt,function(){
+		$el.bind(z.opts.hideEvt,function(){
 			if (z.opts.group !== null) {
 				$.each(z.groups[z.opts.group],function(k,tip){
 					tip.hide();
