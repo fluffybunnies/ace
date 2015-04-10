@@ -10,7 +10,7 @@ Demo: [http://ace.fabfitfun.com/demo](http://ace.fabfitfun.com/demo)
 ```bash
 mysite=./mysite; if [ ! -d $mysite ]; then mkdir $mysite; fi; npm install aced && cp -ri ./node_modules/aced/* $mysite && cd $mysite && ls -l
 ```
-Or, deploy to Amazon EC2 with [Sire](https://github.com/fluffybunnies/sire)
+Or, deploy directly to Amazon EC2 with [Sire](https://github.com/fluffybunnies/sire)
 ```bash
 # Deploy sire to remote server:
 ~/sire/index.sh _deploy
@@ -22,7 +22,7 @@ ssh ubuntu@123.123.123.123 'sudo /root/sire/index.sh ace'
 ### Front End - UI
 
 ##### Instagram Gallery
-- Plug and play a simple static gallery id
+- Plug and play with a simple gallery id
 - Or configure an api mapping to generate dynamic galleries
 ```html
 <script type="text/ace-instagram">{
@@ -117,7 +117,7 @@ ace.tooltip($('#me-too'),{
 
 ##### ShadBox
 - Bring images to life with this shadow box modal
-- Makes load-time look good, with a options to customize the animation
+- Makes load-time look good, with options to customize the animation
 - Plugs directly into other ace modules such as the photo carousel and instagram gallery via a simple on/off option
 ```javascript
 ace.shadbox('/albums/2015/some.sweet.image.jpg');
@@ -220,7 +220,14 @@ http://ace.fabfitfun.com/ace/api/demo/email-csv-php?email_to=alec@luckygroupinc.
 Ace::getConfig
 	Request value loaded from config.php / config.local.php
 Ace::g
-	Example: Ace::g($_POST,'param') instead of if (isset($_POST['param'] &&...
+	Example:
+		if (Ace::g($_POST,'param') == 'abc') ...
+		instead of
+		if (isset($_POST['param']) && $_POST['param'] == 'abc') ...
+	Example:
+		$host = Ace::g($_SERVER,array('HOST_NAME','SERVER_NAME'));
+		instead of
+		$host = isset($_SERVER['HOST_NAME']) ? $_SERVER['HOST_NAME'] : isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : null;
 Ace::onHttps
 	Works behind ELB using HTTP_X_FORWARDED_PROTO
 Ace::enforceHttps

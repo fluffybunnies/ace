@@ -34,7 +34,14 @@ class Ace {
 	// BEGIN utils
 
 	/**
-		Example: Ace::g($_POST,'param') instead of if (isset($_POST['param'] &&...
+		Example:
+			if (Ace::g($_POST,'param') == 'abc') ...
+			instead of
+			if (isset($_POST['param']) && $_POST['param'] == 'abc') ...
+		Example:
+			$host = Ace::g($_SERVER,array('HOST_NAME','SERVER_NAME'));
+			instead of
+			$host = isset($_SERVER['HOST_NAME']) ? $_SERVER['HOST_NAME'] : isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : null;
 	*/
 	public static function g($p,$k,$d=null) {
 		if (!is_array($k))
@@ -153,8 +160,7 @@ class Ace {
 				\ace\Ace::putDeep($house,'bedroom>dresser[]','shirt');
 				\ace\Ace::putDeep($house,'kitchen>cabinets[]>corner','salt');
 			Note:
-				For simplicity you can't use [] anywhere in the actual key
-					names, even though it's legal in php
+				For simplicity, adjoined square brackets ('[]') are not allowed in key names
 		**/
 		$keys = explode('>',$where);
 		for ($i=0,$c=count($keys);$i<$c;$i++) {
