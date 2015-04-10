@@ -32,6 +32,8 @@ $(function(){
 				['cancel','Cancel']
 				,['ok','Ok']
 			]
+		}).bind('ok',function(){
+			ace.fireworks.fire();
 		});
 	});
 	ace.tooltip($acePopExample, {
