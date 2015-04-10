@@ -90,7 +90,6 @@ ace.ui.register('twitter',{
 			,match = {}
 		;
 		$.each(tweet.entities.urls,function(i,item){
-			console.log(item.url, i);
 			if (match[item.url])
 				return true;
 			match[item.url] = true;
