@@ -62,6 +62,18 @@ See demo page and web/assets/ace.chat.js
 Uses arrrr for backend (https://github.com/fluffybunnies/arrrr)
 
 
+##### Tooltips
+- Place smart tooltips on any html element
+- Intelligent positioning adapts to custom css styles and always remains within viewport
+- Activated by hover, click, or any other custom event
+- Supports tooltip activation groupings
+```
+ace.tooltip($('#look-at-me'),{
+	content: 'I do cool things!'
+});
+```
+
+
 ### Front End - Utils
 ```
 // 'ace.util.'+Object.keys(ace.util).sort().join('\nace.util.')

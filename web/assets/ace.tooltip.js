@@ -20,23 +20,22 @@ ace.tooltip($('#look-at-me'),{
 			z.groups[z.opts.group] ? z.groups[z.opts.group].push(z) : (z.groups[z.opts.group] = [z]);
 		if (ace.util.onTouchDevice())
 			return console.log(z.config.key,'disabled for touch devices');
-		$el.bind('mouseover mouseout',function(e){
-			if (e.type == 'mouseover') {
-				z.hideAll(z);
-				if (z.opts.group !== null) {
-					$.each(z.groups[z.opts.group],function(k,tip){
-						tip.show();
-					});
-				} else
-					z.show();
-			} else {
-				if (z.opts.group !== null) {
-					$.each(z.groups[z.opts.group],function(k,tip){
-						tip.hide();
-					});
-				} else
-					z.hide();
-			}
+		$el.bind(opts.showEvt,function(){
+			z.hideAll(z);
+			if (z.opts.group !== null) {
+				$.each(z.groups[z.opts.group],function(k,tip){
+					tip.show();
+				});
+			} else
+				z.show();
+		});
+		$el.bind(opts.hideEvt,function(){
+			if (z.opts.group !== null) {
+				$.each(z.groups[z.opts.group],function(k,tip){
+					tip.hide();
+				});
+			} else
+				z.hide();
 		});
 	};
 	Tooltip.prototype.config = {
@@ -48,6 +47,8 @@ ace.tooltip($('#look-at-me'),{
 			,fixed: false
 			,group: null // tips with the same group will show/hide at the same time
 			,classes: ''
+			,showEvt: 'mouseover'
+			,hideEvt: 'mouseout'
 		}
 	}
 	Tooltip.prototype.tooltips = {};
