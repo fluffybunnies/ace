@@ -182,7 +182,7 @@ div.ace-smile {
 
 	<div class="twitter-horizontal-container">
 		<script type="text/ace-twitter">{
-			screenName: 'jewelmint'
+			screenName: 'luckymagazine'
 			,numGet: 10
 			,numShow: 1
 			,scroll: 'x'
