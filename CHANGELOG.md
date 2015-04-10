@@ -3,6 +3,7 @@
 Features
 
 	- Improved detail in README.md
+	- Hyperlink media urls in Twitter feed
 
 
 Bugs
