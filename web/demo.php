@@ -154,7 +154,7 @@ div.ace-smile {
 
 	<div class="twitter-container">
 		<script type="text/ace-twitter">{
-			screenName: 'jewelmint'
+			screenName: 'luckymagazine'
 			,numGet: 10
 			,numShow: 4
 			,scroll: 'y'

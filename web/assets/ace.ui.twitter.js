@@ -1,7 +1,7 @@
 /*
 
 <script type="text/ace-twitter">{
-	screenName: 'jewelmint'
+	screenName: 'luckymagazine'
 	,numGet: 10
 	,numShow: 3
 	,scroll: 'y'
