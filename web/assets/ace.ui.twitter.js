@@ -95,6 +95,12 @@ ace.ui.register('twitter',{
 			match[item.url] = true;
 			text = text.replace(new RegExp(ace.util.escapeRegEx(item.url),'g'),'<a href="'+item.url+'" target="_blank">'+(item.display_url||item.url)+'</a>');
 		});
+		$.each(tweet.entities.media,function(i,item){
+			if (match[item.url])
+				return true;
+			match[item.url] = true;
+			text = text.replace(new RegExp(ace.util.escapeRegEx(item.url),'g'),'<a href="'+item.url+'" target="_blank">'+(item.display_url||item.url)+'</a>');
+		});
 		match = {};
 		$.each(tweet.entities.hashtags,function(i,item){
 			if (match[item.text])
