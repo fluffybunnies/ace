@@ -10,5 +10,11 @@ div.clear {
 
 /* BEGIN external overrides */
 
+.fb-comments-responsive span,
+.fb-comments-responsive span iframe[style] {
+  min-width: 100% !important;
+  width: 100% !important;
+}
+
 /* END external overrides */
 
