@@ -8,7 +8,14 @@ div.clear {
 }
 /* END globals */
 
-/* BEGIN theme overrides */
+/* BEGIN external overrides */
 
-/* END theme overrides */
+.fb-comments-responsive .fb_iframe_widget,
+.fb-comments-responsive .fb_iframe_widget span,
+.fb-comments-responsive .fb_iframe_widget span iframe[style] {
+  min-width: 100% !important;
+  width: 100% !important;
+}
+
+/* END external overrides */
 

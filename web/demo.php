@@ -67,7 +67,7 @@ $(function(){
 	var $fbComments = $('.ace-fb-comments');
 	ace.fb.ready(function(){
 		var href = 'http://'+window.location.host+window.location.pathname;
-		$fbComments.html('<div class="fb-comments" data-href="'+href+'" data-width="100%" data-numposts="5" data-colorscheme="light"></div>')
+		$fbComments.html('<div class="fb-comments fb-comments-responsive" data-href="'+href+'" data-width="100%" data-numposts="5" data-colorscheme="light"></div>')
 			.css('display','block')
 		FB.XFBML.parse($fbComments[0]);
 	});
@@ -147,12 +147,6 @@ div.ace-smile {
 
 .ace-fb-comments {
 	display: none;
-}
-.ace-fb-comments .fb_iframe_widget,
-.ace-fb-comments .fb_iframe_widget span,
-.ace-fb-comments .fb_iframe_widget span iframe[style] {
-  min-width: 100% !important;
-  width: 100% !important;
 }
 </style>
 
