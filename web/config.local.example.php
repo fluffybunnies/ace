@@ -5,4 +5,10 @@ if (!defined('WEBROOT'))
 $twitterAppKey = '';
 $twitterAppSecret = '';
 
-//$googleAnalyticsId = '';
+$facebookAppId = '';
+
+$googleAnalyticsId = '';
+
+$awsAccessKey = '';
+$awsAccessSecret = '';
+$awsRegion = 'us-east-1';

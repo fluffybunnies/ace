@@ -13,6 +13,14 @@ use \ace\Ace;
 <script src="/ace.js"></script>
 <script>
 
+<?php if (Ace::getConfig('facebookAppId')): ?>
+ace.fb.loadSdk({
+	appId: '<?php echo Ace::getConfig('facebookAppId'); ?>'
+	,version: 'v2.1'
+	,xfbml: false
+});
+<?php endif; ?>
+
 $(function(){
 	$('.ace-smile').each(function(){
 		var $el = $(this);
@@ -54,6 +62,14 @@ $(function(){
 		,pos: 'bot'
 		,offset: 10
 		,group: 1
+	});
+
+	var $fbComments = $('.ace-fb-comments');
+	ace.fb.ready(function(){
+		var href = 'http://'+window.location.host+window.location.pathname;
+		$fbComments.html('<div class="fb-comments" data-href="'+href+'" data-numposts="5" data-colorscheme="light"></div>')
+			.css('display','block')
+		FB.XFBML.parse($fbComments[0]);
 	});
 });
 
@@ -130,6 +146,10 @@ h3 span {
 div.ace-smile {
 	padding: 10px;
 	display: inline-block; /* for tooltip */
+}
+
+.ace-fb-comments {
+	display: none;
 }
 </style>
 
@@ -231,6 +251,8 @@ div.ace-smile {
 			//if (!empty($_GET['debug'])) echo "\n\n".implode("\n",$pretty)."\n\n";
 		?>
 	</div>
+
+	<div class="ace-fb-comments"></div>
 
 </div>
 

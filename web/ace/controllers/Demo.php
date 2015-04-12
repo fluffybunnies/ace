@@ -142,7 +142,7 @@ class Demo extends ControllerAbstract {
 
 
 	private function getSampleData(){
-		return include WEBROOT.'/../sample-data.php';
+		return include WEBROOT.'/../assets/sample-data.php';
 	}
 
 	private function generateCsvFromArray($writeToPath, $data){
