@@ -10,11 +10,5 @@ div.clear {
 
 /* BEGIN external overrides */
 
-.fb-comments-responsive .fb_iframe_widget span,
-.fb-comments-responsive .fb_iframe_widget span iframe[style] {
-  min-width: 100% !important;
-  width: 100% !important;
-}
-
 /* END external overrides */
 
