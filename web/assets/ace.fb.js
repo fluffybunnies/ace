@@ -40,7 +40,7 @@ ace.fb = {
 	}
 
 	,login: function(cb, opts){
-		opts = $.extend({scope: scope}, opts ? {});
+		opts = $.extend({scope: scope}, opts);
 		this.ready(function(){
 			FB.login(cb,opts);
 		});
