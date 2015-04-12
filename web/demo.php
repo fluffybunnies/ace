@@ -133,9 +133,6 @@ h3 span {
 .ace-example {
 	margin-bottom: 14px;
 }
-.ace-class-description {
-	margin-bottom: 14px;
-}
 .ace-double .ace-example {
 	float: left;
 	width: 48%;
@@ -235,7 +232,7 @@ div.ace-smile {
 		<div class="ace-smile"></div>
 	</div>
 
-	<div class="ace-class-description">
+	<div class="ace-example">
 		<h3>Ace PHP Utility Methods <span>(displayed using Ace::varDump)</span>:</h3>
 		<?php
 			$c = new ReflectionClass('\ace\Ace');
