@@ -1,8 +1,5 @@
 <?php
 
-if (!empty($_GET['debug']))
-	exit(json_encode($_SERVER));
-
 include dirname(__FILE__).'/bootshell.php';
 use \ace\Ace;
 
