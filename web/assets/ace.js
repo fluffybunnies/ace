@@ -510,7 +510,7 @@ ace = {
 				expires = opts.expires;
 			}
 			set = (document.cookie = [
-				escape(key),'=',val
+				escape(key),'=',escape(val)
 				,expires == undef ? '' : '; expires='+expires
 				,opts.path == undef ? '; path=/' : '; path='+opts.path
 				,opts.domain == undef ? '' : '; domain='+opts.domain
@@ -520,6 +520,53 @@ ace = {
 		}
 		,getCookie: function(key){
 			return this.parseCookies()[key];
+		}
+
+		,padZ: function(n,m){
+			if (typeof m == 'undefined')
+				m = 2;
+			while ((n+'').length < m)
+				n = '0'+n;
+			return n;
+		}
+
+		,hash: function(str){
+			// convert string to integer. one way
+			var hash = 0, i, l;
+			str += '';
+			for (i=0,l=str.length;i<l;++i) {
+				hash = (hash<<5)-hash+str.charCodeAt(i);
+				hash |= 0;
+			}
+			return hash;
+		}
+
+		,obfu: function (str, salt){
+			var bound = 5, boundLimit = Math.pow(10,bound), hash = '', i, l, charCode;
+			str += '';
+			for (i=0,l=str.length;i<l;++i) {
+				charCode = str.charCodeAt(i);
+				if (salt)
+					charCode = (charCode + (salt+'').charCodeAt(i%salt.length))%boundLimit;
+				charCode = padZ(charCode,bound);
+				hash += charCode;
+			}
+			return hash;
+		}
+		,deobfu: function(hash, salt){
+			var bound = 5, boundLimit = Math.pow(10,bound), str = '', chunk = '', n = 0, i, l;
+			hash += '';
+			for (i=0,l=hash.length;i<l;++i) {
+				chunk += hash[i];
+				if (chunk.length == bound) {
+					if (salt)
+						chunk = Math.abs( (chunk - (salt+'').charCodeAt(n%salt.length))%boundLimit );
+					str += String.fromCharCode(chunk);
+					chunk = '';
+					++n;
+				}
+			}
+			return str;
 		}
 
 	}
