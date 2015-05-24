@@ -15,7 +15,7 @@ mysite=./mysite; if [ ! -d "$mysite" ]; then mkdir -p "$mysite"; fi; npm install
 ```bash
 git clone git@github.com:fluffybunnies/ace.git path-to-project
 ```
-Or, deploy directly to Amazon EC2 with [Sire](https://github.com/fluffybunnies/sire)
+Or, deploy directly to an ubuntu instance with [Sire](https://github.com/fluffybunnies/sire)
 ```bash
 # Deploy sire to remote server:
 ./sire/index.sh _deploy
