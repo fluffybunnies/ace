@@ -5,10 +5,15 @@ Lightweight FE/BE Framework. Provides tools for launching prototype websites.
 
 Demo: [http://ace.fabfitfun.com/demo](http://ace.fabfitfun.com/demo)
 
-
+<!--
+### Install via npm
+```bash
+mysite=./mysite; if [ ! -d "$mysite" ]; then mkdir -p "$mysite"; fi; npm install --prefix /tmp aced && cp -ri /tmp/node_modules/aced/* "$mysite" && cd "$mysite" && ls -l
+```
+-->
 ### Install
 ```bash
-mysite=./mysite; if [ ! -d $mysite ]; then mkdir $mysite; fi; npm install aced && cp -ri ./node_modules/aced/* $mysite && cd $mysite && ls -l
+git clone git@github.com:fluffybunnies/ace.git path-to-project
 ```
 Or, deploy directly to Amazon EC2 with [Sire](https://github.com/fluffybunnies/sire)
 ```bash
