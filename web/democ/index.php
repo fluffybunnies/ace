@@ -27,6 +27,7 @@ usort($imgs,function($a,$b){
 -->
 <script>
 $(function(){
+	$('#cont img').slick();
 	$('#cont').slick();
 });
 </script>
