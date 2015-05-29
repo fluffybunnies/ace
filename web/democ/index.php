@@ -9,8 +9,6 @@ foreach ($files as $file) {
 	if (strpos($file,'.png') !== false)
 		$imgs[] = $file;
 }
-Ace::varDump($imgs);
-exit;
 
 ?><!doctype html>
 <html>
@@ -22,6 +20,7 @@ exit;
 <link rel="stylesheet" type="text/css" href="/ace.css" />
 <script src="/ace.js"></script>
 <script>
+imgs = <?php echo json_encode($imgs); ?>;
 
 </script>
 
