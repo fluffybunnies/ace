@@ -35,7 +35,7 @@ $(function(){
 body {
 	font-family: Helvetica,arial,sans-serif;
 }
-#cont {
+#xcont {
 	margin: 0 auto;
 	max-width: 900px;
 }
