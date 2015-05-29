@@ -6,7 +6,7 @@ use \ace\Ace;
 $files = scandir(__DIR__);
 $imgs = array();
 foreach ($files as $file) {
-	if (strpos('.png') !== false)
+	if (strpos($file,'.png') !== false)
 		$imgs[] = $file;
 }
 Ace::varDump($imgs);
