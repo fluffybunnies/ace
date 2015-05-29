@@ -9,6 +9,10 @@ foreach ($files as $file) {
 	if (strpos($file,'.png') !== false)
 		$imgs[] = $file;
 }
+usort($imgs,function($a,$b){
+	echo filemtime($a);
+	return filemtime($a) - filemtime($b);
+});
 
 ?><!doctype html>
 <html>
