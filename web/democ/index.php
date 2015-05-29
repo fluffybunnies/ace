@@ -10,7 +10,6 @@ foreach ($files as $file) {
 		$imgs[] = $file;
 }
 usort($imgs,function($a,$b){
-	echo filemtime(__DIR__."/$a");
 	return filemtime(__DIR__."/$a") - filemtime(__DIR__."/$b");
 });
 
