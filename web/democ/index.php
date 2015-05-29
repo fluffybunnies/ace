@@ -21,7 +21,7 @@ usort($imgs,function($a,$b){
 <link rel="stylesheet" type="text/css" href="/assets/reset.css" />
 <script src="/assets/jquery.1.8.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/democ/slick.css" />
-<script src="/democ/slick.js"></script>
+<script src="/democ/slick.min.js"></script>
 <!--<link rel="stylesheet" type="text/css" href="/ace.css" />
 <script src="/ace.js"></script>
 -->
