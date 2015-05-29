@@ -3,6 +3,7 @@ if (!defined('WEBROOT'))
 	exit;
 use \ace\Ace;
 
+echo __DIR__.'/slides\n<br />';
 $files = scandir(__DIR__.'/slides');
 $imgs = array();
 foreach ($files as $file) {
