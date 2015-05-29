@@ -7,10 +7,10 @@ $files = scandir(__DIR__);
 $imgs = array();
 foreach ($files as $file) {
 	if (strpos($file,'.png') !== false)
-		$imgs[] = $file;
+		$imgs[] = '/democ/'.$file;
 }
 usort($imgs,function($a,$b){
-	return filemtime(__DIR__."/$a") - filemtime(__DIR__."/$b");
+	return filemtime(WEBROOT.$a) - filemtime(WEBROOT.$b);
 });
 
 ?><!doctype html>
