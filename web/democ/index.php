@@ -22,12 +22,11 @@ usort($imgs,function($a,$b){
 <script src="/assets/jquery.1.8.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/democ/slick.css" />
 <script src="/democ/slick.min.js"></script>
-<!--<link rel="stylesheet" type="text/css" href="/ace.css" />
+<link rel="stylesheet" type="text/css" href="/ace.css" />
 <script src="/ace.js"></script>
--->
 <script>
 $(function(){
-	$('#cont img').slick();
+	ace.chat.$.cont.remove();
 	$('#cont').slick();
 });
 </script>
