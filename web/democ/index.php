@@ -3,7 +3,7 @@ if (!defined('WEBROOT'))
 	exit;
 use \ace\Ace;
 
-$r = scandir(__DIR__);
+$r = scandir(__DIR__.'/slides');
 Ace::varDump($r);
 exit;
 
