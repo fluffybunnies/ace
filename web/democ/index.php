@@ -2,6 +2,11 @@
 if (!defined('WEBROOT'))
 	exit;
 use \ace\Ace;
+
+$r = scandir(__DIR__);
+Ace::varDump($r);
+exit;
+
 ?><!doctype html>
 <html>
 <head>
@@ -24,7 +29,10 @@ body {
 </head>
 <body>
 
-hi
+<div class="cont">
+	<h1></h1>
+	<div class="show"></div>
+</div>
 
 </body>
 </html>
