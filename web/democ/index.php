@@ -37,7 +37,7 @@ body {
 }
 #cont {
 	margin: 0 auto;
-	max-width: 600px;
+	max-width: 900px;
 }
 </style>
 
