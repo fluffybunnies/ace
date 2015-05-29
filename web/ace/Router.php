@@ -14,7 +14,7 @@ class Router {
 		'/ace.js' => 'ace/scripts/compile-ace.php',
 		'/ace.css' => 'ace/scripts/compile-ace.php',
 
-		'/democ' => 'democ/index.php',
+		//'/democ' => 'democ/index.php', // moved to https://github.com/fluffybunnies/alec/tree/master/jmstuff
 	);
 	private static $redirects = array(
 	);
