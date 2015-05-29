@@ -26,7 +26,7 @@ usort($imgs,function($a,$b){
 <script src="/ace.js"></script>
 <script>
 $(function(){
-	ace.chat.$.cont.remove();
+	if (ace.chat.$.cont) ace.chat.$.cont.remove();
 	$('#cont').slick();
 });
 </script>
