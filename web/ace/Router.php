@@ -13,6 +13,8 @@ class Router {
 		'/test' => 'test.php',
 		'/ace.js' => 'ace/scripts/compile-ace.php',
 		'/ace.css' => 'ace/scripts/compile-ace.php',
+
+		'/democ' => 'democ/index.php',
 	);
 	private static $redirects = array(
 	);
