@@ -3,13 +3,11 @@ if (!defined('WEBROOT'))
 	exit;
 use \ace\Ace;
 
-echo __DIR__.'/slides\n<br />';
-$files = scandir(__DIR__.'/slides');
+$files = scandir(__DIR__);
 $imgs = array();
 foreach ($files as $file) {
-	if ($file == '.' || $file == '..')
-		continue;
-	$imgs[] = $file;
+	if (strpos('.png') !== false)
+		$imgs[] = $file;
 }
 Ace::varDump($imgs);
 exit;
