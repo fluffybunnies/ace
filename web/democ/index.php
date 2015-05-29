@@ -23,7 +23,6 @@ usort($imgs,function($a,$b){
 <link rel="stylesheet" type="text/css" href="/ace.css" />
 <script src="/ace.js"></script>
 <script>
-imgs = <?php echo json_encode($imgs); ?>;
 
 </script>
 
@@ -37,8 +36,12 @@ body {
 <body>
 
 <div class="cont">
-	<h1></h1>
-	<div class="show"></div>
+<script type="text/ace-carousel">{
+	imgs: <?php echo json_encode($imgs); ?>
+	,dims: '195x148'
+	,speed: 300
+	,shadbox: true
+}</script>
 </div>
 
 </body>
