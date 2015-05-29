@@ -20,10 +20,16 @@ usort($imgs,function($a,$b){
 <title>Demo</title>
 <link rel="stylesheet" type="text/css" href="/assets/reset.css" />
 <script src="/assets/jquery.1.8.min.js"></script>
-<link rel="stylesheet" type="text/css" href="/ace.css" />
+<link rel="stylesheet" type="text/css" href="/democ/slick.css" />
+<script src="/democ/slick.js"></script>
+<!--<link rel="stylesheet" type="text/css" href="/ace.css" />
 <script src="/ace.js"></script>
+-->
 <script>
-
+$(function(){
+	//ace.chat.$.cont.remove();
+	$('#cont img').slick();
+});
 </script>
 
 <style type="text/css">
@@ -35,13 +41,11 @@ body {
 </head>
 <body>
 
-<div class="cont">
-<script type="text/ace-carousel">{
-	imgs: <?php echo json_encode($imgs); ?>
-	,dims: '195x148'
-	,speed: 300
-	,shadbox: true
-}</script>
+<div id="cont">
+<?php
+foreach ($imgs as $img)
+	echo '<img src="'.$img.'" />';
+?>
 </div>
 
 </body>
