@@ -36,10 +36,6 @@ $(function(){
 body {
 	font-family: Helvetica,arial,sans-serif;
 }
-#cont {
-	width: 900px;
-	margin: 0 auto;
-}
 #cont div {
 	text-align: center;
 }
