@@ -27,14 +27,17 @@ usort($imgs,function($a,$b){
 -->
 <script>
 $(function(){
-	//ace.chat.$.cont.remove();
-	$('#cont img').slick();
+	$('#cont').slick();
 });
 </script>
 
 <style type="text/css">
 body {
 	font-family: Helvetica,arial,sans-serif;
+}
+#cont {
+	margin: 0 auto;
+	max-width: 600px;
 }
 </style>
 
