@@ -48,7 +48,7 @@ body {
 <div id="cont">
 <?php
 foreach ($imgs as $img)
-	echo '<img src="'.$img.'" />';
+	echo '<div><img src="'.$img.'" /></div>';
 ?>
 </div>
 
