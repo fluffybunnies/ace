@@ -9,9 +9,9 @@ foreach ($files as $file) {
 	if (strpos($file,'.png') !== false)
 		$imgs[] = '/democ/'.$file;
 }
-usort($imgs,function($a,$b){
+/*usort($imgs,function($a,$b){
 	return filemtime(WEBROOT.$a) - filemtime(WEBROOT.$b);
-});
+});*/
 
 ?><!doctype html>
 <html>
