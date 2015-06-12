@@ -328,16 +328,25 @@ ace = {
 			return num+suffix;
 		}
 
-		,formatInteger: function(num){
-			var pieces = (num+'').match(/^(\-?)([0-9]+)(.*)/)
-				,chars,i,c
-			;				
-			if (!pieces || !pieces[2])
-				return num;
-			chars = pieces[2].split('');
-			for (i=3,c=chars.length;i<c;i=i+3)
-				chars[c-i-1] += ',';
-			return pieces[1] + chars.join('') + (pieces[3] ? pieces[3] : '');
+		,formatInteger: function(num){ // #benched vs various regex, though some got close
+			// format first number found with commas: formatInteger(1000) = '1,000'
+			//	will accept already-formatted number, and even fix badly formatted input: formatInteger('$10,00.00') == '$1,000.00'
+			var num = num+'', numNums = 0, numStart, i
+			for (i=0;i<num.length;++i) {
+				if (isNaN(num[i])) {
+					if (num[i] == ',') num = num.substr(0,i)+num.substr(i--+1);
+					else if (numNums) break;
+				} else if (++numNums == 1)
+					numStart = i;
+			}
+			if (numNums > 3) {
+				var n;
+				for (i=3;i<numNums;i=i+3) {
+					n = numStart+numNums-i;
+					num = num.slice(0,n)+','+num.slice(n);
+				}
+			}
+			return num;
 		}
 
 		,formatTimeAgo: function(timestamp,now){
@@ -497,8 +506,9 @@ ace = {
 			return res;
 		}
 		,setCookie: function(key,val,opts){
-			// deleteCookie(): ace.setCookie('cookie_name', null)
 			var undef,expires,set;
+			if (typeof opts == 'number' || typeof opts == 'string') // allow 3rd argument to == expires
+				opts = {expires:opts};
 			opts = (opts && typeof opts == 'object') ? opts : {};
 			if (val == undef)
 				opts.expires = -1;
@@ -520,6 +530,9 @@ ace = {
 		}
 		,getCookie: function(key){
 			return this.parseCookies()[key];
+		}
+		,deleteCookie: function(key){
+			return this.setCookie(key, null);
 		}
 
 		,padZ: function(n,m){
