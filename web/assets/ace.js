@@ -1,5 +1,5 @@
 
-(function(){
+;(function(){
 	var initializing = false;
 	this.AceBase = function(){};
 	AceBase.extend = function(o){
