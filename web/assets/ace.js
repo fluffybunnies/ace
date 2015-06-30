@@ -398,12 +398,12 @@ ace = {
 			;
 			add = ['border-left-width','padding-left','padding-right','border-right-width'];
 			if (includeMargin)
-				add.push.apply(add,['margin-left','margin-right']);
+				add.push.call(add, 'margin-left', 'margin-right');
 			for (i=0,c=add.length;i<c;++i)
 				d.w += +(jelm.css(add[i])||'0').replace(nre,'');
 			add = ['border-top-width','padding-top','padding-bottom','border-bottom-width'];
 			if (includeMargin)
-				add.push.apply(add,['margin-top','margin-bottom']);
+				add.push.call(add, 'margin-top', 'margin-bottom');
 			for (i=0,c=add.length;i<c;++i)
 				d.h += +(jelm.css(add[i])||'0').replace(nre,'');
 			return d;
