@@ -476,6 +476,25 @@ ace = {
 			return fit;
 		}
 
+		,isWithinViewport: function($elm){
+			var scrollY = this.getViewportScrollY()
+				,viewHeight = $(window).height()
+				,elmY,elmHeight
+			if (typeof $elm == 'number') {
+				elmY = $elm
+				elmHeight = 0
+			} else {
+				elmY = $elm.offset().top
+				elmHeight = this.trueDim($elm).h
+			}
+			return !!((elmY > scrollY && elmY < scrollY+viewHeight) || (elmY+elmHeight > scrollY && elmY+elmHeight < scrollY+viewHeight))
+		}
+		,isFullyWithinViewport: function($elm){
+			var y = $elm.offset().top
+				,height = this.trueDim($elm).h
+			return this.isWithinViewport(y) && this.isWithinViewport(y+height)
+		}
+
 		,onTouchDevice: function(){
 			return 'ontouchstart' in document.documentElement;
 		}
