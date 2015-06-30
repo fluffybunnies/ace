@@ -1,3 +1,19 @@
+## 0.0.21 (2015-06-30)
+
+Features
+
+	- +ace.utils: `isWithinViewport()`, `isFullyWithinViewport()`, `hash()`, `obfu()`, `deobfu()`, `deleteCookie()`, `padZ()`
+	- +ace.fb.js
+	- Improved performance for `ace.util.formatInteger()`
+	- Reorganized libs
+
+
+Bugs
+
+	- Fixed bug with `ace.ui.twitter` when metadata was missing from tweets
+
+
+
 ## 0.0.20 (2015-04-09)
 
 Features
