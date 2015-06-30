@@ -5,17 +5,16 @@ Lightweight FE/BE Framework. Provides tools for launching prototype websites.
 
 Demo: [http://ace.fabfitfun.com/demo](http://ace.fabfitfun.com/demo)
 
-<!--
+
+### Install via git
+```bash
+git clone git@github.com:fluffybunnies/ace.git path-to-project
+```
 ### Install via npm
 ```bash
 mysite=./mysite; if [ ! -d "$mysite" ]; then mkdir -p "$mysite"; fi; npm install --prefix /tmp aced && cp -ri /tmp/node_modules/aced/* "$mysite" && cd "$mysite" && ls -l
 ```
--->
-### Install
-```bash
-git clone git@github.com:fluffybunnies/ace.git path-to-project
-```
-Or, deploy directly to an ubuntu instance with [Sire](https://github.com/fluffybunnies/sire)
+### Or, deploy directly to an ubuntu instance with [Sire](https://github.com/fluffybunnies/sire)
 ```bash
 # Deploy sire to remote server:
 ./sire/index.sh _deploy
@@ -171,6 +170,8 @@ ace.pop({
 // 'ace.util.'+Object.keys(ace.util).sort().join('\nace.util.')
 ace.util.arrayFilter
 ace.util.capitalize
+ace.util.deleteCookie
+ace.util.deobfu
 ace.util.escapeHtml
 ace.util.escapeRegEx
 ace.util.formatInteger
@@ -180,7 +181,10 @@ ace.util.getCookie
 ace.util.getImageToWindowFit
 ace.util.getParameterByName
 ace.util.getViewportScrollY
+ace.util.hash
+ace.util.obfu
 ace.util.onTouchDevice
+ace.util.padZ
 ace.util.parseCookies
 ace.util.rand
 ace.util.setCookie
