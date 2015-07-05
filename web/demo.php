@@ -252,7 +252,8 @@ div.ace-smile {
 	<div class="ace-fb-comments"></div>
 
 </div>
-<!-- glados test #3 -->
+
+<!-- glados test #4 -->
 
 <?php include WEBROOT.'/global-footer.php'; ?>
 
