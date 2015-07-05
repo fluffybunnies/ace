@@ -253,7 +253,7 @@ div.ace-smile {
 
 </div>
 
-<!-- glados test #4 -->
+<!-- glados test #5 -->
 
 <?php include WEBROOT.'/global-footer.php'; ?>
 
