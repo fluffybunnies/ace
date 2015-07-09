@@ -8,7 +8,8 @@ use \ace\Ace;
 $modules = Ace::getConfig('compile');
 
 
-$ext = end(explode('.',REQUEST_PATH));
+$path = explode('.',REQUEST_PATH);
+$ext = end($path);
 if (!($ext == 'js' || $ext == 'css'))
 	exit;
 
@@ -20,7 +21,7 @@ if ($ext == 'js')
 	$res .= get('ace.init.js');
 $hash = md5($res);
 $etag = '"'.$hash.'"';
-header('Content-Type: text/'.($ext=='css'?'css':'javascript'));
+header('Content-Type: '.($ext=='css'?'text/css':'application/javascript'));
 header('ETag: '.$etag);
 // i dont see any possible problem with this line but something is still breaky eeeevry so often...
 //header('Content-Length: '.strlen($res));
