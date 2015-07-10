@@ -305,7 +305,7 @@ http://ace.fabfitfun.com/id
 
 
 ### To Do
-- Add: Resource, SocialShare, et al
+- Add: Resource, SocialShare, flashUI, Lights, et al
 - Generate ace.min.js/ace.min.css on start + post-gitsync / file change
 - Unit tests
 - More descriptive error messages for missing initial configs
