@@ -24,6 +24,7 @@ $compile = array(
 	'ui.carousel',
 	'ui.instagram',
 	'ui.twitter',
+	'highlight',
 );
 if (strpos(Ace::g($_SERVER,'HTTP_REFERER',''), 'nochat=1') !== false) array_unshift($compile, 'chat');
 
