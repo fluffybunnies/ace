@@ -34,7 +34,13 @@ ace.req = function(/* method must come after url */){
 		,method: method
 		,dataType: 'json'
 		,complete: function(res){
-			console.log('RES',res);
+			// BEGIN handle jquery not returning responseJSON
+			if (res && !res.responseJSON && res.responseText) {
+				try {
+					res.responseJSON = JSON.parse(res.responseText);
+				} catch (e){}
+			}
+			// END handle jquery not returning responseJSON
 			if (!(res && typeof res.responseJSON == 'object'))
 				return cb({error:'unexpected response from api', code:0});
 			if (typeof res.responseJSON.code != 'undefined')
