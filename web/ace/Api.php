@@ -49,7 +49,7 @@ class Api {
 		header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
 		if (isset($_GET['callback'])) {
 			$r = $_GET['callback'].'('.$r.');';
-			header('Content-Type: text/javascript');
+			header('Content-Type: application/javascript');
 		} else {
 			// header to prevent XSS attacks
 			// dont set for POSTs as it will break iframe posting
