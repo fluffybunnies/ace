@@ -306,8 +306,6 @@ http://ace.fabfitfun.com/id
 
 ### To Do
 - Finish req and resource + add to readme
-- Fix bus glitch
-	- Try running this several times simultaneously: `ace.getAppVersion(function(a){console.log('APPVERSION',a)});`
 - Update API response format
 	- Stop wrapping with `data` object
 	- Instead rely on `error` and `code`
