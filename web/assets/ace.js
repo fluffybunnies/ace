@@ -100,13 +100,13 @@ AceBase.prototype._getEvt = function(key){
 	return this._evts[key];
 }
 AceBase.prototype._fireSubs = function(key){
-	var evt = this._getEvt(key), subs = evt.subs.slice(0), i = 0;
-	for (;i<subs.length;++i) {
+	var evt = this._getEvt(key), subs = evt.subs.slice(0);
+	for (i=0;i<subs.length;++i) {
 		subs[i].cb(evt.error,evt.data);
 	}
-	for (i=0;i<subs.length;++i) {
-		if (subs[i].typeReady)
-			subs[i] = null;
+	for (i=0;i<evt.subs.length;++i) {
+		if (evt.subs[i].typeReady)
+			evt.subs[i] = null;
 	}
 	ace.util.arrayFilter(evt.subs,function(sub){
 		return sub !== null;
