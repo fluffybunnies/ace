@@ -287,7 +287,7 @@ ace.resource = {
 	}
 	,cleanUrl: function(url){
 		url = url.replace(/(#.*)/,'');
-		if (!/^((https?:)?\/\/)/.test(url))
+		if (url[0] != '/' && !/^((https?:)?\/\/)/.test(url))
 			url = '//'+url;
 		return url;
 	}
