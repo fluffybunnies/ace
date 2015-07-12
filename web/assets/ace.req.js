@@ -27,7 +27,7 @@ ace.req = function(/* method must come after url */){
 	}
 	if (url[0] != '/')
 		url = '/'+url;
-	url = z.config.apiPrefix+'/'+url;
+	url = z.config.apiPrefix+url;
 	$.ajax({
 		url: url
 		,data: data
@@ -43,6 +43,6 @@ ace.req = function(/* method must come after url */){
 	});
 };
 ace.req.config = {
-	apiPrefix: '/'
+	apiPrefix: '/ace/api/'
 };
 
