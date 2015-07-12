@@ -45,7 +45,7 @@ ace.req = function(/* method must come after url */){
 				return cb({error:'unexpected response from api', code:0});
 			if (typeof res.responseJSON.code != 'undefined')
 				return cb(res.responseJSON);
-			cb(false, res.responseJSON);
+			cb(false, res.responseJSON.data);
 		}
 	});
 };

@@ -305,9 +305,14 @@ http://ace.fabfitfun.com/id
 
 
 ### To Do
-- Add: Resource, SocialShare, flashUI, Lights, et al
+- Finish req and resource + add to readme
 - Fix bus glitch
 	- Try running this several times simultaneously: `ace.getAppVersion(function(a){console.log('APPVERSION',a)});`
+- Update API response format
+	- Stop wrapping with `data` object
+	- Instead rely on `error` and `code`
+	- Update `ace.req()` to match
+- Add: SocialShare, flashUI, Lights, et al
 - Implement basic memcache
 	- Start with App::getAppVersion()
 - Generate ace.min.js/ace.min.css on start + post-gitsync / file change
