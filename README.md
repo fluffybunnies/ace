@@ -306,7 +306,6 @@ http://ace.fabfitfun.com/id
 
 ### To Do
 - Finish `ace.req` and `ace.resource` + add to readme
-	- `ace.resource` should accept relative urls
 - Update API response format
 	- Stop wrapping with `data` object
 	- Instead rely on `error` and `code`
