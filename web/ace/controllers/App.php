@@ -7,8 +7,8 @@ class App extends ControllerAbstract {
 
 	public function getAppVersion(){
 		// @todo: cache this
-		$commitHash = str_replace("\n",'',`git rev-parse HEAD`);
-		return $commitHash;
+		$gitHash = str_replace("\n",'',`git rev-parse HEAD`);
+		return array('git_hash'=>$gitHash);
 	}
 
 }

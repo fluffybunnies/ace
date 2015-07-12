@@ -167,7 +167,7 @@ ace = {
   		if (err)
   			console.log(z.config.key, 'ERROR', 'failed to get app version', err);
   		else
-  			z._appVersion = data;
+  			z._appVersion = data.git_hash;
   		ace.bus.trigger('appversion',err,z._appVersion);
   	});
 	}
