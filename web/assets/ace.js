@@ -158,7 +158,6 @@ ace = {
   		return setTimeout(function(){
   			cb(false, z._appVersion);
   		},0);
-  	console.log('GET APP VERSION CB',cb);
   	z.bus.ready('appversion',cb);
   	if (z._getAppVersionCalledOnce)
   		return;
