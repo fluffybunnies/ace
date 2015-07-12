@@ -155,7 +155,11 @@ ace = {
 
 	,getAppVersion: function(cb){
   	var z = this;
-  	z.bus.ready('appversion',z._appVersion);
+  	if (z._appVersion !== null)
+  		return setTimeout(function(){
+  			cb(false, z._appVersion);
+  		},0);
+  	z.bus.ready('appversion',cb);
   	if (z._getAppVersionCalledOnce)
   		return;
   	z._getAppVersionCalledOnce = true;
@@ -165,8 +169,8 @@ ace = {
   		if (err)
   			console.log(z.config.key, 'ERROR', 'failed to get app version', err);
   		else
-  			z._appVersion = data.data;
-  		ace.bus.trigger('appversion',false,z._appVersion);
+  			z._appVersion = data;
+  		ace.bus.trigger('appversion',err,z._appVersion);
   	});
 	}
 
