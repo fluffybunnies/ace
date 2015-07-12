@@ -78,8 +78,8 @@ AceBase.prototype.off = function(key,cb){
 	return this;
 }
 AceBase.prototype.trigger = function(key,error,data){
-	var keys = key.split(/ +/), i = 0, evt;
-	for (;i<keys.length;++i) {
+	var keys = key.split(/ +/), evt, i;
+	for (i=0;i<keys.length;++i) {
 		evt = this._getEvt(keys[i]);
 		evt.firedOnce = true;
 		evt.error = error;
@@ -101,7 +101,7 @@ AceBase.prototype._getEvt = function(key){
 }
 AceBase.prototype._fireSubs = function(key){
 	var evt = this._getEvt(key), subs = evt.subs.slice(0);
-	console.log('subs',key,subs);
+	console.log('subs',key,evt,subs);
 	for (i=0;i<subs.length;++i) {
 		subs[i].cb(evt.error,evt.data);
 	}
@@ -166,7 +166,7 @@ ace = {
   			console.log(z.config.key, 'ERROR', 'failed to get app version', err);
   		else
   			z._appVersion = data.data;
-  		ace.bus.trigger('appversion',z._appVersion);
+  		ace.bus.trigger('appversion',false,z._appVersion);
   	});
 	}
 

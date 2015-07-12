@@ -295,7 +295,9 @@ ace.resource = {
       v = v[0];
     if (v != null)
     	return cb(v);
-    ace.getAppVersion(cb);
+    ace.getAppVersion(function(err,version){
+    	cb(version);
+    });
   }
   ,buildPacks: function(){
     var z = this;
