@@ -310,6 +310,8 @@ http://ace.fabfitfun.com/id
 	- Stop wrapping with `data` object
 	- Instead rely on `error` and `code`
 	- Update `ace.req()` to match
+- Figure out why `$.ajax({dataType:'json'})` isn't returning responseJSON
+	- Update `ace.req()` when fixed
 - Add: SocialShare, flashUI, Lights, et al
 - Implement basic memcache
 	- Start with App::getAppVersion()
