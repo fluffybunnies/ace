@@ -21,11 +21,18 @@ if ($ext == 'js')
 	$res .= get('ace.init.js');
 $hash = md5($res);
 $etag = '"'.$hash.'"';
-header('Content-Type: '.($ext=='css'?'text/css':'application/javascript'));
-header('ETag: '.$etag);
-// i dont see any possible problem with this line but something is still breaky eeeevry so often...
-//header('Content-Length: '.strlen($res));
-echo $res;
+if (Ace::g($_SERVER,'HTTP_IF_NONE_MATCH') == $etag) {
+	header('Content-Length: 0');
+	header('Cache-Control:');
+	header('Expires:');
+	header(Ace::g($_SERVER,'SERVER_PROTOCOL','HTTP/1.1').' 304 Not Modified');
+} else {
+	header('Content-Type: '.($ext=='css'?'text/css':'application/javascript'));
+	header('ETag: '.$etag);
+	// i dont see any possible problem with this line but something is still breaky eeeevry so often...
+	//header('Content-Length: '.strlen($res));
+	echo $res;
+}
 exit;
 
 

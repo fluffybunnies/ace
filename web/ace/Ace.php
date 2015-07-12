@@ -64,7 +64,7 @@ class Ace {
 	*/
 	public static function enforceHttps(){
 		if (!self::onHttps()) {
-			$redirect = 'https://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+			$redirect = 'https://'.self::g($_SERVER,array('HTTP_HOST','SERVER_NAME')).$_SERVER['REQUEST_URI'];
 			header("Location: $redirect");
 			exit;
 		}
@@ -83,8 +83,14 @@ class Ace {
 	/**
 		For debugging: exit with $message
 	*/
-	public static function e($s){
-		exit("e: $s");
+	public static function e(){
+		echo "---- debug ----\n\n";
+		$args = func_get_args();
+		foreach ($args as $arg) {
+			echo (is_array($arg) || is_object($arg)) ? json_encode($arg) : $arg;
+			echo "\n\n";
+		}
+		exit;
 	}
 
 	/**
@@ -264,6 +270,21 @@ class Ace {
 	public static function curlDelete($url, $params=array(), $curlOpts=array()) {
 		$curlOpts[CURLOPT_CUSTOMREQUEST] = 'DELETE';
 		return self::simpleCurlGet($url, $params, $curlOpts);
+	}
+
+	/**
+		For use when loading a file via php instead of webserver
+	*/
+	public static function setAssetHeadersForFilename($filename){
+		if (preg_match('/\.(jpe?g|png|gif|svg|ico|swf|css|js)$/', $filename, $m)) {
+			if ($m[1] == 'css') header('content-type: text/css');
+			else if ($m[1] == 'js') header('content-type: application/javascript');
+			else if ($m[1] == 'swf') header('content-type: application/x-shockwave-flash');
+			else header('content-type: image/'.$m[1]);
+			header('cache-control: max-age=3600');
+		} else if (preg_match('/\.(html?)$/', $filename)) {
+			header('content-type: text/html; charset=utf-8');
+		}
 	}
 
 	// END utils

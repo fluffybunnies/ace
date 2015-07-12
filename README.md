@@ -306,6 +306,8 @@ http://ace.fabfitfun.com/id
 
 ### To Do
 - Add: Resource, SocialShare, flashUI, Lights, et al
+- Implement basic memcache
+	- Start with App::getAppVersion()
 - Generate ace.min.js/ace.min.css on start + post-gitsync / file change
 - Unit tests
 - More descriptive error messages for missing initial configs

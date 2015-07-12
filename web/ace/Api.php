@@ -15,6 +15,7 @@ class Api {
 		'demo/email-html' => 'Demo::emailHtml',
 		'demo/email-csv-node' => 'Demo::emailCsvWithNode',
 		'demo/email-csv-php' => 'Demo::emailCsvWithPhp',
+		'app/version' => 'App::getAppVersion',
 	);
 	
 	public static function request($route){

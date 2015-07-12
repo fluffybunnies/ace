@@ -127,6 +127,7 @@ ace = {
 		key: 'ace'
 		,readyCheckDelay: 15
 	}
+	,_appVersion: null
 	,_readyCbs: []
 	,_ready: false
 
@@ -149,6 +150,23 @@ ace = {
 			delete z._readyCbs;
 			z.ui.checkForWidgets();
 		}());
+	}
+
+	,getAppVersion: function(cb){
+  	var z = this;
+  	z.bus.ready('appversion',z._appVersion);
+  	if (z._getAppVersionCalledOnce)
+  		return;
+  	z._getAppVersionCalledOnce = true;
+  	// modify this method to suit your package
+  	// e.g. fetch current commit hash, or package.json version #
+  	z.req('app/version',function(err, data){
+  		if (err)
+  			console.log(z.config.key, 'ERROR', 'failed to get app version', err);
+  		else
+  			z._appVersion = data;
+  		ace.bus.trigger('appversion',z._appVersion);
+  	});
 	}
 
 	,ready: function(cb){
