@@ -8,7 +8,8 @@ use \ace\Ace;
 <meta charset="utf-8" />
 <title>Ace | Paradigm</title>
 <link rel="stylesheet" type="text/css" href="/assets/reset.css" />
-<script src="/assets/jquery.1.8.min.js"></script>
+<!--<script src="/assets/jquery.1.8.min.js"></script>-->
+<script src="/assets/jquery.1.11.1.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/ace.css" />
 <script src="/ace.js"></script>
 <script>
