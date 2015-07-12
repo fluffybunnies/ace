@@ -118,7 +118,6 @@ AceBase.prototype.log = function(){
 	for (;i<arguments.length;++i)
 		args.push(arguments[i]);
 	console.log.apply(console,args);
-	//return this;
 }
 
 
@@ -159,6 +158,7 @@ ace = {
   		return setTimeout(function(){
   			cb(false, z._appVersion);
   		},0);
+  	console.log('GET APP VERSION CB',cb);
   	z.bus.ready('appversion',cb);
   	if (z._getAppVersionCalledOnce)
   		return;
