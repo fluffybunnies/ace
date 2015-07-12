@@ -31,16 +31,16 @@
 	}
 }());
 AceBase.prototype.on = function(key,cb){
-	var keys = key.split(/ +/), i = 0;
-	for (;i<keys.length;++i)
+	var keys = key.split(/ +/), i;
+	for (i=0;i<keys.length;++i)
 		this._getEvt(keys[i]).subs.push({
 			cb: cb
 		});
 	return this;
 }
 AceBase.prototype.ready = function(key,cb){
-	var keys = key.split(/ +/), i = 0, evt;
-	for (;i<keys.length;++i) {
+	var keys = key.split(/ +/), evt, i;
+	for (i=0;i<keys.length;++i) {
 		evt = this._getEvt(keys[i]);
 		if (evt.firedOnce) {
 			cb(evt.error,evt.data);
