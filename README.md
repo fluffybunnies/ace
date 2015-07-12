@@ -306,6 +306,8 @@ http://ace.fabfitfun.com/id
 
 ### To Do
 - Add: Resource, SocialShare, flashUI, Lights, et al
+- Fix bus glitch
+	- Try running this several times simultaneously: `ace.getAppVersion(function(a){console.log('APPVERSION',a)});`
 - Implement basic memcache
 	- Start with App::getAppVersion()
 - Generate ace.min.js/ace.min.css on start + post-gitsync / file change
