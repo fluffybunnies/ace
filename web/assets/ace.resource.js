@@ -302,7 +302,7 @@ ace.resource = {
 		var v = this.config.versions[resource];
 		if (v instanceof Array)
 			v = v[0];
-		return v == null ? z.defaultVersion : v;
+		return v == null ? this.defaultVersion : v;
 	}
 	,buildPacks: function(){
 		var z = this;
