@@ -1,4 +1,10 @@
 
+[class^="ace-"] {
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+	font-family: arial,sans-serif;
+}
+
 /* BEGIN globals */
 div.clear {
 	clear: both;

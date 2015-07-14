@@ -19,7 +19,7 @@ ace.pop({
 		init: function(opts){
 			var z = this;
 			if (typeof opts == 'string')
-				opts = {body:opts};
+				opts = {body:opts, header:arguments[1]||void 0};
 			z.opts = $.extend({},z.config.defaults,opts);
 			z.$ = {};
 			z.build();
@@ -129,7 +129,7 @@ ace.pop({
 
 	ace.pop = function(opts){
 		var id = ace.pop.getNextId()
-			,pop = new Pop(opts)
+			,pop = new Pop(opts,arguments[1])
 		;
 		pop.id = id;
 		ace.pop.pops[id] = pop;

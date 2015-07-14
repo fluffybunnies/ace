@@ -140,7 +140,7 @@ ace = {
 			if (!window.$)
 				return setTimeout(checkReady,z.config.readyCheckDelay);
 			z._jQExtensions();
-			console.log('ace ready');
+			z.log('ready');
 			z._ready = true;
 			$.each(z._readyCbs,function(i,cb){
 				if (cb instanceof Function)
@@ -165,7 +165,7 @@ ace = {
   	// e.g. fetch current commit hash, or package.json version #
   	z.req('app/version',function(err, data){
   		if (err)
-  			console.log(z.config.key, 'ERROR', 'failed to get app version', err);
+  			z.log('ERROR', 'failed to get app version', err);
   		else
   			z._appVersion = data.git_hash;
   		ace.bus.trigger('appversion',err,z._appVersion);
@@ -189,7 +189,7 @@ ace = {
 		,register: function(key,proto){
 			var z = this;
 			if (z.getModule(key))
-				return console.log(key+' already registered');
+				return ace.log(key+' already registered');
 			ace.ready(function(){
 				// #AB0
 				var module = z._modules[key] = function(){
@@ -257,7 +257,9 @@ ace = {
 					;
 					try {
 						opts = eval('('+$.trim($script[0].innerHTML)+')');
-					} catch (e) {}
+					} catch (e) {
+						ace.log('ERROR', 'parsing widget opts', key, e);
+					}
 					if (typeof opts != 'object')
 						opts = {};
 					z.widgetize(key,$script,opts);
@@ -669,3 +671,4 @@ ace = {
 	}
 
 };
+ace.log = AceBase.prototype.log;

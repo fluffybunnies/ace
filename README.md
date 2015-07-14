@@ -145,7 +145,7 @@ ace.shadbox('/albums/2014/hard.rock.25may2014.jpg',{
 - Use as a simple alert dialog
 - Or extend with versatile classes and bindings
 ```
-amint.pop('An email has been sent with a link to reset your password.');
+ace.pop('An email has been sent with a link to reset your password.');
 
 // or...
 
@@ -306,6 +306,7 @@ http://ace.fabfitfun.com/id
 
 ### To Do
 - Finish `ace.req` and `ace.resource` + add to readme
+	- Update modules to use `ace.req` instead of jQuery (e.g. instagram)
 - Update API response format
 	- Stop wrapping with `data` object
 	- Instead rely on `error` and `code`
