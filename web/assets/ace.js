@@ -409,12 +409,17 @@ ace = {
 
 		,formatDate: function(date, length){
 			var z = this, d = date ? date : new Date, f;
-			f = z.padZ(d.getMonth()+1)+'/'+z.padZ(d.getDate())+'/'+d.getFullYear()+' '+z.padZ(d.getHours())+':'+z.padZ(d.getMinutes())+':'+z.padZ(d.getSeconds());
-			if (length == 'm')
-				f = f.replace(/:[0-9]+$/,'');
-			else if (length == 'D')
-				f = f.replace(/ [0-9]+:[0-9]+:[0-9]+$/,'');
-			return f;
+			f = z.padZ(d.getMonth()+1)+'/'+z.padZ(d.getDate());
+			if (length != 'd') {
+				f += '/'+d.getFullYear();
+				if (length != 'D') {
+					f += ' '+z.padZ(d.getHours())+':'+z.padZ(d.getMinutes());
+					if (length != 'm') {
+						f += ':'+z.padZ(d.getSeconds());
+					}
+				}
+			}
+			return f
 		}
 
 		,getViewportScrollY: function(){
