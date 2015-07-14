@@ -413,7 +413,7 @@ ace = {
 			if (length == 'm')
 				f = f.replace(/:[0-9]+$/,'');
 			else if (length == 'D')
-				f = f.replace(/[0-9]+:[0-9]+:[0-9]+$/,'');
+				f = f.replace(/ [0-9]+:[0-9]+:[0-9]+$/,'');
 			return f;
 		}
 
