@@ -18,15 +18,16 @@ $compile = array(
 	'chat',
 	'fb',
 	'fireworks',
+	'highlight',
+	'loader',
 	'pop',
+	'req',
+	'resource',
 	'shadbox',
 	'tooltip',
 	'ui.carousel',
 	'ui.instagram',
 	'ui.twitter',
-	'highlight',
-	'req',
-	'resource',
 );
 if (strpos(Ace::g($_SERVER,'HTTP_REFERER',''), 'nochat=1') !== false) array_unshift($compile, 'chat');
 
