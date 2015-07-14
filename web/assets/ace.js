@@ -407,8 +407,10 @@ ace = {
 			return str;
 		}
 
-		,formatDate: function(date, length){
+		,formatDate: function(date, length){ // accepts Date, or integer timestamp
 			var z = this, d = date ? date : new Date, f;
+			if (typeof d == 'number') d = new Date(d);
+			if (isNaN(d.getTime())) return date;
 			f = z.padZ(d.getMonth()+1)+'/'+z.padZ(d.getDate());
 			if (length != 'd') {
 				f += '/'+d.getFullYear();
@@ -419,7 +421,7 @@ ace = {
 					}
 				}
 			}
-			return f
+			return f;
 		}
 
 		,getViewportScrollY: function(){
