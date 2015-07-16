@@ -287,6 +287,48 @@ class Ace {
 		}
 	}
 
+	/**
+		Enforce app-consistent timezone reference
+	*/
+	public static function strToTime($str, $time=null) {
+		if ($time === null)
+			$time = time();
+		$origTmz = date_default_timezone_get();
+		@date_default_timezone_set(self::aceTmz());
+		$time = strtotime($str, $time);
+		@date_default_timezone_set($origTmz);
+		return $time;
+	}
+
+	public static function strToTimeUtc($str, $time=null) {
+		if ($time === null)
+			$time = time();
+		$origTmz = date_default_timezone_get();
+		@date_default_timezone_set('UTC');
+		$time = strtotime($str, $time);
+		@date_default_timezone_set($origTmz);
+		return $time;
+	}
+
+	public static function date($format, $time=null) {
+		if ($time === null)
+			$time = time();
+		$origTmz = date_default_timezone_get();
+		@date_default_timezone_set('UTC');
+		$date = date($format, $time);
+		@date_default_timezone_set($origTmz);
+		return $date;
+	}
+
+	public static function aceTmz() {
+		if (isset(self::$TMZ))
+			return self::$TMZ;
+		$defaultTmz = self::getConfig('defaultTmz');
+		if (empty($defaultTmz))
+			$defaultTmz = 'America/Los_Angeles';
+		return self::$TMZ = $defaultTmz;
+	}
+
 	// END utils
 
 

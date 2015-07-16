@@ -275,6 +275,7 @@ ace = {
 					,instance = new module()
 				;
 				$cont.replaceWith($elm);
+				instance.key = key;
 				instance.opts = $.extend(true,{},module.prototype.opts,opts);
 				instance.$ = {
 					cont: $elm
