@@ -25,10 +25,10 @@ ace.fb.loadSdk({
 $(function(){
 	$('.ace-smile').each(function(){
 		var $el = $(this);
-		$.getJSON('/ace/api/demo/smile',function(data){
-			if (!(data && data.data))
-				return $el.html('api error' + (data.error?': '+data.error:''));
-			$el.html(data.data);
+		ace.req('demo/smile',function(err,data){
+			if (err)
+				return $el.html('api error: '+err);
+			$el.html(data);
 		});
 	});
 

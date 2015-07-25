@@ -5,7 +5,7 @@
 namespace ace\controllers;
 
 use \ace\Ace;
-use \ace\core\ControllerAbstract;
+use \ace\core\ApiControllerAbstract;
 use \ace\controllers\Exception as ApiControllerException;
 use \ace\helpers\Ses;
 
