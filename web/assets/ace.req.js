@@ -42,7 +42,7 @@ ace.req = function(/* method must come after url */){
 				} catch (e){}
 			}
 			// END handle jquery not returning responseJSON (wrong content-type or not an object)
-			if (!(res && typeof res.responseJSON == 'object'))
+			if (!(res && res.responseJSON))
 				return cb({error:'unexpected response from api', code:0});
 			if (res.responseJSON.code !== undef || res.responseJSON.error !== undef) {
 				if (!res.responseJSON.code)
