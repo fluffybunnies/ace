@@ -1,3 +1,17 @@
+<!--## 1.0.0 (2015-07-16)
+
+Features
+
+	- https://github.com/fluffybunnies/ace/compare/519a838cce7121b766599bd529750cf1a08a5245...master
+	- Bumped to 1.0.0: API response changes could break FE
+
+
+Bugs
+
+	- 
+
+
+-->
 ## 0.0.21 (2015-06-30)
 
 Features

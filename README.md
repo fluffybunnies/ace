@@ -305,14 +305,19 @@ http://ace.fabfitfun.com/id
 
 
 ### To Do
-- Finish `ace.req` and `ace.resource` + add to readme
-	- Update modules to use `ace.req` instead of jQuery (e.g. instagram)
 - Update API response format
 	- Stop wrapping with `data` object
 	- Instead rely on `error` and `code`
 	- Update `ace.req()` to match
+- Finish converting all root \Exceptions to codified BusinessExceptions
+- Create example route to demonstrate DaoSqlAbstract
+- MVC-type routes separate from API
+- Finish `ace.req` and `ace.resource` + add to readme
+	- Update modules to use `ace.req` instead of jQuery (e.g. instagram)
+- Convert ace.highlight.js to ace.jq.highlight.js
+	- Review current state (escaped globals, memory+proc benchmark, etc)
 - Add: SocialShare, flashUI, Lights, et al
-- Implement basic memcache
+- Implement basic cache layer with memcache driver
 	- Start with App::getAppVersion()
 - Generate ace.min.js/ace.min.css on start + post-gitsync / file change
 - Unit tests

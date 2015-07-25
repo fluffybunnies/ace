@@ -1,11 +1,17 @@
 <?php
-
 namespace ace;
+
 
 class Ace {
 
 	public static $config = array();
 	public static $cache = array();
+	protected static $TMZ = null;
+	protected static $db = null;
+
+	const EARTH_RADIUS_MILES = 3956;
+	//const EARTH_RADIUS_MILES = 3961; // optimized for ~39deg latitude (washington dc)
+	//const EARTH_RADIUS_MILES = 3953.42801058; // forget where i got this, google maps api?
 
 	private function __clone(){}
 	private function __construct(){}
@@ -29,6 +35,14 @@ class Ace {
 		return self::g(self::$config,$k);
 	}
 
+
+	/*
+	public static function getDb(){
+		if (!self::$db)
+			self::$db = DB::getPdo();
+		return self::$db;
+	}
+	*/
 
 
 	// BEGIN utils
@@ -287,6 +301,38 @@ class Ace {
 		}
 	}
 
+
+	/**
+		Calculate the distance between 2 lat/lng points
+	*/
+	public static function sphericalDistance($lat1, $lng1, $lat2, $lng2, $units='miles'){
+		$lat1 = deg2rad($lat1);
+		$lng1 = deg2rad($lng1);
+		$lat2 = deg2rad($lat2);
+		$lng2 = deg2rad($lng2);
+		$distance = acos(cos($lat1) * cos($lat2) * cos($lng2-$lng1) + sin($lat1) * sin($lat2));
+		if ($units == 'miles')
+			$distance *= self::EARTH_RADIUS_MILES;
+		return $distance;
+	}
+
+/* First method appeared mildly faster in a rushed benchmark test
+	public static function sphericalDistance($lat1, $lng1, $lat2, $lng2, $units='miles'){
+		$lat1 = deg2rad($lat1);
+		$lng1 = deg2rad($lng1);
+		$lat2 = deg2rad($lat2);
+		$lng2 = deg2rad($lng2);
+		$dlat = $lat2-$lat1;
+		$dlng = $lng2-$lng1;
+		$distance = asin(sqrt(
+			pow(sin($dlat/2), 2) + cos($latFrom) * cos($latTo) * pow(sin($dlng/2), 2)
+		));
+		if ($units == 'miles')
+			$distance *= self::EARTH_RADIUS_MILES;
+		return $distance;
+	}
+*/
+
 	/**
 		Enforce app-consistent timezone reference
 	*/
@@ -311,6 +357,16 @@ class Ace {
 	}
 
 	public static function date($format, $time=null) {
+		if ($time === null)
+			$time = time();
+		$origTmz = date_default_timezone_get();
+		@date_default_timezone_set(self::aceTmz());
+		$date = date($format, $time);
+		@date_default_timezone_set($origTmz);
+		return $date;
+	}
+
+	public static function dateUtc($format, $time=null) {
 		if ($time === null)
 			$time = time();
 		$origTmz = date_default_timezone_get();

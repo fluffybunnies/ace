@@ -34,6 +34,7 @@ ace.req = function(/* method must come after url */){
 		,method: method
 		,dataType: 'json'
 		,complete: function(res){
+			var undef;
 			// BEGIN handle jquery not returning responseJSON (wrong content-type or not an object)
 			if (res && !res.responseJSON && res.responseText) {
 				try {
@@ -43,9 +44,14 @@ ace.req = function(/* method must come after url */){
 			// END handle jquery not returning responseJSON (wrong content-type or not an object)
 			if (!(res && typeof res.responseJSON == 'object'))
 				return cb({error:'unexpected response from api', code:0});
-			if (typeof res.responseJSON.code != 'undefined')
+			if (res.responseJSON.code !== undef || res.responseJSON.error !== undef) {
+				if (!res.responseJSON.code)
+					res.responseJSON.code = -1;
+				if (typeof res.responseJSON.error == 'object')
+					res.responseJSON.error = JSON.stringify(res.responseJSON.error);
 				return cb(res.responseJSON);
-			cb(false, res.responseJSON.data);
+			}
+			cb(false, res.responseJSON);
 		}
 	});
 };

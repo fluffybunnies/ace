@@ -15,6 +15,13 @@ include APP_PATH.'/autoload.php';
 use \ace\Ace;
 define('REQUEST_PATH', rtrim( Ace::g($_SERVER, array('DOCUMENT_URI','REDIRECT_URL'), ''), '/' ));
 
+define('REQUEST_METHOD',
+	isset($_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE']) ? $_SERVER['HTTP_X_HTTP_METHOD_OVERRIDE'] :
+	isset($_POST['HTTP_METHOD_OVERRIDE']) ? $_POST['HTTP_METHOD_OVERRIDE'] :
+	isset($_SERVER['REQUEST_METHOD']) ? $_SERVER['REQUEST_METHOD'] :
+	'GET'
+);
+
 Ace::loadConfig( WEBROOT.'/config.php', WEBROOT.'/config.local.php' );
 
 /*

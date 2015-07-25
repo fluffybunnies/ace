@@ -2,7 +2,8 @@
 
 namespace ace\helpers;
 use \ace\Ace;
-use \ace\HelperAbstract;
+use \ace\core\HelperAbstract;
+use \ace\helpers\Exception as HelperException;
 
 
 class Protect extends HelperAbstract {
@@ -14,7 +15,7 @@ class Protect extends HelperAbstract {
 			if (is_file($fn)) {
 				$log = json_decode(file_get_contents($fn), true);
 				if (!is_array($log))
-					throw new \Exception('corrupted log file; decode');
+					throw new HelperException(6010, null, 'json_decode()'); // 'Corrupted log file'
 			} else {
 				$log = array();
 			}
@@ -27,7 +28,7 @@ class Protect extends HelperAbstract {
 			if (!empty($log)) {
 				$mostDistantCallWithinRange = $log[$numRequests-1];
 				if (!is_array($mostDistantCallWithinRange) || !is_numeric(Ace::g($mostDistantCallWithinRange,'t')))
-					throw new \Exception('corrupted log file; item');
+					throw new HelperException(6010, null, 'item format'); // 'Corrupted log file'
 				if ($call['t'] < $mostDistantCallWithinRange['t']+$perSeconds)
 					$call['s'] = 0;
 			}
@@ -35,10 +36,10 @@ class Protect extends HelperAbstract {
 			while (count($log) > $bank)
 				array_pop($log);
 			if (!file_put_contents($fn, json_encode($log)))
-				throw new \Exception('failed to write log file');
+				throw new HelperException(6015); // Failed to write to log file
 			//if (!empty($_GET['debug'])) Ace::varDump($log);
 			if ($call['s'] == 0)
-				throw new \Exception('too many requests');
+				throw new HelperException(6017); // Too many requests
 		} catch (\Exception $e) {
 			echo $e->getMessage();
 			exit;

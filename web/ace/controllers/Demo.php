@@ -1,14 +1,15 @@
 <?php
 /*
-
+	@todo: Move some of this stuff into adapter/dao layer
 */
-
 namespace ace\controllers;
+
 use \ace\Ace;
-use \ace\ControllerAbstract;
+use \ace\core\ControllerAbstract;
+use \ace\controllers\Exception as ApiControllerException;
 use \ace\helpers\Ses;
 
-class Demo extends ControllerAbstract {
+class Demo extends ApiControllerAbstract {
 
 	private static $defaultEmailTo = array('volcomstoner2689@gmail.com');
 	private static $defaultEmailFrom = 'acquiremint-notifs@beachmint.com';
@@ -120,7 +121,7 @@ class Demo extends ControllerAbstract {
 		$data = $this->getSampleData();
 		$this->generateCsvFromArray($fileName, $data);
 		if (!is_file($fileName))
-			throw new \Exception('output file not found');
+			throw new ApiControllerException(2010); // Output file not found
 
 		Ses::send(array(
 			'to' => $emailTo,
@@ -147,9 +148,9 @@ class Demo extends ControllerAbstract {
 
 	private function generateCsvFromArray($writeToPath, $data){
 		if (!isset($data[0]))
-			throw new Exception('Invalid input');
+			throw new ApiControllerException(2003, null, 'Empty $data');
 		if (!($f=fopen($writeToPath, 'w+')))
-			throw new Exception('Error opening file');
+			throw new ApiControllerException(2011); // Unable to open file for writing
 		
 		$headers = array();
 		foreach ($data[0] as $k => $v)
@@ -172,7 +173,7 @@ class Demo extends ControllerAbstract {
 		try {
 			$log = json_decode(file_get_contents($fn), true);
 			if (!is_array($log))
-				throw new \Exception('unexpected format');
+				throw new ApiControllerException(2020); // Unexpected parsed JSON format
 		} catch (\Exception $e) {
 			//if (!empty($_GET['debug'])) echo "$e";
 			$log = array();
@@ -192,7 +193,7 @@ class Demo extends ControllerAbstract {
 		//if (!empty($_GET['debug'])) Ace::varDump($log);
 		file_put_contents($fn, json_encode($log));
 		if ($call['s'] == 0)
-			throw new \Exception('too many requests');
+			throw new ApiControllerException(2006); // Too many requests
 	}
 
 }
