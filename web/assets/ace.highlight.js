@@ -1,70 +1,82 @@
 /*
+var $rowIJustUpdated = $('table tr.num-15');
+ace.highlight($rowIJustUpdated).find('td.info').html(newValue);
 
+$('body').addClass('flashMeGreen');
+ace.highlight($('.flashMeGreen'), {start:'00ff00'})
 */
 
-ace.highlight = function($elm,opts,cb) {
-	opts = $.extend({
-		start: 'ffff00',
-		duration: 1000,
-		framerate: $.fx.interval
-	},opts || {});
-
-	var move_by_perc = opts.framerate/opts.duration,
-		start = opts.start,
-		frame = 0,
-		last_frame = opts.duration/opts.framerate,
-		interval,
-		v,i,c;
-	opts.start = [];
-	i = 0;
-	while ((v = start.substr(i*2,2)) !== '') {
-		opts.start[i++] = parseInt(v,16);
+ace.highlight = function($elm, opts, cb) {
+	if (typeof opts == 'function') {
+		cb = opts;
+		opts = {};
 	}
+	opts = $.extend({
+		start: 'ffff00'
+		,duration: 1000
+		,framerate: $.fx.interval
+	},opts);
+
+	var moveByPerc = opts.framerate/opts.duration
+		,start = []
+		,frame = 0
+		,lastFrame = opts.duration/opts.framerate
+		,elmOpts = []
+		,i = 0, v
+	;
+	while ((v = opts.start.substr(i*2,2)) !== '')
+		start[i++] = parseInt(v,16);
 
 	$elm.each(function(){
-		var jp = $(this),
-			o = {
-				current: [],
-				key: 'rgb'
-			};
-		for (i=0,c=opts.start.length;i<c;i++) o.current[i] = +opts.start[i];
+		var o = {
+			key: 'rgb'
+			,current: []
+			,moveBy: []
+			,$elm: $(this)
+		}, i
+		for (i=0;i<start.length;++i)
+			o.current[i] = start[i];
 		/**
 			Note: can't remember why i tested for 'rgba(0,0,0,0)'. seems like there
 				is probably faulty logic here
 		**/
-		if ((o.end = $(this).css('background-color')).indexOf('rgb') != -1 && o.end.replace(/ /g,'').indexOf('rgba(0,0,0,0)') == -1) {
+		o.end = o.$elm.css('background-color');
+		if (o.end.indexOf('rgb') != -1 && o.end.replace(/ /g,'').indexOf('rgba(0,0,0,0)') == -1) {
 			o.end = o.end.replace('rgba(','').replace('rgb(','').replace(/ /g,'').replace(')','').split(',');
-			for (i=0,c=o.end.length;i<c;i++) o.end[i] = +o.end[i];
+			for (i=0;i<o.end.length;++i)
+				o.end[i] = +o.end[i];
 			if (o.end.length > 3) {
 				o.key = 'rgba';
-				if (o.current.length == 3) o.current[3] = 1;
+				if (o.current.length == 3)
+					o.current[3] = 1;
 			}
 		} else {
 			o.end = [o.current[0],o.current[1],o.current[2],0];
-			if (o.current.length < 4) o.current[3] = 1;
+			if (o.current.length < 4)
+				o.current[3] = 1;
 			o.key = 'rgba';
 		}
 
-		o.move_by = [];
-		for (i=0,c=o.end.length;i<c;i++) o.move_by[i] = move_by_perc * (o.end[i] - o.current[i]);
+		for (i=0;i<o.end.length;++i)
+			o.moveBy[i] = moveByPerc * (o.end[i] - o.current[i]);
 
-		this.highlightBG_opts = o;
+		elmOpts.push(o);
 	});
 
 	(function next(){
-		if (++frame > last_frame) {
-			$elm.each(function(){
-				var o = this.highlightBG_opts;
-				$(this).css('background-color',o.key+'('+o.end.join(',')+')');
+		if (++frame > lastFrame) {
+			$.each(elmOpts,function(i,o){
+				o.$elm.css('background-color',o.key+'('+o.end.join(',')+')');
 			});
 			if (cb) cb();
 			return;
 		}
-		$elm.each(function(){
-			var o = this.highlightBG_opts;
-			for (i=0;i<3;i++) o.current[i] = Math.round(o.current[i]+o.move_by[i]);
-			if (o.current.length > 3) o.current[3] = o.current[3]+o.move_by[3];
-			$(this).css('background-color',o.key+'('+o.current.join(',')+')');
+		$.each(elmOpts,function(i,o){
+			for (i=0;i<3;++i)
+				o.current[i] = Math.round(o.current[i]+o.moveBy[i]);
+			if (o.current.length > 3)
+				o.current[3] = o.current[3]+o.moveBy[3];
+			o.$elm.css('background-color',o.key+'('+o.current.join(',')+')');
 		});
 		setTimeout(next,opts.framerate);
 	}());

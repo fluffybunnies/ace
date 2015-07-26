@@ -164,6 +164,87 @@ ace.pop({
 });
 ```
 
+##### Loader
+- Loader overlay gif remains visible while "up()"s > "down()"s
+```
+ace.loader.up()
+doSomethingAsync(function(){
+	ace.loader.down()
+})
+ace.loader.up()
+doSomethingElseAsync(function(){
+	ace.loader.down()
+})
+```
+
+##### Highlight
+- Animate background color to bring attention to $element(s)
+- Defaults to yellow fadeout over 1 second
+- Use case: Highlight cell in datatable that was just updated
+```
+var $rowIJustUpdated = $('table tr.num-15');
+ace.highlight($rowIJustUpdated).find('td.info').html(newValue);
+
+$('body').addClass('flashMeGreen');
+ace.highlight($('.flashMeGreen'), {
+	start:'00ff00'
+	,duration: 1500
+	,framerate: 15
+})
+```
+
+#### Resource
+- On-demand versioned asset loading
+- Think async requirejs lite with packs and css
+```
+// simple:
+ace.resource.fetch('https://s3.example.com/assets/SNotifs.js');
+
+// with callback:
+ace.resource.fetch('https://s3.example.com/assets/SNotifs.js',function(){
+	console.log('js and css loaded');
+})
+
+// multiple
+ace.resource.fetch([
+	'//s3.example.com/assets/Leaderboards.js'
+	,'//s3.example.com/assets/Leaderboards.css'
+],function(){
+	console.log('everything loaded');
+})
+
+// split cbs
+ace.resource.fetch([
+	'//s3.example.com/assets/SActivity.pv2.js'
+	,'//s3.example.com/assets/SActivity.pv2.css'
+],function(){
+	console.log('js loaded')
+	letsStartFunctionalizing()
+},function(){
+	console.log('css loaded')
+	renderThings()
+});
+
+// packs
+ace.resource.fetch('pack:social')
+```
+
+#### Req
+- Shorthand for api calls
+```
+ace.req('twitter/feed',function(err,data){
+	if (err) return console.log(err)
+	populateTwitterFeed()
+})
+
+ace.req('comments','post',{
+	body: 'Thnks!'
+})
+```
+
+
+
+
 
 ### Front End - Utils
 ```javascript
@@ -174,6 +255,7 @@ ace.util.deleteCookie
 ace.util.deobfu
 ace.util.escapeHtml
 ace.util.escapeRegEx
+ace.util.formatDate
 ace.util.formatInteger
 ace.util.formatPlace
 ace.util.formatTimeAgo
@@ -182,6 +264,8 @@ ace.util.getImageToWindowFit
 ace.util.getParameterByName
 ace.util.getViewportScrollY
 ace.util.hash
+ace.util.isFullyWithinViewport
+ace.util.isWithinViewport
 ace.util.obfu
 ace.util.onTouchDevice
 ace.util.padZ
@@ -269,6 +353,20 @@ Ace::curlPost
 	$urlEncodedParams mimicks application/x-www-form-urlencoded as opposed to the default multipart/form-data
 Ace::curlDelete
 	curlDelete( $url [, $params [, $curlOpts ]] )
+Ace::setAssetHeadersForFilename
+	For use when loading a file via php instead of webserver
+Ace::sphericalDistance
+	Calculate the distance between 2 lat/lng points
+Ace::strToTime
+	Enforce app-consistent timezone reference
+Ace::strToTimeUtc
+	Enforce app-consistent timezone reference
+Ace::date
+	Enforce app-consistent timezone reference
+Ace::dateUtc
+	Enforce app-consistent timezone reference
+Ace::aceTmz
+	Enforce app-consistent timezone reference
 ```
 
 
@@ -282,7 +380,7 @@ node ./bin/demo-emailCsv.js --emailTo='alec@luckygroupinc.com' --emailFrom='acqu
 
 ##### Utils
 ```javascript
-// 'ut.'+Object.keys(require('./ut.js')).sort().join('\nut.')
+// 'ut.'+Object.keys(require('./lib/ut.js')).sort().join('\nut.')
 ut.dateDiff
 ut.fileTime
 ut.getFirstChild
@@ -306,7 +404,10 @@ http://ace.fabfitfun.com/id
 
 ### To Do
 - Finish converting all root \Exceptions to codified BusinessExceptions
+- List helpers in readme
 - Finish `ace.req` and `ace.resource` + add to readme
+	- `ace.resource` = on-demand + versioned assets
+- Update changelog and bump to v0.1.0
 - Convert ace.highlight.js to ace.jq.highlight.js
 	- Review current state (escaped globals, memory+proc benchmark, etc)
 - Create example route to demonstrate DaoSqlAbstract
