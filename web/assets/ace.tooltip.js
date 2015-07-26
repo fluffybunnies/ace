@@ -138,10 +138,12 @@ ace.tooltip($('#look-at-me'),{
 			x = 0;
 		else if (x+tipDims.w > windowWidth)
 			x = windowWidth - tipDims.w;
-		if (y < 0)
-			y = 0;
-		else if (y+tipDims.h > windowHeight)
-			y = windowHeight - tipDims.h;
+		if (z.opts.fixed) {
+			if (y < 0)
+				y = 0;
+			else if (y+tipDims.h > windowHeight)
+				y = windowHeight - tipDims.h;
+		}
 
 		if (z.opts.pos == 'top') {
 			arrowX = targetOffset.left + (targetDims.w-arrowDims.w)/2 - x;

@@ -403,10 +403,9 @@ http://ace.fabfitfun.com/id
 
 
 ### To Do
-- Finish converting all root \Exceptions to codified BusinessExceptions
-- List helpers in readme
-- Finish `ace.req` and `ace.resource` + add to readme
-	- `ace.resource` = on-demand + versioned assets
+- Bug with tooltip positioning (newly introduced)
+	- https://github.com/fluffybunnies/ace/compare/039aa8a1f25f67c3bcca4aba49d7daa201f8979d...79e9614f4217eb6299b77e5399e43d5fe4eecde0
+	- git diff 039aa8a1f25f67c3bcca4aba49d7daa201f8979d..79e9614f4217eb6299b77e5399e43d5fe4eecde0
 - Update changelog and bump to v0.1.0
 - Convert ace.highlight.js to ace.jq.highlight.js
 	- Review current state (escaped globals, memory+proc benchmark, etc)
