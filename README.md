@@ -428,6 +428,7 @@ http://ace.fabfitfun.com/id
 
 
 ### To Do
+- Include ace.highlight.js in demo page
 - Convert ace.highlight.js to ace.jq.highlight.js
 	- Review current state (escaped globals, memory+proc benchmark, etc)
 - Create example route to demonstrate DaoSqlAbstract
