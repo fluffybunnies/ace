@@ -26,22 +26,51 @@ $(function(){
 	$('.ace-smile').each(function(){
 		var $el = $(this)
 			,times = +$el.attr('x-times') || 1
-			,wrap = $el.attr('x-wrap')
 			,num = 0
+			,getSmile
 		;
-		(function getSmile(){
+		getSmile = function(){
+console.log('GET SMILE');
 			ace.req('demo/smile',function(err,data){
 				if (err) {
 					console.log('ERROR','demo/smile',err,data);
 					if (!num)
 						return $el.html('api error: '+err.error);
 				} else {
-					$el.append(wrap ? $(wrap).html(data) : data);
+					var $face = $('<span class="ace-smile-face">'+data+'</span>').css({
+						position: 'relative'
+						,top: '-100px'
+						,opacity: 0
+					})
+					num ? $el.children('span').eq(ace.util.rand(0,$el.children('span').length-1)).after($face) : $el.append($face);
+					setTimeout(function(){
+						$face.css({
+							transition: 'all 1s'
+							,'-webkit-transition': 'all 1s'
+							,margin: '0 0.5em'
+							,top: 0
+							,opacity: 1
+						});
+					},100);
 				}
-				if (++num != times)
+				if (++num < times)
 					setTimeout(getSmile,2000);
 			});
-		}());
+		};
+		getSmile();
+		$el.on('click','.ace-smile-face',function(){
+			var $face = $(this);
+			$face.css({
+				opacity: 0
+				,margin: '-1em'
+			});
+			getSmile();
+			//ace.loader.up();
+			setTimeout(function(){
+				//ace.loader.down();
+				$face.remove();
+			},1000);
+		});
 	});
 
 	var $acePopExample = $('#ace-pop-example').bind('click',function(e){
@@ -157,6 +186,9 @@ div.ace-smile {
 	padding: 10px;
 	display: inline-block; /* for tooltip */
 }
+.ace-smile-face {
+	cursor: pointer;
+}
 
 .ace-fb-comments {
 	display: none;
@@ -236,7 +268,7 @@ div.ace-smile {
 
 	<div class="ace-example">
 		<h3>Ace API Example <span>(/ace/api/demo/smile)</span>:</h3>
-		<div class="ace-smile" x-times="11" x-wrap="<span style='margin:0 0.5em;' />" style="text-align:center;display:block;"></div>
+		<div class="ace-smile" x-times="11" style="text-align:center;display:block;"></div>
 	</div>
 
 	<div class="ace-example">

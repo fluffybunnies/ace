@@ -33,7 +33,9 @@ ace.loader = {
 			this._show();
 	}
 	,down: function(){
-		if (--this.queue <= 0)
+		if (this.queue == 0)
+			return;
+		if (--this.queue == 0)
 			this._hide();
 	}
 	,_show: function(){

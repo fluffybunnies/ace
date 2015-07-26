@@ -1,4 +1,4 @@
-<!--## 0.1.0 (2015-07-25)
+## 0.1.0 (2015-07-25)
 [https://github.com/fluffybunnies/ace/compare/519a838cce7121b766599bd529750cf1a08a5245...3de3fbf0e85d2737c278ced48c42806134223ae3](diff)
 
 Features
@@ -30,9 +30,10 @@ Bugs
 
 	- Patched XSS and CSRF vulnerabilities
 	- Fixed issue with the event bus' `ready()` implementation
+	- Fixed tooltip y positioning when !opts.fixed
 
 
--->
+
 ## 0.0.21 (2015-06-30)
 
 Features

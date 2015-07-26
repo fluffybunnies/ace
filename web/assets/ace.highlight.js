@@ -4,6 +4,9 @@ ace.highlight($rowIJustUpdated).find('td.info').html(newValue);
 
 $('body').addClass('flashMeGreen');
 ace.highlight($('.flashMeGreen'), {start:'00ff00'})
+
+To Do
+	- Consider using CSS3 transitions instead
 */
 
 ace.highlight = function($elm, opts, cb) {
