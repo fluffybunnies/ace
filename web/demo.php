@@ -24,12 +24,24 @@ ace.fb.loadSdk({
 
 $(function(){
 	$('.ace-smile').each(function(){
-		var $el = $(this);
-		$.getJSON('/ace/api/demo/smile',function(data){
-			if (!(data && data.data))
-				return $el.html('api error' + (data.error?': '+data.error:''));
-			$el.html(data.data);
-		});
+		var $el = $(this)
+			,times = +$el.attr('x-times') || 1
+			,wrap = $el.attr('x-wrap')
+			,num = 0
+		;
+		(function getSmile(){
+			ace.req('demo/smile',function(err,data){
+				if (err) {
+					console.log('ERROR','demo/smile',err,data);
+					if (!num)
+						return $el.html('api error: '+err.error);
+				} else {
+					$el.append(wrap ? $(wrap).html(data) : data);
+				}
+				if (++num != times)
+					setTimeout(getSmile,2000);
+			});
+		}());
 	});
 
 	var $acePopExample = $('#ace-pop-example').bind('click',function(e){
@@ -224,7 +236,7 @@ div.ace-smile {
 
 	<div class="ace-example">
 		<h3>Ace API Example <span>(/ace/api/demo/smile)</span>:</h3>
-		<div class="ace-smile"></div>
+		<div class="ace-smile" x-times="11" x-wrap="<span style='margin:0 0.5em;' />" style="text-align:center;display:block;"></div>
 	</div>
 
 	<div class="ace-example">

@@ -1,13 +1,16 @@
 <?php
 /*
 https://dev.twitter.com/docs/auth/application-only-auth
+
+@todo: Move some of this stuff into adapter/dao layer
 */
-
 namespace ace\controllers;
-use \ace\Ace;
-use \ace\ControllerAbstract;
 
-class Twitter extends ControllerAbstract {
+use \ace\Ace;
+use \ace\core\ApiControllerAbstract;
+use \ace\controllers\Exception as ApiControllerException;
+
+class Twitter extends ApiControllerAbstract {
 	private $appToken = null;
 
 	public function getAppToken(){
@@ -30,14 +33,14 @@ class Twitter extends ControllerAbstract {
 		$r = json_decode($r, true);
 
 		if (!is_array($r))
-			throw new \Exception('unexpected response from twitter');
+			throw new ApiControllerException(2008); // Unexpected response from external api
 		if (isset($r['errors'])) {
 			if (isset($r['errors'][0]['message']))
-				throw new \Exception($r['errors'][0]['message']);
-			throw new \Exception(json_encode($r['errors']));
+				throw new ApiControllerException(2009, null, $r['errors'][0]['message']); // Error response from external api
+			throw new ApiControllerException(2009, null, json_encode($r['errors']));
 		}
 		if (!isset($r['access_token']))
-			throw new \Exception('missing access_token');
+			throw new ApiControllerException(2008, null, 'Missing access_token');
 
 		return $r['access_token'];
 	}
@@ -61,13 +64,13 @@ class Twitter extends ControllerAbstract {
 		$r = json_decode($r, true);
 
 		if (!is_object($r) && !is_array($r))
-			throw new \Exception('unexpected response from twitter');
+			throw new ApiControllerException(2008);
 		if (isset($r['error']))
-			throw new \Exception($r['error']);
+			throw new ApiControllerException(2009, null, $r['error']); // Error response from external api
 		if (isset($r['errors'])) {
 			if (isset($r['errors'][0]['message']))
-				throw new \Exception($r['errors'][0]['message']);
-			throw new \Exception(json_encode($r['errors']));
+				throw new ApiControllerException(2009, null, $r['errors'][0]['message']); // Error response from external api
+			throw new ApiControllerException(2009, null, json_encode($r['errors']));
 		}
 
 		return $r;

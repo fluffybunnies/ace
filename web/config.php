@@ -31,3 +31,6 @@ $compile = array(
 );
 if (strpos(Ace::g($_SERVER,'HTTP_REFERER',''), 'nochat=1') !== false) array_unshift($compile, 'chat');
 
+
+$defaultTmz = 'America/Los_Angeles';
+

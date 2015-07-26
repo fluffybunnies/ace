@@ -6,7 +6,7 @@
 
 namespace ace\helpers;
 use \ace\Ace;
-use \ace\HelperAbstract;
+use \ace\core\HelperAbstract;
 
 
 class Tracking extends HelperAbstract {

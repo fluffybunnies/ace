@@ -6,7 +6,8 @@
 
 namespace ace\helpers;
 use \ace\Ace;
-use \ace\HelperAbstract;
+use \ace\core\HelperAbstract;
+use \ace\helpers\Exception as HelperException;
 
 
 class Ses extends HelperAbstract {
@@ -45,10 +46,10 @@ class Ses extends HelperAbstract {
 
 	public static function send($params) {
 		if (!is_array($params))
-			throw new \Exception('params must be an array');
+			throw new HelperException(6003, null, '$params must be an array'); // Invalid Input
 		foreach (array('to','subject','message','from',) as $k)
 			if (!array_key_exists($k, $params))
-				throw new \Exception("missing $k");
+				throw new HelperException(6002, null, "Missing $k"); // Missing Input
 
 		// defaults
 		if (!isset($params['type']))
@@ -88,22 +89,26 @@ class Ses extends HelperAbstract {
 
 		// send
 		$ses = self::getSes();
-		if (!empty($params['attachment'])) {
-			$rawMsg = self::makeRawMessage($params);
-			$r = $ses->sendRawEmail(array(
-				'RawMessage' => array(
-					'Data' => $rawMsg,
-				),
-			)/*, array(
-				'Source' => isset($params['reply_to']) ? $params['reply_to'] : $params['from'],
-				'Destinations' => $destination,
-			)*/);
-		} else {
-			$r = $ses->sendEmail(array_merge($opts,array(
-				'Source' => $params['from'],
-				'Destination' => $destination,
-				'Message' => $message,
-			)));
+		try {
+			if (!empty($params['attachment'])) {
+				$rawMsg = self::makeRawMessage($params);
+				$r = $ses->sendRawEmail(array(
+					'RawMessage' => array(
+						'Data' => $rawMsg,
+					),
+				)/*, array(
+					'Source' => isset($params['reply_to']) ? $params['reply_to'] : $params['from'],
+					'Destinations' => $destination,
+				)*/);
+			} else {
+				$r = $ses->sendEmail(array_merge($opts,array(
+					'Source' => $params['from'],
+					'Destination' => $destination,
+					'Message' => $message,
+				)));
+			}
+		} catch (HelperException $e) {
+			throw new HelperException(6007, $e);
 		}
 
 		/* new sdk should throw on error

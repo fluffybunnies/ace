@@ -1,9 +1,11 @@
 <?php
 namespace ace\controllers;
-use \ace\Ace;
-use \ace\ControllerAbstract;
 
-class App extends ControllerAbstract {
+use \ace\Ace;
+use \ace\core\ApiControllerAbstract;
+//use \ace\controllers\Exception as ApiControllerException;
+
+class App extends ApiControllerAbstract {
 
 	public function getAppVersion(){
 		// @todo: cache this

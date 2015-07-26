@@ -682,6 +682,7 @@ ace = {
 					},0);
 				}
 			}
+			return this;
 		}
 		$.fn.widgetize = function(widgetName, opts){
 			ace.ui.widgetize(widgetName, this, opts);

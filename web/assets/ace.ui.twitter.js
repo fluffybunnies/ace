@@ -30,18 +30,16 @@ ace.ui.register('twitter',{
 	}
 	,getData: function(cb){
 		var z = this;
-		$.getJSON('/ace/api/twitter/get',{
+		ace.req('twitter/get',{
 			route: 'statuses/user_timeline'
 			,p: {
 				screen_name: z.opts.screenName
 				,count: z.opts.numGet
 			}
-		},function(data){
-			if (data.error)
-				return z.log(data.error);
-			if (!(data.data instanceof Array))
+		},function(err,data){
+			if (!(data instanceof Array))
 				return z.log('unexpected response');
-			z.data = data.data;
+			z.data = data;
 			if (!z.data[0])
 				return z.log('no tweets');
 			cb();

@@ -2,6 +2,7 @@
 
 namespace ace;
 use \ace\Ace;
+use \ace\Api;
 
 class Router {
 
