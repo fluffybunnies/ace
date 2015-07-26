@@ -403,6 +403,7 @@ http://ace.fabfitfun.com/id
 
 
 ### To Do
+- Put helpers in readme
 - Convert ace.highlight.js to ace.jq.highlight.js
 	- Review current state (escaped globals, memory+proc benchmark, etc)
 - Create example route to demonstrate DaoSqlAbstract
