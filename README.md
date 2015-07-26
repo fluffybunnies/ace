@@ -3,7 +3,7 @@ ace
 
 Lightweight FE/BE Framework. Provides tools for launching prototype websites.
 
-Demo: [http://ace.fabfitfun.com/demo](http://ace.fabfitfun.com/demo)
+[Visit Demo Page](http://ace.fabfitfun.com/demo)
 
 
 ### Install via git
@@ -308,6 +308,31 @@ http://ace.fabfitfun.com/ace/api/demo/email-csv-php?email_to=alec@luckygroupinc.
 
 
 
+### Back End - Helpers
+
+##### SES
+Amazon SES wrapper. Super simple interface makes it easy to send emails with attachments.
+```php
+Ses::send(array(
+	'to' => array('trinkledinkle@example.com'),
+	'from' => 'stinklewinkle@gmail.com',
+	'reply_to' => 'funky.munky@example.com',
+	'bcc' => 'rufus@example.com',
+	'subject' => 'Kali M lent you 2 loyalty points!',
+	'message' => '<em>ssssssup</em>',
+	'type' => 'html',
+	'attachment' => WEBROOT.'/saved/secret_list.csv',
+));
+```
+
+##### Protect
+Contains basic methods to help secure your prototype website.
+```php
+Protect::preventBruteForce($numRequests=4, $perSeconds=2000, $usePath=true, $bank=50)
+```
+
+
+
 ### Back End - Utils
 ```php
 Ace::getConfig
@@ -403,7 +428,6 @@ http://ace.fabfitfun.com/id
 
 
 ### To Do
-- Put helpers in readme
 - Convert ace.highlight.js to ace.jq.highlight.js
 	- Review current state (escaped globals, memory+proc benchmark, etc)
 - Create example route to demonstrate DaoSqlAbstract
