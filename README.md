@@ -165,7 +165,7 @@ ace.pop({
 ```
 
 ##### Loader
-- Loader overlay gif remains visible while "up()"s > "down()"s
+- Loader overlay animation remains visible while "up()"s > "down()"s
 ```
 ace.loader.up()
 doSomethingAsync(function(){
