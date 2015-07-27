@@ -30,27 +30,33 @@ $(function(){
 			,getSmile
 		;
 		getSmile = function(){
-console.log('GET SMILE');
 			ace.req('demo/smile',function(err,data){
 				if (err) {
 					console.log('ERROR','demo/smile',err,data);
 					if (!num)
 						return $el.html('api error: '+err.error);
 				} else {
+					// transitioning width doesnt work, using negative margin instead...
 					var $face = $('<span class="ace-smile-face">'+data+'</span>').css({
 						position: 'relative'
 						,top: '-100px'
 						,opacity: 0
 					})
 					num ? $el.children('span').eq(ace.util.rand(0,$el.children('span').length-1)).after($face) : $el.append($face);
+					$face.css('margin','0 -'+ace.util.trueDim($face).w/2+'px');
 					setTimeout(function(){
 						$face.css({
-							transition: 'all 1s'
-							,'-webkit-transition': 'all 1s'
+							transition: 'margin 1s, top 1s, opacity 1s'
+							,'-webkit-transition': 'margin 1s, top 1s, opacity 1s'
 							,margin: '0 0.5em'
 							,top: 0
 							,opacity: 1
 						});
+						if (($el.children('span').length-1)%3 == 0) {
+							setTimeout(function(){
+								ace.highlight($face, {start:'ff69b4', duration:800});
+							},1100);
+						}
 					},100);
 				}
 				if (++num < times)
@@ -62,7 +68,7 @@ console.log('GET SMILE');
 			var $face = $(this);
 			$face.css({
 				opacity: 0
-				,margin: '-1em'
+				,margin: '0 -'+ace.util.trueDim($face).w/2+'px'
 			});
 			getSmile();
 			//ace.loader.up();
@@ -188,6 +194,9 @@ div.ace-smile {
 }
 .ace-smile-face {
 	cursor: pointer;
+	display: inline-block;
+	white-space: nowrap;
+	overflow: hidden;
 }
 
 .ace-fb-comments {
