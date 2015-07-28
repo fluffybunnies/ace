@@ -42,7 +42,7 @@ $(function(){
 						,opacity: 0
 					})
 					num ? $el.children('span').eq(ace.util.rand(0,$el.children('span').length-1)).after($face) : $el.append($face);
-console.log('INIT WIDTH',ace.util.trueDim($face).w);
+console.log('INIT WIDTH',ace.util.trueDim($face).w); // #dont remove yet
 					$face.css('margin','0 -'+ace.util.trueDim($face).w/2+'px');
 					setTimeout(function(){
 						$face.css({
@@ -66,7 +66,7 @@ console.log('INIT WIDTH',ace.util.trueDim($face).w);
 		getSmile();
 		$el.on('click','.ace-smile-face',function(){
 			var $face = $(this);
-console.log('SUP',ace.util.trueDim($face,true));
+console.log('SUP',ace.util.trueDim($face,true)); // #dont remove yet
 			$face.css({
 				opacity: 0
 				,margin: '0 -'+ace.util.trueDim($face).w/2+'px'

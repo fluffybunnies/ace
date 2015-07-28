@@ -19,7 +19,7 @@ class Exception extends ExceptionAbstract {
 	);
 
 	public static function getCodeMessage($code){
-		return isset(self::$codes[$code]) ? self::$codes[$code] : 'UNSET ADAPTER CODE!';
+		return isset(self::$codes[$code]) ? self::$codes[$code] : 'UNSET HELPER CODE!';
 	}
 
 }
