@@ -339,40 +339,40 @@ class Ace {
 	public static function strToTime($str, $time=null) {
 		if ($time === null)
 			$time = time();
-		$origTmz = date_default_timezone_get();
-		@date_default_timezone_set(self::aceTmz());
+		$origTmz = @date_default_timezone_get();
+		date_default_timezone_set(self::aceTmz());
 		$time = strtotime($str, $time);
-		@date_default_timezone_set($origTmz);
+		date_default_timezone_set($origTmz);
 		return $time;
 	}
 
 	public static function strToTimeUtc($str, $time=null) {
 		if ($time === null)
 			$time = time();
-		$origTmz = date_default_timezone_get();
-		@date_default_timezone_set('UTC');
+		$origTmz = @date_default_timezone_get();
+		date_default_timezone_set('UTC');
 		$time = strtotime($str, $time);
-		@date_default_timezone_set($origTmz);
+		date_default_timezone_set($origTmz);
 		return $time;
 	}
 
 	public static function date($format, $time=null) {
 		if ($time === null)
 			$time = time();
-		$origTmz = date_default_timezone_get();
-		@date_default_timezone_set(self::aceTmz());
+		$origTmz = @date_default_timezone_get();
+		date_default_timezone_set(self::aceTmz());
 		$date = date($format, $time);
-		@date_default_timezone_set($origTmz);
+		date_default_timezone_set($origTmz);
 		return $date;
 	}
 
 	public static function dateUtc($format, $time=null) {
 		if ($time === null)
 			$time = time();
-		$origTmz = date_default_timezone_get();
-		@date_default_timezone_set('UTC');
+		$origTmz = @date_default_timezone_get();
+		date_default_timezone_set('UTC');
 		$date = date($format, $time);
-		@date_default_timezone_set($origTmz);
+		date_default_timezone_set($origTmz);
 		return $date;
 	}
 
