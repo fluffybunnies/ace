@@ -24,6 +24,7 @@ $compile = array(
 	'req',
 	'resource',
 	'shadbox',
+	'stickyFormVals',
 	'tooltip',
 	'ui.carousel',
 	'ui.instagram',

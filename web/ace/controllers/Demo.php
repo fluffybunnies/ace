@@ -121,7 +121,7 @@ class Demo extends ApiControllerAbstract {
 		$data = $this->getSampleData();
 		$this->generateCsvFromArray($fileName, $data);
 		if (!is_file($fileName))
-			throw new ApiControllerException(2010); // Output file not found
+			throw new ApiControllerException(2020); // Output file not found
 
 		Ses::send(array(
 			'to' => $emailTo,
@@ -150,7 +150,7 @@ class Demo extends ApiControllerAbstract {
 		if (!isset($data[0]))
 			throw new ApiControllerException(2003, null, 'Empty $data');
 		if (!($f=fopen($writeToPath, 'w+')))
-			throw new ApiControllerException(2011); // Unable to open file for writing
+			throw new ApiControllerException(2021); // Unable to open file for writing
 		
 		$headers = array();
 		foreach ($data[0] as $k => $v)
@@ -173,7 +173,7 @@ class Demo extends ApiControllerAbstract {
 		try {
 			$log = json_decode(file_get_contents($fn), true);
 			if (!is_array($log))
-				throw new ApiControllerException(2020); // Unexpected parsed JSON format
+				throw new ApiControllerException(2030); // Unexpected parsed JSON format
 		} catch (\Exception $e) {
 			//if (!empty($_GET['debug'])) echo "$e";
 			$log = array();

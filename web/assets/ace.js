@@ -256,7 +256,8 @@ ace = {
 						,opts
 					;
 					try {
-						opts = eval('('+$.trim($script[0].innerHTML)+')');
+						var optsStr = $.trim($script[0].innerHTML)
+						opts = optsStr == '' ? {} : eval('('+optsStr+')');
 					} catch (e) {
 						ace.log('ERROR', 'parsing widget opts', key, e);
 					}
@@ -299,8 +300,36 @@ ace = {
 			return (str+'').replace(/(^[^a-zA-Z]+)|([^a-zA-Z0-9_\-])/g,'');
 		}
 
+		,setUniqueClassVal: function($el, prefix, val, sep){
+			if (!sep) sep = '-'
+			var uniqClass = prefix+sep+val
+				,alreadyHasIt = $el.hasClass(alreadyHasIt)
+			if (!alreadyHasIt)
+				$el.addClass(uniqClass)
+			this.removeClassWithPrefix($el, prefix+sep, val)
+			return !alreadyHasIt
+		}
+		,removeClassWithPrefix: function($el,prefix,except){
+			$el.each(function(i,el){
+				$el = $(el)
+				$.each(($el.attr('class')||'').split(' '),function(i,name){
+					if (name.indexOf(prefix) == 0 && name != prefix+except)
+						$el.removeClass(name)
+				})
+			})
+		}
+
 		,rand: function(min,max){
 			return min+Math.round(Math.random()*(max-min));
+		}
+
+		,replaceAll: function(str,search,replace){
+			return str.split(search).join(replace)
+		}
+
+		,isEmptyObject: function(obj){
+			for (var k in obj) return false;
+			return true
 		}
 
 		,capitalize: function(str, isName){
@@ -621,7 +650,7 @@ ace = {
 				charCode = str.charCodeAt(i);
 				if (salt)
 					charCode = (charCode + (salt+'').charCodeAt(i%salt.length))%boundLimit;
-				charCode = padZ(charCode,bound);
+				charCode = this.padZ(charCode,bound);
 				hash += charCode;
 			}
 			return hash;
@@ -640,6 +669,55 @@ ace = {
 				}
 			}
 			return str;
+		}
+
+		/*
+			ace.util.stdErrAlert()
+			ace.util.stdErrAlert('bad things!')
+			ace.util.stdErrAlert({error:'argh!'})
+			ace.util.stdErrAlert({code:123})
+			ace.util.stdErrAlert({code:456,error:'doh!'})
+			ace.util.stdErrAlert('rawr',{error:'argh!'})
+			ace.util.stdErrAlert('customMsg','errorMsg')
+			ace.util.stdErrAlert('pshhh',ace.ui._modules.test_schedules.instances[0])
+			ace.util.stdErrAlert('whaaaat?',{details:'are cool'},ace.ui._modules.test_schedules.instances[0])
+			ace.util.stdErrAlert('whaaaat?',{error:'im an error'},{details:'are cool'},ace.ui._modules.test_schedules.instances[0])
+		*/
+		,stdErrAlert: function(/*customMsg,err,res,module*/){
+			var customMsg,err,res,module,undef
+			for (var i=0;i<arguments.length;++i)
+				switch (typeof arguments[i]) {
+					case 'string': !customMsg ? (customMsg=arguments[i]) : err={error:arguments[i]}; break;
+					case 'object': arguments[i] instanceof AceBase ? (module=arguments[i]) : (!err && (arguments[i].code !== undef || arguments[i].error !== undef)) ? (err = arguments[i]) : (res = arguments[i]); break;
+				}
+			if (!res && err && err.code === undef && err.error === undef) res = err
+			if (res instanceof AceBase) {
+				module = res
+				res = null
+			}
+			//ace.log('customMsg',customMsg,'err',err,'res',res,'module',module)
+			var header = 'Oh neeooooo.... We have has had errrs!'
+				,msg = [
+					'Please enjoy this picture of a cute puppy while we fix the problem<br /><br /><div style="text-align:center"><img src="/assets/cute_puppy-sm.jpg" alt="" /></div>'
+				]
+			;
+			if (err) msg.unshift('('+(err&&err.code?err.code:'??')+') '+(err&&err.error?err.error:'unknown error'))
+			if (customMsg) msg.unshift(customMsg)
+			var body = msg.join('<br /><br />');
+			(module&&typeof(module.log)=='function' ? module : ace).log('ERROR', 'util.stdErrAlert', err)
+			if (res) {
+				body += '<br /><a href="#" class="show-more-detail">more detail &raquo;&raquo;</a>';
+				body += '<div class="more-detail" style="display:none;"><pre><code>'+JSON.stringify(res,null,3)+'</code></pre></div>';
+			}
+			var pop = ace.pop({
+				header: header
+				,body: body
+				,classes: 'ace-pop-stderralert' + (module&&module.cssKey ? ' '+module.cssKey+'-pop' : '')
+			})
+			pop.$.cont.find('a.show-more-detail').bind('click',function(e){
+				e.preventDefault();
+				pop.$.cont.find('.more-detail').css('display','');
+			})
 		}
 
 	}

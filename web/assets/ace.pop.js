@@ -14,7 +14,7 @@ ace.pop({
 */
 
 
-(function(){
+;(function(){
 	var Pop = AceBase.extend({
 		init: function(opts){
 			var z = this;

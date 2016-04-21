@@ -3,38 +3,27 @@
 */
 
 ace.req = function(/* method must come after url */){
-	var z = ace.req
-		,method = 'get'
-		,url,data,opts,cb,i,c
-	for (i=0,c=arguments.length;i<c;++i) {
-		switch (typeof(arguments[i])) {
-			case 'string':
-				if (!url)
-					url = arguments[i];
-				else
-					method = arguments[i];
-			break;
-			case 'object':
-				if (!data)
-					data = arguments[i];
-				else
-					opts = arguments[i];
-			break;
-			case 'function':
-				cb = arguments[i];
-			break;
+	var z = ace.req, method = 'get'
+		,url,data,opts,showLoader,cb,i
+	for (i=0;i<arguments.length;++i) {
+		switch (typeof arguments[i]) {
+			case 'string': url ? method = arguments[i] : url = arguments[i]; break;
+			case 'object': data ? opts = arguments[i] : data = arguments[i]; break;
+			case 'function': cb = arguments[i]; break;
+			case 'boolean': showLoader = arguments[i]; break;
 		}
 	}
-	if (url[0] == '/')
-		url = url.substr(1);
-	url = z.config.apiPrefix+url;
+	url = z.config.apiPrefix + (url[0] == '/' ? url.substr(1) : url);
+	showLoader && ace.loader.up();
 	$.ajax({
 		url: url
 		,data: data
-		,method: method
+		,method: method // jQuery v1
+		,type: method // jQuery v2
 		,dataType: 'json'
 		,complete: function(res){
 			var undef;
+			showLoader && ace.loader.down();
 			// BEGIN handle jquery not returning responseJSON (wrong content-type or not an object)
 			if (res && !res.responseJSON && res.responseText) {
 				try {

@@ -60,7 +60,7 @@ class Api {
 		} else {
 			// header to prevent XSS attacks
 			// dont set for POSTs as it will break iframe posting
-			if ($requestMethod == 'GET')
+			//if ($requestMethod == 'GET')
 				header('Content-Type: application/json');
 		}
 

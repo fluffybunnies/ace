@@ -1,28 +1,30 @@
 <?php
-namespace ace\core;
+namespace app\core;
 
 class ExceptionAbstract extends \Exception {
 
-	protected static $missingCodeMessage = 'UNSET CODE!';
-	protected static $codes = array();
+	public static $unsetCodeMessage = 'Unset code';
+	public static $codes = array();
 
 	public function __construct($code, \Exception $previousError=null, $debugMessage=''){
-		$msg = array( self::getCodeMessage($code) );
-		if ($previousError)
+		$msg = array( static::getCodeMessage($code) );
+		if ($previousError) {
 			$msg[] = $previousError->getMessage();
-		if ($debugMessage)
-			$msg[] = $debugMessage;
+		}
+		if ($debugMessage) {
+			$msg[] = is_string($debugMessage) ? $debugMessage : json_encode($debugMessage);
+		}
 		$msg = implode('; ',$msg);
 		parent::__construct($msg, $code, $previousError);
 		//$this->log();
 	}
 
 	public static function getCodeMessage($code){
-		return isset(self::$codes[$code]) ? self::$codes[$code] : self::$missingCodeMessage;
+		return isset(static::$codes[$code]) ? static::$codes[$code] : static::$unsetCodeMessage;
 	}
 
-	public function log(){
+	/*public function log(){
 
-	}
+	}*/
 
 }

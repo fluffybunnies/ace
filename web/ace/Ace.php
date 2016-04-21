@@ -58,11 +58,19 @@ class Ace {
 			$host = isset($_SERVER['HOST_NAME']) ? $_SERVER['HOST_NAME'] : isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : null;
 	*/
 	public static function g($p,$k,$d=null) {
-		if (!is_array($k))
-			return array_key_exists($k,$p) ? $p[$k] : $d;
-		for ($i=0,$c=count($k);$i<$c;$i++)
-			if (array_key_exists($k[$i],$p))
-				return $p[$k[$i]];
+		if (is_array($p)) {
+			if (!is_array($k))
+				return array_key_exists($k,$p) ? $p[$k] : $d;
+			for ($i=0,$c=count($k);$i<$c;$i++)
+				if (array_key_exists($k[$i],$p))
+					return $p[$k[$i]];
+		} else if (is_object($p)) {
+			if (!is_array($k))
+				return property_exists($p,$k) ? $p->$k : $d;
+			for ($i=0,$c=count($k);$i<$c;$i++)
+				if (property_exists($p,$k[$i]))
+					return $p->$k[$i];
+		}
 		return $d;
 	}
 
@@ -98,13 +106,13 @@ class Ace {
 		For debugging: exit with $message
 	*/
 	public static function e(){
-		echo "---- debug ----\n\n";
+		echo "\n---- debug ----\n\n";
 		$args = func_get_args();
 		foreach ($args as $arg) {
-			echo (is_array($arg) || is_object($arg)) ? json_encode($arg) : $arg;
+			self::varDump($arg);
 			echo "\n\n";
 		}
-		exit;
+		try{throw new \Exception;}catch(\Exception $e){exit("$e");}
 	}
 
 	/**
@@ -118,9 +126,9 @@ class Ace {
 		HTML-formatted alternative to var_dump
 	*/
 	public static function varDump($v, $exit=false) {
-		echo '<div style="margin:4px;border:1px dotted #000;padding:4px;background:#eee;color:#000;font-size:12px;font-family:monospace;clear:both;">';
+		echo '<div style="margin:4px;border:1px dotted #000;padding:4px;background:#eee;color:#000;font-size:12px;font-family:monospace;clear:both;">'."\n";
 		echo self::_varDump($v);
-		echo '</div>';
+		echo "\n</div>";
 		if ($exit)
 			exit;
 	}
@@ -272,8 +280,10 @@ class Ace {
 		else // multipart/form-data
 			curl_setopt($ch, CURLOPT_POSTFIELDS, $params);
 
-		foreach ($curlOpts as $k => $v)
-			curl_setopt($ch, $k, $v);
+		if (is_array($curlOpts)) {
+			foreach ($curlOpts as $k => $v)
+				curl_setopt($ch, $k, $v);
+		}
 
 		return curl_exec($ch);
 	}
@@ -338,7 +348,7 @@ class Ace {
 	*/
 	public static function strToTime($str, $time=null) {
 		if ($time === null)
-			$time = time();
+			$time = self::time();
 		$origTmz = @date_default_timezone_get();
 		date_default_timezone_set(self::aceTmz());
 		$time = strtotime($str, $time);
@@ -348,7 +358,7 @@ class Ace {
 
 	public static function strToTimeUtc($str, $time=null) {
 		if ($time === null)
-			$time = time();
+			$time = self::time();
 		$origTmz = @date_default_timezone_get();
 		date_default_timezone_set('UTC');
 		$time = strtotime($str, $time);
@@ -358,7 +368,7 @@ class Ace {
 
 	public static function date($format, $time=null) {
 		if ($time === null)
-			$time = time();
+			$time = self::time();
 		$origTmz = @date_default_timezone_get();
 		date_default_timezone_set(self::aceTmz());
 		$date = date($format, $time);
@@ -368,12 +378,22 @@ class Ace {
 
 	public static function dateUtc($format, $time=null) {
 		if ($time === null)
-			$time = time();
+			$time = self::time();
 		$origTmz = @date_default_timezone_get();
 		date_default_timezone_set('UTC');
 		$date = date($format, $time);
 		date_default_timezone_set($origTmz);
 		return $date;
+	}
+
+	public static function dbTime($time=null) {
+		if ($time === null) $time = self::time();
+		return self::date('Y-m-d H:i:s', $time);
+	}
+
+	public static function dbTimeUtc($time=null) {
+		if ($time === null) $time = self::time();
+		return self::dateUtc('Y-m-d H:i:s', $time);
 	}
 
 	public static function aceTmz() {
@@ -383,6 +403,14 @@ class Ace {
 		if (empty($defaultTmz))
 			$defaultTmz = 'America/Los_Angeles';
 		return self::$TMZ = $defaultTmz;
+	}
+
+	/**
+	* Use this in place of time() so we can write unit tests
+	*/
+	public static $time = null;
+	public static function time() {
+		return isset(self::$time) ? self::$time : time();
 	}
 
 	// END utils

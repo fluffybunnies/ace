@@ -11,7 +11,7 @@
 */
 
 ace.ui.register('twitter',{
-	// http://wp.fabfitfun.com/ace/api/twitter/get?route=statuses/user_timeline&p[screen_name]=alecisawesome&p[count]=10
+	// /api/twitter/get?route=statuses/user_timeline&p[screen_name]=alecisawesome&p[count]=10
 	opts: {
 		numGet: 10
 		,numShow: 1

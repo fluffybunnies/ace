@@ -42,7 +42,7 @@ class CaoFactory {
 	protected static function classNameToCaoClassName($className, $caoDriver=false){
 		/* this is where the magic happens, e.g.
 			className = ace\controllers\Products > key = ace\controllers\Products_VersionController > return self::$caoClassnameCache[$key] (\ace\cao\VersionController)
-			className = ace\adapters\Products > key = ace\adapters\Products_Version > return return self::$caoClassnameCache[$key] (\ace\cao\Version)
+			className = ace\adapters\Products > key = ace\adapters\Products_Version > return self::$caoClassnameCache[$key] (\ace\cao\Version)
 		*/
 		return $className;
 	}

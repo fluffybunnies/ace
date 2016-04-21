@@ -1,5 +1,10 @@
 /*
 
+To Do
+	- #positionBug01 Fix bug where sometimes first tooltip is positioned incorrectly
+		- The text box is off, but the arrow is correctly positioned
+		- If hover off and back on, fixes itself
+
 ace.tooltip($('#look-at-me'),{
 	content: 'I do cool things!'
 });
@@ -81,6 +86,8 @@ ace.tooltip($('#look-at-me'),{
 		$('body').append(z.$.cont);
 		z.position();
 		z.$.cont.css('visibility','');
+		// #positionBug01 - this is a tad risky w/o unit tests but seems to fix my current issue
+		z.position();
 	}
 	Tooltip.prototype.hide = function(){
 		var z = this;
@@ -99,15 +106,20 @@ ace.tooltip($('#look-at-me'),{
 	Tooltip.prototype.position = function(){
 		var z = this
 			,$w = $(window)
+			,$d = $(document)
 			,tipDims = ace.util.trueDim(z.$.cont)
 			,arrowDims = ace.util.trueDim(z.$.arrow)
 			,targetDims = ace.util.trueDim(z.$.target)
 			,targetOffset = z.$.target.offset()
 			,windowWidth = $w.width()
 			,windowHeight = $w.height()
+			,documentWidth = $d.width()
 			,offset = z.opts.offset
 			,x,y,arrowX,arrowY
 		;
+
+		if (windowWidth < documentWidth) // account for horizontal scrollbar
+			windowWidth = documentWidth
 
 		if (offset === null) {
 			if (z.opts.pos == 'top' || z.opts.pos == 'bot')
@@ -170,7 +182,12 @@ ace.tooltip($('#look-at-me'),{
 	}
 
 	ace.tooltip = function($el,opts){
-		return new Tooltip($el,opts);
+		// backwards compatibility for returning Tooltip for single elements
+		if ($el.length == 1)
+			return new Tooltip($el,opts);
+		$el.each(function(){
+			new Tooltip($(this),opts)
+		})
 	}
 	ace.tooltip.hideAll = function(except){
 		Tooltip.prototype.hideAll(except);

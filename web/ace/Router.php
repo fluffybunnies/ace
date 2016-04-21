@@ -1,6 +1,6 @@
 <?php
-
 namespace ace;
+
 use \ace\Ace;
 use \ace\Api;
 
@@ -21,18 +21,20 @@ class Router {
 	);
 	private static $apiPath = '/ace/api';
 
-	public static function route($request){
+	public static function route($request, $requestMethod='GET'){
 
 		if (strpos($request, self::$apiPath) === 0) {
-			Api::request( substr($request, strlen(self::$apiPath)+1) );
+			Api::request( substr($request, strlen(self::$apiPath)+1), $requestMethod );
 			exit;
 		}
 
-		if (isset(self::$routes[$request]))
+		if (isset(self::$routes[$request])) {
 			self::go(self::$routes[$request]);
+		}
 
-		if (isset(self::$redirects[$request]))
+		if (isset(self::$redirects[$request])) {
 			self::redirect(self::$redirects[$request]);
+		}
 
 	}
 

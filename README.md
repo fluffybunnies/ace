@@ -428,12 +428,20 @@ http://ace.fabfitfun.com/id
 
 
 ### To Do
-- Include ace.highlight.js in demo page
+- Utilize late static binding in Exceptions
+- Import relevant bin/s (e.g. create_dto.php)
+- Import magic adapter + dao methods
+- Import Ace + bootshell + method comments + etc upgrades
+	- Don't simply copy+paste work done in Ace::normalizePostData, unit test normal www-form-encoded post from node, maaaybe fall back to the json obj encapsed form
+	- e.g. DaoSqlAbstract::makePivotWhere
+- Import Eav
 - Convert ace.highlight.js to ace.jq.highlight.js
 	- Review current state (escaped globals, memory+proc benchmark, etc)
 - Create example route to demonstrate DaoSqlAbstract
+- Prepend semicolons to ace modules that begin with "(" to allow for alternate builders like gulp
 - Add: SocialShare, flashUI, Lights, et al
 - MVC-type routes separate from API
+	- Import home.php
 - Implement basic cache layer with memcache driver
 	- Start with App::getAppVersion()
 - Generate ace.min.js/ace.min.css on start + post-gitsync / file change
