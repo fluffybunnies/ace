@@ -1,5 +1,5 @@
 <?php
-namespace app\core;
+namespace ace\core;
 
 class ExceptionAbstract extends \Exception {
 
