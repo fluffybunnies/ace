@@ -725,12 +725,12 @@ ace = {
 	,_jQExtensions: function(){
 		$.fn.imagesLoaded = function(cb){
 			var $elm = this
-				,jimgs = this.find('img').andSelf().filter('img')
+				,$imgs = this.find('img').andSelf().filter('img')
 				,imgs = []
 				,numLoaded = 0
 				,numImgs,loaded
 			;
-			numImgs = jimgs.length;
+			numImgs = $imgs.length;
 			if (!numImgs)
 				return done();
 			loaded = function(index){
@@ -740,7 +740,7 @@ ace = {
 						done();
 				}
 			};
-			jimgs.each(function(index){
+			$imgs.each(function(index){
 				var doIt = function(){
 					loaded(index);
 				};
@@ -749,7 +749,7 @@ ace = {
 					doIt();
 				} else {
 					$(this).bind('load',doIt).bind('error',doIt);
-					if (this.complete)
+					if (this.complete) // @todo: should check naturalWidth!==undef too for #xbrowser? try IE
 						doIt();
 				}
 			});
