@@ -29,8 +29,10 @@ ace.ui.register('instagram',{
 	,init: function(){
 		var z = this;
 		z.fetchStuff(function(err){
-			if (err)
+			if (err) {
+				z.handleBreakingError(err)
 				return z.log('ERROR','fetchStuff',err);
+			}
 			z.getData(function(){
 				z.build();
 				z.functionalize();
@@ -124,5 +126,9 @@ ace.ui.register('instagram',{
 				ace.shadbox($(this).attr('xdata-img'));
 			});
 		}
+	}
+	,handleBreakingError: function(msg){
+		var z = this, x = z.cssKey
+		z.$.cont.html('<div class="'+x+'-breaking_error">Instagram API not happy. Check console for deets.</div>')
 	}
 });
