@@ -52,7 +52,7 @@ ace.ui.register('instagram',{
 				client_id: z.opts.clientId
 			},function(data){
 				if (!(data && data.data))
-					return cb('unexpected response', data&&data.meta&&data.meta.error_message);
+					return cb('unexpected response' + (data&&data.meta&&data.meta.error_message ? ': '+data.meta.error_message : ''));
 				z.fetchedData[k] = z.opts.fetch[k][1](data);
 				if (++numFetched == numToFetch)
 					cb();
