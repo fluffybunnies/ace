@@ -21,7 +21,7 @@ define('REQUEST_PATH', resolveRequestPath());
 
 include APP_PATH.'/autoload.php';
 
-use \ace\Ace::loadConfig( WEBROOT.'/config.php', WEBROOT.'/config.local.php' );
+\ace\Ace::loadConfig( WEBROOT.'/config.php', WEBROOT.'/config.local.php' );
 
 /*
 // hide secret environment vars if using elastic beanstalk...
