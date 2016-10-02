@@ -30,6 +30,7 @@ OneMinuteContest.prototype.findParentWindow = function(cb){
 	setTimeout(function(){
 		self.parentWindow = window
 		self.parentFrameElement = self.parentWindow.frameElement
+console.log('!! PARENT',reasonableLimit,self.parentWindow,self.parentFrameElement)
 		while (self.parentWindow.location != self.parentWindow.parent.location) {
 			if (--reasonableLimit == 0) {
 				return cb('too many recursions')
@@ -37,7 +38,7 @@ OneMinuteContest.prototype.findParentWindow = function(cb){
 			self.parentFrameElement = self.parentWindow.frameElement
 			self.parentWindow = self.parentWindow.parent
 		}
-		console.log('!! PARENT',reasonableLimit,self.parentWindow,self.parentFrameElement)
+console.log('!! PARENT',reasonableLimit,self.parentWindow,self.parentFrameElement)
 		cb()
 	},0)
 }
@@ -88,12 +89,14 @@ OneMinuteContest.prototype.loadJquery = function(cb){
 }
 
 OneMinuteContest.prototype.getScript = function(src,cb){
-	var script = self.parentWindow.document.createElement('script')
+	//var script = self.parentWindow.document.createElement('script')
+	var script = document.createElement('script')
 	script.async = true
 	script.onload = function(){cb()}
 	script.onerror = cb
 	script.src = src
-	self.parentWindow.document.body.appendChild(script)
+	//self.parentWindow.document.body.appendChild(script)
+	document.body.appendChild(script)
 	function done(err){
 		cb(err)
 		cb = function(){}
