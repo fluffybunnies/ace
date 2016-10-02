@@ -22,9 +22,20 @@ function OneMinuteContest(){
 OneMinuteContest.prototype.key = 'OneMinuteContest'
 OneMinuteContest.prototype.WOOBOX_CAMPAIGN_ID = 'bd4rwu'
 
+// 1. find target insert element
+// 2. determine which widget based on current url
 OneMinuteContest.prototype.findAndInsertWidgetPlaceholder = function(cb){
 	var self = this
 	setTimeout(function(){
+		var parentWindow = window
+			,reasonableLimit = 5
+		while (window.location != window.parent.location && --reasonableLimit) {
+			parentWindow = window.parent
+		}
+		console.log('PARENT WINDOW',parentWindow)
+		if (reasonableLimit == 0) {
+			return cb('failed to find parent window, too many recursions')
+		}
 		self.$.insertCont = $('#OneMinuteContest-submit, #OneMinuteContest-vote')
 		self.defaultPage = self.$.insertCont.attr('id') == 'OneMinuteContest-submit' ? 'submit' : 'vote'
 		if (!self.$.insertCont.length) {
