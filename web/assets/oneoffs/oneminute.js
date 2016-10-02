@@ -28,9 +28,10 @@ OneMinuteContest.prototype.WOOBOX_CAMPAIGN_ID = 'bd4rwu'
 OneMinuteContest.prototype.findParentWindow = function(cb){
 	var self = this
 	setTimeout(function(){
+		var reasonableLimit = 5
 		self.parentWindow = window
 		self.parentFrameElement = self.parentWindow.frameElement
-console.log('!! PARENT',reasonableLimit,self.parentWindow,self.parentFrameElement)
+console.log('!!!! PARENT',reasonableLimit,self.parentWindow,self.parentFrameElement)
 		while (self.parentWindow.location != self.parentWindow.parent.location) {
 			if (--reasonableLimit == 0) {
 				return cb('too many recursions')
