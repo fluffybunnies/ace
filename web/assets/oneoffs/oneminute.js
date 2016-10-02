@@ -1,20 +1,23 @@
 /*
-<div id="OneMinuteContest-submit"></div>
 <script src="http://ace.fabfitfun.com/assets/oneoffs/oneminute.js"></script>
 */
 
 function OneMinuteContest(){
 	var self = this
 	self.$ = {}
-	self.loadJquery(function(err,$){
-		if (err) return console.error(self.key,'failed to load jquery',err)
-		self.jQuery = $
 
-		self.findAndInsertWidgetPlaceholder(function(err){
-			if (err) return console.error(self.key,err)
-			self.loadCss()
-			self.loadExternalScripts()
-			self.functionalize()
+	self.findParentWindow(function(err){
+		if (err) return console.error('failed to find parent window',err)
+		self.loadJquery(function(err,$){
+			if (err) return console.error(self.key,'failed to load jquery',err)
+			self.jQuery = $
+
+			self.findAndInsertWidgetPlaceholder(function(err){
+				if (err) return console.error(self.key,err)
+				self.loadCss()
+				self.loadExternalScripts()
+				self.functionalize()
+			})
 		})
 	})
 }
@@ -22,8 +25,24 @@ function OneMinuteContest(){
 OneMinuteContest.prototype.key = 'OneMinuteContest'
 OneMinuteContest.prototype.WOOBOX_CAMPAIGN_ID = 'bd4rwu'
 
-// 1. find target insert element
-// 2. determine which widget based on current url
+OneMinuteContest.prototype.findParentWindow = function(cb){
+	var self = this
+	setTimeout(function(){
+		var reasonableLimit = 5
+		self.parentWindow = window
+		self.parentFrameElement = self.parentWindow.frameElement
+		while (self.parentWindow.location != window.parent.location && --reasonableLimit) {
+			self.parentFrameElement = self.parentWindow.frameElement
+			self.parentWindow = window.parent
+		}
+		console.log('!! PARENT',self.parentWindow,self.parentFrameElement)
+		if (reasonableLimit == 0) {
+			return cb('too many recursions')
+		}
+		cb()
+	},0)
+}
+
 OneMinuteContest.prototype.findAndInsertWidgetPlaceholder = function(cb){
 	var self = this
 	setTimeout(function(){
@@ -79,12 +98,12 @@ OneMinuteContest.prototype.loadJquery = function(cb){
 }
 
 OneMinuteContest.prototype.getScript = function(src,cb){
-	var script = document.createElement('script')
+	var script = self.parentWindow.document.createElement('script')
 	script.async = true
 	script.onload = function(){cb()}
 	script.onerror = cb
 	script.src = src
-	document.body.appendChild(script)
+	self.parentWindow.document.body.appendChild(script)
 	function done(err){
 		cb(err)
 		cb = function(){}
