@@ -13,9 +13,10 @@ class Exception extends ExceptionAbstract {
 		3003 => 'Invalid Input',
 		3004 => 'Not Authorized',
 
-		3010 => 'Not implemented',
+		3010 => 'Not Implemented',
 		3011 => 'Deprecated',
 		3012 => 'Not Allowed',
+		3013 => 'Not Available',
 
 		3040 => 'Source file not found',
 		3041 => 'Invalid file type',

@@ -17,6 +17,7 @@ class Exception extends ExceptionAbstract {
 		4010 => 'Not implemented',
 		4011 => 'Deprecated',
 		4012 => 'Not Allowed',
+		4013 => 'Not Available',
 
 		4015 => 'If either limit or offset is specified, both must be',
 		4016 => 'Limit and offset required',

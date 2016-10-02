@@ -17,9 +17,10 @@ class Exception extends ExceptionAbstract {
 		2007 => 'Error from lib',
 		2008 => 'Unexpected response from external api',
 		2009 => 'Error response from external api',
-		2010 => 'Not implemented',
+		2010 => 'Not Implemented',
 		2011 => 'Deprecated',
 		2012 => 'Not Allowed',
+		2013 => 'Not Available',
 
 		2015 => 'Max limit exceeded',
 
