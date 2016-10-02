@@ -35,7 +35,7 @@ OneMinuteContest.prototype.findParentWindow = function(cb){
 			self.parentFrameElement = self.parentWindow.frameElement
 			self.parentWindow = window.parent
 		}
-		console.log('!! PARENT',self.parentWindow,self.parentFrameElement)
+		console.log('!! PARENT',reasonableLimit,self.parentWindow,self.parentFrameElement)
 		if (reasonableLimit == 0) {
 			return cb('too many recursions')
 		}
