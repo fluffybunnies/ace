@@ -15,6 +15,7 @@ $googleAnalyticsId = '';
 
 
 $compile = array(
+	'polyfill',
 	'chat',
 	'fb',
 	'fireworks',

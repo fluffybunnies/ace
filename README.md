@@ -264,6 +264,7 @@ ace.util.getImageToWindowFit
 ace.util.getParameterByName
 ace.util.getViewportScrollY
 ace.util.hash
+ace.util.isEmptyObject
 ace.util.isFullyWithinViewport
 ace.util.isWithinViewport
 ace.util.obfu
@@ -271,7 +272,11 @@ ace.util.onTouchDevice
 ace.util.padZ
 ace.util.parseCookies
 ace.util.rand
+ace.util.removeClassWithPrefix
+ace.util.replaceAll
 ace.util.setCookie
+ace.util.setUniqueClassVal
+ace.util.stdErrAlert
 ace.util.strToClass
 ace.util.trueDim
 ```
@@ -390,6 +395,12 @@ Ace::date
 	Enforce app-consistent timezone reference
 Ace::dateUtc
 	Enforce app-consistent timezone reference
+Ace::dbTime
+	Mysql date format. Same as Ace::date('Y-m-d H:i:s', $time);
+Ace::dbTimeUtc
+	Mysql date format. Same as Ace::dateUtc('Y-m-d H:i:s', $time);
+Ace::time
+	Allows overriding return value of `Ace::time()` for unit tests
 Ace::aceTmz
 	Enforce app-consistent timezone reference
 ```
@@ -405,13 +416,19 @@ node ./bin/demo-emailCsv.js --emailTo='alec@luckygroupinc.com' --emailFrom='acqu
 
 ##### Utils
 ```javascript
-// 'ut.'+Object.keys(require('./lib/ut.js')).sort().join('\nut.')
+// node -e "console.log('ut.'+Object.keys(require('./lib/ut.js')).sort().join('\nut.'))"
 ut.dateDiff
+ut.dbTime
 ut.fileTime
+ut.flipObjKeyVals
 ut.getFirstChild
 ut.getFirstKey
+ut.isNumeric
 ut.padZ
+ut.pluckFromArray
 ut.prettyTime
+ut.rand
+ut.replaceAll
 ut.spawn
 ut.stats
 ut.superTrim
@@ -428,7 +445,6 @@ http://ace.fabfitfun.com/id
 
 
 ### To Do
-- Utilize late static binding in Exceptions
 - Import relevant bin/s (e.g. create_dto.php)
 - Import magic adapter + dao methods
 - Import Ace + bootshell + method comments + etc upgrades
