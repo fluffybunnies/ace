@@ -445,6 +445,7 @@ http://ace.fabfitfun.com/id
 
 
 ### To Do
+- Fix `ace.ui.instagram` (instagram api forced update)
 - Import relevant bin/s (e.g. create_dto.php)
 - Import magic adapter + dao methods
 - Import Ace + bootshell + method comments + etc upgrades
