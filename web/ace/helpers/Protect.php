@@ -26,7 +26,9 @@ class Protect extends HelperAbstract {
 				's' => 1,
 			);
 			if (!empty($log)) {
-				$mostDistantCallWithinRange = $log[$numRequests-1];
+				if (!is_array($log))
+					throw new HelperException(6010, null, 'list format'); // 'Corrupted log file'
+				$mostDistantCallWithinRange = $log[min($numRequests,count($log))-1];
 				if (!is_array($mostDistantCallWithinRange) || !is_numeric(Ace::g($mostDistantCallWithinRange,'t')))
 					throw new HelperException(6010, null, 'item format'); // 'Corrupted log file'
 				if ($call['t'] < $mostDistantCallWithinRange['t']+$perSeconds)
