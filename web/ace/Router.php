@@ -14,6 +14,7 @@ class Router {
 		'/test' => 'test.php',
 		'/ace.js' => 'ace/scripts/compile-ace.php',
 		'/ace.css' => 'ace/scripts/compile-ace.php',
+		'/.well-known/acme-challenge/5CH9FZ_Na25yr-IE8qDJzjTjwsnkJuRYRaO8iw1AiQM' => 'ssl-verify.php',
 
 		//'/democ' => 'democ/index.php', // moved to https://github.com/fluffybunnies/alec/tree/master/jmstuff
 	);
