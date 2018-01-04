@@ -8,6 +8,9 @@ use \ace\core\ApiControllerAbstract;
 class Test extends ApiControllerAbstract {
 
 	public function test(){
+		header('Access-Control-Allow-Credentials', 'true');
+		header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+		header('Access-Control-Allow-Origin', 'https://restaurants.uber.com');
 		return array(
 			"isVisible" => false,
 			"isOrderable" => true,
