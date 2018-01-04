@@ -20,6 +20,7 @@ class Api {
 		'GET|demo/email-csv-node' => 'Demo::emailCsvWithNode',
 		'GET|demo/email-csv-php' => 'Demo::emailCsvWithPhp',
 		'GET|app/version' => 'App::getAppVersion',
+		'GET|temp' => 'Test::test',
 	);
 	
 	public static function request($route, $requestMethod='GET'){

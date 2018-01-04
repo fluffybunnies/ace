@@ -25,6 +25,7 @@ class Ace {
 			else if (is_file($a))
 				include $a;
 		}
+		unset($args,$a);
 		self::$config = get_defined_vars();
 	}
 
