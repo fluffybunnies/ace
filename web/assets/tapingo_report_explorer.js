@@ -1743,8 +1743,8 @@ Dash.report_explorer = {};
 			.html($('<input/>').attr({type: 'hidden', name: 'json'}).val(JSON.stringify(data)))
 			.appendTo($('body'))
 			.submit().remove();
+		console.log('!!!!!','/dashboard/reports/' + format + '/',JSON.stringify(data))
 	};
-	console.log('!!!!!','/dashboard/reports/' + format + '/',JSON.stringify(data))
 
     _this.render = {};
 
