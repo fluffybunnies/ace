@@ -1744,6 +1744,7 @@ Dash.report_explorer = {};
 			.appendTo($('body'))
 			.submit().remove();
 	};
+	console.log('!!!!!','/dashboard/reports/' + format + '/',JSON.stringify(data))
 
     _this.render = {};
 
