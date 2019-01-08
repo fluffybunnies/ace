@@ -42858,7 +42858,7 @@
             var n = e(),
                 r = ze(n);
             if (r.size < 1) return Promise.reject();
-            try {throw new Error('premier')} catch (e) {console.log(e)}
+            //try {throw new Error('premier')} catch (e) {console.log(e)} // #alec
             var i = "merchant/".concat(r.toArray(), "/premierinfo");
             return hr.makeAuthenticatedRequest(i, null, n, t).then(function(e) {
                 var t = e.data,
