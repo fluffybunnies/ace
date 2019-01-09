@@ -6716,6 +6716,7 @@
         }
         var hi = function() {
             function e(t, n, r, i, o, a, s, c) {
+            	console.log('!!!!!HERE'); window._alec = o
                 ! function(e, t) {
                     if (!(e instanceof t)) throw new TypeError("Cannot call a class as a function")
                 }(this, e), this.$window = t, this.$q = n, this.$injector = r, this.$http = i, this.GlobalService = o, this.$rootScope = a, this.GHCentralTogglesService = c, this.ReduxStoreWrapper = s
