@@ -30254,6 +30254,7 @@
                     return (e = Object(r.rb)(a.store.getState())) && e.get("pathname") + e.get("search") + e.get("hash") === t.url() ? Promise.resolve() : a.store.dispatch(Object(b.push)(t.url()));
                     var e
                 }
+                console.log('!!!!!!!HERE'); window._alec = 0
                 e.moment = _.a, i.setAll({
                     "GHCentralAuthService.apiLocation": o.getApiLocation(),
                     "GHMenuGarconModelerService.apiLocation": o.getGarconMenusApiLocation(),
