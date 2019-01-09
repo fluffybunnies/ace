@@ -525,6 +525,7 @@
             t
         }();
         var K = Object(d.connect)(function(e) {
+        	console.log('!!!!!!!HIIIII')
             return {
                 getCurrentUser: Object(n.mb)(e),
                 isAuthenticating: Object(n.Eb)(e),
