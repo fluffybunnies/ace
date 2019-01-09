@@ -3064,6 +3064,7 @@
             }();
 
         function Re(e, t, n, i) {
+        	window._alec = this.GlobalService
         	try {throw new Error('hi!')} catch (e) {console.log('!!!!!!',e)}
             var o = "merchant/".concat(e.join(), "/orders?timestamp=").concat(t, "&include=SCHEDULED");
             return r.X.makeAuthenticatedRequest(o, {
@@ -41618,7 +41619,6 @@
                 }(),
                 i = Ue(e());
             ki(function(i) {
-            	console.log('!!!!!!!!!!!',i)
                 var o = {
                         macAddress: Qe.getMacAddress(),
                         userId: n,
